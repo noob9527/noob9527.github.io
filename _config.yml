@@ -7,8 +7,14 @@ title: Noob
 subtitle:
 description:
 author: xy
-language:
+language: zh-Hans
 timezone:
+
+# customize
+avatar: /images/avatar.jpg
+duoshuo_shortname: noob9527
+duoshuo_share: true
+swiftype_key: B83a3iUEVsh3ouxokdix
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -63,7 +69,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
