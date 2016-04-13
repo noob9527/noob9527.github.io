@@ -51,7 +51,9 @@
 
 
 {% if theme.favicon %}
-  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for(theme.favicon) }}?v={{ theme.version }}" />
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for(theme.favicon) }}" />
+  <link rel="Bookmark" type="image/x-icon" href="{{ url_for(theme.favicon) }}" />
+  <link rel="icon" type="image/x-icon" href="{{ url_for(theme.favicon) }}" />
 {% endif %}
 
 
