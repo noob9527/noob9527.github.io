@@ -3,22 +3,23 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Noob
-subtitle:
-description:
-author: xy
+title: NOOB
+subtitle: 要啥自行车
+description: Stay Hungry,Stay Foolish
+author: noob9527
 language: zh-Hans
 timezone:
+keywords: [github, 技术博客, web开发, google]
 
-# customize
-avatar: /images/avatar.jpg
-duoshuo_shortname: noob9527
-duoshuo_share: true
-swiftype_key: B83a3iUEVsh3ouxokdix
+# Sitemap
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://noob9527.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
