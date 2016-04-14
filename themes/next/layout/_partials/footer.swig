@@ -10,15 +10,15 @@
 
 <div class="powered-by">
   {#{{ __('footer.powered', '<a class="theme-link" href="http://hexo.io">Hexo</a>') }}#}
-  {{ __('footer.powered', '许炎') }}
+  {{ __('footer.powered', 'xu yan') }}
 </div>
 
+{#
 <div class="theme-info">
 email:xy2061864@gmail.com
-{#
   {{ __('footer.theme') }} -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.{{ theme.scheme }}
   </a>
-#}
 </div>
+#}
