@@ -218,7 +218,7 @@ mathjax:
 
 
 # Swiftype Search API Key
-swiftype_key: B83a3iUEVsh3ouxokdix
+swiftype_key: vnpJiF8xXLJppoY8dQXx
 
 # Baidu Analytics ID
 #baidu_analytics:
@@ -300,7 +300,7 @@ busuanzi_count:
   page_pv_footer:
 
 # Tencent analytics ID
-tencent_analytics: 55559914
+tencent_analytics: 55612284
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
 baidu_push: false
