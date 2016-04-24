@@ -79,3 +79,13 @@ deploy:
   repo: https://github.com/noob9527/noob9527.github.io.git
   brunch: master
   message:
+
+# Markdown Renderer config
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: false
+  smartLists: true
+  smartypants: true
