@@ -76,9 +76,10 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/noob9527/noob9527.github.io.git
-  brunch: master
   message:
+  repo: 
+    github: git@github.com:noob9527/noob9527.github.io.git,master
+    gitcafe: git@git.coding.net:noob9527/noob9527.git,master
 
 # Markdown Renderer config
 marked:
