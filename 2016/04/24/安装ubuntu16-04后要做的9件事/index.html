@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux,ubuntu," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="Bookmark" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+
+
+
+
+
+<meta name="description" content="ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)
+
+安装常用软件包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了
+修改root密码,取消sudo密码新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装ubuntu16.04后要做的9件事">
+<meta property="og:url" content="http://staynoob.cn/2016/04/24/安装ubuntu16-04后要做的9件事/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)
+
+安装常用软件包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了
+修改root密码,取消sudo密码新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同">
+<meta property="og:image" content="http://staynoob.cn/img/ubuntu16_04.png">
+<meta property="og:updated_time" content="2016-04-24T10:59:29.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装ubuntu16.04后要做的9件事">
+<meta name="twitter:description" content="ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)
+
+安装常用软件包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了
+修改root密码,取消sudo密码新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同">
+<meta name="twitter:image" content="http://staynoob.cn/img/ubuntu16_04.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6272551112717370000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 安装ubuntu16.04后要做的9件事 | NOOB </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">NOOB'S BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">要啥自行车</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'vnpJiF8xXLJppoY8dQXx','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                安装ubuntu16.04后要做的9件事
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T12:37:13+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/24/安装ubuntu16-04后要做的9件事/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/安装ubuntu16-04后要做的9件事/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/img/ubuntu16_04.png" alt="ubuntu16.04"></p>
+<blockquote>
+<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章<br>这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
+</blockquote>
+<h3 id="安装常用软件"><a href="#安装常用软件" class="headerlink" title="安装常用软件"></a>安装常用软件</h3><p>包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了</p>
+<h3 id="修改root密码-取消sudo密码"><a href="#修改root密码-取消sudo密码" class="headerlink" title="修改root密码,取消sudo密码"></a>修改root密码,取消sudo密码</h3><p>新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余<br>使用如下命令修改root密码
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></p>
+<p>使用如下命令取消sudo密码
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure></p>
+<p>该命令实际作用是打开编辑器编辑 <strong>/etc/sudoers</strong> 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 <strong>NOPASSWD</strong> 即可
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#Allow members of group sudo to execute any command</span><br><span class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h3 id="修改grub引导等待时间"><a href="#修改grub引导等待时间" class="headerlink" title="修改grub引导等待时间"></a>修改grub引导等待时间</h3><p>grub的配置文件在 <strong>/boot/grub/grub.cfg</strong>,但该文件实际上是根据 <strong>/etc/default/grub</strong> 的配置自动生成的,So
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/grub</span><br></pre></td></tr></table></figure></p>
+<p>注释掉 <strong>GRUB_HIDDEN_TIMEOUT=0</strong> 修改 <strong>GRUB_TIMEOUT=3</strong> 这里的3指的是等待3秒的意思,Then
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-grub</span><br></pre></td></tr></table></figure></p>
+<p>即重新生成grub的配置文件</p>
+<h3 id="禁止开机时的系统错误弹窗"><a href="#禁止开机时的系统错误弹窗" class="headerlink" title="禁止开机时的系统错误弹窗"></a>禁止开机时的系统错误弹窗</h3><p>ubuntu系统的老问题了,只要 <strong>/var/crash/</strong> 目录中有文件存在,则每次开机都会弹窗“检查到系统程序错误”,可以通过 <code>rm /var/crash/*</code> 暂时解决这个问题,
+但每当有新的 “crash” 文件生成,则该问题重现,推荐的办法是
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/default/apport</span><br></pre></td></tr></table></figure></p>
+<p>将其中的 <strong>enabled</strong> 属性由1改成0</p>
+<h3 id="将用户目录的文件夹改回英文"><a href="#将用户目录的文件夹改回英文" class="headerlink" title="将用户目录的文件夹改回英文"></a>将用户目录的文件夹改回英文</h3><p>ubuntu安装语言选择中文,自动生成的目录也成了中文,导致命令行操作非常麻烦,打开终端输入
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANG=en_US</span><br><span class="line">xdg-user-dirs-gtk-update</span><br><span class="line"><span class="built_in">export</span> LANG=zh-CN</span><br></pre></td></tr></table></figure></p>
+<p>在弹出的窗口中选择将文件夹改成英文,在下次启动时选择不改成中文并且不再提示即可</p>
+<h3 id="安装lantern-并设置为自启动"><a href="#安装lantern-并设置为自启动" class="headerlink" title="安装lantern,并设置为自启动"></a>安装lantern,并设置为自启动</h3><p>在<a href="https://github.com/getlantern/lantern" target="_blank" rel="external">lantern</a>下载deb包安装,注意在lantern UI中设置自启动在ubuntu系统中无效,只能自己添加启动脚本
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim ~/.config/autostart/nohup.desktop</span><br></pre></td></tr></table></figure></p>
+<p>添加如下内容即可
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Exec=/usr/bin/nohup sh -c &quot;/bin/sleep 3 &amp;&amp; /usr/lib/lantern/lantern.sh -addr 0.0.0.0:8787 -startup=true &amp;&gt; /dev/null&quot; &amp;&gt; /dev/null</span><br><span class="line">Hidden=false</span><br><span class="line">NoDisplay=false</span><br><span class="line">X-GNOME-Autostart-enabled=true</span><br><span class="line">Name=Lantern</span><br><span class="line">Comment=Lantern</span><br><span class="line"></span><br><span class="line">Name[zh_CN]=lantern</span><br><span class="line">Comment[zh_CN]=</span><br></pre></td></tr></table></figure></p>
+<h3 id="设置系统时间为本地时间-单操作系统可忽略"><a href="#设置系统时间为本地时间-单操作系统可忽略" class="headerlink" title="设置系统时间为本地时间(单操作系统可忽略)"></a>设置系统时间为本地时间(单操作系统可忽略)</h3><p>linux系统向来将BIOS时间视为GMT标准时间,于是将当前BIOS时间+当前时区的时差作为当前系统时间,而windows则直接使用BIOS时间作为当前系统时间,
+且两个系统都会在关机时将时间回写到BIOS上,这就造成了两个系统之间永远都有8小时(以北京时间计算)的时差,随便修改哪个系统都可以解决这个问题,这里只说linux解决方案,
+在16.04以前的版本中,可以修改 <strong>/etc/default/rcS</strong> 将里面的 <strong>UTC=yes</strong> 改成 <strong>no</strong> 即可,而ubuntu16.04无法再通过该文件配置,现在应该运行如下命令
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo timedatectl <span class="built_in">set</span>-local-rtc 1</span><br></pre></td></tr></table></figure></p>
+<h3 id="开机自动挂载ntfs分区-单操作系统可忽略"><a href="#开机自动挂载ntfs分区-单操作系统可忽略" class="headerlink" title="开机自动挂载ntfs分区(单操作系统可忽略)"></a>开机自动挂载ntfs分区(单操作系统可忽略)</h3><p>ubuntu只会自动挂载安装时分配给ubuntu的分区,导致每次开机后都要手动mount其它分区
+可以修改 <strong>/etc/fstab</strong> 按照该文件的格式添加要挂载的分区即可,UUID可以通过 <code>blkid</code> 命令获取,文件系统格式一般写 auto 就可以了</p>
+<h3 id="搭建开发环境-非码农可忽略"><a href="#搭建开发环境-非码农可忽略" class="headerlink" title="搭建开发环境(非码农可忽略)"></a>搭建开发环境(非码农可忽略)</h3><ul>
+<li><p>安装java  </p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install oracle-java8-installer</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装git,maven  </p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install maven</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装node<br>  使用nvm安装node,将以下命令中 “$HOME/.nvm” 替换成你想要的安装路径即可</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span> bash</span><br></pre></td></tr></table></figure>
+<p>  重新打开终端,输入以下命令安装任意版本的nodejs</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install &lt;version&gt;</span><br></pre></td></tr></table></figure>
+<p>  将npm切换至淘宝镜像(这条命令等价于修改~/.npmrc)</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry <span class="string">"https://registry.npm.taobao.org"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装IDE<br>  虽然我很喜欢vim,但一直玩得不6,因此还是需要IDE的,JetBrains的产品谁用谁知道,安装也没什么好说的,
+  唯一踩到的坑是之前习惯性的使用sudo执行了启动脚本,于是始终无法添加DASH快捷方式,
+  一顿捣腾后发现 <strong>~/.local/share/applications/jetbrains-webstorm.desktop</strong> 的owner是root,chown后问题解决</p>
+</li>
+</ul>
+<p>return 0;</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+<div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center">
+  <div></div>
+  <button id="rewardButton", disable="enable", onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}", style="cursor: pointer; border: 0; outline: 0; border-radius: 100%; padding: 0; margin: 0; letter-spacing: normal; text-transform: none; text-indent: 0px; text-shadow: none">
+    <span onmouseover="this.style.color='rgb(236,96,0)';this.style.background='rgb(204,204,204)'" onMouseOut="this.style.color='#fff';this.style.background='rgb(236,96,0)'" style="display: inline-block; width: 70px; height: 70px; border-radius: 100%; line-height: 81px; color: #fff; font: 400 35px/75px 'microsofty'; background: rgb(236,96,0)">赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+    
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/reward.png" alt="noob9527 Alipay" style="width: 200px; max-width: 100%; display: inline-block"/>
+        <p>支付宝打赏</p>
+      </div>
+    
+  </div>
+</div>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+            <a href="/tags/ubuntu/" rel="tag">#ubuntu</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/14/Init-Commit/" rel="next" title="Init Commit">
+                <i class="fa fa-chevron-left"></i> Init Commit
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/04/24/安装ubuntu16-04后要做的9件事/"
+     data-title="安装ubuntu16.04后要做的9件事"
+     data-content=""
+     data-url="http://staynoob.cn/2016/04/24/安装ubuntu16-04后要做的9件事/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/24/安装ubuntu16-04后要做的9件事/"
+           data-title="安装ubuntu16.04后要做的9件事" data-url="http://staynoob.cn/2016/04/24/安装ubuntu16-04后要做的9件事/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="noob9527" />
+          <p class="site-author-name" itemprop="name">noob9527</p>
+          <p class="site-description motion-element" itemprop="description">Stay Hungry,Stay Foolish</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">归档</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/noob9527" target="_blank" title="Github">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005052678297054" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装常用软件"><span class="nav-number">1.</span> <span class="nav-text">安装常用软件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改root密码-取消sudo密码"><span class="nav-number">2.</span> <span class="nav-text">修改root密码,取消sudo密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改grub引导等待时间"><span class="nav-number">3.</span> <span class="nav-text">修改grub引导等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止开机时的系统错误弹窗"><span class="nav-number">4.</span> <span class="nav-text">禁止开机时的系统错误弹窗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将用户目录的文件夹改回英文"><span class="nav-number">5.</span> <span class="nav-text">将用户目录的文件夹改回英文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装lantern-并设置为自启动"><span class="nav-number">6.</span> <span class="nav-text">安装lantern,并设置为自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置系统时间为本地时间-单操作系统可忽略"><span class="nav-number">7.</span> <span class="nav-text">设置系统时间为本地时间(单操作系统可忽略)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机自动挂载ntfs分区-单操作系统可忽略"><span class="nav-number">8.</span> <span class="nav-text">开机自动挂载ntfs分区(单操作系统可忽略)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建开发环境-非码农可忽略"><span class="nav-number">9.</span> <span class="nav-text">搭建开发环境(非码农可忽略)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">noob9527</span>
+</div>
+
+<div class="powered-by">
+  
+  powered by xu yan
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"noob9527"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
