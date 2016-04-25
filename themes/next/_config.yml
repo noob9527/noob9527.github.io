@@ -248,7 +248,7 @@ duoshuo_share: true
 
 
 # Google Analytics
-#google_analytics:
+google_analytics: UA-76868752-1
 
 # CNZZ count
 #cnzz_siteid:
