@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>NOOB</title>
+  <subtitle>要啥自行车</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://staynoob.cn/"/>
+  <updated>2016-04-29T09:25:34.342Z</updated>
+  <id>http://staynoob.cn/</id>
+  
+  <author>
+    <name>noob9527</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装ubuntu16.04后要做的9件事</title>
+    <link href="http://staynoob.cn/2016/04/24/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/"/>
+    <id>http://staynoob.cn/2016/04/24/安装ubuntu16-04后要做的9件事/</id>
+    <published>2016-04-24T04:37:13.000Z</published>
+    <updated>2016-04-29T09:25:34.342Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/img/ubuntu16_04.jpg&quot; alt=&quot;ubuntu16.04&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章&lt;br&gt;这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装常用软件&quot;&gt;&lt;a href=&quot;#安装常用软件&quot; class=&quot;headerlink&quot; title=&quot;安装常用软件&quot;&gt;&lt;/a&gt;安装常用软件&lt;/h3&gt;&lt;p&gt;包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了&lt;/p&gt;
+&lt;h3 id=&quot;修改root密码-取消sudo密码&quot;&gt;&lt;a href=&quot;#修改root密码-取消sudo密码&quot; class=&quot;headerlink&quot; title=&quot;修改root密码,取消sudo密码&quot;&gt;&lt;/a&gt;修改root密码,取消sudo密码&lt;/h3&gt;&lt;p&gt;新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余&lt;br&gt;使用如下命令修改root密码
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo passwd root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用如下命令取消sudo密码
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo visudo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;该命令实际作用是打开编辑器编辑 &lt;strong&gt;/etc/sudoers&lt;/strong&gt; 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 &lt;strong&gt;NOPASSWD&lt;/strong&gt; 即可
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Allow members of group sudo to execute any command&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;修改grub引导等待时间&quot;&gt;&lt;a href=&quot;#修改grub引导等待时间&quot; class=&quot;headerlink&quot; title=&quot;修改grub引导等待时间&quot;&gt;&lt;/a&gt;修改grub引导等待时间&lt;/h3&gt;&lt;p&gt;grub的配置文件在 &lt;strong&gt;/boot/grub/grub.cfg&lt;/strong&gt;,但该文件实际上是根据 &lt;strong&gt;/etc/default/grub&lt;/strong&gt; 的配置自动生成的,So
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo vim /etc/default/grub&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注释掉 &lt;strong&gt;GRUB_HIDDEN_TIMEOUT=0&lt;/strong&gt; 修改 &lt;strong&gt;GRUB_TIMEOUT=3&lt;/strong&gt; 这里的3指的是等待3秒的意思,Then
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo update-grub&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;即重新生成grub的配置文件&lt;/p&gt;
+&lt;h3 id=&quot;禁止开机时的系统错误弹窗&quot;&gt;&lt;a href=&quot;#禁止开机时的系统错误弹窗&quot; class=&quot;headerlink&quot; title=&quot;禁止开机时的系统错误弹窗&quot;&gt;&lt;/a&gt;禁止开机时的系统错误弹窗&lt;/h3&gt;&lt;p&gt;ubuntu系统的老问题了,只要 &lt;strong&gt;/var/crash/&lt;/strong&gt; 目录中有文件存在,则每次开机都会弹窗“检查到系统程序错误”,可以通过 &lt;code&gt;rm /var/crash/*&lt;/code&gt; 暂时解决这个问题,
+但每当有新的 “crash” 文件生成,则该问题重现,推荐的办法是
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo vim /etc/default/apport&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;将其中的 &lt;strong&gt;enabled&lt;/strong&gt; 属性由1改成0&lt;/p&gt;
+&lt;h3 id=&quot;将用户目录的文件夹改回英文&quot;&gt;&lt;a href=&quot;#将用户目录的文件夹改回英文&quot; class=&quot;headerlink&quot; title=&quot;将用户目录的文件夹改回英文&quot;&gt;&lt;/a&gt;将用户目录的文件夹改回英文&lt;/h3&gt;&lt;p&gt;ubuntu安装语言选择中文,自动生成的目录也成了中文,导致命令行操作非常麻烦,打开终端输入
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; LANG=en_US&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;xdg-user-dirs-gtk-update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; LANG=zh-CN&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;在弹出的窗口中选择将文件夹改成英文,在下次启动时选择不改成中文并且不再提示即可&lt;/p&gt;
+&lt;h3 id=&quot;安装lantern-并设置为自启动&quot;&gt;&lt;a href=&quot;#安装lantern-并设置为自启动&quot; class=&quot;headerlink&quot; title=&quot;安装lantern,并设置为自启动&quot;&gt;&lt;/a&gt;安装lantern,并设置为自启动&lt;/h3&gt;&lt;p&gt;在&lt;a href=&quot;https://github.com/getlantern/lantern&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lantern&lt;/a&gt;下载deb包安装,注意在lantern UI中设置自启动在ubuntu系统中无效,只能自己添加启动脚本
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo vim ~/.config/autostart/nohup.desktop&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;添加如下内容即可
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[Desktop Entry]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Type=Application&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Exec=/usr/bin/nohup sh -c &amp;quot;/bin/sleep 3 &amp;amp;&amp;amp; /usr/lib/lantern/lantern.sh -addr 0.0.0.0:8787 -startup=true &amp;amp;&amp;gt; /dev/null&amp;quot; &amp;amp;&amp;gt; /dev/null&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Hidden=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NoDisplay=false&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;X-GNOME-Autostart-enabled=true&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Name=Lantern&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Comment=Lantern&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Name[zh_CN]=lantern&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Comment[zh_CN]=&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;设置系统时间为本地时间-单操作系统可忽略&quot;&gt;&lt;a href=&quot;#设置系统时间为本地时间-单操作系统可忽略&quot; class=&quot;headerlink&quot; title=&quot;设置系统时间为本地时间(单操作系统可忽略)&quot;&gt;&lt;/a&gt;设置系统时间为本地时间(单操作系统可忽略)&lt;/h3&gt;&lt;p&gt;linux系统向来将BIOS时间视为GMT标准时间,于是将当前BIOS时间+当前时区的时差作为当前系统时间,而windows则直接使用BIOS时间作为当前系统时间,
+且两个系统都会在关机时将时间回写到BIOS上,这就造成了两个系统之间永远都有8小时(以北京时间计算)的时差,随便修改哪个系统都可以解决这个问题,这里只说linux解决方案,
+在16.04以前的版本中,可以修改 &lt;strong&gt;/etc/default/rcS&lt;/strong&gt; 将里面的 &lt;strong&gt;UTC=yes&lt;/strong&gt; 改成 &lt;strong&gt;no&lt;/strong&gt; 即可,而ubuntu16.04无法再通过该文件配置,现在应该运行如下命令
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo timedatectl &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt;-local-rtc 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;开机自动挂载ntfs分区-单操作系统可忽略&quot;&gt;&lt;a href=&quot;#开机自动挂载ntfs分区-单操作系统可忽略&quot; class=&quot;headerlink&quot; title=&quot;开机自动挂载ntfs分区(单操作系统可忽略)&quot;&gt;&lt;/a&gt;开机自动挂载ntfs分区(单操作系统可忽略)&lt;/h3&gt;&lt;p&gt;ubuntu只会自动挂载安装时分配给ubuntu的分区,导致每次开机后都要手动mount其它分区
+可以修改 &lt;strong&gt;/etc/fstab&lt;/strong&gt; 按照该文件的格式添加要挂载的分区即可,UUID可以通过 &lt;code&gt;blkid&lt;/code&gt; 命令获取,文件系统格式一般写 auto 就可以了&lt;/p&gt;
+&lt;h3 id=&quot;搭建开发环境-非码农可忽略&quot;&gt;&lt;a href=&quot;#搭建开发环境-非码农可忽略&quot; class=&quot;headerlink&quot; title=&quot;搭建开发环境(非码农可忽略)&quot;&gt;&lt;/a&gt;搭建开发环境(非码农可忽略)&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;安装java  &lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo add-apt-repository ppa:webupd8team/java&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install oracle-java8-installer&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装git,maven  &lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install maven&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装node&lt;br&gt;  使用nvm安装node,将以下命令中 “$HOME/.nvm” 替换成你想要的安装路径即可&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | NVM_DIR=&lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;/.nvm&quot;&lt;/span&gt; bash&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  重新打开终端,输入以下命令安装任意版本的nodejs&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nvm install &amp;lt;version&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  将npm切换至淘宝镜像(这条命令等价于修改~/.npmrc)&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm config &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; registry &lt;span class=&quot;string&quot;&gt;&quot;https://registry.npm.taobao.org&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安装IDE&lt;br&gt;  虽然我很喜欢vim,但一直玩得不6,因此还是需要IDE的,JetBrains的产品谁用谁知道,安装也没什么好说的,
+  唯一踩到的坑是之前习惯性的使用sudo执行了启动脚本,于是始终无法添加DASH快捷方式,
+  一顿捣腾后发现 &lt;strong&gt;~/.local/share/applications/jetbrains-webstorm.desktop&lt;/strong&gt; 的owner是root,chown后问题解决&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;return 0;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/img/ubuntu16_04.jpg&quot; alt=&quot;ubuntu16.04&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章&lt;br&gt;这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;安装常用软件&quot;&gt;&lt;a href=&quot;#安装常用软件&quot; class=&quot;headerlink&quot; title=&quot;安装常用软件&quot;&gt;&lt;/a&gt;安装常用软件&lt;/h3&gt;&lt;p&gt;包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了&lt;/p&gt;
+&lt;h3 id=&quot;修改root密码-取消sudo密码&quot;&gt;&lt;a href=&quot;#修改root密码-取消sudo密码&quot; class=&quot;headerlink&quot; title=&quot;修改root密码,取消sudo密码&quot;&gt;&lt;/a&gt;修改root密码,取消sudo密码&lt;/h3&gt;&lt;p&gt;新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余&lt;br&gt;使用如下命令修改root密码
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo passwd root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用如下命令取消sudo密码
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo visudo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;该命令实际作用是打开编辑器编辑 &lt;strong&gt;/etc/sudoers&lt;/strong&gt; 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 &lt;strong&gt;NOPASSWD&lt;/strong&gt; 即可
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Allow members of group sudo to execute any command&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="ubuntu" scheme="http://staynoob.cn/categories/ubuntu/"/>
+    
+    
+      <category term="linux" scheme="http://staynoob.cn/tags/linux/"/>
+    
+      <category term="ubuntu" scheme="http://staynoob.cn/tags/ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Init Commit</title>
+    <link href="http://staynoob.cn/2016/04/14/Init-Commit/"/>
+    <id>http://staynoob.cn/2016/04/14/Init-Commit/</id>
+    <published>2016-04-14T08:18:33.000Z</published>
+    <updated>2016-04-24T11:23:24.584Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/img/Init_Commit.jpg&quot; alt=&quot;Init Commit&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometimes I talk to myself because I need expert advice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;OK!Let’s begin.&lt;br&gt;//以上是这篇文章的开头&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;快问我,为什么有一个这么中二的开头!
+学写代码已经一年多了!这一年最大的成果就是,自己已经越来越不会与人交流了,于是在不断的码字,然后删除的循环
+之下,诞生了这个毫无意义的段落&lt;/p&gt;
+&lt;p&gt;//So,我搭建了这个博客,希望自己还能够写出人类能够理解的文字,在这里我会发表自己对一些技术的看法&lt;br&gt;//以及尽可能多的谈一些与技术无关的话题&lt;br&gt;我搭建了这个博客,并且打算在这里瞎扯淡&lt;/p&gt;
+&lt;p&gt;return 0;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/img/Init_Commit.jpg&quot; alt=&quot;Init Commit&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Sometimes I talk to myself because I need expert advice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;OK!Let’s begin.&lt;br&gt;//以上是这篇文章的开头&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Diary" scheme="http://staynoob.cn/categories/Diary/"/>
+    
+    
+      <category term="有一说一" scheme="http://staynoob.cn/tags/%E6%9C%89%E4%B8%80%E8%AF%B4%E4%B8%80/"/>
+    
+  </entry>
+  
+</feed>
