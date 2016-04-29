@@ -17,11 +17,22 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
+# Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+
+# License
+creative_commons: by-nc-sa
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://staynoob.cn
 root: /
 permalink: :year/:month/:day/:title/
+#permalink: :year/:title/
 permalink_defaults:
 
 # Directory

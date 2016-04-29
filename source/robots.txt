@@ -10,5 +10,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://noob9527.github.io/sitemap.xml
-Sitemap: http://noob9527.github.io/baidusitemap.xml
+Sitemap: http://staynoob.cn/sitemap.xml
+Sitemap: http://staynoob.cn/baidusitemap.xml
