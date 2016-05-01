@@ -9,7 +9,7 @@ description: Stay Hungry,Stay Foolish
 author: noob9527
 language: zh-Hans
 timezone:
-keywords: [github, 技术博客, web开发, google]
+keywords: [github, blog, web开发, fontend]
 
 # Sitemap
 sitemap:
@@ -31,8 +31,8 @@ creative_commons: by-nc-sa
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://staynoob.cn
 root: /
-permalink: :year/:month/:day/:title/
-#permalink: :year/:title/
+#permalink: :year/:month/:day/:title/
+permalink: :category/:title/
 permalink_defaults:
 
 # Directory
@@ -51,7 +51,7 @@ default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
-render_drafts: false
+render_drafts: true
 post_asset_folder: false
 relative_link: false
 future: true
@@ -98,6 +98,12 @@ marked:
   pedantic: false
   sanitize: false
   tables: true
-  breaks: false
+  breaks: true
   smartLists: true
-  smartypants: true
+  smartypants: false
+
+#math:
+#  engine: 'mathjax'
+#  mathjax: 
+#    src: //cdn.mathjax.org/mathjax/latest/MathJax.js
+#    config:

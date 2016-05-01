@@ -146,7 +146,7 @@ toc:
   enable: true
 
   # Automatically add list number to toc.
-  number: true
+  number: false
 
 
 # Creative Commons 4.0 International License.
@@ -212,9 +212,9 @@ auto_excerpt:
 # ---------------------------------------------------------------
 
 # MathJax Support
-mathjax:
-  enable: false
-  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#mathjax:
+#  enable: false
+#  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
 # Swiftype Search API Key
