@@ -7,7 +7,7 @@
 
 <html class="theme-next mist use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title> NOOB - Stay Hungry,Stay Foolish </title>
+  <title> NOOB - Stay Hungry,Stay Foolish </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -92,7 +92,7 @@
   
 
 
-<script>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
           m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -257,8 +257,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/24/安装ubuntu16-04后要做的9件事/" itemprop="url">
-                  安装ubuntu16.04后要做的9件事
+                <a class="post-title-link" href="/algorithm/聊聊主流排序算法-上/" itemprop="url">
+                  聊聊4种主流排序算法(上)
                 </a>
               
             
@@ -271,8 +271,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T12:37:13+08:00" content="2016-04-24">
-              2016-04-24
+            <time itemprop="dateCreated" datetime="2016-04-29T20:23:35+08:00" content="2016-04-29">
+              2016-04-29
             </time>
           </span>
 
@@ -285,8 +285,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
+                  <a href="/categories/algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">algorithm</span>
                   </a>
                 </span>
 
@@ -301,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/24/安装ubuntu16-04后要做的9件事/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/安装ubuntu16-04后要做的9件事/" itemprop="commentsCount"></span>
+                <a href="/algorithm/聊聊主流排序算法-上/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="algorithm/聊聊主流排序算法-上/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,19 +326,23 @@
 
       
         
-          <p><img src="/img/ubuntu16_04.jpg" alt="ubuntu16.04"></p>
+          <p><img src="/img/sort-algorithm-1.jpg" alt="sort-algorithm-1.jpg"></p>
 <blockquote>
-<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章<br>这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
+<p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
-<h3 id="安装常用软件"><a href="#安装常用软件" class="headerlink" title="安装常用软件"></a>安装常用软件</h3><p>包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了</p>
-<h3 id="修改root密码-取消sudo密码"><a href="#修改root密码-取消sudo密码" class="headerlink" title="修改root密码,取消sudo密码"></a>修改root密码,取消sudo密码</h3><p>新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余<br>使用如下命令修改root密码
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></p>
-<p>使用如下命令取消sudo密码
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure></p>
-<p>该命令实际作用是打开编辑器编辑 <strong>/etc/sudoers</strong> 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 <strong>NOPASSWD</strong> 即可
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#Allow members of group sudo to execute any command</span><br><span class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p>
+<h3 id="一-约定"><a href="#一-约定" class="headerlink" title="一.约定"></a>一.约定</h3><p>为了更加方便的表达意图，下面是关于本文的一些约定</p>
+<ul>
+<li>输入的规模<br>  文中使用N代表输入的规模，比如说N=100，表示将100个元素排序</li>
+<li>对数<br>   除非有特别的说明，文中所有的对数都是以2为底的，即logN表示以2为底N的对数</li>
+<li>代码<br>  文中的代码大多数只截取关键片段，无法直接运行，关于这些算法的完整代码网上到处都是，这不是本文的核心，我相信文章使用尽可能少的代码对阅读者更友好，在文中写代码只能代表我无法用简短的人类语言来描述这部分意图。</li>
+</ul>
+<h3 id="二-简单的概念"><a href="#二-简单的概念" class="headerlink" title="二.简单的概念"></a>二.简单的概念</h3><p>在正式开始前先简单介绍几个基本概念（有经验的程序员请一定跳过这个部分）</p>
+<ul>
+<li><p>排序算法的稳定性<br>  我刚开始学编程的时候看到“不稳定的算法”，首先想到的是“是不是这种算法有时无法将数组恢复有序？或者说有时运行非常快，有时永远也得不出结果？”事实上上面两种情况只能称作有bug的算法，算法的稳定性指的是当有两个元素有相同的主键的时候，算法是否能保证在排序前后这两个元素的相对位置不变，比如有一个数组</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[&#123;id:<span class="number">1</span>,name:<span class="string">'foo'</span>&#125;,&#123;id:<span class="number">1</span>,name:<span class="string">'bar'</span>&#125;]</span><br></pre></td></tr></table></figure>
+<p>  当依据id对这个数组排序后，是否还能保证foo在bar的前面。如果可以，则该排序算法是稳定的。</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/24/安装ubuntu16-04后要做的9件事/#more" rel="contents">
+            <a class="btn" href="/algorithm/聊聊主流排序算法-上/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -389,8 +393,137 @@
             
               
                 
-                <a class="post-title-link" href="/2016/04/14/Init-Commit/" itemprop="url">
-                  Init Commit
+                <a class="post-title-link" href="/linux/安装ubuntu16-04后要做的9件事/" itemprop="url">
+                  安装ubuntu16.04后要做的9件事
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-24T12:37:13+08:00" content="2016-04-24">
+              2016-04-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/linux/安装ubuntu16-04后要做的9件事/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="linux/安装ubuntu16-04后要做的9件事/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="/img/ubuntu16_04.jpg" alt="ubuntu16.04"></p>
+<blockquote>
+<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章<br>这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
+</blockquote>
+<h3 id="一-安装常用软件"><a href="#一-安装常用软件" class="headerlink" title="一.安装常用软件"></a>一.安装常用软件</h3><p>包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了</p>
+<h3 id="二-修改root密码-取消sudo密码"><a href="#二-修改root密码-取消sudo密码" class="headerlink" title="二.修改root密码,取消sudo密码"></a>二.修改root密码,取消sudo密码</h3><p>新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余<br>使用如下命令修改root密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></p>
+<p>使用如下命令取消sudo密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure></p>
+<p>该命令实际作用是打开编辑器编辑 <strong>/etc/sudoers</strong> 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 <strong>NOPASSWD</strong> 即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#Allow members of group sudo to execute any command</span><br><span class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/linux/安装ubuntu16-04后要做的9件事/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/diary/init-commit/" itemprop="url">
+                  init commit
                 </a>
               
             
@@ -417,8 +550,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
+                  <a href="/categories/diary/" itemprop="url" rel="index">
+                    <span itemprop="name">diary</span>
                   </a>
                 </span>
 
@@ -433,8 +566,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/14/Init-Commit/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/Init-Commit/" itemprop="commentsCount"></span>
+                <a href="/diary/init-commit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="diary/init-commit/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -458,13 +591,13 @@
 
       
         
-          <p><img src="/img/Init_Commit.jpg" alt="Init Commit"></p>
+          <p><img src="/img/init_commit.jpg" alt="init commit"></p>
 <blockquote>
 <p>Sometimes I talk to myself because I need expert advice.</p>
 </blockquote>
-<p>OK!Let’s begin.<br>//以上是这篇文章的开头</p>
+<p>OK!Let&#39;s begin.<br>//以上是这篇文章的开头</p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/14/Init-Commit/#more" rel="contents">
+            <a class="btn" href="/diary/init-commit/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -536,7 +669,7 @@
           <div class="site-state-item site-state-posts">
             
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">归档</span>
             </a>
           </div>
@@ -544,7 +677,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -760,7 +893,7 @@
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(bp, s);
 })();
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

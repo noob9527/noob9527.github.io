@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://staynoob.cn/2016/04/24/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
+    <loc>http://staynoob.cn/algorithm/%E8%81%8A%E8%81%8A%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/</loc>
     
-    <lastmod>2016-04-29T09:25:34.342Z</lastmod>
+    <lastmod>2016-05-01T10:11:38.271Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/2016/04/14/Init-Commit/</loc>
+    <loc>http://staynoob.cn/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
     
-    <lastmod>2016-04-24T11:23:24.584Z</lastmod>
+    <lastmod>2016-05-01T01:48:45.899Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/diary/init-commit/</loc>
+    
+    <lastmod>2016-04-30T07:26:51.125Z</lastmod>
     
   </url>
   
