@@ -32,7 +32,7 @@ creative_commons: by-nc-sa
 url: http://staynoob.cn
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: :category/:title/
+permalink: post/:category/:title/
 permalink_defaults:
 
 # Directory
@@ -51,7 +51,7 @@ default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
-render_drafts: true
+render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
@@ -62,7 +62,7 @@ highlight:
   tab_replace:
 
 # Category & Tag
-default_category: uncategorized
+default_category: diary
 category_map:
 tag_map:
 
