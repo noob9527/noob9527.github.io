@@ -3,6 +3,9 @@ User-agent: *
 Allow: /
 Allow: /archives/
 
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /page/
 Disallow: /vendors/
 Disallow: /js/
 Disallow: /css/

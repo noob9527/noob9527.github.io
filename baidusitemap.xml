@@ -4,8 +4,48 @@
 
     
   <url>
-    <loc>http://staynoob.cn/algorithm/%E8%81%8A%E8%81%8A%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/</loc>
-    <lastmod>2016-05-01T10:11:38.271Z</lastmod>
+    <loc>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E7%95%AA%E5%A4%96%E7%AF%87-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E4%BC%98%E5%8C%96%E5%8E%86%E7%A8%8B/</loc>
+    <lastmod>2016-05-05T11:50:26.317Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        
+        <tag>sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8B/</loc>
+    <lastmod>2016-05-05T11:36:21.237Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(下)</title>
+        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
+        
+        <tag>sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/</loc>
+    <lastmod>2016-05-04T09:26:53.791Z</lastmod>
     <data>
         <display>
         <title>聊聊4种主流排序算法(上)</title>
@@ -23,8 +63,10 @@
     </url>
 
     
+    
+    
   <url>
-    <loc>http://staynoob.cn/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
+    <loc>http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
     <lastmod>2016-05-01T01:48:45.899Z</lastmod>
     <data>
         <display>
@@ -44,7 +86,7 @@
 
     
   <url>
-    <loc>http://staynoob.cn/diary/init-commit/</loc>
+    <loc>http://staynoob.cn/post/diary/init-commit/</loc>
     <lastmod>2016-04-30T07:26:51.125Z</lastmod>
     <data>
         <display>
@@ -62,7 +104,5 @@
     </data>
     </url>
 
-    
-    
     
 </urlset>
