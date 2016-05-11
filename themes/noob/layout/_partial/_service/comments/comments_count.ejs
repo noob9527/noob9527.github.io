@@ -1,0 +1,17 @@
+<% if(post.comments){ %>
+<% if(theme.duoshuo.shortname){ %>
+    <span class="post-comments-count">
+        &nbsp; | &nbsp;
+        <a href="<%- url_for(post.path) %>#comments" itemprop="discussionUrl">
+            <span class="post-comments-count ds-thread-count" data-thread-key="<%- post.path %>" itemprop="commentsCount"></span>
+        </a>
+    </span>
+<% }else if(theme.disqus.shortname){ %>
+    <span class="post-comments-count">
+        &nbsp; | &nbsp;
+        <a href="<%- url_for(post.path) %>#comments" itemprop="discussionUrl">
+            <span class="post-comments-count disqus-comment-count" data-disqus-identifier="<%- post.path %>" itemprop="commentsCount"></span>
+        </a>
+    </span>
+<% } %>
+<% } %>

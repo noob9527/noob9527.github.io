@@ -1,0 +1,18 @@
+<aside class="widget" id="site-profile">
+    <img src="<%- url_for('/img/logo_green.png')%>">
+    <h3 class="widget-title"><%- theme.description %></h3>
+    <div class="widget-content">
+        <% if(theme.link){ %>
+            <% for(var item in theme.link){ %>
+                <a href="<%- theme.link[item] %>" target="_blank">
+                    <i class="fa fa-2x fa-<%- theme.link_icons[item] %>"></i>
+                </a>
+            <% } %>
+        <% } %>
+        <% if(theme.rss){ %>
+            <a href="<%- url_for(theme.rss) %>" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        <% } %>
+    </div>
+</aside>

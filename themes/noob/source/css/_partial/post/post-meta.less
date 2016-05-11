@@ -1,0 +1,29 @@
+.post{
+  .post-meta{
+    margin: 3px 0 3px 0;
+    text-align: center;
+  }
+}
+.post-list{
+  .post-meta{
+    text-align: left;
+  }
+}
+
+.post-meta{
+  font-size: 12px;
+  color: @gray-light;
+  
+  &-item-icon{
+    display: none;
+    @media (max-width: @screen-xs-max){
+      display: inline-block;
+    }
+  }
+  
+  &-item-text{
+    @media (max-width: @screen-xs-max) {
+      display: none;
+    }
+  }
+}

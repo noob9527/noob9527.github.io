@@ -1,0 +1,16 @@
+<footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        <% 
+            var current = date(new Date(), 'YYYY');
+        %>
+        <% if(theme.since && theme != current){ %>
+            <%= theme.since %> - 
+        <% } %>
+        <span itemprop="copyrightYear"><%= current  %></span>
+        <%= config.author || config.title %><br>
+        Powered by <a href="" target="_blank">xy</a>
+        .
+        Theme Noob by <a href="" target="_blank">xy</a>
+    </div>
+</footer>

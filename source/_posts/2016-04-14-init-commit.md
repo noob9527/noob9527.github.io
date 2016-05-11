@@ -3,10 +3,12 @@ title: init commit
 categories: diary
 tags: 有一说一
 date: 2016-04-14 16:18:33
+photos: /img/init_commit.jpg
+
 ---
 
 
-![init commit](/img/init_commit.jpg)
+<!-- ![init commit](/img/init_commit.jpg) -->
 
 > Sometimes I talk to myself because I need expert advice.
 

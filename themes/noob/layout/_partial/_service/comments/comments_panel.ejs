@@ -1,0 +1,14 @@
+<div class="comments" id="comments">
+    <% if(theme.duoshuo.shortname){ %>
+        <div class="ds-thread" data-thread-key="<%- post.path %>"
+             data-title="<%- post.title %>" data-url="<%- post.permalink %>">
+        </div>
+    <% } else if(theme.disqus.shortname){ %>
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    <% } %>
+</div>

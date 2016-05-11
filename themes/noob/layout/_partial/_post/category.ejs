@@ -1,0 +1,17 @@
+<% if (post.categories && post.categories.length){ %>
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text"><%- __('post.categories') %></span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <%- list_categories(post.categories, {
+            show_count: false,
+            class: 'article-category',
+            style: 'none',
+            separator: '►'
+        }) %>
+    </span>
+</span>
+<% } %>

@@ -5,7 +5,7 @@
 # Site
 title: NOOB
 subtitle: 要啥自行车
-description: Stay Hungry,Stay Foolish
+description: staynoob! not stay noob!
 author: noob9527
 language: zh-Hans
 timezone:
@@ -81,7 +81,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next
+theme: noob
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -101,4 +101,3 @@ marked:
   breaks: true
   smartLists: true
   smartypants: false
-  

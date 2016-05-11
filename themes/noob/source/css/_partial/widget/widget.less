@@ -1,0 +1,21 @@
+.widget{
+  margin-bottom: 60px;
+  
+  &-title{
+    font-size: 20px;
+    border-bottom: 1px solid @divider-color;
+    padding-bottom: 8px;
+  }
+  
+  .category-list-count, .tag-list-count, .archive-list-count{
+    padding-left: 5px;
+    &:before{
+      content: "(";
+    }
+    &:after{
+      content: ")";
+    }
+  }
+}
+
+@import "profile";
