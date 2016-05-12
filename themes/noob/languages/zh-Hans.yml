@@ -13,6 +13,7 @@ widget:
   tags: 标签
   tagcloud: 标签云
   recent_posts: 最新文章
+  search: 站内搜索
   
 post:
   posted: 发表于

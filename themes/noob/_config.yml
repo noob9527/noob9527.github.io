@@ -31,6 +31,7 @@ menu_icons:
 # Sidebar widgets
 widgets:
 - profile
+- search
 - recent_posts
 - category
 - tag
@@ -79,7 +80,6 @@ baidu_site_verification: YjSOMYjRFK
 
 # baidu seo
 baidu_push: true
-
 
 # -------------------------------------------------------
 # backend config

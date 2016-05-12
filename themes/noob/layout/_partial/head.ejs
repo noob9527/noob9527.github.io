@@ -19,11 +19,8 @@
         title = 'Tag: ' + page.tag;
     }
 %>
-<% if(title){ %>
-    <title><%- title %> | <%- theme.title %></title>
-<% }else{ %>
-    <title><%- theme.title %> | <%- titlecase(theme.subtitle) %></title>
-<% } %>
+
+<title><%- (title ? title+' | ' : '') + theme.title + ' - ' + theme.description %></title>
 
 <% if(page.keywords){ %>
     <meta name="keywords" content="<%- page.keywords %>">
@@ -67,6 +64,10 @@
     duoshuo: {
       userId: '<%- theme.duoshuo.user_id || '' %>',
       author: '<%- theme.duoshuo.admin_nickname || __('author')%>'
-    }
+    },
+    search: {
+      //path: '<%- url_for(theme.search.path) %>'  
+      path: '<%- config.root + theme.search.path %>'
+    }  
   };
 </script>

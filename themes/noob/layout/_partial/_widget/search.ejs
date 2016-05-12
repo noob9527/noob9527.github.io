@@ -1,0 +1,11 @@
+<% if(theme.search){ %>
+<aside class="widget" id="local-search">
+    <h3 class="widget-title"><%- __('widget.search') %></h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+<% } %>
