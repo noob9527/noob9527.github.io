@@ -9,8 +9,8 @@
         <% } %>
         <span itemprop="copyrightYear"><%= current  %></span>
         <%= config.author || config.title %><br>
-        Powered by <a href="" target="_blank">xy</a>
+        Powered by <a href="<%- url_for('about') %>">xy</a>
         .
-        Theme Noob by <a href="" target="_blank">xy</a>
+        Theme Noob by <a href="<%- url_for('about') %>">xy</a>
     </div>
 </footer>

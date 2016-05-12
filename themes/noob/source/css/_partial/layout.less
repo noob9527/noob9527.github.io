@@ -1,14 +1,22 @@
+.site-media{
+  @media (min-width: @screen-sm-min) {
+    width: 90%
+  }
+}
+
 .site-content{
-  width: 90%;
   margin-top: 60px;
+  .site-media();
   
   main{
     .center-block();
-    width: 85%;
+    max-width: 900px;
+    .site-media();
   }
   
   .side-nav{
     .center-block();
-    width: 85%;
+    .site-media();
   }
 }
+

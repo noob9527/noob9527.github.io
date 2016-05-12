@@ -1,7 +1,26 @@
 <header id="site-nav">
     <div id="banner"></div>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    <% if(theme.link){ %>
+                        <% for(var item in theme.link){ %>
+                            <li><a href="<%- theme.link[item] %>" target="_blank">
+                                <i class="fa fa-2x fa-<%- theme.link_icons[item] %>"></i>
+                            </a></li>
+                        <% } %>
+                    <% } %>
+                    <% if(theme.rss){ %>
+                        <li><a href="<%- url_for(theme.rss) %>" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    <% } %>
+                </ul>
+            </div>
+            
             <div class="navbar-header">
                 <!--toggle button-->
                 <button class="navbar-toggle collapsed" data-toggle="collapse" 

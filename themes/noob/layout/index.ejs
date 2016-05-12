@@ -1,1 +1,5 @@
-<%- partial('_partial/archive', {pagination: 2, index: true}) %>
+<% page.posts.forEach(function(post){ %>
+    <%- partial('_partial/_post/post', {post: post}) %>
+<% }) %>
+
+<%- partial('_partial/pagination') %>

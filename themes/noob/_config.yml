@@ -5,9 +5,6 @@
 # Put your favicon.ico into `hexo-site/source/` directory.
 favicon: /favicon.ico
 
-# Set default keywords (Use a comma to separate)
-keywords: "github, 技术博客, web开发, fontend"
-
 # Specify the date when the site was setup
 since: 2015
 
@@ -57,13 +54,32 @@ link_icons:
 # -------------------------------------------------------
 # Third party service config
 # -------------------------------------------------------
-# Duoshuo
+# Duoshuo(comments and share)
 duoshuo:
   shortname: noob9527
   share: true
   ua_enable: true
   user_id: 6272551112717370000
   admin_nickname: xy
+  hotarticle: false
+
+# MathJax Support
+mathjax:
+  enable: true
+  cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+# analytics
+baidu_analytics: 855dd1a156248c0c337788236167c870
+google_analytics: UA-76868752-1
+tencent_analytics: 55612284
+
+# site verification for commit the sitemap
+google_site_verification: 9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs
+baidu_site_verification: YjSOMYjRFK
+
+# baidu seo
+baidu_push: true
+
 
 # -------------------------------------------------------
 # backend config

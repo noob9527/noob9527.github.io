@@ -1,36 +1,52 @@
 @navbar-border-radius: 0;
+@navbar-nav-bg:rgba(0,0,0,0.18);
 
 #site-nav{
   height: @site-header-height;
   
   .navbar{
-    background-color: rgba(0,0,0,0.08);
+    background-color: @navbar-nav-bg;
     margin:-@navbar-height 0 0;
     border: none;
+    
+    a{
+      color: lighten(@gray-base, 88%);
+      &:hover{
+        color: white;
+      }
+    }
+    
+    .social-link{
+      display: none;  
+    }
+    
+    .navbar-nav{
+      a:hover{
+        color:white;
+        background-color: @link-btn-hover-bg;
+        border-color: @link-btn-hover-bg;
+      }
+      
+      li{
+        z-index: 1;
+      }
+    }
     
     .navbar-toggle{
       border: none;
       &:hover,&:focus{
         color:white;
-        background-color: @link-btn-hover-color;
-        border-color: @link-btn-hover-color;
+        background-color: @link-btn-hover-bg;
+        border-color: @link-btn-hover-bg;
       }
     }
-    .navbar-nav{
-      li{
-        z-index: 1;
+    
+    .in{
+      a{
+        color: @link-btn-hover-bg;
       }
     }
-    //.navbar-nav{
-    //  a:hover{
-    //    color:white;
-    //    background-color: @profile-hover-color;
-    //    border-color: @profile-hover-color;
-    //  }
-    //}
   }
-  
-  
 }
 
 .sticky{
@@ -40,13 +56,40 @@
   z-index: @zindex-navbar-fixed;
   top: 0;
   height: @navbar-height !important;
+  
   .navbar{
     background-color: transparent !important;
     .header-shadow();
+    
+    .in{
+      background-color: @navbar-nav-bg;
+    }
+  }
+  
+  .navbar-brand{
+    display: none;
+  }
+  
+  .social-link{
+    display: block !important;
+    a{
+      padding: 0 15px;
+      i{
+        line-height: 50px;
+      }
+    }
+    ul{
+      margin: 0;
+      float: left;
+      li{
+        float: left;
+      }
+    }
   }
 }
 
 #banner{
   height: 100%;
   background-image: url(/img/banner.jpg);
+  background-size: cover;
 }

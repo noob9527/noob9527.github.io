@@ -7,9 +7,21 @@ menu:
   search: 搜索
   guestbook: 留言
 
+widget:
+  archive: 归档
+  categories: 分类
+  tags: 标签
+  tagcloud: 标签云
+  recent_posts: 最新文章
+
 post:
   posted: 发表于
   categories: 分类于
   visitors: 阅读次数
   read_more: 阅读全文
   untitled: 未命名
+  
+title:
+  archive: 归档
+  category: 分类
+  tag: 标签

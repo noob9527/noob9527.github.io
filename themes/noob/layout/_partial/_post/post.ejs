@@ -5,35 +5,33 @@
         <!-- title -->
         <% if (post.link || post.title){ %>
         <header class="post-header">
-            <%- partial('_post/title', {class_name: 'post-title'}) %>
+            <%- partial('title') %>
         </header>
         <% } %>
 
         <!-- meta data -->
         <div class="post-meta">
-            <%- partial('_post/date') %>
-            <%- partial('_post/category') %>
-            <%- partial('_service/comments/comments_count') %>
+            <%- partial('date') %>
+            <%- partial('category') %>
+            <%- partial('../_service/comments/comments_count') %>
         </div>
 
         <!-- gallery-->
         <% if (post.photos && post.photos.length){ %>
         <div class="post-gallery">
-            <%- partial('_post/gallery') %>
+            <%- partial('gallery') %>
         </div>
         <% } %>
 
         <!-- entry -->
         <div class="post-entry" itemprop="postBody">
-            <% if (post.excerpt && index){ %>
+            <% if (post.excerpt && !is_post()){ %>
             <!--摘录-->
             <%- post.excerpt %>
             <!--阅读全文-->
-            <% if (theme.excerpt_link){ %>
             <p class="post-more-link">
-                <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
+                <a href="<%- url_for(post.path) %>#more"><%- __('post.read_more') %></a>
             </p>
-            <% } %>
             <% } else { %>
             <!--文章内容-->
             <%- post.content %>
@@ -41,21 +39,25 @@
         </div>
 
         <footer class="post-footer">
-            <%- partial('_post/tag') %>
+            <%- partial('tag') %>
         </footer>
     </div>
     
-    <% if (!index){ %>
-    <%- partial('_post/nav') %>
+    <% if (is_post()){ %>
+    <%- partial('nav') %>
     <% } %>
     
+    <% if(is_post() && theme.duoshuo.share){ %>
     <div class="post-spread">
-        <% if(theme.duoshuo.share){ %>
-            <%- partial('_service/share/duoshuo_share') %>
-        <% } %>
+        <%- partial('../_service/share/duoshuo_share') %>
     </div>
+    <% } %>
     
-    <% if (!index && post.comments){ %>
-    <%- partial('_service/comments/comments_panel') %>
+    <% if(is_post && theme.duoshuo.hotarticle){ %>
+        <%- partial('../_service/comments/duoshuo_hotarticle') %>
+    <% } %>
+    
+    <% if (is_post() && post.comments){ %>
+        <%- partial('../_service/comments/comments_panel') %>
     <% } %>
 </article>
