@@ -7,30 +7,23 @@
 
 
 
-    <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程 | NOOB</title>
-
+<title>聊聊4种主流排序算法(番外篇):快速排序的优化历程 | NOOB - 许炎的个人博客</title>
 
 
     <meta name="keywords" content="sort">
 
 
-<meta name="description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。
-
-在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。">
+<meta name="description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊4种主流排序算法(番外篇):快速排序的优化历程">
 <meta property="og:url" content="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。
-
-在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。">
+<meta property="og:description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。">
 <meta property="og:image" content="http://staynoob.cn/img/sort-algorithm-3.jpg">
-<meta property="og:updated_time" content="2016-05-12T10:13:42.874Z">
+<meta property="og:updated_time" content="2016-05-12T13:50:02.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊4种主流排序算法(番外篇):快速排序的优化历程">
-<meta name="twitter:description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。
-
-在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。">
+<meta name="twitter:description" content="这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。">
 <meta name="twitter:image" content="http://staynoob.cn/img/sort-algorithm-3.jpg">
 
 
@@ -58,7 +51,11 @@
     duoshuo: {
       userId: '6272551112717370000',
       author: 'xy'
-    }
+    },
+    search: {
+      //path: '/search.xml'  
+      path: '/search.xml'
+    }  
   };
 </script>
 </head>
@@ -205,7 +202,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_cio451qtj000dybj5d3wz5rru">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_cio4jwhlw000aaij5sq129sfd">-->
         <img src="/img/sort-algorithm-3.jpg" itemprop="image">
       <!--</a>-->
     
@@ -221,7 +218,8 @@
             <blockquote>
 <p>这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。</p>
 </blockquote>
-<p>在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。<br><a id="more"></a></p>
+<a id="more"></a>
+<p>在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</span><br><span class="line">    quickSort(arr,<span class="number">0</span>,arr.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lo&gt;=hi) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> pivot=partition(arr,lo,hi);</span><br><span class="line">    quickSort(arr,lo,pivot - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr,pivot + <span class="number">1</span>,hi);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line">*直接选取第一个元素lo作为pivot，使用两个指针(i,j)扫描数组，i,j朝数组中间移动</span><br><span class="line">*遇到arr[i]&gt;=pivot则i停止，遇到arr[j]&lt;=pivot则j停止，交换i,j对应的元素，重复该过程直到i,j相遇</span><br><span class="line">*当整个过程停下来时将pivot与a[j]交换位置，从而完成分区</span><br><span class="line">*</span><br><span class="line">*       left part              center part           right part</span><br><span class="line">* +--------------------------------------------------------------+</span><br><span class="line">* lo |   &lt;= pivot   |              ?              |   &gt;= pivot   |</span><br><span class="line">* +--------------------------------------------------------------+</span><br><span class="line">* ^                 ^                             ^</span><br><span class="line">* |                 |                             |</span><br><span class="line">* pivot             i-&gt;                         &lt;-j</span><br><span class="line">*</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=lo+<span class="number">1</span>,j=hi;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(arr[++i]&lt;arr[lo] &amp;&amp; i &lt; hi);</span><br><span class="line">        <span class="keyword">while</span>(arr[--j]&gt;arr[lo]); <span class="comment">//这里不需要判断j&gt;lo，因为当j=lo时，arr[j]&gt;arr[lo]不可能成立</span></span><br><span class="line">        <span class="keyword">if</span>(i&gt;=j) <span class="keyword">break</span>; 		 <span class="comment">//i,j相遇时停止</span></span><br><span class="line">        exchange(arr,i,j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    exchange(arr,lo,j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="1-在内循环中加入插入排序-cut-off-to-insertion-sort"><a href="#1-在内循环中加入插入排序-cut-off-to-insertion-sort" class="headerlink" title="1.在内循环中加入插入排序(cut off to insertion sort)"></a>1.在内循环中加入插入排序(cut off to insertion sort)</h3><p>这其实没什么好说的，<a href="http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/#三-插入-Insertion-排序">插入排序</a>章节中已经给出了明确的解释。在快速排序，归并排序等基于递归的排序算法中都可以加入插入排序来处理小规模数组，而对“小”的定义则需要考虑具体的系统环境，编程语言等因素，算法书上给出了5-20的建议。下面是改进后的代码片段：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> CUTOFF=<span class="number">8</span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(hi - lo + <span class="number">1</span> &lt;= CUTTOFF ) &#123;</span><br><span class="line">    	insertionSort(arr,lo,hi);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> pivot=partition(arr,lo,hi);</span><br><span class="line">    quickSort(arr,lo,pivot - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr,pivot + <span class="number">1</span>,hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-三数中值切分-median-of-three-partitioning"><a href="#2-三数中值切分-median-of-three-partitioning" class="headerlink" title="2.三数中值切分(median of three partitioning)"></a>2.三数中值切分(median of three partitioning)</h3><p>在原始版本中我们直接使用数组的第一个元素作为pivot(枢纽元)，成功的在数组已经预排序的情况下将复杂度提升到了平方级，这意味着消耗大量时间却什么也没干。针对这个问题大家尝试了一些解决方案：</p>
@@ -331,6 +329,18 @@
         
     </div>
 </aside>
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
     
     
 <aside class="widget">
