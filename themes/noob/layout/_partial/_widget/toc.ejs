@@ -1,0 +1,9 @@
+<% if(is_post() && theme.toc){ %>
+<% var content=toc(page.content,{"class":"document-nav",list_number:page.toc_number || theme.toc.number}); %>
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title"><%- __('widget.toc') %></h3>
+    <div class="widget-content">
+        <%- content.length <= 1 ? __('widget.toc_empty') : content %>
+    </div>
+</aside>
+<% } %>

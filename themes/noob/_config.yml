@@ -31,10 +31,11 @@ menu_icons:
 # Sidebar widgets
 widgets:
 - profile
+- toc
 - search
 - recent_posts
 - category
-- tag
+#- tag
 - tagcloud
 - archive
 
@@ -44,6 +45,13 @@ link:
   github: https://github.com/noob9527
   weibo: http://weibo.com/p/1005052678297054
   
+# toc widget
+toc: 
+  number: false
+
+# max recent posts
+recent_posts: 10
+
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
 #   Key is the name of the item and value is the name of FontAwsome icon. Key is case-senstive.
