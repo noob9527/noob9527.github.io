@@ -208,7 +208,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cio4jwhlu0008aij5xq7p91ug">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cio57xyrd00087qj5ub20pi8k">-->
         <img src="/img/sort-algorithm-2.jpg" itemprop="image">
       <!--</a>-->
     
@@ -221,7 +221,7 @@
         <div class="post-entry" itemprop="postBody">
             
             <!--文章内容-->
-            <blockquote>
+            <div class="post-content"><blockquote>
 <p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
 </blockquote>
 <h3 id="一-分治-Divide-and-Conquer"><a href="#一-分治-Divide-and-Conquer" class="headerlink" title="一.分治(Divide and Conquer)"></a>一.分治(Divide and Conquer)</h3><p>分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。因为它只有单一子问题。下面先来一段“经典”代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fib(N-<span class="number">1</span>)+fib(N-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -256,7 +256,7 @@
 <li><a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="external">信息论</a></li>
 <li><a href="http://algs4.cs.princeton.edu/23quicksort/" target="_blank" rel="external">QUICKSORT</a></li>
 </ul>
-
+</div>
             
         </div>
 
@@ -355,6 +355,16 @@
 </aside>
     
     
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#一-分治-Divide-and-Conquer"><span class="document-nav-text">一.分治(Divide and Conquer)</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#二-最快的排序算法"><span class="document-nav-text">二.最快的排序算法</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#三-归并-Merge-排序"><span class="document-nav-text">三.归并(Merge)排序</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#四-快速-Quick-排序"><span class="document-nav-text">四.快速(Quick)排序</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
 <aside class="widget" id="local-search">
     <h3 class="widget-title">站内搜索</h3>
     <div class="widget-content">
@@ -409,15 +419,6 @@
     
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
-    <div class="widget-content">
-        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/sort/">sort</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/有一说一/">有一说一</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-</aside>
-
-    
-    
-<aside class="widget">
-    <h3 class="widget-title">标签云</h3>
     <div class="widget-content">
         <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a>
     </div>
