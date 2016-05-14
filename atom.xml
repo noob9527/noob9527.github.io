@@ -127,11 +127,12 @@
     <link href="http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/"/>
     <id>http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上/</id>
     <published>2016-04-29T12:23:35.000Z</published>
-    <updated>2016-05-08T04:31:16.003Z</updated>
+    <updated>2016-05-14T15:58:58.327Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;一-约定&quot;&gt;&lt;a href=&quot;#一-约定&quot; class=&quot;headerlink&quot; title=&quot;一.约定&quot;&gt;&lt;/a&gt;一.约定&lt;/h3&gt;&lt;p&gt;为了更加方便的表达意图，下面是关于本文的一些约定&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;输入的规模&lt;br&gt;  文中使用N代表输入的规模，比如说N=100，表示将100个元素排序&lt;/li&gt;
@@ -143,7 +144,7 @@
 &lt;li&gt;&lt;p&gt;排序算法的稳定性&lt;br&gt;  我刚开始学编程的时候看到“不稳定的算法”，首先想到的是“是不是这种算法有时无法将数组恢复有序？或者说有时运行非常快，有时永远也得不出结果？”事实上上面两种情况只能称作有bug的算法，算法的稳定性指的是当有两个元素有相同的主键的时候，算法是否能保证在排序前后这两个元素的相对位置不变，比如有一个数组&lt;/p&gt;
   &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[&amp;#123;id:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,name:&lt;span class=&quot;string&quot;&gt;&#39;foo&#39;&lt;/span&gt;&amp;#125;,&amp;#123;id:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,name:&lt;span class=&quot;string&quot;&gt;&#39;bar&#39;&lt;/span&gt;&amp;#125;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  当依据id对这个数组排序后，是否还能保证foo在bar的前面。如果可以，则该排序算法是稳定的。&lt;/p&gt;
-  &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;算法分析&lt;br&gt;  我们应该怎样来判断一个算法，或者说一段代码的性能？最简单的方法通过反复测试来鉴别，但这显然太没效率了。我们需要在算法的设计阶段就能大致预测出算法能跑多块。因此高德纳(D.E. Knuth)首先提出构造数学模型来描述任意程序的运行时间，简单来说假设计算机执行每条语句的耗时是一个常数C，假设程序需要执行n条语句才能完成计算，则程序的总运行时间是C*n。常数C往往跟计算机硬件，使用的编程语言(PHP是世界上最好的语言！)，CPU资源分配等相关，因此我们只需要关心n就可以了，而影响n的最关键因素是算法中的循环与递归。举个简单的例子:&lt;/p&gt;
   &lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; N=arr.length;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; i=&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;i &amp;lt; N;i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; j=i+&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;j &amp;lt; N;j++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    	&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(arr[i]+arr[j]==&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;true&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  上面这段代码搜索给定数组中是否包含两个和为零的元素，其中执行次数最多的是处于内循环中的判断语句，最坏的情况下要执行N*(N-1)次，当N足够大时，N*(N-1)≈N^2。于是我们可以说上面这段代码在最坏情况下运行时间大致为 C*(N^2)，我们把这称为最坏情况下的时间复杂度。&lt;br&gt;  同时，算法分析还应该考虑运行算法需要多少额外的存储空间，即空间复杂度，但由于空间复杂度往往很容易计算，因此不必在上面花太多时间。&lt;br&gt;  顺带提一下，上面这段代码很常见，但不适用于大规模输入的情况，学过算法的同学应该知道，可以通过运行一个二分查找使得最坏情况下运行时间为C*(N*logN)，还可以通过Hash算法将其优化到C*N&lt;/p&gt;
@@ -198,17 +199,6 @@
       &lt;blockquote&gt;
 &lt;p&gt;排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;一-约定&quot;&gt;&lt;a href=&quot;#一-约定&quot; class=&quot;headerlink&quot; title=&quot;一.约定&quot;&gt;&lt;/a&gt;一.约定&lt;/h3&gt;&lt;p&gt;为了更加方便的表达意图，下面是关于本文的一些约定&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;输入的规模&lt;br&gt;  文中使用N代表输入的规模，比如说N=100，表示将100个元素排序&lt;/li&gt;
-&lt;li&gt;对数&lt;br&gt;   除非有特别的说明，文中所有的对数都是以2为底的，即logN表示以2为底N的对数&lt;/li&gt;
-&lt;li&gt;代码&lt;br&gt;  文中的代码(java或js)大多数只截取关键片段，无法直接运行，关于这些算法的完整代码网上到处都是，这不是本文的核心，我相信文章使用尽可能少的代码对阅读者更友好，在文中写代码只能代表我无法用简短的人类语言来描述这部分意图。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;二-简单的概念&quot;&gt;&lt;a href=&quot;#二-简单的概念&quot; class=&quot;headerlink&quot; title=&quot;二.简单的概念&quot;&gt;&lt;/a&gt;二.简单的概念&lt;/h3&gt;&lt;p&gt;在正式开始前先简单介绍几个基本概念（有经验的程序员请一定跳过这个部分）&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;排序算法的稳定性&lt;br&gt;  我刚开始学编程的时候看到“不稳定的算法”，首先想到的是“是不是这种算法有时无法将数组恢复有序？或者说有时运行非常快，有时永远也得不出结果？”事实上上面两种情况只能称作有bug的算法，算法的稳定性指的是当有两个元素有相同的主键的时候，算法是否能保证在排序前后这两个元素的相对位置不变，比如有一个数组&lt;/p&gt;
-  &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[&amp;#123;id:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,name:&lt;span class=&quot;string&quot;&gt;&#39;foo&#39;&lt;/span&gt;&amp;#125;,&amp;#123;id:&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;,name:&lt;span class=&quot;string&quot;&gt;&#39;bar&#39;&lt;/span&gt;&amp;#125;]&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  当依据id对这个数组排序后，是否还能保证foo在bar的前面。如果可以，则该排序算法是稳定的。&lt;/p&gt;
     
     </summary>
     
@@ -224,16 +214,16 @@
     <link href="http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/"/>
     <id>http://staynoob.cn/post/linux/安装ubuntu16-04后要做的9件事/</id>
     <published>2016-04-24T04:37:13.000Z</published>
-    <updated>2016-05-08T04:31:15.995Z</updated>
+    <updated>2016-05-14T16:00:07.431Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章&lt;br&gt;这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;一-安装常用软件&quot;&gt;&lt;a href=&quot;#一-安装常用软件&quot; class=&quot;headerlink&quot; title=&quot;一.安装常用软件&quot;&gt;&lt;/a&gt;一.安装常用软件&lt;/h3&gt;&lt;p&gt;包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了&lt;/p&gt;
 &lt;h3 id=&quot;二-修改root密码-取消sudo密码&quot;&gt;&lt;a href=&quot;#二-修改root密码-取消sudo密码&quot; class=&quot;headerlink&quot; title=&quot;二.修改root密码,取消sudo密码&quot;&gt;&lt;/a&gt;二.修改root密码,取消sudo密码&lt;/h3&gt;&lt;p&gt;新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余&lt;br&gt;使用如下命令修改root密码&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo passwd root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;使用如下命令取消sudo密码&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo visudo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;该命令实际作用是打开编辑器编辑 &lt;strong&gt;/etc/sudoers&lt;/strong&gt; 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 &lt;strong&gt;NOPASSWD&lt;/strong&gt; 即可&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Allow members of group sudo to execute any command&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;三-修改grub引导等待时间&quot;&gt;&lt;a href=&quot;#三-修改grub引导等待时间&quot; class=&quot;headerlink&quot; title=&quot;三.修改grub引导等待时间&quot;&gt;&lt;/a&gt;三.修改grub引导等待时间&lt;/h3&gt;&lt;p&gt;grub的配置文件在 &lt;strong&gt;/boot/grub/grub.cfg&lt;/strong&gt;,但该文件实际上是根据 &lt;strong&gt;/etc/default/grub&lt;/strong&gt; 的配置自动生成的,So&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo vim /etc/default/grub&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;注释掉 &lt;strong&gt;GRUB_HIDDEN_TIMEOUT=0&lt;/strong&gt; 修改 &lt;strong&gt;GRUB_TIMEOUT=3&lt;/strong&gt; 这里的3指的是等待3秒的意思,Then&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo update-grub&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;即重新生成grub的配置文件&lt;/p&gt;
@@ -270,10 +260,6 @@
       &lt;blockquote&gt;
 &lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章&lt;br&gt;这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&quot;一-安装常用软件&quot;&gt;&lt;a href=&quot;#一-安装常用软件&quot; class=&quot;headerlink&quot; title=&quot;一.安装常用软件&quot;&gt;&lt;/a&gt;一.安装常用软件&lt;/h3&gt;&lt;p&gt;包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了&lt;/p&gt;
-&lt;h3 id=&quot;二-修改root密码-取消sudo密码&quot;&gt;&lt;a href=&quot;#二-修改root密码-取消sudo密码&quot; class=&quot;headerlink&quot; title=&quot;二.修改root密码,取消sudo密码&quot;&gt;&lt;/a&gt;二.修改root密码,取消sudo密码&lt;/h3&gt;&lt;p&gt;新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余&lt;br&gt;使用如下命令修改root密码&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo passwd root&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;使用如下命令取消sudo密码&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo visudo&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;该命令实际作用是打开编辑器编辑 &lt;strong&gt;/etc/sudoers&lt;/strong&gt; 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 &lt;strong&gt;NOPASSWD&lt;/strong&gt; 即可&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#Allow members of group sudo to execute any command&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;%sudo ALL=(ALL:ALL) NOPASSWD:ALL&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     
