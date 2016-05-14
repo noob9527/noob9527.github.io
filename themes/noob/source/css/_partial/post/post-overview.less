@@ -1,4 +1,9 @@
 @gray:#bbb;
+.the-transition() {
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
 
 .circle(@radius:6px){
     content: " ";
@@ -48,11 +53,20 @@
   }
   
   .post-header{
+    display: inline-block;
     position: relative;
     padding-left: 20px;
     
     &:before{
       .circle();
+      .the-transition();
+      transition-property: background;
+    }
+    
+    &:hover{
+      &:before{
+        background-color: @gray-dark;
+      }
     }
     
     h1{
