@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2016-05-20T07:26:52.482Z</updated>
+  <updated>2016-05-20T08:26:05.394Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/css/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/"/>
     <id>http://staynoob.cn/post/css/CSS清除浮动的原理与最佳实践/</id>
     <published>2016-05-20T07:26:52.000Z</published>
-    <updated>2016-05-20T07:26:52.482Z</updated>
+    <updated>2016-05-20T08:26:05.394Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。&lt;/p&gt;

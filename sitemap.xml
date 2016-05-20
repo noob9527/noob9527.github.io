@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://staynoob.cn/404.html</loc>
+    
+    <lastmod>2016-05-20T08:40:44.054Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://staynoob.cn/post/css/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</loc>
     
-    <lastmod>2016-05-20T07:26:52.482Z</lastmod>
+    <lastmod>2016-05-20T08:26:05.394Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://staynoob.cn/post/diary/init-commit/</loc>
     
     <lastmod>2016-05-08T04:21:06.019Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/404.html</loc>
-    
-    <lastmod>2016-04-23T18:05:55.123Z</lastmod>
     
   </url>
   
