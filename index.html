@@ -146,6 +146,125 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-CSS清除浮动的原理与最佳实践"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/css/CSS清除浮动的原理与最佳实践/">CSS清除浮动的原理与最佳实践</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-05-20T15:26:52+08:00" 
+          content="2016-05-20">
+        2016-05-20
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/css/">css</a>
+    </span>
+</span>
+
+
+            
+
+    <span class="post-comments-count">
+        &nbsp; | &nbsp;
+        <a href="/post/css/CSS清除浮动的原理与最佳实践/#comments" itemprop="discussionUrl">
+            <span class="post-comments-count ds-thread-count" data-thread-key="post/css/CSS清除浮动的原理与最佳实践/" itemprop="commentsCount"></span>
+        </a>
+    </span>
+
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_ciofel6fm000g0ej5yx8qxs1y">-->
+        <img src="/img/clearfix.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
+</blockquote>
+<h3 id="一-为什么要清除浮动"><a href="#一-为什么要清除浮动" class="headerlink" title="一.为什么要清除浮动"></a>一.为什么要清除浮动</h3><p>浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例子演示了这两个问题：<br>
+<div class="clearfix" style="border:5px solid #a57958;padding:10px">
+	<p>按下按钮查看清除浮动对布局的影响</p>
+    <button id="before" class="btn btn-info">清除浮动前</button>
+    <button id="after" class="btn btn-info">清除浮动后</button>
+    <div style="border:5px solid #a57958;margin-top:10px;">
+        我是容器
+        <div style="color:black;background-color:wheat;padding:10px;width:30%;height:150px;float:left;">div1
+        我浮动了</div>
+        <div id="demo" style="background-color:skyblue;padding:10px;">div2
+        我是普通流中的块级元素
+        我的宽度应该是100%
+        我的文字没有被覆盖</div>
+    </div>
+</div>
+<script>
+	$("#before").on("click",function(){
+    	$("#demo").css("clear","none");
+    });
+	$("#after").on("click",function(){
+    	$("#demo").css("clear","both");
+    });
+</script>
+<br>上面的例子中由于div1的浮动，div2的一部分被浮动的元素覆盖，容器的高度比它里面浮动的元素高度还要低。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/css/CSS清除浮动的原理与最佳实践/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+
     <article id="post-为什么bootstrap采用border-box盒模型"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -203,7 +322,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_ciocmun0c000fm9j56lu1t551">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_ciofel6fk000e0ej5iqc3did6">-->
         <img src="/img/box-sizing.jpg" itemprop="image">
       <!--</a>-->
     
@@ -220,7 +339,7 @@
 <p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
 </blockquote>
 <p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a href="https://css-tricks.com/box-sizing/">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
-<h3 id="1-CSS盒模型历史"><a href="#1-CSS盒模型历史" class="headerlink" title="1.CSS盒模型历史"></a>1.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
+<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
 <ul>
 <li>width + padding + border = 元素实际可见的宽度</li>
 <li>height + padding + border = 元素实际可见的高度</li>
@@ -311,7 +430,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_ciocmun07000dm9j57m6rjvqy">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_ciofel6fi000b0ej5zgsepwsq">-->
         <img src="/img/sort-algorithm-3.jpg" itemprop="image">
       <!--</a>-->
     
@@ -327,6 +446,7 @@
             <blockquote>
 <p>这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。</p>
 </blockquote>
+<p>在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。</p>
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程/#more">阅读全文</a>
@@ -406,7 +526,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_ciocmun05000am9j5iyqb4cyw">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_ciofel6fd00090ej5ezsdj3pt">-->
         <img src="/img/sort-algorithm-2.jpg" itemprop="image">
       <!--</a>-->
     
@@ -503,7 +623,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_ciocmun040008m9j5bwvnlc8x">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_ciofel6f100030ej5lwpzv5eo">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -519,6 +639,12 @@
             <blockquote>
 <p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
+<h3 id="一-约定"><a href="#一-约定" class="headerlink" title="一.约定"></a>一.约定</h3><p>为了更加方便的表达意图，下面是关于本文的一些约定</p>
+<ul>
+<li>输入的规模<br>  文中使用N代表输入的规模，比如说N=100，表示将100个元素排序</li>
+<li>对数<br>   除非有特别的说明，文中所有的对数都是以2为底的，即logN表示以2为底N的对数</li>
+<li>代码<br>  文中的代码(java或js)大多数只截取关键片段，无法直接运行，关于这些算法的完整代码网上到处都是，这不是本文的核心，我相信文章使用尽可能少的代码对阅读者更友好，在文中写代码只能代表我无法用简短的人类语言来描述这部分意图。</li>
+</ul>
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/algorithm/聊聊4种主流排序算法-上/#more">阅读全文</a>
@@ -598,7 +724,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_ciocmun020007m9j5ecxojzu6">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_ciofel6ev00010ej5xeq0cad9">-->
         <img src="/img/ubuntu16_04.jpg" itemprop="image">
       <!--</a>-->
     
@@ -612,8 +738,12 @@
             
             <!--摘录-->
             <blockquote>
-<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章<br>这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
+<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
 </blockquote>
+<h3 id="一-安装常用软件"><a href="#一-安装常用软件" class="headerlink" title="一.安装常用软件"></a>一.安装常用软件</h3><p>包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了</p>
+<h3 id="二-修改root密码-取消sudo密码"><a href="#二-修改root密码-取消sudo密码" class="headerlink" title="二.修改root密码,取消sudo密码"></a>二.修改root密码,取消sudo密码</h3><p>新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余<br>使用如下命令修改root密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd root</span><br></pre></td></tr></table></figure></p>
+<p>使用如下命令取消sudo密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo visudo</span><br></pre></td></tr></table></figure></p>
+<p>该命令实际作用是打开编辑器编辑 <strong>/etc/sudoers</strong> 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 <strong>NOPASSWD</strong> 即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#Allow members of group sudo to execute any command</span><br><span class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p>
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/linux/安装ubuntu16-04后要做的9件事/#more">阅读全文</a>
@@ -693,7 +823,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_ciocmumzv0003m9j531rp5jz1">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_ciofel6fa00070ej5u57xp2tm">-->
         <img src="/img/init_commit.jpg" itemprop="image">
       <!--</a>-->
     
@@ -784,6 +914,10 @@
         <ul>
             
             <li>
+                <a href="/post/css/CSS清除浮动的原理与最佳实践/">CSS清除浮动的原理与最佳实践</a>
+            </li>
+            
+            <li>
                 <a href="/post/css/为什么bootstrap采用border-box盒模型/">为什么bootstrap采用border-box盒模型</a>
             </li>
             
@@ -816,7 +950,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li></ul>
     </div>
 </aside>
 
@@ -825,7 +959,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 10px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a>
     </div>
 </aside>
 
@@ -834,7 +968,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

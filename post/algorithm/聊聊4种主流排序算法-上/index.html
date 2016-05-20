@@ -13,17 +13,23 @@
     <meta name="keywords" content="sort">
 
 
-<meta name="description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。">
+<meta name="description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。
+
+一.约定为了更加方便">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊4种主流排序算法(上)">
 <meta property="og:url" content="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。">
+<meta property="og:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。
+
+一.约定为了更加方便">
 <meta property="og:image" content="http://staynoob.cn/img/sort-algorithm-1.jpg">
-<meta property="og:updated_time" content="2016-05-14T15:58:58.327Z">
+<meta property="og:updated_time" content="2016-05-18T10:24:33.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊4种主流排序算法(上)">
-<meta name="twitter:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。">
+<meta name="twitter:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。
+
+一.约定为了更加方便">
 <meta name="twitter:image" content="http://staynoob.cn/img/sort-algorithm-1.jpg">
 
 
@@ -205,7 +211,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_ciocmun040008m9j5bwvnlc8x">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_ciofel6f100030ej5lwpzv5eo">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -221,13 +227,13 @@
             <div class="post-content"><blockquote>
 <p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
-<a id="more"></a>
 <h3 id="一-约定"><a href="#一-约定" class="headerlink" title="一.约定"></a>一.约定</h3><p>为了更加方便的表达意图，下面是关于本文的一些约定</p>
 <ul>
 <li>输入的规模<br>  文中使用N代表输入的规模，比如说N=100，表示将100个元素排序</li>
 <li>对数<br>   除非有特别的说明，文中所有的对数都是以2为底的，即logN表示以2为底N的对数</li>
 <li>代码<br>  文中的代码(java或js)大多数只截取关键片段，无法直接运行，关于这些算法的完整代码网上到处都是，这不是本文的核心，我相信文章使用尽可能少的代码对阅读者更友好，在文中写代码只能代表我无法用简短的人类语言来描述这部分意图。</li>
 </ul>
+<a id="more"></a>
 <h3 id="二-简单的概念"><a href="#二-简单的概念" class="headerlink" title="二.简单的概念"></a>二.简单的概念</h3><p>在正式开始前先简单介绍几个基本概念（有经验的程序员请一定跳过这个部分）</p>
 <ul>
 <li><p>排序算法的稳定性<br>  我刚开始学编程的时候看到“不稳定的算法”，首先想到的是“是不是这种算法有时无法将数组恢复有序？或者说有时运行非常快，有时永远也得不出结果？”事实上上面两种情况只能称作有bug的算法，算法的稳定性指的是当有两个元素有相同的主键的时候，算法是否能保证在排序前后这两个元素的相对位置不变，比如有一个数组</p>
@@ -408,6 +414,10 @@
         <ul>
             
             <li>
+                <a href="/post/css/CSS清除浮动的原理与最佳实践/">CSS清除浮动的原理与最佳实践</a>
+            </li>
+            
+            <li>
                 <a href="/post/css/为什么bootstrap采用border-box盒模型/">为什么bootstrap采用border-box盒模型</a>
             </li>
             
@@ -440,7 +450,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li></ul>
     </div>
 </aside>
 
@@ -449,7 +459,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 10px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a>
     </div>
 </aside>
 
@@ -458,7 +468,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
