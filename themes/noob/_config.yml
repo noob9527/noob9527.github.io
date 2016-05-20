@@ -50,7 +50,7 @@ toc:
   number: false
 
 # max recent posts
-recent_posts: 10
+recent_posts: 15
 
 # Icon Mapping:
 #   Map a menu item to a specific FontAwesome icon name.
