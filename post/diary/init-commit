@@ -7,6 +7,8 @@
 
 
 
+
+
 <title>init commit | NOOB - 许炎的个人博客</title>
 
 
@@ -18,7 +20,7 @@
 OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
 <meta property="og:type" content="article">
 <meta property="og:title" content="init commit">
-<meta property="og:url" content="http://staynoob.cn/post/diary/init-commit/index.html">
+<meta property="og:url" content="http://staynoob.cn/post/diary/init-commit">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="Sometimes I talk to myself because I need expert advice.
 
@@ -198,8 +200,8 @@ OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
 
     <span class="post-comments-count">
         &nbsp; | &nbsp;
-        <a href="/post/diary/init-commit/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/diary/init-commit/" itemprop="commentsCount"></span>
+        <a href="/post/diary/init-commit#comments" itemprop="discussionUrl">
+            <span class="post-comments-count ds-thread-count" data-thread-key="post/diary/init-commit" itemprop="commentsCount"></span>
         </a>
     </span>
 
@@ -211,7 +213,7 @@ OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_cioihox270003nbj56vzw61dz">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_ciol5w12v0001urj5woog4jfk">-->
         <img src="/img/init_commit.jpg" itemprop="image">
       <!--</a>-->
     
@@ -252,7 +254,7 @@ OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
 
   <div class="post-nav-prev post-nav-item">
     
-    <a href="/post/linux/安装ubuntu16-04后要做的9件事/" rel="prev" title="安装ubuntu16.04后要做的9件事">
+    <a href="/post/linux/安装ubuntu16-04后要做的9件事" rel="prev" title="安装ubuntu16.04后要做的9件事">
         安装ubuntu16.04后要做的9件事 
         <i class="fa fa-chevron-right"></i>
     </a>
@@ -290,8 +292,8 @@ OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/diary/init-commit/"
-             data-title="init commit" data-url="http://staynoob.cn/post/diary/init-commit/">
+        <div class="ds-thread" data-thread-key="post/diary/init-commit"
+             data-title="init commit" data-url="http://staynoob.cn/post/diary/init-commit">
         </div>
     
 </div>
@@ -355,35 +357,35 @@ OK!Let&amp;#39;s begin.//以上是这篇文章的开头">
         <ul>
             
             <li>
-                <a href="/post/algorithm/香农信息论与回答老鼠喝药问题的正确姿势/">香农信息论与回答老鼠喝药问题的正确姿势</a>
+                <a href="/post/algorithm/香农信息论与回答老鼠喝药问题的正确姿势">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
             <li>
-                <a href="/post/css/CSS清除浮动的原理与最佳实践/">CSS清除浮动的原理与最佳实践</a>
+                <a href="/post/css/CSS清除浮动的原理与最佳实践">CSS清除浮动的原理与最佳实践</a>
             </li>
             
             <li>
-                <a href="/post/css/为什么bootstrap采用border-box盒模型/">为什么bootstrap采用border-box盒模型</a>
+                <a href="/post/css/为什么bootstrap采用border-box盒模型">为什么bootstrap采用border-box盒模型</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-下/">聊聊4种主流排序算法(下)</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-下">聊聊4种主流排序算法(下)</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-上/">聊聊4种主流排序算法(上)</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-上">聊聊4种主流排序算法(上)</a>
             </li>
             
             <li>
-                <a href="/post/linux/安装ubuntu16-04后要做的9件事/">安装ubuntu16.04后要做的9件事</a>
+                <a href="/post/linux/安装ubuntu16-04后要做的9件事">安装ubuntu16.04后要做的9件事</a>
             </li>
             
             <li>
-                <a href="/post/diary/init-commit/">init commit</a>
+                <a href="/post/diary/init-commit">init commit</a>
             </li>
             
         </ul>

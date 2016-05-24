@@ -7,6 +7,8 @@
 
 
 
+
+
 <title>聊聊4种主流排序算法(上) | NOOB - 许炎的个人博客</title>
 
 
@@ -18,7 +20,7 @@
 一.约定为了更加方便">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊4种主流排序算法(上)">
-<meta property="og:url" content="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上/index.html">
+<meta property="og:url" content="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。
 
@@ -198,8 +200,8 @@
 
     <span class="post-comments-count">
         &nbsp; | &nbsp;
-        <a href="/post/algorithm/聊聊4种主流排序算法-上/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/algorithm/聊聊4种主流排序算法-上/" itemprop="commentsCount"></span>
+        <a href="/post/algorithm/聊聊4种主流排序算法-上#comments" itemprop="discussionUrl">
+            <span class="post-comments-count ds-thread-count" data-thread-key="post/algorithm/聊聊4种主流排序算法-上" itemprop="commentsCount"></span>
         </a>
     </span>
 
@@ -211,7 +213,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cioihox2h0008nbj5bvpd8pax">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_ciol5w1390007urj5vk8jh6zs">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -302,7 +304,7 @@
     <div class="post-nav">
   <div class="post-nav-next post-nav-item">
     
-    <a href="/post/linux/安装ubuntu16-04后要做的9件事/" rel="next" title="安装ubuntu16.04后要做的9件事">
+    <a href="/post/linux/安装ubuntu16-04后要做的9件事" rel="next" title="安装ubuntu16.04后要做的9件事">
         <i class="fa fa-chevron-left"></i>
         安装ubuntu16.04后要做的9件事
     </a>
@@ -311,7 +313,7 @@
 
   <div class="post-nav-prev post-nav-item">
     
-    <a href="/post/algorithm/聊聊4种主流排序算法-下/" rel="prev" title="聊聊4种主流排序算法(下)">
+    <a href="/post/algorithm/聊聊4种主流排序算法-下" rel="prev" title="聊聊4种主流排序算法(下)">
         聊聊4种主流排序算法(下) 
         <i class="fa fa-chevron-right"></i>
     </a>
@@ -349,8 +351,8 @@
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/algorithm/聊聊4种主流排序算法-上/"
-             data-title="聊聊4种主流排序算法(上)" data-url="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上/">
+        <div class="ds-thread" data-thread-key="post/algorithm/聊聊4种主流排序算法-上"
+             data-title="聊聊4种主流排序算法(上)" data-url="http://staynoob.cn/post/algorithm/聊聊4种主流排序算法-上">
         </div>
     
 </div>
@@ -414,35 +416,35 @@
         <ul>
             
             <li>
-                <a href="/post/algorithm/香农信息论与回答老鼠喝药问题的正确姿势/">香农信息论与回答老鼠喝药问题的正确姿势</a>
+                <a href="/post/algorithm/香农信息论与回答老鼠喝药问题的正确姿势">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
             <li>
-                <a href="/post/css/CSS清除浮动的原理与最佳实践/">CSS清除浮动的原理与最佳实践</a>
+                <a href="/post/css/CSS清除浮动的原理与最佳实践">CSS清除浮动的原理与最佳实践</a>
             </li>
             
             <li>
-                <a href="/post/css/为什么bootstrap采用border-box盒模型/">为什么bootstrap采用border-box盒模型</a>
+                <a href="/post/css/为什么bootstrap采用border-box盒模型">为什么bootstrap采用border-box盒模型</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-番外篇-快速排序的优化历程">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-下/">聊聊4种主流排序算法(下)</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-下">聊聊4种主流排序算法(下)</a>
             </li>
             
             <li>
-                <a href="/post/algorithm/聊聊4种主流排序算法-上/">聊聊4种主流排序算法(上)</a>
+                <a href="/post/algorithm/聊聊4种主流排序算法-上">聊聊4种主流排序算法(上)</a>
             </li>
             
             <li>
-                <a href="/post/linux/安装ubuntu16-04后要做的9件事/">安装ubuntu16.04后要做的9件事</a>
+                <a href="/post/linux/安装ubuntu16-04后要做的9件事">安装ubuntu16.04后要做的9件事</a>
             </li>
             
             <li>
-                <a href="/post/diary/init-commit/">init commit</a>
+                <a href="/post/diary/init-commit">init commit</a>
             </li>
             
         </ul>
