@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[香农信息论与回答老鼠喝药问题的正确姿势]]></title>
-      <url>http://staynoob.cn/post/algorithm/%E9%A6%99%E5%86%9C%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E5%9B%9E%E7%AD%94%E8%80%81%E9%BC%A0%E5%96%9D%E8%8D%AF%E9%97%AE%E9%A2%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF</url>
+      <url>http://staynoob.cn/post/algorithm/%E9%A6%99%E5%86%9C%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E5%9B%9E%E7%AD%94%E8%80%81%E9%BC%A0%E5%96%9D%E8%8D%AF%E9%97%AE%E9%A2%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>最近在学习算法的过程中频繁接触到信息论，有碍于自己的数学水平，无力窥其全貌。但仅仅是一个入门级的了解便足以让我为之倾倒。这篇文章简单介绍信息论，之后来看看如何利用它秒解一些智力题。</p>
 </blockquote>
@@ -52,7 +52,7 @@
     
     <entry>
       <title><![CDATA[CSS清除浮动的原理与最佳实践]]></title>
-      <url>http://staynoob.cn/post/css/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5</url>
+      <url>http://staynoob.cn/post/css/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
 </blockquote>
@@ -182,7 +182,7 @@
     
     <entry>
       <title><![CDATA[为什么bootstrap采用border-box盒模型]]></title>
-      <url>http://staynoob.cn/post/css/%E4%B8%BA%E4%BB%80%E4%B9%88bootstrap%E9%87%87%E7%94%A8border-box%E7%9B%92%E6%A8%A1%E5%9E%8B</url>
+      <url>http://staynoob.cn/post/css/%E4%B8%BA%E4%BB%80%E4%B9%88bootstrap%E9%87%87%E7%94%A8border-box%E7%9B%92%E6%A8%A1%E5%9E%8B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
 </blockquote>
@@ -233,7 +233,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(番外篇):快速排序的优化历程]]></title>
-      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E7%95%AA%E5%A4%96%E7%AF%87-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E4%BC%98%E5%8C%96%E5%8E%86%E7%A8%8B</url>
+      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E7%95%AA%E5%A4%96%E7%AF%87-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%9A%84%E4%BC%98%E5%8C%96%E5%8E%86%E7%A8%8B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。</p>
 </blockquote>
@@ -261,7 +261,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(下)]]></title>
-      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8B</url>
+      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
 </blockquote>
@@ -302,7 +302,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(上)]]></title>
-      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A</url>
+      <url>http://staynoob.cn/post/algorithm/%E8%81%8A%E8%81%8A4%E7%A7%8D%E4%B8%BB%E6%B5%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8A/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
@@ -371,7 +371,7 @@
     
     <entry>
       <title><![CDATA[安装ubuntu16.04后要做的9件事]]></title>
-      <url>http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B</url>
+      <url>http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
 </blockquote>
@@ -414,7 +414,7 @@
     
     <entry>
       <title><![CDATA[init commit]]></title>
-      <url>http://staynoob.cn/post/diary/init-commit</url>
+      <url>http://staynoob.cn/post/diary/init-commit/</url>
       <content type="html"><![CDATA[<!-- ![init commit](/img/init_commit.jpg) -->
 <blockquote>
 <p>Sometimes I talk to myself because I need expert advice.</p>
