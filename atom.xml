@@ -428,9 +428,9 @@
       <category term="css" scheme="http://staynoob.cn/categories/css/"/>
     
     
-      <category term="fontend" scheme="http://staynoob.cn/tags/fontend/"/>
-    
       <category term="bootstrap" scheme="http://staynoob.cn/tags/bootstrap/"/>
+    
+      <category term="fontend" scheme="http://staynoob.cn/tags/fontend/"/>
     
       <category term="前端工具" scheme="http://staynoob.cn/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
@@ -707,7 +707,7 @@
     <link href="http://staynoob.cn/post/diary/init-commit/"/>
     <id>http://staynoob.cn/post/diary/init-commit/</id>
     <published>2016-04-14T08:18:33.000Z</published>
-    <updated>2016-05-08T04:21:06.019Z</updated>
+    <updated>2016-06-07T13:46:44.281Z</updated>
     
     <content type="html">&lt;!-- ![init commit](/img/init_commit.jpg) --&gt;
 &lt;blockquote&gt;
@@ -715,7 +715,7 @@
 &lt;/blockquote&gt;
 &lt;p&gt;OK!Let&amp;#39;s begin.&lt;br&gt;//以上是这篇文章的开头&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;快问我,为什么有一个这么中二的开头!&lt;br&gt;学写代码已经一年多了!这一年最大的成果就是,自己已经越来越不会与人交流了,于是在不断的码字,然后删除的循环&lt;br&gt;之下,诞生了这个毫无意义的段落&lt;/p&gt;
+&lt;p&gt;快问我,为什么有一个这么中二的开头!&lt;br&gt;学写代码已经一年多了!这一年最大的成果就是,自己已经越来越不会与人交流了,于是在不断的码字,然后删除的循环之下,诞生了这个毫无意义的段落&lt;/p&gt;
 &lt;p&gt;//So,我搭建了这个博客,希望自己还能够写出人类能够理解的文字,在这里我会发表自己对一些技术的看法&lt;br&gt;//以及尽可能多的谈一些与技术无关的话题&lt;br&gt;我搭建了这个博客,并且打算在这里瞎扯淡&lt;/p&gt;
 &lt;p&gt;return 0;&lt;/p&gt;
 </content>
