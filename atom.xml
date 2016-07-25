@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2016-06-08T03:21:27.385Z</updated>
+  <updated>2016-06-08T03:21:55.954Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/algorithm/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
     <id>http://staynoob.cn/post/algorithm/数值运算与牛顿迭代法/</id>
     <published>2016-06-04T08:12:23.000Z</published>
-    <updated>2016-06-08T03:21:27.385Z</updated>
+    <updated>2016-06-08T03:21:55.954Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。&lt;/p&gt;
