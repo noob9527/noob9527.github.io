@@ -26,7 +26,7 @@
 
 一.来源与背景这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛">
 <meta property="og:image" content="http://staynoob.cn/img/fast_inverse_square_root.jpg">
-<meta property="og:updated_time" content="2016-12-03T19:05:18.907Z">
+<meta property="og:updated_time" content="2016-12-03T19:09:15.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="魔力数字与快速平方根倒数算法">
 <meta name="twitter:description" content="题图来自于世界名模KK的推文，图中的guy&amp;#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&amp;quot;i=0.5f3759df-(i&amp;gt;&amp;gt;1)&amp;quot;是迄今为止我见过的最令我瞠目结舌的一行代码。
@@ -213,7 +213,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciw9lb2ow000qroj579tm5uy1">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciw9lfdmk000p05j5zom9ms7w">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     
@@ -230,7 +230,7 @@
 <p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
 </blockquote>
 <h3 id="一-来源与背景"><a href="#一-来源与背景" class="headerlink" title="一.来源与背景"></a>一.来源与背景</h3><p>这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛的讨论，下面是代码的原始版本（去掉了c预处理器指令，保留了源码注释）：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">Q_rsqrt</span><span class="params">( <span class="keyword">float</span> number )</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">long</span> i;</span><br><span class="line">	<span class="keyword">float</span> x2, y;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">float</span> threehalfs = <span class="number">1.5F</span>;</span><br><span class="line"></span><br><span class="line">	x2 = number * <span class="number">0.5F</span>;</span><br><span class="line">	y  = number;</span><br><span class="line">	i  = * ( long * ) &amp;y; <span class="comment">// evil floating point bit level hacking</span></span><br><span class="line">	i  = <span class="number">0x5f3759df</span> - ( i &gt;&gt; <span class="number">1</span> ); <span class="comment">// what the fuck?</span></span><br><span class="line">	y  = * ( float * ) &amp;i;</span><br><span class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></span><br><span class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></span><br><span class="line"></span><br><span class="line">	return y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>经测试这段代码比使用c标准函数(float)(1.0/sqrt(x))快4倍，因而引起了多名学者的注意，不少人发表论文来研究它的工作原理。与它的工作方式一样神秘的是，截止目前为止，仍没有人站出来对这段逼格爆表的代码表示负责。因此0x5f3759df这个魔力数字的得来方式也成了一个谜。</p>
+<p>经测试这段代码比使用c标准函数(float)(1.0/sqrt(x))快4倍，因而引起了多名学者的注意，不少人发表论文来研究它的工作原理。与它的工作方式一样神秘的是，截止目前为止，仍没有人站出来对这段逼格爆表的代码表示负责。因此0x5f3759df这个魔力数字的得来方式也成了一个谜。<br><a id="more"></a></p>
 <h3 id="二-IEEE754浮点数"><a href="#二-IEEE754浮点数" class="headerlink" title="二.IEEE754浮点数"></a>二.IEEE754浮点数</h3><p>要了解它的工作原理，需要先理解浮点数在计算机中的存储方式，大部分编程语言都遵循IEEE754浮点数规范，该规范规定了四种表示浮点数值的方式，其中比较常用的有单精度(32位)，双精度(64位)。c与java使用float指代单精度，double指代双精度，而js默认采用IEEE754双精度来存储数值类型。下表是一个32位浮点数实例：</p>
 <table>
 <thead>
