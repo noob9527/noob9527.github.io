@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/algorithm/2016-09-20-%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2016-12-03T19:05:18.907Z</lastmod>
+    <data>
+        <display>
+        <title>魔力数字与快速平方根倒数算法</title>
+        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
+        
+        <tag>闲话算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/algorithm/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/</loc>
+    <lastmod>2016-12-03T18:55:34.255Z</lastmod>
+    <data>
+        <display>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        
+        <tag>闲话算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
     <lastmod>2016-10-04T12:42:04.544Z</lastmod>
     <data>
@@ -23,26 +63,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://staynoob.cn/post/algorithm/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/</loc>
-    <lastmod>2016-06-08T03:21:55.954Z</lastmod>
-    <data>
-        <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
-        
-        <tag>闲话算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://staynoob.cn/post/diary/init-commit/</loc>
