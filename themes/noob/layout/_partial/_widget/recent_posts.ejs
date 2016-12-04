@@ -2,7 +2,7 @@
 <aside class="widget">
     <h3 class="widget-title"><%= __('widget.recent_posts') %></h3>
     <div class="widget-content">
-        <ul>
+        <ul class="recent-posts">
             <% site.posts.sort('date', -1).limit(theme.recent_posts).forEach(function(post){ %>
             <li>
                 <a href="<%- url_for(post.path) %>"><%= post.title || '(no title)' %></a>
