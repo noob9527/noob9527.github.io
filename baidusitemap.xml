@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/linux/Initial-Setup-Ubuntu16-04-server/</loc>
+    <lastmod>2016-12-04T14:42:03.000Z</lastmod>
+    <data>
+        <display>
+        <title>Initial Setup Ubuntu16.04 server</title>
+        <pubTime>2016-12-04T03:44:13.000Z</pubTime>
+        
+        <tag>ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://staynoob.cn/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/</loc>
     <lastmod>2016-12-04T14:32:26.000Z</lastmod>
     <data>
@@ -174,9 +194,9 @@
         <title>为什么bootstrap采用border-box盒模型</title>
         <pubTime>2016-05-18T08:48:58.000Z</pubTime>
         
-        <tag>fontend</tag>
-         
         <tag>bootstrap</tag>
+         
+        <tag>fontend</tag>
          
         <tag>前端工具</tag>
          

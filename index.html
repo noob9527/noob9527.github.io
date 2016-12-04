@@ -148,6 +148,117 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-Initial-Setup-Ubuntu16-04-server"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/linux/Initial-Setup-Ubuntu16-04-server/">Initial Setup Ubuntu16.04 server</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-12-04T11:44:13+08:00" 
+          content="2016-12-04">
+        2016-12-04
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/linux/">linux</a>
+    </span>
+</span>
+
+
+            
+
+    <span class="post-comments-count">
+        &nbsp; | &nbsp;
+        <a href="/post/linux/Initial-Setup-Ubuntu16-04-server/#comments" itemprop="discussionUrl">
+            <span class="post-comments-count ds-thread-count" data-thread-key="post/linux/Initial-Setup-Ubuntu16-04-server/" itemprop="commentsCount"></span>
+        </a>
+    </span>
+
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_ciwas9q7d000thlj5j6eiqd75">-->
+        <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>这篇文章算是<a href="http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
+</blockquote>
+<h3 id="一-配置用户"><a href="#一-配置用户" class="headerlink" title="一.配置用户"></a>一.配置用户</h3><ol>
+<li><p>连接主机<br> 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@your_server_ip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新增账户<br> linux通用的新增，删除用户命令分别是<code>useradd</code>, <code>userdel</code>，但是ubuntu有一个更方便的新增用户命令<code>adduser</code>，使用<code>adduser</code>命令会以交互式询问的方式来设定用户参数，包括新用户的密码，而使用useradd则需要通过命令行参数的方式来设定选项(如是否需要新建用户目录等)，另外如果使用<code>useradd</code>，还要额外通过<code>passwd</code>命令来设定新用户的密码。这里建议直接使用<code>adduser</code>，以新增用户xy为例，输入</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser xy</span><br></pre></td></tr></table></figure>
+<p> 除了输入新用户的密码外，该命令还会询问一些额外信息，可以直接按<em>enter</em>键跳过。</p>
+</li>
+<li><p>添加sudo权限<br> 在ubuntu系统中，将用户添加到sudo用户组会自动获得sudo命令的执行权限，这里可以使用</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermode <span class="_">-a</span>G sudo xy</span><br></pre></td></tr></table></figure>
+<p> 或者</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpasswd <span class="_">-a</span> xy sudo</span><br></pre></td></tr></table></figure>
+<p> 来将xy添加到sudo用户组。至此用户配置就已经完成了，以下列一些其它与用户相关的命令</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">passwd xy <span class="comment">#为xy账户设定密码</span></span><br><span class="line">userdel xy <span class="comment">#删除xy账户</span></span><br><span class="line">groupadd <span class="built_in">test</span> <span class="comment">#新增test工作组</span></span><br><span class="line">groupdel <span class="built_in">test</span> <span class="comment">#删除test工作组</span></span><br><span class="line">gpasswd <span class="_">-d</span> xy sudo <span class="comment">#将xy移除sudo用户组</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/linux/Initial-Setup-Ubuntu16-04-server/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+</article>
+
+
     <article id="post-2016-09-20-魔力数字与快速平方根倒数算法"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -205,7 +316,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciwar04y0000kfgj5xla9cvt9">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciwas9q7a000qhlj5jgmti8qi">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     
@@ -302,7 +413,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_ciwar04xv000jfgj5xv3tlmsh">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_ciwas9q72000mhlj50vjog4x4">-->
         <img src="/img/newton_method.jpg" itemprop="image">
       <!--</a>-->
     
@@ -427,7 +538,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/shannon.jpg" rel="gallery_ciwar04y6000qfgj55ypjkoih">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/shannon.jpg" rel="gallery_ciwas9q70000lhlj5o2fl7bra">-->
         <img src="/img/shannon.jpg" itemprop="image">
       <!--</a>-->
     
@@ -527,7 +638,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_ciwar04xr000ffgj5g3crfdvu">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_ciwas9q6u000hhlj5f9kx9mwx">-->
         <img src="/img/clearfix.jpg" itemprop="image">
       <!--</a>-->
     
@@ -589,118 +700,10 @@
 </article>
 
 
-    <article id="post-为什么bootstrap采用border-box盒模型"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/css/为什么bootstrap采用border-box盒模型/">为什么bootstrap采用border-box盒模型</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2016-05-18T16:48:58+08:00" 
-          content="2016-05-18">
-        2016-05-18
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/css/">css</a>
-    </span>
-</span>
-
-
-            
-
-    <span class="post-comments-count">
-        &nbsp; | &nbsp;
-        <a href="/post/css/为什么bootstrap采用border-box盒模型/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/css/为什么bootstrap采用border-box盒模型/" itemprop="commentsCount"></span>
-        </a>
-    </span>
-
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_ciwar04y4000pfgj5ds6z6umy">-->
-        <img src="/img/box-sizing.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
-</blockquote>
-<p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a href="https://css-tricks.com/box-sizing/">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
-<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
-<ul>
-<li>width + padding + border = 元素实际可见的宽度</li>
-<li>height + padding + border = 元素实际可见的高度</li>
-</ul>
-<p>这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：</p>
-<ul>
-<li>width = 元素实际可见的宽度</li>
-<li>height = 元素实际可见的高度</li>
-</ul>
-<p>这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。</p>
-<p>尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/css/为什么bootstrap采用border-box盒模型/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-    
-    
-    
-    
-    
-    
-</article>
-
-
 
 
 <nav class="site-pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
 </nav>
 
                 </main>
@@ -752,6 +755,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/linux/Initial-Setup-Ubuntu16-04-server/">Initial Setup Ubuntu16.04 server</a>
+            </li>
+            
+            <li>
                 <a href="/post/algorithm/2016-09-20-魔力数字与快速平方根倒数算法/">魔力数字与快速平方根倒数算法</a>
             </li>
             
@@ -800,7 +807,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -809,7 +816,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
     </div>
 </aside>
 
@@ -818,7 +825,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
