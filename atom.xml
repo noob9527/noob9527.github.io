@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2016-12-03T19:09:15.238Z</updated>
+  <updated>2016-12-04T01:59:51.873Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/algorithm/2016-09-20-%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E7%AE%97%E6%B3%95/"/>
     <id>http://staynoob.cn/post/algorithm/2016-09-20-魔力数字与快速平方根倒数算法/</id>
     <published>2016-09-20T02:53:33.000Z</published>
-    <updated>2016-12-03T19:09:15.238Z</updated>
+    <updated>2016-12-04T01:59:51.873Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;题图来自于世界名模KK的推文，图中的guy&amp;#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&amp;quot;i=0.5f3759df-(i&amp;gt;&amp;gt;1)&amp;quot;是迄今为止我见过的最令我瞠目结舌的一行代码。&lt;/p&gt;
@@ -71,7 +71,7 @@
 &lt;h3 id=&quot;四-魔力数字&quot;&gt;&lt;a href=&quot;#四-魔力数字&quot; class=&quot;headerlink&quot; title=&quot;四.魔力数字&quot;&gt;&lt;/a&gt;四.魔力数字&lt;/h3&gt;&lt;p&gt;根据上面段落的推理过程，可以知道魔力数字R应该等于$\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L$，其中B与L都是常量，如果是32位浮点数，则B等于127，L等于$2^{23}$。而$\sigma_a=log(1+m_y)-m_y$，$\sigma_b=log(1+m_x)-m_x$。现在可以构建一个函数f(x)=log(1+x)-x，由于$m_x$，$m_y$均为尾数部分，因此自变量x的取值范围是[0,1]，到这里我的想法是利用积分计算出函数f(x)=log(1+x)-x在[0,1]区间的平均值，从而得出$\sigma$的近似值，即：&lt;br&gt;$$\int_0^1\left[log(1+x)-x\right]dx$$如果我没算错的话，结果应该是$2-\frac{1}{ln2}-\frac{1}{2}\approx0.05730495911$。(wikipedia对$\sigma$的计算结果是0.0450461875...，我没看懂它的计算方式，如果有数学高手看到这里希望能指导一下)。最后将该值带回原式：&lt;br&gt;$$1.5\times2^{23}\times(127 - 1.5\times0.05730495911)\approx1597308761=0x5f34ff59$$同样这里我的计算结果与源码(0x5f3759df)不同，我也不知道错在哪里，希望有大神指导。&lt;/p&gt;
 &lt;h3 id=&quot;五-牛顿法&quot;&gt;&lt;a href=&quot;#五-牛顿法&quot; class=&quot;headerlink&quot; title=&quot;五.牛顿法&quot;&gt;&lt;/a&gt;五.牛顿法&lt;/h3&gt;&lt;p&gt;至于代码中&lt;br&gt;&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;	y  = y * ( threehalfs - ( x2 * y * y ) ); &lt;span class=&quot;comment&quot;&gt;// 1st iteration&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;这一部分则是使用牛顿迭代法来获取更精确的计算结果，关于牛顿法的详情可以参见我的上一篇文章&lt;a href=&quot;http://localhost:4000/post/algorithm/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/#二-牛顿法（Newton-Raphson-method）&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;牛顿迭代法&lt;/a&gt;，这里不再赘述。&lt;/p&gt;
-&lt;h3 id=&quot;六-总结&quot;&gt;&lt;a href=&quot;#六-总结&quot; class=&quot;headerlink&quot; title=&quot;六.总结&quot;&gt;&lt;/a&gt;六.总结&lt;/h3&gt;&lt;p&gt;关于这段代码的出处至今仍有争议，相传是由天才程序员&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E5%8D%A1%E9%A6%AC%E5%85%8B&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;约翰·卡马克&lt;/a&gt;所开发（约翰·卡马克是编程领域畅销书&lt;a href=&quot;https://book.douban.com/subject/1152971/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DOOM启示录&lt;/a&gt;的主角），然而不管这段代码出自于谁，我都觉得是码农届的荣耀，毫不夸张的说我因为0x5f3759df这个数字而在家研究了一个月的高数，还有里面的&amp;quot;evil floating point bit level hacking&amp;quot;，深刻的让我觉得这段代码的作者是用灵魂在撸代码。&lt;/p&gt;
+&lt;h3 id=&quot;六-总结&quot;&gt;&lt;a href=&quot;#六-总结&quot; class=&quot;headerlink&quot; title=&quot;六.总结&quot;&gt;&lt;/a&gt;六.总结&lt;/h3&gt;&lt;p&gt;关于这段代码的出处至今仍有争议，相传是由天才程序员&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E5%8D%A1%E9%A6%AC%E5%85%8B&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;约翰·卡马克&lt;/a&gt;所开发（约翰·卡马克是编程领域畅销书&lt;a href=&quot;https://book.douban.com/subject/1152971/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DOOM启示录&lt;/a&gt;的主角），然而不管这段代码出自于谁，我都觉得是码农届的荣耀，毫不夸张的说我因为0x5f3759df这个数字在家花了一个月时间重温高数，还有里面的&amp;quot;evil floating point bit level hacking&amp;quot;，深刻的让我觉得这段代码的作者是用灵魂在撸代码。&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E9%80%9F%E7%AE%97%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;平方根倒数速算法&lt;/a&gt;&lt;/li&gt;
@@ -509,9 +509,9 @@
       <category term="css" scheme="http://staynoob.cn/categories/css/"/>
     
     
-      <category term="bootstrap" scheme="http://staynoob.cn/tags/bootstrap/"/>
-    
       <category term="fontend" scheme="http://staynoob.cn/tags/fontend/"/>
+    
+      <category term="bootstrap" scheme="http://staynoob.cn/tags/bootstrap/"/>
     
       <category term="前端工具" scheme="http://staynoob.cn/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
@@ -723,7 +723,7 @@
     <link href="http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/"/>
     <id>http://staynoob.cn/post/linux/安装ubuntu16-04后要做的9件事/</id>
     <published>2016-04-24T04:37:13.000Z</published>
-    <updated>2016-10-04T12:42:04.544Z</updated>
+    <updated>2016-12-04T14:32:26.000Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
@@ -762,10 +762,6 @@
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install mysql-server mysql-client&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  之后修改/etc/mysql/my.cnf，添加如下配置节修改默认的字符集&lt;/p&gt;
   &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[client]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default-character-set=utf8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[mysql]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;default-character-set=utf8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[mysqld]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;collation-server = utf8_unicode_ci&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;init-connect=&amp;apos;SET NAMES utf8&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;character-set-server = utf8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  ubuntu16.04使用systemd管理服务，因此下面的命令都已经没用了&lt;/p&gt;
-  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo /etc/init.d/mysql restart	&lt;span class=&quot;comment&quot;&gt;#无效！&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo restart mysql	&lt;span class=&quot;comment&quot;&gt;#无效！&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  现在应该使用如下命令来重启mysql服务&lt;/p&gt;
-  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo service mysql restart&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo systemctl restart mysql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;安装IDE&lt;br&gt;  虽然我很喜欢vim,但一直玩得不6,因此还是需要IDE的,JetBrains的产品谁用谁知道,安装也没什么好说的,唯一踩到的坑是之前习惯性的使用sudo执行了启动脚本,于是始终无法添加DASH快捷方式,一顿捣腾后发现 &lt;strong&gt;~/.local/share/applications/jetbrains-webstorm.desktop&lt;/strong&gt; 的owner是root,chown后问题解决。&lt;/p&gt;
 &lt;/li&gt;
