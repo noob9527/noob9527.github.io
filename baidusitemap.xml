@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/java/Jackson%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%8C%E5%90%91%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-01-01T06:12:51.997Z</lastmod>
+    <data>
+        <display>
+        <title>Jackson序列化双向关联映射的四种方法</title>
+        <pubTime>2017-01-01T06:07:03.000Z</pubTime>
+        
+        <tag>jpa</tag>
+         
+        <tag>hibernate</tag>
+         
+        <tag>jackson</tag>
+         
+        <tag>spring mvc</tag>
+         
+         
+           
+             
+              <breadCrumb title="java" url="http://staynoob.cn/categories/java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/linux/Initial-Setup-Ubuntu16-04-server/</loc>
     <lastmod>2016-12-04T14:42:03.000Z</lastmod>
     <data>
