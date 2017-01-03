@@ -35,70 +35,72 @@ lookbehind目前还处在es7的[提案](https://github.com/goyakin/es-regexp-loo
 在js实现该功能之前，可以使用捕获与引用来达成类似的效果，举例来说如果你需要将所有前面带有static修饰符的int，替换成long，在支持lookbehind的编辑器中可以直接查找`(?<=static\s)int`，并将其替换成`long`。而在不支持lookbehind的环境下（vscode别瞅了，说的就是你！），可以查找`(static\s)int`，将其替换成`$1long`。
 
 ### 四.Code Demo
-- Feature Demo(java)
-    ```java
-    //测试依赖junit4,assertj
-    @Test
-    public void matchButNotCapture() throws Exception {
-        String exp = "(?:a)(b)\\1";
-        //由于(?:)不创建引用，因此\1引用了(b)捕获的字符串
-        Assertions.assertThat(Pattern.matches(exp, "aba")).isFalse();
-        Assertions.assertThat(Pattern.matches(exp, "abb")).isTrue();
-        //只有一个分组
-        Assertions.assertThat(Pattern.compile(exp).matcher("abb").groupCount()).isEqualTo(1);
-    }
-
-    @Test
-    public void lookahead() throws Exception {
-        //匹配后面有b的a
-        String exp = "a(?=b)";
-        Assertions.assertThat(Pattern.compile(exp).matcher("aa").find()).isFalse();
-        //zero-width
-        Matcher matcher = Pattern.compile(exp).matcher("ab");
-        Assertions.assertThat(matcher.find()).isTrue();
-        Assertions.assertThat(matcher.group()).isEqualTo("a");
-    }
-
-    @Test
-    public void negativeLookahead() throws Exception {
-        //匹配后面没有b的a
-        String exp = "a(?!b)";
-        Assertions.assertThat(Pattern.compile(exp).matcher("ab").find()).isFalse();
-        //zero-width
-        Matcher matcher = Pattern.compile(exp).matcher("aa");
-        Assertions.assertThat(matcher.find()).isTrue();
-        Assertions.assertThat(matcher.group()).isEqualTo("a");
-    }
-
-    @Test
-    public void lookbehind() throws Exception {
-        //匹配前面有a的b
-        String exp = "(?<=a)b";
-        Assertions.assertThat(Pattern.compile(exp).matcher("bb").find()).isFalse();
-        //zero-width
-        Matcher matcher = Pattern.compile(exp).matcher("ab");
-        Assertions.assertThat(matcher.find()).isTrue();
-        Assertions.assertThat(matcher.group()).isEqualTo("b");
-    }
-
-    @Test
-    public void negativeLookbehind() throws Exception {
-        //匹配前面没有a的b
-        String exp = "(?<!a)b";
-        Assertions.assertThat(Pattern.compile(exp).matcher("ab").find()).isFalse();
-        //zero-width
-        Matcher matcher = Pattern.compile(exp).matcher("bb");
-        Assertions.assertThat(matcher.find()).isTrue();
-        Assertions.assertThat(matcher.group()).isEqualTo("b");
-    }
-    ```
-- Polyfill Demo(js)
-    ```javascript
-    //测试依赖mocha,shouldjs
-    describe('polyfill', function () {
-        it('使用捕获与引用来替代lookbehind', function () {
-            'static int'.replace(/(static\s)int/, '$1long')
-                .should.equal('static long');
-        });
+Polyfill Demo(js)
+```javascript
+//测试依赖mocha,shouldjs
+describe('polyfill', function () {
+    it('使用捕获与引用来替代lookbehind', function () {
+        'static int'.replace(/(static\s)int/, '$1long')
+            .should.equal('static long');
     });
-    ```
+});
+```
+
+Feature Demo(java)
+```java
+//测试依赖junit4,assertj
+@Test
+public void matchButNotCapture() throws Exception {
+    String exp = "(?:a)(b)\\1";
+    //由于(?:)不创建引用，因此\1引用了(b)捕获的字符串
+    Assertions.assertThat(Pattern.matches(exp, "aba")).isFalse();
+    Assertions.assertThat(Pattern.matches(exp, "abb")).isTrue();
+    //只有一个分组
+    Assertions.assertThat(Pattern.compile(exp).matcher("abb").groupCount()).isEqualTo(1);
+}
+
+@Test
+public void lookahead() throws Exception {
+    //匹配后面有b的a
+    String exp = "a(?=b)";
+    Assertions.assertThat(Pattern.compile(exp).matcher("aa").find()).isFalse();
+    //zero-width
+    Matcher matcher = Pattern.compile(exp).matcher("ab");
+    Assertions.assertThat(matcher.find()).isTrue();
+    Assertions.assertThat(matcher.group()).isEqualTo("a");
+}
+
+@Test
+public void negativeLookahead() throws Exception {
+    //匹配后面没有b的a
+    String exp = "a(?!b)";
+    Assertions.assertThat(Pattern.compile(exp).matcher("ab").find()).isFalse();
+    //zero-width
+    Matcher matcher = Pattern.compile(exp).matcher("aa");
+    Assertions.assertThat(matcher.find()).isTrue();
+    Assertions.assertThat(matcher.group()).isEqualTo("a");
+}
+
+@Test
+public void lookbehind() throws Exception {
+    //匹配前面有a的b
+    String exp = "(?<=a)b";
+    Assertions.assertThat(Pattern.compile(exp).matcher("bb").find()).isFalse();
+    //zero-width
+    Matcher matcher = Pattern.compile(exp).matcher("ab");
+    Assertions.assertThat(matcher.find()).isTrue();
+    Assertions.assertThat(matcher.group()).isEqualTo("b");
+}
+
+@Test
+public void negativeLookbehind() throws Exception {
+    //匹配前面没有a的b
+    String exp = "(?<!a)b";
+    Assertions.assertThat(Pattern.compile(exp).matcher("ab").find()).isFalse();
+    //zero-width
+    Matcher matcher = Pattern.compile(exp).matcher("bb");
+    Assertions.assertThat(matcher.find()).isTrue();
+    Assertions.assertThat(matcher.group()).isEqualTo("b");
+}
+```
+
