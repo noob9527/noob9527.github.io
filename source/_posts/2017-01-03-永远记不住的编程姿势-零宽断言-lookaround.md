@@ -15,7 +15,7 @@ permalink:
 - `(?:pattern)`非捕获匹配(matches pattern but does not capture the match)
 - `(?=pattern)`零宽正向先行断言(lookahead)
 - `(?!pattern)`零宽负向先行断言(negative lookahead)
-- `(?<pattern)`零宽正回顾后发断言(lookbehind)
+- `(?<=pattern)`零宽正回顾后发断言(lookbehind)
 - `(?<!pattern)`零宽负回顾后发断言(negative lookbehind)
 
 之所以我要在每种模式后打出它的英文表达方式，不是为了装B，而是想让大家感受一下这个翻译(msdn,javascript权威指南等多本书籍或文档采用这样，或者类似这样的翻译)。我反正是第一次体会到英文看的明明白白，中文看得一头雾水的感觉。
@@ -27,7 +27,7 @@ permalink:
 - `(?:a)(b)\\1`匹配abb，如果是`(a)(b)\\1`则匹配aba，`(?:pattern)`表示匹配但不捕获，可以将其理解成不创建分组的`(pattern)`。
 - `a(?=b)`断言a后面有b，匹配ab但不匹配aa，最终捕获a。（个人认为应该翻译成*正向肯定查找*）
 - `a(?!b)`断言a后面没有b，匹配aa但不匹配ab，最终捕获a。（个人认为应该翻译成*正向否定查找*）
-- `(?<a)b`断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成*反向肯定查找*）
+- `(?<=a)b`断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成*反向肯定查找*）
 - `(?<!a)b`断言b前面没有a，匹配bb但不匹配ab，最终捕获b。（个人认为应该翻译成*反向否定查找*）
 
 ### 三.Polyfill
