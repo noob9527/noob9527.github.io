@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-01-03T16:10:27.702Z</updated>
+  <updated>2017-01-05T15:23:17.623Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF-%E9%9B%B6%E5%AE%BD%E6%96%AD%E8%A8%80-lookaround/"/>
     <id>http://staynoob.cn/post/永远记不住的编程姿势/永远记不住的编程姿势-零宽断言-lookaround/</id>
     <published>2017-01-03T15:16:58.000Z</published>
-    <updated>2017-01-03T16:10:27.702Z</updated>
+    <updated>2017-01-05T15:23:17.623Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。&lt;/p&gt;
@@ -30,7 +30,7 @@
 &lt;li&gt;&lt;code&gt;(?:pattern)&lt;/code&gt;非捕获匹配(matches pattern but does not capture the match)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?=pattern)&lt;/code&gt;零宽正向先行断言(lookahead)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?!pattern)&lt;/code&gt;零宽负向先行断言(negative lookahead)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(?&amp;lt;pattern)&lt;/code&gt;零宽正回顾后发断言(lookbehind)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;=pattern)&lt;/code&gt;零宽正回顾后发断言(lookbehind)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?&amp;lt;!pattern)&lt;/code&gt;零宽负回顾后发断言(negative lookbehind)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;之所以我要在每种模式后打出它的英文表达方式，不是为了装B，而是想让大家感受一下这个翻译(msdn,javascript权威指南等多本书籍或文档采用这样，或者类似这样的翻译)。我反正是第一次体会到英文看的明明白白，中文看得一头雾水的感觉。&lt;/p&gt;
@@ -40,7 +40,7 @@
 &lt;li&gt;&lt;code&gt;(?:a)(b)\\1&lt;/code&gt;匹配abb，如果是&lt;code&gt;(a)(b)\\1&lt;/code&gt;则匹配aba，&lt;code&gt;(?:pattern)&lt;/code&gt;表示匹配但不捕获，可以将其理解成不创建分组的&lt;code&gt;(pattern)&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;a(?=b)&lt;/code&gt;断言a后面有b，匹配ab但不匹配aa，最终捕获a。（个人认为应该翻译成&lt;em&gt;正向肯定查找&lt;/em&gt;）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;a(?!b)&lt;/code&gt;断言a后面没有b，匹配aa但不匹配ab，最终捕获a。（个人认为应该翻译成&lt;em&gt;正向否定查找&lt;/em&gt;）&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(?&amp;lt;a)b&lt;/code&gt;断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成&lt;em&gt;反向肯定查找&lt;/em&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;=a)b&lt;/code&gt;断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成&lt;em&gt;反向肯定查找&lt;/em&gt;）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?&amp;lt;!a)b&lt;/code&gt;断言b前面没有a，匹配bb但不匹配ab，最终捕获b。（个人认为应该翻译成&lt;em&gt;反向否定查找&lt;/em&gt;）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;三-Polyfill&quot;&gt;&lt;a href=&quot;#三-Polyfill&quot; class=&quot;headerlink&quot; title=&quot;三.Polyfill&quot;&gt;&lt;/a&gt;三.Polyfill&lt;/h3&gt;&lt;p&gt;lookbehind目前还处在es7的&lt;a href=&quot;https://github.com/goyakin/es-regexp-lookbehind&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;提案&lt;/a&gt;阶段，因此无法在js中直接使用（也正因为如此，VSC的查找与替换不支持lookbehind），新版的V8引擎已经实现了该功能。不过需要在浏览器设置中打开“#enable-javascript-harmony”开关（在chrome地址栏输入&lt;em&gt;about:flags&lt;/em&gt;设置）&lt;br&gt;在js实现该功能之前，可以使用捕获与引用来达成类似的效果，举例来说如果你需要将所有前面带有static修饰符的int，替换成long，在支持lookbehind的编辑器中可以直接查找&lt;code&gt;(?&amp;lt;=static\s)int&lt;/code&gt;，并将其替换成&lt;code&gt;long&lt;/code&gt;。而在不支持lookbehind的环境下（vscode别瞅了，说的就是你！），可以查找&lt;code&gt;(static\s)int&lt;/code&gt;，将其替换成&lt;code&gt;$1long&lt;/code&gt;。&lt;/p&gt;
@@ -58,7 +58,7 @@
 &lt;li&gt;&lt;code&gt;(?:pattern)&lt;/code&gt;非捕获匹配(matches pattern but does not capture the match)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?=pattern)&lt;/code&gt;零宽正向先行断言(lookahead)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?!pattern)&lt;/code&gt;零宽负向先行断言(negative lookahead)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;(?&amp;lt;pattern)&lt;/code&gt;零宽正回顾后发断言(lookbehind)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(?&amp;lt;=pattern)&lt;/code&gt;零宽正回顾后发断言(lookbehind)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;(?&amp;lt;!pattern)&lt;/code&gt;零宽负回顾后发断言(negative lookbehind)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;之所以我要在每种模式后打出它的英文表达方式，不是为了装B，而是想让大家感受一下这个翻译(msdn,javascript权威指南等多本书籍或文档采用这样，或者类似这样的翻译)。我反正是第一次体会到英文看的明明白白，中文看得一头雾水的感觉。&lt;/p&gt;

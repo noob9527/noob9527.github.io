@@ -30,7 +30,7 @@
 
 (?:pattern)非捕获匹配(matches">
 <meta property="og:image" content="http://staynoob.cn/img/regular-expression-lookaround.jpg">
-<meta property="og:updated_time" content="2017-01-03T16:10:27.702Z">
+<meta property="og:updated_time" content="2017-01-05T15:23:17.623Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="永远记不住的编程姿势:零宽断言(lookaround)">
 <meta name="twitter:description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。
@@ -219,7 +219,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cixhponbo0010shj5nbhreetb">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cixkiyitg000otmj5yn6scxqq">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -240,7 +240,7 @@
 <li><code>(?:pattern)</code>非捕获匹配(matches pattern but does not capture the match)</li>
 <li><code>(?=pattern)</code>零宽正向先行断言(lookahead)</li>
 <li><code>(?!pattern)</code>零宽负向先行断言(negative lookahead)</li>
-<li><code>(?&lt;pattern)</code>零宽正回顾后发断言(lookbehind)</li>
+<li><code>(?&lt;=pattern)</code>零宽正回顾后发断言(lookbehind)</li>
 <li><code>(?&lt;!pattern)</code>零宽负回顾后发断言(negative lookbehind)</li>
 </ul>
 <p>之所以我要在每种模式后打出它的英文表达方式，不是为了装B，而是想让大家感受一下这个翻译(msdn,javascript权威指南等多本书籍或文档采用这样，或者类似这样的翻译)。我反正是第一次体会到英文看的明明白白，中文看得一头雾水的感觉。</p>
@@ -250,7 +250,7 @@
 <li><code>(?:a)(b)\\1</code>匹配abb，如果是<code>(a)(b)\\1</code>则匹配aba，<code>(?:pattern)</code>表示匹配但不捕获，可以将其理解成不创建分组的<code>(pattern)</code>。</li>
 <li><code>a(?=b)</code>断言a后面有b，匹配ab但不匹配aa，最终捕获a。（个人认为应该翻译成<em>正向肯定查找</em>）</li>
 <li><code>a(?!b)</code>断言a后面没有b，匹配aa但不匹配ab，最终捕获a。（个人认为应该翻译成<em>正向否定查找</em>）</li>
-<li><code>(?&lt;a)b</code>断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成<em>反向肯定查找</em>）</li>
+<li><code>(?&lt;=a)b</code>断言b前面有a，匹配ab但不匹配bb，最终捕获b。（个人认为应该翻译成<em>反向肯定查找</em>）</li>
 <li><code>(?&lt;!a)b</code>断言b前面没有a，匹配bb但不匹配ab，最终捕获b。（个人认为应该翻译成<em>反向否定查找</em>）</li>
 </ul>
 <h3 id="三-Polyfill"><a href="#三-Polyfill" class="headerlink" title="三.Polyfill"></a>三.Polyfill</h3><p>lookbehind目前还处在es7的<a href="https://github.com/goyakin/es-regexp-lookbehind" target="_blank" rel="external">提案</a>阶段，因此无法在js中直接使用（也正因为如此，VSC的查找与替换不支持lookbehind），新版的V8引擎已经实现了该功能。不过需要在浏览器设置中打开“#enable-javascript-harmony”开关（在chrome地址栏输入<em>about:flags</em>设置）<br>在js实现该功能之前，可以使用捕获与引用来达成类似的效果，举例来说如果你需要将所有前面带有static修饰符的int，替换成long，在支持lookbehind的编辑器中可以直接查找<code>(?&lt;=static\s)int</code>，并将其替换成<code>long</code>。而在不支持lookbehind的环境下（vscode别瞅了，说的就是你！），可以查找<code>(static\s)int</code>，将其替换成<code>$1long</code>。</p>
