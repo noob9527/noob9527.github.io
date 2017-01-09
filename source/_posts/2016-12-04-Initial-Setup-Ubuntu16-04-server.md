@@ -6,11 +6,11 @@ tags:
   - ubuntu
 photos: /img/ubuntu16_04_server.jpg
 date: 2016-12-04 11:44:13
-permalink:
+permalink: /initial-setup-Ubuntu-16.04-server
 ---
 
 
-> 这篇文章算是[安装ubuntu16.04后要做的9件事](http://staynoob.cn/post/linux/%E5%AE%89%E8%A3%85ubuntu16-04%E5%90%8E%E8%A6%81%E5%81%9A%E7%9A%849%E4%BB%B6%E4%BA%8B/)的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。
+> 这篇文章算是[安装ubuntu16.04后要做的9件事](http://staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/)的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。
 
 ### 一.配置用户
 1. 连接主机

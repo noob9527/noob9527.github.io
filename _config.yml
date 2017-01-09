@@ -29,7 +29,7 @@ feed:
 url: http://staynoob.cn
 root: /
 #permalink: :year/:month/:day/:title/
-permalink: post/:category/:title/
+permalink: post/:year/:month/:title/
 permalink_defaults:
 
 # Directory

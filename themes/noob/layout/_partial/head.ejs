@@ -24,7 +24,7 @@
     }
 %>
 
-<title><%- (title ? title+' | ' : '') + theme.title + ' - ' + theme.description %></title>
+<title><%- (title ? title : theme.title) + ' - ' + theme.description %></title>
 
 <% if(page.keywords){ %>
     <meta name="keywords" content="<%- page.keywords %>">
