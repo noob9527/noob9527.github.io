@@ -1,1 +1,0 @@
-convert ubuntu16_04_server.jpg -resize '1000' ubuntu16_04_server_resize.jpg
