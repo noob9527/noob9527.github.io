@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[永远记不住的编程姿势:零宽断言(lookaround)]]></title>
-      <url>http://staynoob.cn/post/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/regular-expression-lookahead-lookbehind/</url>
+      <url>http://staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。</p>
 </blockquote>
@@ -35,7 +35,7 @@
     
     <entry>
       <title><![CDATA[Jackson序列化双向关联映射的四种方法]]></title>
-      <url>http://staynoob.cn/post/java/jackson-serialize-bi-directional-relationship-infinite-recursion/</url>
+      <url>http://staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>如果一个对象与另一个对象之间存在互相引用(bi-directional relationship)，序列化该对象就会出现stackoverflow异常，这篇文章主要介绍使用jackson序列化工具处理该问题的几种解决方案。</p>
 </blockquote>
@@ -75,7 +75,7 @@
     
     <entry>
       <title><![CDATA[Initial Setup Ubuntu16.04 server]]></title>
-      <url>http://staynoob.cn/post/linux/initial-setup-Ubuntu-16.04-server/</url>
+      <url>http://staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>这篇文章算是<a href="http://staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
 </blockquote>
@@ -127,7 +127,7 @@
     
     <entry>
       <title><![CDATA[魔力数字与快速平方根倒数算法]]></title>
-      <url>http://staynoob.cn/post/algorithm/the-famous-magic-number-fast-inverse-square-root-algorithm/</url>
+      <url>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
 </blockquote>
@@ -188,7 +188,7 @@
     
     <entry>
       <title><![CDATA[数值运算与牛顿迭代法]]></title>
-      <url>http://staynoob.cn/post/algorithm/integer-arithmetic-karatsuba-multiplication/</url>
+      <url>http://staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。</p>
 </blockquote>
@@ -233,7 +233,7 @@
     
     <entry>
       <title><![CDATA[香农信息论与回答老鼠喝药问题的正确姿势]]></title>
-      <url>http://staynoob.cn/post/algorithm/shannon-mathematical-theory-of-communication/</url>
+      <url>http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>最近在学习算法的过程中频繁接触到信息论，有碍于自己的数学水平，无力窥其全貌。但仅仅是一个入门级的了解便足以让我为之倾倒。这篇文章简单介绍信息论，之后来看看如何利用它秒解一些智力题。</p>
 </blockquote>
@@ -280,7 +280,7 @@
     
     <entry>
       <title><![CDATA[CSS清除浮动的原理与最佳实践]]></title>
-      <url>http://staynoob.cn/post/css/css-float-clearfix-best-in-practice/</url>
+      <url>http://staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
 </blockquote>
@@ -410,7 +410,7 @@
     
     <entry>
       <title><![CDATA[为什么bootstrap采用border-box盒模型]]></title>
-      <url>http://staynoob.cn/post/css/css-why-bootstrap-use-border-box-as-default-box-sizing/</url>
+      <url>http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
 </blockquote>
@@ -461,7 +461,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(番外篇):快速排序的优化历程]]></title>
-      <url>http://staynoob.cn/post/algorithm/insertion-shell-merge-quick-sort-algorithm-3/</url>
+      <url>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。</p>
 </blockquote>
@@ -489,7 +489,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(下)]]></title>
-      <url>http://staynoob.cn/post/algorithm/insertion-shell-merge-quick-sort-algorithm-2/</url>
+      <url>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
 </blockquote>
@@ -530,7 +530,7 @@
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(上)]]></title>
-      <url>http://staynoob.cn/post/algorithm/insertion-shell-merge-quick-sort-algorithm-1/</url>
+      <url>http://staynoob.cn/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
@@ -599,7 +599,7 @@
     
     <entry>
       <title><![CDATA[安装ubuntu16.04后要做的9件事]]></title>
-      <url>http://staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/</url>
+      <url>http://staynoob.cn/post/2016/04/initial-setup-ubuntu-16.04-desktop/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
 </blockquote>
@@ -647,7 +647,7 @@
     
     <entry>
       <title><![CDATA[init commit]]></title>
-      <url>http://staynoob.cn/post/diary/init-commit/</url>
+      <url>http://staynoob.cn/post/2016/04/init-commit/</url>
       <content type="html"><![CDATA[<!-- ![init commit](/img/init_commit.jpg) -->
 <blockquote>
 <p>Sometimes I talk to myself because I need expert advice.</p>

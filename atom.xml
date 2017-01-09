@@ -17,8 +17,8 @@
   
   <entry>
     <title>永远记不住的编程姿势:零宽断言(lookaround)</title>
-    <link href="http://staynoob.cn/post/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF//regular-expression-lookahead-lookbehind/"/>
-    <id>http://staynoob.cn/post/永远记不住的编程姿势//regular-expression-lookahead-lookbehind/</id>
+    <link href="http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/"/>
+    <id>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</id>
     <published>2017-01-03T15:16:58.000Z</published>
     <updated>2017-01-09T17:50:20.587Z</updated>
     
@@ -74,8 +74,8 @@
   
   <entry>
     <title>Jackson序列化双向关联映射的四种方法</title>
-    <link href="http://staynoob.cn/post/java//jackson-serialize-bi-directional-relationship-infinite-recursion/"/>
-    <id>http://staynoob.cn/post/java//jackson-serialize-bi-directional-relationship-infinite-recursion/</id>
+    <link href="http://staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/"/>
+    <id>http://staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</id>
     <published>2017-01-01T06:07:03.000Z</published>
     <updated>2017-01-09T17:50:20.591Z</updated>
     
@@ -141,8 +141,8 @@
   
   <entry>
     <title>Initial Setup Ubuntu16.04 server</title>
-    <link href="http://staynoob.cn/post/linux//initial-setup-Ubuntu-16.04-server/"/>
-    <id>http://staynoob.cn/post/linux//initial-setup-Ubuntu-16.04-server/</id>
+    <link href="http://staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/"/>
+    <id>http://staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</id>
     <published>2016-12-04T03:44:13.000Z</published>
     <updated>2017-01-09T17:44:10.241Z</updated>
     
@@ -227,8 +227,8 @@
   
   <entry>
     <title>魔力数字与快速平方根倒数算法</title>
-    <link href="http://staynoob.cn/post/algorithm//the-famous-magic-number-fast-inverse-square-root-algorithm/"/>
-    <id>http://staynoob.cn/post/algorithm//the-famous-magic-number-fast-inverse-square-root-algorithm/</id>
+    <link href="http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/"/>
+    <id>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</id>
     <published>2016-09-20T02:53:33.000Z</published>
     <updated>2017-01-09T17:50:20.595Z</updated>
     
@@ -308,8 +308,8 @@
   
   <entry>
     <title>数值运算与牛顿迭代法</title>
-    <link href="http://staynoob.cn/post/algorithm//integer-arithmetic-karatsuba-multiplication/"/>
-    <id>http://staynoob.cn/post/algorithm//integer-arithmetic-karatsuba-multiplication/</id>
+    <link href="http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/"/>
+    <id>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</id>
     <published>2016-06-04T08:12:23.000Z</published>
     <updated>2017-01-09T17:40:15.954Z</updated>
     
@@ -401,8 +401,8 @@
   
   <entry>
     <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
-    <link href="http://staynoob.cn/post/algorithm//shannon-mathematical-theory-of-communication/"/>
-    <id>http://staynoob.cn/post/algorithm//shannon-mathematical-theory-of-communication/</id>
+    <link href="http://staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/"/>
+    <id>http://staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</id>
     <published>2016-05-22T05:50:35.000Z</published>
     <updated>2017-01-09T17:34:55.620Z</updated>
     
@@ -471,8 +471,8 @@
   
   <entry>
     <title>CSS清除浮动的原理与最佳实践</title>
-    <link href="http://staynoob.cn/post/css//css-float-clearfix-best-in-practice/"/>
-    <id>http://staynoob.cn/post/css//css-float-clearfix-best-in-practice/</id>
+    <link href="http://staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/"/>
+    <id>http://staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</id>
     <published>2016-05-20T07:26:52.000Z</published>
     <updated>2017-01-09T17:26:22.348Z</updated>
     
@@ -643,8 +643,8 @@
   
   <entry>
     <title>为什么bootstrap采用border-box盒模型</title>
-    <link href="http://staynoob.cn/post/css//css-why-bootstrap-use-border-box-as-default-box-sizing/"/>
-    <id>http://staynoob.cn/post/css//css-why-bootstrap-use-border-box-as-default-box-sizing/</id>
+    <link href="http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/"/>
+    <id>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</id>
     <published>2016-05-18T08:48:58.000Z</published>
     <updated>2017-01-09T17:26:22.352Z</updated>
     
@@ -729,8 +729,8 @@
   
   <entry>
     <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-    <link href="http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-3/"/>
-    <id>http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-3/</id>
+    <link href="http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/"/>
+    <id>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</id>
     <published>2016-05-03T01:01:35.000Z</published>
     <updated>2017-01-09T17:34:55.636Z</updated>
     
@@ -776,8 +776,8 @@
   
   <entry>
     <title>聊聊4种主流排序算法(下)</title>
-    <link href="http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-2/"/>
-    <id>http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-2/</id>
+    <link href="http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/"/>
+    <id>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</id>
     <published>2016-05-01T13:46:02.000Z</published>
     <updated>2017-01-09T17:22:22.544Z</updated>
     
@@ -837,8 +837,8 @@
   
   <entry>
     <title>聊聊4种主流排序算法(上)</title>
-    <link href="http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-1/"/>
-    <id>http://staynoob.cn/post/algorithm//insertion-shell-merge-quick-sort-algorithm-1/</id>
+    <link href="http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/"/>
+    <id>http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</id>
     <published>2016-04-29T12:23:35.000Z</published>
     <updated>2017-01-09T17:22:22.536Z</updated>
     
@@ -930,8 +930,8 @@
   
   <entry>
     <title>安装ubuntu16.04后要做的9件事</title>
-    <link href="http://staynoob.cn/post/linux//initial-setup-ubuntu-16.04-desktop/"/>
-    <id>http://staynoob.cn/post/linux//initial-setup-ubuntu-16.04-desktop/</id>
+    <link href="http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/"/>
+    <id>http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/</id>
     <published>2016-04-24T04:37:13.000Z</published>
     <updated>2017-01-09T17:19:29.129Z</updated>
     
@@ -1000,8 +1000,8 @@
   
   <entry>
     <title>init commit</title>
-    <link href="http://staynoob.cn/post/diary/init-commit/"/>
-    <id>http://staynoob.cn/post/diary/init-commit/</id>
+    <link href="http://staynoob.cn/post/2016/04/init-commit/"/>
+    <id>http://staynoob.cn/post/2016/04/init-commit/</id>
     <published>2016-04-14T08:18:33.000Z</published>
     <updated>2017-01-09T17:18:26.672Z</updated>
     
