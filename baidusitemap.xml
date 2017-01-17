@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/</loc>
+    <lastmod>2017-01-17T16:05:07.591Z</lastmod>
+    <data>
+        <display>
+        <title>安装ubuntu16.04后要做的9件事</title>
+        <pubTime>2016-04-24T04:37:13.000Z</pubTime>
+        
+        <tag>ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="linux" url="http://staynoob.cn/categories/linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
     <lastmod>2017-01-09T17:50:20.595Z</lastmod>
     <data>
@@ -227,26 +247,6 @@
            
              
               <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/</loc>
-    <lastmod>2017-01-09T17:19:29.129Z</lastmod>
-    <data>
-        <display>
-        <title>安装ubuntu16.04后要做的9件事</title>
-        <pubTime>2016-04-24T04:37:13.000Z</pubTime>
-        
-        <tag>ubuntu</tag>
-         
-         
-           
-             
-              <breadCrumb title="linux" url="http://staynoob.cn/categories/linux/"/>
           
         </display>
     </data>

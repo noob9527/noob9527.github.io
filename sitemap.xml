@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://staynoob.cn/post/2016/04/initial-setup-ubuntu-16.04-desktop/</loc>
+    
+    <lastmod>2017-01-17T16:05:07.591Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
     
     <lastmod>2017-01-09T17:50:20.595Z</lastmod>
@@ -75,13 +82,6 @@
     <loc>http://staynoob.cn/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/</loc>
     
     <lastmod>2017-01-09T17:22:22.536Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/04/initial-setup-ubuntu-16.04-desktop/</loc>
-    
-    <lastmod>2017-01-09T17:19:29.129Z</lastmod>
     
   </url>
   
