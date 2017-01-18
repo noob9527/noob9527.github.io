@@ -28,7 +28,7 @@
 一.安装常用软件包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了
 二.修改root密码,取消sudo密码新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root">
 <meta property="og:image" content="http://staynoob.cn/img/ubuntu16_04.jpg">
-<meta property="og:updated_time" content="2017-01-17T16:05:07.591Z">
+<meta property="og:updated_time" content="2017-01-18T15:04:47.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装ubuntu16.04后要做的9件事">
 <meta name="twitter:description" content="ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)
@@ -216,7 +216,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_ciy1poeqp00010gj5n66jpwt4">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_ciy345i0f00016pj54wntj025">-->
         <img src="/img/ubuntu16_04.jpg" itemprop="image">
       <!--</a>-->
     
@@ -255,12 +255,14 @@
 <li><p>安装git,maven</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install maven</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装node<br>  使用nvm安装node,将以下命令中 &quot;$HOME/.nvm&quot; 替换成你想要的安装路径即可</p>
+<li><p>安装node<br>  推荐使用nvm安装node,将以下命令中 &quot;$HOME/.nvm&quot; 替换成你想要的安装路径即可</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span> bash</span><br></pre></td></tr></table></figure>
 <p>  重新打开终端,输入以下命令安装任意版本的nodejs</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install &lt;version&gt;</span><br></pre></td></tr></table></figure>
-<p>  将npm切换至淘宝镜像(这条命令等价于修改~/.npmrc)</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry <span class="string">"https://registry.npm.taobao.org"</span></span><br></pre></td></tr></table></figure>
+<p>  将npm切换至淘宝镜像(下面的命令等价于修改~/.npmrc)</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry <span class="string">"https://registry.npm.taobao.org"</span></span><br><span class="line">npm config <span class="built_in">set</span> phantomjs_cdnurl <span class="string">"http://cnpmjs.org/downloads"</span></span><br><span class="line">npm config <span class="built_in">set</span> sass_binary_site <span class="string">"https://npm.taobao.org/mirrors/node-sass/"</span></span><br></pre></td></tr></table></figure>
+<p>  使用nvm管理node版本的好处是，当需要升级node版本时，可以直接使用如下命令自动安装全局模块</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install NEW_VERSION --reinstall-packages-from=OLD_VERSION</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装mysql</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server mysql-client</span><br></pre></td></tr></table></figure>

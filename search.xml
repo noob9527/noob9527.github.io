@@ -626,12 +626,14 @@
 <li><p>安装git,maven</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br><span class="line">sudo apt install maven</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>安装node<br>  使用nvm安装node,将以下命令中 &quot;$HOME/.nvm&quot; 替换成你想要的安装路径即可</p>
+<li><p>安装node<br>  推荐使用nvm安装node,将以下命令中 &quot;$HOME/.nvm&quot; 替换成你想要的安装路径即可</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | NVM_DIR=<span class="string">"<span class="variable">$HOME</span>/.nvm"</span> bash</span><br></pre></td></tr></table></figure>
 <p>  重新打开终端,输入以下命令安装任意版本的nodejs</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install &lt;version&gt;</span><br></pre></td></tr></table></figure>
-<p>  将npm切换至淘宝镜像(这条命令等价于修改~/.npmrc)</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry <span class="string">"https://registry.npm.taobao.org"</span></span><br></pre></td></tr></table></figure>
+<p>  将npm切换至淘宝镜像(下面的命令等价于修改~/.npmrc)</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="built_in">set</span> registry <span class="string">"https://registry.npm.taobao.org"</span></span><br><span class="line">npm config <span class="built_in">set</span> phantomjs_cdnurl <span class="string">"http://cnpmjs.org/downloads"</span></span><br><span class="line">npm config <span class="built_in">set</span> sass_binary_site <span class="string">"https://npm.taobao.org/mirrors/node-sass/"</span></span><br></pre></td></tr></table></figure>
+<p>  使用nvm管理node版本的好处是，当需要升级node版本时，可以直接使用如下命令自动安装全局模块</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install NEW_VERSION --reinstall-packages-from=OLD_VERSION</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装mysql</p>
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server mysql-client</span><br></pre></td></tr></table></figure>

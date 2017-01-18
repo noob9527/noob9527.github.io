@@ -933,7 +933,7 @@
     <link href="http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/"/>
     <id>http://staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/</id>
     <published>2016-04-24T04:37:13.000Z</published>
-    <updated>2017-01-17T16:05:07.591Z</updated>
+    <updated>2017-01-18T15:04:47.253Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)&lt;/p&gt;
@@ -961,12 +961,14 @@
 &lt;li&gt;&lt;p&gt;安装git,maven&lt;/p&gt;
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install maven&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;安装node&lt;br&gt;  使用nvm安装node,将以下命令中 &amp;quot;$HOME/.nvm&amp;quot; 替换成你想要的安装路径即可&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;安装node&lt;br&gt;  推荐使用nvm安装node,将以下命令中 &amp;quot;$HOME/.nvm&amp;quot; 替换成你想要的安装路径即可&lt;/p&gt;
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | NVM_DIR=&lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$HOME&lt;/span&gt;/.nvm&quot;&lt;/span&gt; bash&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  重新打开终端,输入以下命令安装任意版本的nodejs&lt;/p&gt;
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nvm install &amp;lt;version&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  将npm切换至淘宝镜像(这条命令等价于修改~/.npmrc)&lt;/p&gt;
-  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm config &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; registry &lt;span class=&quot;string&quot;&gt;&quot;https://registry.npm.taobao.org&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  将npm切换至淘宝镜像(下面的命令等价于修改~/.npmrc)&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm config &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; registry &lt;span class=&quot;string&quot;&gt;&quot;https://registry.npm.taobao.org&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; phantomjs_cdnurl &lt;span class=&quot;string&quot;&gt;&quot;http://cnpmjs.org/downloads&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;npm config &lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; sass_binary_site &lt;span class=&quot;string&quot;&gt;&quot;https://npm.taobao.org/mirrors/node-sass/&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  使用nvm管理node版本的好处是，当需要升级node版本时，可以直接使用如下命令自动安装全局模块&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;nvm install NEW_VERSION --reinstall-packages-from=OLD_VERSION&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;安装mysql&lt;/p&gt;
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install mysql-server mysql-client&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
