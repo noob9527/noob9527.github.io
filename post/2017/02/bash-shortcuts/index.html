@@ -26,7 +26,7 @@
 
 一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
 <meta property="og:image" content="http://staynoob.cn/img/bash-shotcuts.jpg">
-<meta property="og:updated_time" content="2017-02-12T05:44:27.813Z">
+<meta property="og:updated_time" content="2017-02-12T05:46:41.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="永远记不住的编程姿势:bash快捷操作">
 <meta name="twitter:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。
@@ -213,7 +213,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_ciz28yhro0014phj5efhp3y81">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_ciz2916160014tnj58mjsi3yb">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -230,6 +230,7 @@
 <p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
 </blockquote>
 <h3 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="一.写在前面"></a>一.写在前面</h3><p>这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对<code>!!</code>,<code>!-1</code>,<code>!$</code>,<code>!*</code>分表代表什么了然于心，我想你应该不需要读这篇文章。</p>
+<a id="more"></a>
 <h3 id="二-快捷键"><a href="#二-快捷键" class="headerlink" title="二.快捷键"></a>二.快捷键</h3><p>bash快捷键默认使用的是<a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html" target="_blank" rel="external">readline</a>库的<a href="https://zh.wikipedia.org/wiki/Emacs" target="_blank" rel="external">Emacs</a>模式，因此如果你是Emacs党，可以直接跳过这一节。</p>
 <ul>
 <li><p>历史命令<br>  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(🡑)与ctrl+n(🡓)，也可以通过<code>history</code>配合<code>grep</code>来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。</p>

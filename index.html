@@ -205,7 +205,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_ciz28yhro0014phj5efhp3y81">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_ciz2916160014tnj58mjsi3yb">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -217,78 +217,15 @@
         <!-- entry -->
         <div class="post-entry" itemprop="postBody">
             
-            <!--文章内容-->
-            <div class="post-content"><blockquote>
+            <!--摘录-->
+            <blockquote>
 <p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
 </blockquote>
 <h3 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="一.写在前面"></a>一.写在前面</h3><p>这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对<code>!!</code>,<code>!-1</code>,<code>!$</code>,<code>!*</code>分表代表什么了然于心，我想你应该不需要读这篇文章。</p>
-<h3 id="二-快捷键"><a href="#二-快捷键" class="headerlink" title="二.快捷键"></a>二.快捷键</h3><p>bash快捷键默认使用的是<a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html" target="_blank" rel="external">readline</a>库的<a href="https://zh.wikipedia.org/wiki/Emacs" target="_blank" rel="external">Emacs</a>模式，因此如果你是Emacs党，可以直接跳过这一节。</p>
-<ul>
-<li><p>历史命令<br>  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(🡑)与ctrl+n(🡓)，也可以通过<code>history</code>配合<code>grep</code>来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。</p>
-</li>
-<li><p>移动光标<br>  常见的应用场景是洋洋洒洒敲了一大串命令，结果发现命令中有几个字母输错了，又或者是忘了加<code>sudo</code>，这时候常见的做法是按<em>🡐</em>键移动光标到指定的位置，当然也不妨尝试一下下面的快捷键。</p>
-<ul>
-<li><strong>ctrl+f</strong> 相当于🡐</li>
-<li><strong>ctrl+b</strong> 相当于🡒</li>
-<li><strong>alt+f</strong> 向前移动一个单词</li>
-<li><strong>alt+b</strong> 向后移动一个单词</li>
-<li><strong>ctrl+a</strong> 移至行首，相当于home</li>
-<li><strong>ctrl+e</strong> 移至行尾，相当于end</li>
-<li><strong>ctrl+xx</strong> 在命令行首和光标当前位置之间移动</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>编辑<br>  像我这种手残党使用backspace删除单词时，经常不小心多按或者少按，这时候就体现出按单词删除的优越性了，但是我不仅手残，脑袋也不怎么灵光，ctrl+w与alt+d的效果经常弄混有没有?没关系，可以使用ctrl+/来撤销编辑了。下面列出我觉得比较有价值的编辑快捷键。<ul>
-<li><strong>ctrl+w</strong> 向前删除一个单词</li>
-<li><strong>alt+d</strong> 向后删除一个单词</li>
-<li><strong>ctrl+k</strong> 删除当前光标到行尾的字符</li>
-<li><strong>ctrl+u</strong> 删除当前光标到行首的字符</li>
-<li><strong>alt+u</strong> 将字母转为大写(光标处至词尾)</li>
-<li><strong>alt+l</strong> 将字母转为小写(光标处至词尾)</li>
-<li><strong>alt+.</strong> 获取上条命令最后一个参数</li>
-<li><strong>ctrl+/</strong> 撤销</li>
-</ul>
-</li>
-</ul>
-<h3 id="三-历史扩展-History-Expansion"><a href="#三-历史扩展-History-Expansion" class="headerlink" title="三.历史扩展(History Expansion)"></a>三.历史扩展(History Expansion)</h3><p>Bash 的历史扩展又被称为 Bang(!) 命令，是 bash 将历史命令转换到可执行命令的过程。历史扩展中操作历史命令一般有两个部分，即先从历史命令中找出相应的命令，被选中的命令称为Event，bash会将选中的Event以空格分割成Words，之后再使用单词指示器选择部分或全部的Word到当前行中。</p>
-<ul>
-<li>事件指示器(Event Designators)<br>  这次我们又行云流水的敲了一大串命令，自信回车一气呵成，结果系统提示“权限不够”，是不是很尴尬？通过上面的介绍，想必你应该马上能想到使用<strong>ctrl+p</strong>翻出上一条命令，再使用<strong>ctrl+a</strong>将光标移至行首，添加<strong>sudo</strong>执行。不过这里还有更加优雅的方式，直接执行<code>sudo !!</code>，这里<strong> !! </strong>中的第一个感叹号代表开始历史替换，而第二份感叹号则是事件指示器，下面有更详细的用法。<ul>
-<li><strong> n </strong> 选择历史命令列表中第n条命令</li>
-<li><strong> -n </strong> 选择倒数第n条命令</li>
-<li><strong> ! </strong> 选择上一条命令, 相当于<strong>-1</strong></li>
-<li><strong> string </strong> 选择最近的以string开头的命令</li>
-<li><strong> ?string[?] </strong> 选择最近的包含string的命令, 如果该指示器后面是换行符, 则可以不用输入结尾的<strong>[?]</strong></li>
-<li><strong> # </strong> 引用目前输入的所有命令</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>单词指示器(Word Designators)<br>  有时候我们只想要获取上条命令的参数，而不包含命令本身。比如说我先执行了</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install react react-dom ...(此处省略100多个库你懂得) --save</span><br></pre></td></tr></table></figure>
-<p>  之后发现自己又sb了，应该改用npm来执行同样的命令，这时可以输入</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm !*</span><br></pre></td></tr></table></figure>
-<p>  其效果等同于</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react react-dom ... --save</span><br></pre></td></tr></table></figure>
-<p>  这里<strong> !* </strong>中的<strong> * </strong>就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此<strong> !* </strong>其实相当于<strong> !!* </strong>。一般情况下事件指示器与单词指示器需要以<strong> : </strong>分隔，但如果单词指示器是以<strong>^,$,*,-,%</strong>开头时，可以省略<strong> : </strong>，因此<strong> !* </strong>的完整形式是<strong> !!:* </strong>，下面是其它单词指示器。</p>
-<ul>
-<li><strong> n </strong> 选择第n个word，如果是0则选择的是命令</li>
-<li><strong> ^ </strong> 选择第一个参数，相当于1</li>
-<li><strong> $ </strong> 选择最后一个word</li>
-<li><strong> n1-n2 </strong> 选择第n1到第n2个word</li>
-<li><strong> * </strong> 选择命令的所有参数, 相当于1-$</li>
-<li><strong> n* </strong> 相当于n-$</li>
-</ul>
-</li>
-<li><p>修饰符(Modifiers)<br>  在单词指示器后面其实还可以添加修饰符，同样以<strong> : </strong>分隔，比如<code>!!:*:p</code>会打印上条命令的所有参数，但不会执行。这个特性我不是很常用，为了合理(lang)利用(de)脑容量(ji)，这里就不罗列了，有兴趣的读者可以在参考链接中查看更详细的内容。</p>
-</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li><a href="http://ahei.info/bash.htm" target="_blank" rel="external">高效操作Bash</a></li>
-<li><a href="https://linux.cn/article-5658-1.html" target="_blank" rel="external">感叹号：bash 的历史扩展功能</a></li>
-</ul>
-</div>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2017/02/bash-shortcuts/#more">阅读全文</a>
+            </p>
             
         </div>
 
@@ -364,7 +301,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_ciz28yhrl000zphj59w7ll4s0">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_ciz291613000ztnj5q0e44b03">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -468,7 +405,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_ciz28yhrk000wphj53rxwdogh">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_ciz291610000wtnj5h8b9rc8z">-->
         <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
       <!--</a>-->
     
@@ -566,7 +503,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_ciz28yhrf000sphj5gqcjn9vi">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_ciz29160w000stnj5dk6v8i5u">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -677,7 +614,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciz28yhrd000qphj52y124b1h">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_ciz29160v000ptnj5qskh0pxv">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     

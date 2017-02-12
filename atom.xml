@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-02-12T05:44:27.813Z</updated>
+  <updated>2017-02-12T05:46:41.071Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,12 +20,13 @@
     <link href="http://staynoob.cn/post/2017/02//bash-shortcuts/"/>
     <id>http://staynoob.cn/post/2017/02//bash-shortcuts/</id>
     <published>2017-02-11T15:07:28.000Z</published>
-    <updated>2017-02-12T05:44:27.813Z</updated>
+    <updated>2017-02-12T05:46:41.071Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;一-写在前面&quot;&gt;&lt;a href=&quot;#一-写在前面&quot; class=&quot;headerlink&quot; title=&quot;一.写在前面&quot;&gt;&lt;/a&gt;一.写在前面&lt;/h3&gt;&lt;p&gt;这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对&lt;code&gt;!!&lt;/code&gt;,&lt;code&gt;!-1&lt;/code&gt;,&lt;code&gt;!$&lt;/code&gt;,&lt;code&gt;!*&lt;/code&gt;分表代表什么了然于心，我想你应该不需要读这篇文章。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;二-快捷键&quot;&gt;&lt;a href=&quot;#二-快捷键&quot; class=&quot;headerlink&quot; title=&quot;二.快捷键&quot;&gt;&lt;/a&gt;二.快捷键&lt;/h3&gt;&lt;p&gt;bash快捷键默认使用的是&lt;a href=&quot;http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;readline&lt;/a&gt;库的&lt;a href=&quot;https://zh.wikipedia.org/wiki/Emacs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Emacs&lt;/a&gt;模式，因此如果你是Emacs党，可以直接跳过这一节。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;历史命令&lt;br&gt;  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(🡑)与ctrl+n(🡓)，也可以通过&lt;code&gt;history&lt;/code&gt;配合&lt;code&gt;grep&lt;/code&gt;来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。&lt;/p&gt;
@@ -97,7 +98,9 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有
+&lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;一-写在前面&quot;&gt;&lt;a href=&quot;#一-写在前面&quot; class=&quot;headerlink&quot; title=&quot;一.写在前面&quot;&gt;&lt;/a&gt;一.写在前面&lt;/h3&gt;&lt;p&gt;这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对&lt;code&gt;!!&lt;/code&gt;,&lt;code&gt;!-1&lt;/code&gt;,&lt;code&gt;!$&lt;/code&gt;,&lt;code&gt;!*&lt;/code&gt;分表代表什么了然于心，我想你应该不需要读这篇文章。&lt;/p&gt;
     
     </summary>
     
