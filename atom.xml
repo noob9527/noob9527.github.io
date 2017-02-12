@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-01-09T17:50:20.587Z</updated>
+  <updated>2017-02-12T05:44:27.813Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>永远记不住的编程姿势:bash快捷操作</title>
+    <link href="http://staynoob.cn/post/2017/02//bash-shortcuts/"/>
+    <id>http://staynoob.cn/post/2017/02//bash-shortcuts/</id>
+    <published>2017-02-11T15:07:28.000Z</published>
+    <updated>2017-02-12T05:44:27.813Z</updated>
+    
+    <content type="html">&lt;blockquote&gt;
+&lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;一-写在前面&quot;&gt;&lt;a href=&quot;#一-写在前面&quot; class=&quot;headerlink&quot; title=&quot;一.写在前面&quot;&gt;&lt;/a&gt;一.写在前面&lt;/h3&gt;&lt;p&gt;这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对&lt;code&gt;!!&lt;/code&gt;,&lt;code&gt;!-1&lt;/code&gt;,&lt;code&gt;!$&lt;/code&gt;,&lt;code&gt;!*&lt;/code&gt;分表代表什么了然于心，我想你应该不需要读这篇文章。&lt;/p&gt;
+&lt;h3 id=&quot;二-快捷键&quot;&gt;&lt;a href=&quot;#二-快捷键&quot; class=&quot;headerlink&quot; title=&quot;二.快捷键&quot;&gt;&lt;/a&gt;二.快捷键&lt;/h3&gt;&lt;p&gt;bash快捷键默认使用的是&lt;a href=&quot;http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;readline&lt;/a&gt;库的&lt;a href=&quot;https://zh.wikipedia.org/wiki/Emacs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Emacs&lt;/a&gt;模式，因此如果你是Emacs党，可以直接跳过这一节。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;历史命令&lt;br&gt;  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(🡑)与ctrl+n(🡓)，也可以通过&lt;code&gt;history&lt;/code&gt;配合&lt;code&gt;grep&lt;/code&gt;来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;移动光标&lt;br&gt;  常见的应用场景是洋洋洒洒敲了一大串命令，结果发现命令中有几个字母输错了，又或者是忘了加&lt;code&gt;sudo&lt;/code&gt;，这时候常见的做法是按&lt;em&gt;🡐&lt;/em&gt;键移动光标到指定的位置，当然也不妨尝试一下下面的快捷键。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+f&lt;/strong&gt; 相当于🡐&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+b&lt;/strong&gt; 相当于🡒&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+f&lt;/strong&gt; 向前移动一个单词&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+b&lt;/strong&gt; 向后移动一个单词&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+a&lt;/strong&gt; 移至行首，相当于home&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+e&lt;/strong&gt; 移至行尾，相当于end&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+xx&lt;/strong&gt; 在命令行首和光标当前位置之间移动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;编辑&lt;br&gt;  像我这种手残党使用backspace删除单词时，经常不小心多按或者少按，这时候就体现出按单词删除的优越性了，但是我不仅手残，脑袋也不怎么灵光，ctrl+w与alt+d的效果经常弄混有没有?没关系，可以使用ctrl+/来撤销编辑了。下面列出我觉得比较有价值的编辑快捷键。&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+w&lt;/strong&gt; 向前删除一个单词&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+d&lt;/strong&gt; 向后删除一个单词&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+k&lt;/strong&gt; 删除当前光标到行尾的字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+u&lt;/strong&gt; 删除当前光标到行首的字符&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+u&lt;/strong&gt; 将字母转为大写(光标处至词尾)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+l&lt;/strong&gt; 将字母转为小写(光标处至词尾)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;alt+.&lt;/strong&gt; 获取上条命令最后一个参数&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+/&lt;/strong&gt; 撤销&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;三-历史扩展-History-Expansion&quot;&gt;&lt;a href=&quot;#三-历史扩展-History-Expansion&quot; class=&quot;headerlink&quot; title=&quot;三.历史扩展(History Expansion)&quot;&gt;&lt;/a&gt;三.历史扩展(History Expansion)&lt;/h3&gt;&lt;p&gt;Bash 的历史扩展又被称为 Bang(!) 命令，是 bash 将历史命令转换到可执行命令的过程。历史扩展中操作历史命令一般有两个部分，即先从历史命令中找出相应的命令，被选中的命令称为Event，bash会将选中的Event以空格分割成Words，之后再使用单词指示器选择部分或全部的Word到当前行中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;事件指示器(Event Designators)&lt;br&gt;  这次我们又行云流水的敲了一大串命令，自信回车一气呵成，结果系统提示“权限不够”，是不是很尴尬？通过上面的介绍，想必你应该马上能想到使用&lt;strong&gt;ctrl+p&lt;/strong&gt;翻出上一条命令，再使用&lt;strong&gt;ctrl+a&lt;/strong&gt;将光标移至行首，添加&lt;strong&gt;sudo&lt;/strong&gt;执行。不过这里还有更加优雅的方式，直接执行&lt;code&gt;sudo !!&lt;/code&gt;，这里&lt;strong&gt; !! &lt;/strong&gt;中的第一个感叹号代表开始历史替换，而第二份感叹号则是事件指示器，下面有更详细的用法。&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; n &lt;/strong&gt; 选择历史命令列表中第n条命令&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; -n &lt;/strong&gt; 选择倒数第n条命令&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; ! &lt;/strong&gt; 选择上一条命令, 相当于&lt;strong&gt;-1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; string &lt;/strong&gt; 选择最近的以string开头的命令&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; ?string[?] &lt;/strong&gt; 选择最近的包含string的命令, 如果该指示器后面是换行符, 则可以不用输入结尾的&lt;strong&gt;[?]&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; # &lt;/strong&gt; 引用目前输入的所有命令&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;单词指示器(Word Designators)&lt;br&gt;  有时候我们只想要获取上条命令的参数，而不包含命令本身。比如说我先执行了&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bower install react react-dom ...(此处省略100多个库你懂得) --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  之后发现自己又sb了，应该改用npm来执行同样的命令，这时可以输入&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm !*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  其效果等同于&lt;/p&gt;
+  &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install react react-dom ... --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;  这里&lt;strong&gt; !* &lt;/strong&gt;中的&lt;strong&gt; * &lt;/strong&gt;就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此&lt;strong&gt; !* &lt;/strong&gt;其实相当于&lt;strong&gt; !!* &lt;/strong&gt;。一般情况下事件指示器与单词指示器需要以&lt;strong&gt; : &lt;/strong&gt;分隔，但如果单词指示器是以&lt;strong&gt;^,$,*,-,%&lt;/strong&gt;开头时，可以省略&lt;strong&gt; : &lt;/strong&gt;，因此&lt;strong&gt; !* &lt;/strong&gt;的完整形式是&lt;strong&gt; !!:* &lt;/strong&gt;，下面是其它单词指示器。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt; n &lt;/strong&gt; 选择第n个word，如果是0则选择的是命令&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; ^ &lt;/strong&gt; 选择第一个参数，相当于1&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; $ &lt;/strong&gt; 选择最后一个word&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; n1-n2 &lt;/strong&gt; 选择第n1到第n2个word&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; * &lt;/strong&gt; 选择命令的所有参数, 相当于1-$&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt; n* &lt;/strong&gt; 相当于n-$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;修饰符(Modifiers)&lt;br&gt;  在单词指示器后面其实还可以添加修饰符，同样以&lt;strong&gt; : &lt;/strong&gt;分隔，比如&lt;code&gt;!!:*:p&lt;/code&gt;会打印上条命令的所有参数，但不会执行。这个特性我不是很常用，为了合理(lang)利用(de)脑容量(ji)，这里就不罗列了，有兴趣的读者可以在参考链接中查看更详细的内容。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://ahei.info/bash.htm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;高效操作Bash&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://linux.cn/article-5658-1.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;感叹号：bash 的历史扩展功能&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有
+    
+    </summary>
+    
+      <category term="永远记不住的编程姿势" scheme="http://staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
+    
+    
+      <category term="编程技巧" scheme="http://staynoob.cn/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>永远记不住的编程姿势:零宽断言(lookaround)</title>
