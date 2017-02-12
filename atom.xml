@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-02-12T05:46:41.071Z</updated>
+  <updated>2017-02-12T06:03:36.517Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/2017/02//bash-shortcuts/"/>
     <id>http://staynoob.cn/post/2017/02//bash-shortcuts/</id>
     <published>2017-02-11T15:07:28.000Z</published>
-    <updated>2017-02-12T05:46:41.071Z</updated>
+    <updated>2017-02-12T06:03:36.517Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;bash的全称是&lt;em&gt;Bourne Again Shell&lt;/em&gt;，是大多数&lt;em&gt;linux&lt;/em&gt;发行版以及&lt;em&gt;OSX&lt;/em&gt;系统的默认shell，&lt;em&gt;win10&lt;/em&gt;可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。&lt;/p&gt;
@@ -29,12 +29,12 @@
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h3 id=&quot;二-快捷键&quot;&gt;&lt;a href=&quot;#二-快捷键&quot; class=&quot;headerlink&quot; title=&quot;二.快捷键&quot;&gt;&lt;/a&gt;二.快捷键&lt;/h3&gt;&lt;p&gt;bash快捷键默认使用的是&lt;a href=&quot;http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;readline&lt;/a&gt;库的&lt;a href=&quot;https://zh.wikipedia.org/wiki/Emacs&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Emacs&lt;/a&gt;模式，因此如果你是Emacs党，可以直接跳过这一节。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;历史命令&lt;br&gt;  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(🡑)与ctrl+n(🡓)，也可以通过&lt;code&gt;history&lt;/code&gt;配合&lt;code&gt;grep&lt;/code&gt;来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;历史命令&lt;br&gt;  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(arrow up)与ctrl+n(arrow down)，也可以通过&lt;code&gt;history&lt;/code&gt;配合&lt;code&gt;grep&lt;/code&gt;来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;移动光标&lt;br&gt;  常见的应用场景是洋洋洒洒敲了一大串命令，结果发现命令中有几个字母输错了，又或者是忘了加&lt;code&gt;sudo&lt;/code&gt;，这时候常见的做法是按&lt;em&gt;🡐&lt;/em&gt;键移动光标到指定的位置，当然也不妨尝试一下下面的快捷键。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;移动光标&lt;br&gt;  常见的应用场景是洋洋洒洒敲了一大串命令，结果发现命令中有几个字母输错了，又或者是忘了加&lt;code&gt;sudo&lt;/code&gt;，这时候常见的做法是按&lt;strong&gt;arrow left&lt;/strong&gt;键移动光标到指定的位置，当然也不妨尝试下面的快捷键。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;ctrl+f&lt;/strong&gt; 相当于🡐&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;ctrl+b&lt;/strong&gt; 相当于🡒&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+f&lt;/strong&gt; 相当于arrow left&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ctrl+b&lt;/strong&gt; 相当于arrow right&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;alt+f&lt;/strong&gt; 向前移动一个单词&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;alt+b&lt;/strong&gt; 向后移动一个单词&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;ctrl+a&lt;/strong&gt; 移至行首，相当于home&lt;/li&gt;
@@ -75,7 +75,7 @@
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm !*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;  其效果等同于&lt;/p&gt;
   &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;npm install react react-dom ... --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;  这里&lt;strong&gt; !* &lt;/strong&gt;中的&lt;strong&gt; * &lt;/strong&gt;就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此&lt;strong&gt; !* &lt;/strong&gt;其实相当于&lt;strong&gt; !!* &lt;/strong&gt;。一般情况下事件指示器与单词指示器需要以&lt;strong&gt; : &lt;/strong&gt;分隔，但如果单词指示器是以&lt;strong&gt;^,$,*,-,%&lt;/strong&gt;开头时，可以省略&lt;strong&gt; : &lt;/strong&gt;，因此&lt;strong&gt; !* &lt;/strong&gt;的完整形式是&lt;strong&gt; !!:* &lt;/strong&gt;，下面是其它单词指示器。&lt;/p&gt;
+&lt;p&gt;  这里&lt;strong&gt; !* &lt;/strong&gt;中的&lt;strong&gt; * &lt;/strong&gt;就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此&lt;strong&gt; !* &lt;/strong&gt;其实相当于&lt;strong&gt; !!* &lt;/strong&gt;。一般情况下事件指示器与单词指示器需要以&lt;strong&gt; : &lt;/strong&gt;分隔，但如果单词指示器是以&lt;strong&gt; ^,$,*,-,% &lt;/strong&gt;开头时，可以省略&lt;strong&gt; : &lt;/strong&gt;，因此&lt;strong&gt; !* &lt;/strong&gt;的完整形式是&lt;strong&gt; !!:* &lt;/strong&gt;，下面是其它单词指示器。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt; n &lt;/strong&gt; 选择第n个word，如果是0则选择的是命令&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt; ^ &lt;/strong&gt; 选择第一个参数，相当于1&lt;/li&gt;
@@ -85,8 +85,9 @@
 &lt;li&gt;&lt;strong&gt; n* &lt;/strong&gt; 相当于n-$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;修饰符(Modifiers)&lt;br&gt;  在单词指示器后面其实还可以添加修饰符，同样以&lt;strong&gt; : &lt;/strong&gt;分隔，比如&lt;code&gt;!!:*:p&lt;/code&gt;会打印上条命令的所有参数，但不会执行。这个特性我不是很常用，为了合理(lang)利用(de)脑容量(ji)，这里就不罗列了，有兴趣的读者可以在参考链接中查看更详细的内容。&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;修饰符(Modifiers)&lt;br&gt;  在单词指示器后面其实还可以添加修饰符，同样以&lt;strong&gt; : &lt;/strong&gt;分隔，比如&lt;code&gt;!!:*:p&lt;/code&gt;会打印上条命令的所有参数，但不会执行。这个特性我不是很常用，为了合理(lang)利用(de)脑容量(ji)，这里就不罗列了，有兴趣的读者可以在参考链接中查看更详细的内容。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;参考链接：&lt;/p&gt;
 &lt;ul&gt;
