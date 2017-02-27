@@ -1,5 +1,5 @@
 ---
-title: '永远记不住的编程姿势:零宽断言(lookaround)'
+title: '正则表达式：零宽断言(lookaround)'
 categories: 永远记不住的编程姿势
 tags: 编程技巧
 photos: img/regular-expression-lookaround.jpg
