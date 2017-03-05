@@ -4,12 +4,54 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
-    <lastmod>2017-02-12T06:03:36.517Z</lastmod>
+    <loc>http://staynoob.cn/post/2017/03//salted-password-hashing/</loc>
+    <lastmod>2017-03-05T13:26:49.801Z</lastmod>
     <data>
         <display>
-        <title>永远记不住的编程姿势:bash快捷操作</title>
+        <title>加密算法简介</title>
+        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
+        
+        <tag>网络安全</tag>
+         
+        <tag>加密算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <lastmod>2017-02-13T09:10:45.218Z</lastmod>
+    <data>
+        <display>
+        <title>Bash小技巧</title>
         <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        
+        <tag>编程技巧</tag>
+         
+         
+           
+             
+              <breadCrumb title="永远记不住的编程姿势" url="http://staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
+    <lastmod>2017-02-13T09:09:10.339Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式：零宽断言(lookaround)</title>
+        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
         
         <tag>编程技巧</tag>
          
@@ -83,26 +125,6 @@
            
              
               <breadCrumb title="java" url="http://staynoob.cn/categories/java/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
-    <lastmod>2017-01-09T17:50:20.587Z</lastmod>
-    <data>
-        <display>
-        <title>永远记不住的编程姿势:零宽断言(lookaround)</title>
-        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
-        
-        <tag>编程技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="永远记不住的编程姿势" url="http://staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
           
         </display>
     </data>
