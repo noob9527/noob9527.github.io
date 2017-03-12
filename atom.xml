@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-03-12T08:11:37.234Z</updated>
+  <updated>2017-03-12T08:31:41.823Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,15 +20,16 @@
     <link href="http://staynoob.cn/post/2017/03//lambda-calculus-introduction/"/>
     <id>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</id>
     <published>2017-03-12T07:31:30.000Z</published>
-    <updated>2017-03-12T08:11:37.234Z</updated>
+    <updated>2017-03-12T08:31:41.823Z</updated>
     
     <content type="html">&lt;blockquote&gt;
-&lt;p&gt;λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。&lt;/p&gt;
+&lt;p&gt;λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;一-λ演算-lambda-calculus简称LC-与图灵机&quot;&gt;&lt;a href=&quot;#一-λ演算-lambda-calculus简称LC-与图灵机&quot; class=&quot;headerlink&quot; title=&quot;一.λ演算(lambda calculus简称LC)与图灵机&quot;&gt;&lt;/a&gt;一.λ演算(lambda calculus简称LC)与图灵机&lt;/h3&gt;&lt;p&gt;首先，λ演算的提出者&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;丘奇(Alonzo Church)&lt;/a&gt;是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;判定性问题(Hilbert Decision-problem)&lt;/a&gt;是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;邱奇-图灵论题(Church–Turing thesis)&lt;/a&gt;，该论题的核心思想是&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;如果某个算法是&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;可计算的(Computability)&lt;/a&gt;，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;图灵完备&lt;/a&gt;的编程语言。下面来看看图灵机与λ演算能做什么事情&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;图灵机的基本思想大概是这样：&lt;/p&gt;
@@ -57,10 +58,7 @@
 &lt;p&gt;如果使用Lisp语言，能让程序变得多短？以Lisp和C的比较为例，我听到的大多数说法是C代码的长度是Lisp的7倍到10倍。但是最近，New Architect杂志上有一篇介绍ITA软件公司的文章，里面说&amp;quot;一行Lisp代码相当于20行C代码&amp;quot;，因为此文都是引用ITA总裁的话，所以我想这个数字来自ITA的编程实践。 如果真是这样，那么我们可以相信这句话。ITA的软件，不仅使用Lisp语言，还同时大量使用C和C++，所以这是他们的经验谈。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读&lt;a href=&quot;http://www.yinwang.org/blog-cn/2015/10/18/turing&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;图灵的光环&lt;/a&gt;。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;二-λ演算的语法&quot;&gt;&lt;a href=&quot;#二-λ演算的语法&quot; class=&quot;headerlink&quot; title=&quot;二.λ演算的语法&quot;&gt;&lt;/a&gt;二.λ演算的语法&lt;/h3&gt;&lt;p&gt;λ演算的语法其实很简单，包含λ表达式(λ terms)的定义和一些转换规则&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;λ表达式&lt;br&gt;λ表达式只遵循以下三条规则：&lt;/p&gt;
+&lt;h3 id=&quot;二-λ演算的语法&quot;&gt;&lt;a href=&quot;#二-λ演算的语法&quot; class=&quot;headerlink&quot; title=&quot;二.λ演算的语法&quot;&gt;&lt;/a&gt;二.λ演算的语法&lt;/h3&gt;&lt;h4 id=&quot;1-λ表达式&quot;&gt;&lt;a href=&quot;#1-λ表达式&quot; class=&quot;headerlink&quot; title=&quot;1.λ表达式&quot;&gt;&lt;/a&gt;1.λ表达式&lt;/h4&gt;&lt;p&gt;λ表达式只遵循以下三条规则：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;变量，比如&lt;code&gt;x&lt;/code&gt;就是合法的λ表达式&lt;/li&gt;
 &lt;li&gt;如果y是λ表达式，x是变量，则&lt;code&gt;λx.y&lt;/code&gt;是合法的λ表达式（又称为函数声明或lambda abstraction），它代表输入x返回y的匿名函数。等价的js(本文均指&lt;a href=&quot;http://www.ecma-international.org/ecma-262/6.0/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;ecmascript6&lt;/a&gt;)写法是&lt;code&gt;x=&amp;gt;y&lt;/code&gt;。&lt;code&gt;λx.x+y&lt;/code&gt;也是合法的，它表示一个函数输入x，返回x与未知的y的和。&lt;/li&gt;
@@ -73,28 +71,28 @@
 &lt;li&gt;函数定义时，函数体尽可能向右扩展，&lt;code&gt;λx.M N&lt;/code&gt;应该解释为&lt;code&gt;λx.(M N)&lt;/code&gt;而不是&lt;code&gt;(λx.M) N&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;函数定义序列可以被合并表达，&lt;code&gt;λx.λy.λz.N&lt;/code&gt;可以被缩写为&lt;code&gt;λxyz.N&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;绑定变量与自由变量&lt;br&gt;如果一个变量是一个λ表达式的参数，则称该变量绑定到该λ上，比如说&lt;code&gt;λx.x+y&lt;/code&gt;中，x是绑定变量，y则称为自由变量。更详细的规则如下：&lt;ul&gt;
+&lt;h4 id=&quot;2-绑定变量与自由变量&quot;&gt;&lt;a href=&quot;#2-绑定变量与自由变量&quot; class=&quot;headerlink&quot; title=&quot;2.绑定变量与自由变量&quot;&gt;&lt;/a&gt;2.绑定变量与自由变量&lt;/h4&gt;&lt;p&gt;如果一个变量是一个λ表达式的参数，则称该变量绑定到该λ上，比如说&lt;code&gt;λx.x+y&lt;/code&gt;中，x是绑定变量，y则称为自由变量。更详细的规则如下：&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;λ表达式&lt;code&gt;x&lt;/code&gt;中的自由变量就是x&lt;/li&gt;
 &lt;li&gt;λ表达式&lt;code&gt;λx.t&lt;/code&gt;中的自由变量，是t中的自由变量但不包括x，结合第一条规则来看，&lt;code&gt;λx.x&lt;/code&gt;的自由变量为空&lt;/li&gt;
 &lt;li&gt;λ表达式&lt;code&gt;ts&lt;/code&gt;中的自由变量，是t中的自由变量与s中的自由变量的并集，结合前两条规则，&lt;code&gt;λx.x x&lt;/code&gt;的自由变量是x与空集的并集，即x。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;化简规则&lt;br&gt;标准版本(如果在阅读时出现恶心，头晕等不良反应，可以切换到最后的草根版本)：&lt;/p&gt;
+&lt;h4 id=&quot;3-化简规则&quot;&gt;&lt;a href=&quot;#3-化简规则&quot; class=&quot;headerlink&quot; title=&quot;3.化简规则&quot;&gt;&lt;/a&gt;3.化简规则&lt;/h4&gt;&lt;p&gt;下面是化简规则的“官方描述”(如果在阅读时出现恶心，头晕等不良反应，可以切换到最后的草根版本)：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;α变换(Alpha conversion)&lt;br&gt;α变换简单理解就是λ表达式中的绑定变量可以替换变量名，例如&lt;code&gt;λx.x&lt;/code&gt;与&lt;code&gt;λy.y&lt;/code&gt;是α等价(Alpha equivalence)的，将&lt;code&gt;λx.x&lt;/code&gt;替换成&lt;code&gt;λy.y&lt;/code&gt;就称为α变换。这条规则虽然简单，但仍然要小心一些陷阱。考虑下面这个例子，对&lt;code&gt;λx.λx.x&lt;/code&gt;进行α变换可以得到&lt;code&gt;λy.λx.x&lt;/code&gt;但是不能得到&lt;code&gt;λy.λx.y&lt;/code&gt;。其次，当α变换会导致变量被不同的函数绑定时，不允许进行变换，比如&lt;code&gt;λx.λy.x&lt;/code&gt;就不能被替换成&lt;code&gt;λy.λy.y&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;β归约(Beta reduction)&lt;br&gt;在理解β归约之前，我们先来定义一个变量替换(substitution)操作符，假设M,N是任意λ表达式，x,y是变量，M[x:=N]表示将M中的所有自由变量x替换成表达式N，下面是一些例子：&lt;/p&gt;
+&lt;li&gt;α变换(Alpha conversion)&lt;br&gt;  α变换简单理解就是λ表达式中的绑定变量可以替换变量名，例如&lt;code&gt;λx.x&lt;/code&gt;与&lt;code&gt;λy.y&lt;/code&gt;是α等价(Alpha equivalence)的，将&lt;code&gt;λx.x&lt;/code&gt;替换成&lt;code&gt;λy.y&lt;/code&gt;就称为α变换。这条规则虽然简单，但仍然要小心一些陷阱。考虑下面这个例子，对&lt;code&gt;λx.λx.x&lt;/code&gt;进行α变换可以得到&lt;code&gt;λy.λx.x&lt;/code&gt;但是不能得到&lt;code&gt;λy.λx.y&lt;/code&gt;。其次，当α变换会导致变量被不同的函数绑定时，不允许进行变换，比如&lt;code&gt;λx.λy.x&lt;/code&gt;就不能被替换成&lt;code&gt;λy.λy.y&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;β归约(Beta reduction)&lt;br&gt;  在理解β归约之前，我们先来定义一个变量替换(substitution)操作符，假设M,N是任意λ表达式，x,y是变量，M[x:=N]表示将M中的所有自由变量x替换成表达式N，下面是一些例子：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;x[x :=N]=N&lt;/li&gt;
 &lt;li&gt;y[x := N]=y, if x ≠ y&lt;/li&gt;
 &lt;li&gt;(M1 M2)[x := N] = (M1[x := N]) (M2[x := N])&lt;/li&gt;
 &lt;li&gt;(λx.M)[x := N]  = λx.M&lt;/li&gt;
-&lt;li&gt;(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)&lt;/p&gt;
 &lt;p&gt;这项操作又称之为Capture-avoiding substitution，因为它必须确保变量替换后不能成为一个绑定变量，比如说&lt;code&gt;(λx.y)[y := x]=λx.x&lt;/code&gt;就是不正确的，必须先对&lt;code&gt;λx.y&lt;/code&gt;进行α变换，改变绑定变量名得到&lt;code&gt;λz.y&lt;/code&gt;，之后再进行[y := x]操作得到&lt;code&gt;λz.x&lt;/code&gt;。了解了变量替换后，β归约可以被简单的定义成：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;((λV.E) E&amp;#39;) = E [V:=E&amp;#39;]&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;η变换(Eta-conversion)&lt;br&gt;η变换指的是当且仅当两个函数对所有的输入，返回同样的输出时，两个函数是相等的，这意味这x只要不是f中的自由变量，f就可以转换成&lt;code&gt;λx.f x&lt;/code&gt;，一些在急性求值(eager evalution)环境下无法正常调用的函数，需要通过这条规则来进行转换，这条规则在后面学习&lt;strong&gt;Y-combinator&lt;/strong&gt;的时候会用到，这里大致有个印象就可以了。&lt;/p&gt;
 &lt;/li&gt;
@@ -105,9 +103,7 @@
 &lt;li&gt;β归约&lt;br&gt;  函数可以将实参代入函数体，即&lt;code&gt;(x=&amp;gt;(y=&amp;gt;x+y))(z)&lt;/code&gt;等价于&lt;code&gt;y=&amp;gt;z+y&lt;/code&gt;，但是如果是&lt;code&gt;(x=&amp;gt;(y=&amp;gt;x+y))(y)&lt;/code&gt;则需要先进行α变换得到&lt;code&gt;(x=&amp;gt;(z=&amp;gt;x+z))(y)&lt;/code&gt;，再进行β归约得到&lt;code&gt;z=&amp;gt;y+z&lt;/code&gt;，而不是直接代入得到&lt;code&gt;y=&amp;gt;y+y&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;η变换&lt;br&gt;  如果f是一个函数，那么&lt;code&gt;f&lt;/code&gt;等价于&lt;code&gt;x=&amp;gt;f(x)&lt;/code&gt;，因为对于任意变量&lt;code&gt;v&lt;/code&gt;，&lt;code&gt;f(v)&lt;/code&gt;总是等于&lt;code&gt;(x=&amp;gt;f(x))(v)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;三-简单的运算规则&quot;&gt;&lt;a href=&quot;#三-简单的运算规则&quot; class=&quot;headerlink&quot; title=&quot;三.简单的运算规则&quot;&gt;&lt;/a&gt;三.简单的运算规则&lt;/h3&gt;&lt;h4 id=&quot;逻辑运算&quot;&gt;&lt;a href=&quot;#逻辑运算&quot; class=&quot;headerlink&quot; title=&quot;逻辑运算&quot;&gt;&lt;/a&gt;逻辑运算&lt;/h4&gt;&lt;p&gt;在进行逻辑运算之前，需要先定义什么是真，什么是假。下面的定义称为丘奇布尔值(Church booleans)&lt;/p&gt;
+&lt;h3 id=&quot;三-简单的运算规则&quot;&gt;&lt;a href=&quot;#三-简单的运算规则&quot; class=&quot;headerlink&quot; title=&quot;三.简单的运算规则&quot;&gt;&lt;/a&gt;三.简单的运算规则&lt;/h3&gt;&lt;h4 id=&quot;1-逻辑运算&quot;&gt;&lt;a href=&quot;#1-逻辑运算&quot; class=&quot;headerlink&quot; title=&quot;1.逻辑运算&quot;&gt;&lt;/a&gt;1.逻辑运算&lt;/h4&gt;&lt;p&gt;在进行逻辑运算之前，需要先定义什么是真，什么是假。下面的定义称为丘奇布尔值(Church booleans)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;TRUE = &lt;code&gt;λx.λy.x&lt;/code&gt; 对应的js代码是&lt;code&gt;x=&amp;gt;(y=&amp;gt;x)&lt;/code&gt;，柯里化之前是&lt;code&gt;(x,y)=&amp;gt;x&lt;/code&gt;（等价于丘奇数0）&lt;/li&gt;
 &lt;li&gt;FALSE = &lt;code&gt;λx.λy.y&lt;/code&gt; 对应的js代码是&lt;code&gt;x=&amp;gt;(y=&amp;gt;y)&lt;/code&gt;，柯里化之前是&lt;code&gt;(x,y)=&amp;gt;y&lt;/code&gt;&lt;/li&gt;
@@ -126,7 +122,7 @@
 &lt;li&gt;第二次β归约得到&lt;code&gt;TRUE FALSE TRUE&lt;/code&gt;即&lt;code&gt;((λx.λy.x) FALSE) TRUE&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;第三次β归约得到&lt;code&gt;(λy.FALSE) TRUE&lt;/code&gt;即&lt;code&gt;FALSE&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h4 id=&quot;算术运算&quot;&gt;&lt;a href=&quot;#算术运算&quot; class=&quot;headerlink&quot; title=&quot;算术运算&quot;&gt;&lt;/a&gt;算术运算&lt;/h4&gt;&lt;p&gt;λ演算中有多种方法可以用来定义自然数，如下定义又称为丘奇数(Church numerals)，是使用最广泛的定义方式&lt;/p&gt;
+&lt;h4 id=&quot;2-算术运算&quot;&gt;&lt;a href=&quot;#2-算术运算&quot; class=&quot;headerlink&quot; title=&quot;2.算术运算&quot;&gt;&lt;/a&gt;2.算术运算&lt;/h4&gt;&lt;p&gt;λ演算中有多种方法可以用来定义自然数，如下定义又称为丘奇数(Church numerals)，是使用最广泛的定义方式&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;0 = &lt;code&gt;λf.λx.x&lt;/code&gt; 对应的js代码是&lt;code&gt;f=&amp;gt;(x=&amp;gt;x)&lt;/code&gt;，柯里化之前是&lt;code&gt;(f,x)=&amp;gt;x&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;1 = &lt;code&gt;λf.λx.f x&lt;/code&gt; 对应的js代码是&lt;code&gt;f=&amp;gt;(x=&amp;gt;f(x))&lt;/code&gt;，柯里化之前是&lt;code&gt;(f,x)=&amp;gt;f(x)&lt;/code&gt;&lt;/li&gt;
@@ -151,40 +147,12 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。&lt;/p&gt;
+&lt;p&gt;λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&quot;一-λ演算-lambda-calculus简称LC-与图灵机&quot;&gt;&lt;a href=&quot;#一-λ演算-lambda-calculus简称LC-与图灵机&quot; class=&quot;headerlink&quot; title=&quot;一.λ演算(lambda calculus简称LC)与图灵机&quot;&gt;&lt;/a&gt;一.λ演算(lambda calculus简称LC)与图灵机&lt;/h3&gt;&lt;p&gt;首先，λ演算的提出者&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87&quot;&gt;丘奇(Alonzo Church)&lt;/a&gt;是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C&quot;&gt;判定性问题(Hilbert Decision-problem)&lt;/a&gt;是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98&quot;&gt;邱奇-图灵论题(Church–Turing thesis)&lt;/a&gt;，该论题的核心思想是&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;如果某个算法是&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA&quot;&gt;可计算的(Computability)&lt;/a&gt;，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7&quot;&gt;图灵完备&lt;/a&gt;的编程语言。下面来看看图灵机与λ演算能做什么事情&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;图灵机的基本思想大概是这样：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;一条无限长的纸带TAPE。纸带被划分为一个接一个的小格子，每个格子上包含一个来自有限字母表的符号，字母表中有一个特殊的符号表示空白。纸带上的格子从左到右依次被编号为0, 1, 2, ...，纸带的右端可以无限伸展。&lt;/li&gt;
-&lt;li&gt;一个读写头HEAD。该读写头可以在纸带上左右移动，它能读出当前所指的格子上的符号，并能改变当前格子上的符号。&lt;/li&gt;
-&lt;li&gt;一套控制规则TABLE。它根据当前机器所处的状态以及当前读写头所指的格子上的符号来确定读写头下一步的动作，并改变状态寄存器的值，令机器进入一个新的状态。&lt;/li&gt;
-&lt;li&gt;一个状态寄存器。它用来保存图灵机当前所处的状态。图灵机的所有可能状态的数目是有限的，并且有一个特殊的状态。称为停机状态。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;  这样一台机器就能实现目前人类已知的任何可行算法，以c为代表的命令式编程就是以这种假想模型作为理论基础。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;λ演算的基本思想大概是这样：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol&gt;
-&lt;li&gt;可以定义函数(function abstraction)&lt;/li&gt;
-&lt;li&gt;可以调用函数(function application)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;  一门语言只要能做到以上两点，就可以实现任何可行算法，以lisp为代表的函数式编程以λ演算作为理论基础。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;可以看到λ演算的概念要比图灵机更加简洁明了，顺便再对比一下c与lisp，以下引用&lt;a href=&quot;https://book.douban.com/subject/6021440/&quot;&gt;《黑客与画家》&lt;/a&gt;中的描述&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果使用Lisp语言，能让程序变得多短？以Lisp和C的比较为例，我听到的大多数说法是C代码的长度是Lisp的7倍到10倍。但是最近，New Architect杂志上有一篇介绍ITA软件公司的文章，里面说&amp;quot;一行Lisp代码相当于20行C代码&amp;quot;，因为此文都是引用ITA总裁的话，所以我想这个数字来自ITA的编程实践。 如果真是这样，那么我们可以相信这句话。ITA的软件，不仅使用Lisp语言，还同时大量使用C和C++，所以这是他们的经验谈。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读&lt;a href=&quot;http://www.yinwang.org/blog-cn/2015/10/18/turing&quot;&gt;图灵的光环&lt;/a&gt;。&lt;/p&gt;
     
     </summary>
     

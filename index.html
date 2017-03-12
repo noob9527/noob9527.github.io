@@ -205,7 +205,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj06ej7kw001aw2j5hplsj7mr">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj06ezqme001ed8j5hzf5v121">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -219,40 +219,12 @@
             
             <!--摘录-->
             <blockquote>
-<p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
+<p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
 </blockquote>
 <h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
 <blockquote>
 <p>如果某个算法是<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
 </blockquote>
-<p>这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门<a href="https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7">图灵完备</a>的编程语言。下面来看看图灵机与λ演算能做什么事情</p>
-<ul>
-<li><p>图灵机的基本思想大概是这样：</p>
-<blockquote>
-<ol>
-<li>一条无限长的纸带TAPE。纸带被划分为一个接一个的小格子，每个格子上包含一个来自有限字母表的符号，字母表中有一个特殊的符号表示空白。纸带上的格子从左到右依次被编号为0, 1, 2, ...，纸带的右端可以无限伸展。</li>
-<li>一个读写头HEAD。该读写头可以在纸带上左右移动，它能读出当前所指的格子上的符号，并能改变当前格子上的符号。</li>
-<li>一套控制规则TABLE。它根据当前机器所处的状态以及当前读写头所指的格子上的符号来确定读写头下一步的动作，并改变状态寄存器的值，令机器进入一个新的状态。</li>
-<li>一个状态寄存器。它用来保存图灵机当前所处的状态。图灵机的所有可能状态的数目是有限的，并且有一个特殊的状态。称为停机状态。</li>
-</ol>
-</blockquote>
-<p>  这样一台机器就能实现目前人类已知的任何可行算法，以c为代表的命令式编程就是以这种假想模型作为理论基础。</p>
-</li>
-<li><p>λ演算的基本思想大概是这样：</p>
-<blockquote>
-<ol>
-<li>可以定义函数(function abstraction)</li>
-<li>可以调用函数(function application)</li>
-</ol>
-</blockquote>
-<p>  一门语言只要能做到以上两点，就可以实现任何可行算法，以lisp为代表的函数式编程以λ演算作为理论基础。</p>
-</li>
-</ul>
-<p>可以看到λ演算的概念要比图灵机更加简洁明了，顺便再对比一下c与lisp，以下引用<a href="https://book.douban.com/subject/6021440/">《黑客与画家》</a>中的描述</p>
-<blockquote>
-<p>如果使用Lisp语言，能让程序变得多短？以Lisp和C的比较为例，我听到的大多数说法是C代码的长度是Lisp的7倍到10倍。但是最近，New Architect杂志上有一篇介绍ITA软件公司的文章，里面说&quot;一行Lisp代码相当于20行C代码&quot;，因为此文都是引用ITA总裁的话，所以我想这个数字来自ITA的编程实践。 如果真是这样，那么我们可以相信这句话。ITA的软件，不仅使用Lisp语言，还同时大量使用C和C++，所以这是他们的经验谈。</p>
-</blockquote>
-<p>最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读<a href="http://www.yinwang.org/blog-cn/2015/10/18/turing">图灵的光环</a>。</p>
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2017/03/lambda-calculus-introduction/#more">阅读全文</a>
@@ -332,7 +304,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj06ej7kv0017w2j58jbqw73g">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj06ezqmd001bd8j5d05q1qgp">-->
         <img src="/img/salted-password-hashing.jpg" itemprop="image">
       <!--</a>-->
     
@@ -435,7 +407,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj06ej7ku0014w2j5oga9g7hz">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj06ezqmc0017d8j50hwnu74w">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -531,7 +503,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj06ej7kr000zw2j516a8ch3b">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj06ezqma0014d8j5yjb4pmmc">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -635,7 +607,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cj06ej7kn000ww2j50wqhnvs3">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cj06ezqm7000zd8j50h0bbnvf">-->
         <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
       <!--</a>-->
     
