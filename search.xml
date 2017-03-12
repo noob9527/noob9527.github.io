@@ -70,13 +70,12 @@
 <li>y[x := N]=y, if x ≠ y</li>
 <li>(M1 M2)[x := N] = (M1[x := N]) (M2[x := N])</li>
 <li>(λx.M)[x := N]  = λx.M</li>
-<li><p>(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)</p>
+<li>(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)</li>
+</ul>
 <p>这项操作又称之为Capture-avoiding substitution，因为它必须确保变量替换后不能成为一个绑定变量，比如说<code>(λx.y)[y := x]=λx.x</code>就是不正确的，必须先对<code>λx.y</code>进行α变换，改变绑定变量名得到<code>λz.y</code>，之后再进行[y := x]操作得到<code>λz.x</code>。了解了变量替换后，β归约可以被简单的定义成：</p>
 <blockquote>
 <p>((λV.E) E&#39;) = E [V:=E&#39;]</p>
 </blockquote>
-</li>
-</ul>
 </li>
 <li><p>η变换(Eta-conversion)<br>η变换指的是当且仅当两个函数对所有的输入，返回同样的输出时，两个函数是相等的，这意味这x只要不是f中的自由变量，f就可以转换成<code>λx.f x</code>，一些在急性求值(eager evalution)环境下无法正常调用的函数，需要通过这条规则来进行转换，这条规则在后面学习<strong>Y-combinator</strong>的时候会用到，这里大致有个印象就可以了。</p>
 </li>

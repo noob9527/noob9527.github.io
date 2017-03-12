@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2017-03-12T08:31:41.823Z</updated>
+  <updated>2017-03-12T08:38:35.240Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://staynoob.cn/post/2017/03//lambda-calculus-introduction/"/>
     <id>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</id>
     <published>2017-03-12T07:31:30.000Z</published>
-    <updated>2017-03-12T08:31:41.823Z</updated>
+    <updated>2017-03-12T08:38:35.240Z</updated>
     
     <content type="html">&lt;blockquote&gt;
 &lt;p&gt;λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。&lt;/p&gt;
@@ -86,13 +86,12 @@
 &lt;li&gt;y[x := N]=y, if x ≠ y&lt;/li&gt;
 &lt;li&gt;(M1 M2)[x := N] = (M1[x := N]) (M2[x := N])&lt;/li&gt;
 &lt;li&gt;(λx.M)[x := N]  = λx.M&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)&lt;/p&gt;
+&lt;li&gt;(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;这项操作又称之为Capture-avoiding substitution，因为它必须确保变量替换后不能成为一个绑定变量，比如说&lt;code&gt;(λx.y)[y := x]=λx.x&lt;/code&gt;就是不正确的，必须先对&lt;code&gt;λx.y&lt;/code&gt;进行α变换，改变绑定变量名得到&lt;code&gt;λz.y&lt;/code&gt;，之后再进行[y := x]操作得到&lt;code&gt;λz.x&lt;/code&gt;。了解了变量替换后，β归约可以被简单的定义成：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;((λV.E) E&amp;#39;) = E [V:=E&amp;#39;]&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;η变换(Eta-conversion)&lt;br&gt;η变换指的是当且仅当两个函数对所有的输入，返回同样的输出时，两个函数是相等的，这意味这x只要不是f中的自由变量，f就可以转换成&lt;code&gt;λx.f x&lt;/code&gt;，一些在急性求值(eager evalution)环境下无法正常调用的函数，需要通过这条规则来进行转换，这条规则在后面学习&lt;strong&gt;Y-combinator&lt;/strong&gt;的时候会用到，这里大致有个印象就可以了。&lt;/p&gt;
 &lt;/li&gt;
@@ -1041,9 +1040,9 @@
       <category term="css" scheme="http://staynoob.cn/categories/css/"/>
     
     
-      <category term="bootstrap" scheme="http://staynoob.cn/tags/bootstrap/"/>
-    
       <category term="fontend" scheme="http://staynoob.cn/tags/fontend/"/>
+    
+      <category term="bootstrap" scheme="http://staynoob.cn/tags/bootstrap/"/>
     
       <category term="前端工具" scheme="http://staynoob.cn/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"/>
     
