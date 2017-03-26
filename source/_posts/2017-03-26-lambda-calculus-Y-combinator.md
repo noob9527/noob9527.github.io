@@ -4,12 +4,14 @@ categories: 函数式编程
 tags: lambda calculus
 photos: /img/lambda-calculus.jpg
 permalink: /lambda-calculus-y-combinator
+date: 2017-03-26 15:49:26
 ---
 
-> 这篇文章介绍如何使用λ演算现有的语法，实现递归函数。其中最简洁的实现是使用一个被称为Y-combinator的函数。该函数也常作为懂fp与不懂fp的程序员之间的分界线。
+
+> 上篇文章的末尾提到了一个问题，如何使用λ演算实现递归函数？其中最出名的解决方案是由数学家[Haskell B. Curry](https://en.wikipedia.org/wiki/Haskell_Curry)发现的一个被称为Y-combinator的函数。
 
 ### 一.推导过程
-Y-combinator简单来说就是一个输入函数，返回该函数递归版本的函数。关于它的推导我读了很多文章，以下是我总结的一个*个人认为*比较好理解的版本。（本文代码，可以在[y-combinator-js](https://github.com/noob9527/y-combinator-js)仓库中下载）
+Y-combinator简单来说就是一个输入函数，返回该函数递归版本的函数。关于它的推导我读了很多文章，以下是我总结的一个*个人认为*比较好理解的版本。（本文代码，可以在[y-combinator-js](https://github.com/noob9527/y-combinator-js/blob/master/demo.js)仓库中下载）
 #### Step1
 首先回到大家学习递归函数的起点，阶乘函数，以下是js版本：
 ```javascript
@@ -43,7 +45,9 @@ anonymous2(factorial)(10).should.equal(FACT10);
 ![electric torch](/img/content/electric-torch.png)
 </div>
 
-换句话说，如果给上面的anonymous函数传入一个阶乘函数，它就能返回一个阶乘函数，如果传入的不是阶乘函数，返回的也肯定不是阶乘函数（请叫我达文西）。
+换句话说，如果给上面的anonymous函数传入一个阶乘函数，它就能返回一个阶乘函数，如果传入的不是阶乘函数，返回的也肯定不是阶乘函数（请叫我达文西...）。
+
+<!-- more -->
 
 #### Step2
 上面的函数没办法满足我们的需求。我们要的函数，必须输入一个不是阶乘函数的函数，返回一个阶乘函数，就像我们要的手电筒必须输入电能（或别的什么“能”），输出光能。总之不能是“输入光能，输出光能”。因此，把上面的版本改一下，这次我不要求输入阶乘函数了，你就给我一个**自己调用自己就能产生阶乘函数**的函数吧。
@@ -101,7 +105,7 @@ function anonymous(whatever) {
         })(callSelf);
     }
 ```
-也许你已经发现了，返回的那一坨跟我们在[Step1](/#Step1)中定义的函数有点像！把它拎出来围观一下：
+也许你已经发现了，返回的那一坨跟我们在[Step1](#Step1)中定义的函数有点像！把它拎出来围观一下：
 ```javascript
 function step1_anonymous(factorial) {
     return function (n) {
@@ -186,11 +190,11 @@ function anonymous(whatever){
     return step1_anonymous(whatever(whatever));
 }
 ```
-这种写法在传名调用的语言中可以正常工作，但是在像js这样的传值调用语言中不行，因为在step1_anonymous调用之前，就会计算whatever(whatever)的值，然后无限递归导致**stackoverflow**异常。而将`whatever(whatever)`改写成`n=>whatever(whatever)(n)`使用的正是在之前文章中提到的η变换(Eta-conversion)。下面分别列出在两种求值策略中的Y：
+这种写法在传名调用的语言中可以正常工作，但是在像js这样的传值调用语言中不行，因为在step1_anonymous调用之前，就会计算whatever(whatever)的值，然后无限递归导致**stackoverflow**异常。而将`whatever(whatever)`改写成`n=>whatever(whatever)(n)`使用的正是在上篇文章中提到的[η变换(Eta-conversion)](/post/2017/03/lambda-calculus-introduction/#3-化简规则)。下面分别列出在两种求值策略中的Y：
 - 传值调用：`λf.(λx.f(λn.x x n))(λx.f(λn.x x n))`
 - 传名调用：`λf.(λx.f(x x))(λx.f(x x))`
 
-目前我只知道haskell采取传名调用的求值策略，其它主流编程语言(java,c,js...)都采取传值调用，关于二者更详细的分析可以参考这篇文章[惰性求值](http://www.yinwang.org/blog-cn/2013/04/01/lazy-evaluation)。
+目前我只知道haskell采取传名调用的求值策略，其它主流编程语言(java,c,js...)都采取传值调用，关于二者更详细的分析可以参考[这篇文章](http://www.yinwang.org/blog-cn/2013/04/01/lazy-evaluation)。
 
 ### 三.函数的不动点(fix point)
 让我们再度回到[Step1](/#Step1)中的阶乘函数，这个函数在计算0的阶乘时，不需要调用传入的函数，因此传入任意一个函数，都会返回一个能够正确计算0!的函数，这里先取名叫fact0：
@@ -247,6 +251,9 @@ function Y(f) {
 Y(anonymous)(10).should.equal(FACT10);
 ```
 上面的Y函数作用等价于Y-combinator，满足Y函数（即** Y(f) = f(Y(f)) **）定义的[combinator](https://wiki.haskell.org/Combinator)被称为不动点组合子(fixed-point combinator)，而Y-combinator只是其中之一。
+
+### 四.总结
+需要注意的是，YC并不能降低算法的复杂度，因此不要尝试在生产环境中使用它，除非你知道自己在做什么。。。
 
 参考链接：
 - [How to reinvent the Y combinator](https://yinwang0.wordpress.com/2012/04/09/reinvent-y/)
