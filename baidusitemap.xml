@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
+    <lastmod>2017-03-26T08:32:23.259Z</lastmod>
+    <data>
+        <display>
+        <title>lambda calculus:Y-combinator</title>
+        <pubTime>2017-03-26T07:49:26.000Z</pubTime>
+        
+        <tag>lambda calculus</tag>
+         
+         
+           
+             
+              <breadCrumb title="函数式编程" url="http://staynoob.cn/categories/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
     <lastmod>2017-03-12T08:38:35.240Z</lastmod>
     <data>
@@ -239,9 +259,9 @@
         <title>为什么bootstrap采用border-box盒模型</title>
         <pubTime>2016-05-18T08:48:58.000Z</pubTime>
         
-        <tag>fontend</tag>
-         
         <tag>bootstrap</tag>
+         
+        <tag>fontend</tag>
          
         <tag>前端工具</tag>
          
