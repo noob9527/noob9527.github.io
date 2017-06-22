@@ -1,18 +1,20 @@
-<% if(theme.duoshuo && theme.duoshuo.shortname){ %>
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"<%- theme.duoshuo.shortname %>"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
+<% if(theme.disqus && theme.disqus.shortname){ %>
 
-  <% if(theme.duoshuo.ua_enable){ %>
-    <%- js(['vendors/ua-parser-js/dist/ua-parser.min','js/hook-duoshuo']) %>
-  <% } %>
+    <% if(theme.disqus.count){ %>
+        <script id="dsq-count-scr" src="https://<%- theme.disqus.shortname %>.disqus.com/count.js" async></script>
+    <% } %>
+
+    <% if(page.comments) {%>
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = '<%- page.permalink %>';
+                  this.page.identifier = '<%- page.path %>';
+                  this.page.title = '<%- page.title %>';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://<%- theme.disqus.shortname %>.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    <% } %>
 <% } %>

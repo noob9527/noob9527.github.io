@@ -46,17 +46,7 @@
     <% if (is_post()){ %>
     <%- partial('nav') %>
     <% } %>
-    
-    <% if(is_post() && theme.duoshuo.share){ %>
-    <div class="post-spread">
-        <%- partial('../_service/share/duoshuo_share') %>
-    </div>
-    <% } %>
-    
-    <% if(is_post && theme.duoshuo.hotarticle){ %>
-        <%- partial('../_service/comments/duoshuo_hotarticle') %>
-    <% } %>
-    
+
     <% if (is_post() && post.comments){ %>
         <%- partial('../_service/comments/comments_panel') %>
     <% } %>

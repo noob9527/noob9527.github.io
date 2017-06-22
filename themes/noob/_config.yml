@@ -64,13 +64,9 @@ link_icons:
 # Third party service config
 # -------------------------------------------------------
 # Duoshuo(comments and share)
-duoshuo:
-  shortname: noob9527
-  share: true
-  ua_enable: true
-  user_id: 6272551112717370000
-  admin_nickname: xy
-  hotarticle: false
+disqus:
+  shortname: staynoob
+  count: false
 
 # MathJax Support
 mathjax:
