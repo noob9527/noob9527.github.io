@@ -4,6 +4,78 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <data>
+        <display>
+        <title>魔力数字与快速平方根倒数算法</title>
+        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2017/06//btree-data-structure/</loc>
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <data>
+        <display>
+        <title>B-tree数据结构</title>
+        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <data>
+        <display>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
+    <lastmod>2017-06-25T10:03:43.288Z</lastmod>
+    <data>
+        <display>
+        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
+        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
     <lastmod>2017-04-14T16:50:52.020Z</lastmod>
     <data>
@@ -126,26 +198,6 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    <lastmod>2017-01-09T17:50:20.595Z</lastmod>
-    <data>
-        <display>
-        <title>魔力数字与快速平方根倒数算法</title>
-        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
-        
-        <tag>闲话算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     <lastmod>2017-01-09T17:50:20.591Z</lastmod>
     <data>
@@ -192,26 +244,6 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
-    <lastmod>2017-01-09T17:40:15.954Z</lastmod>
-    <data>
-        <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
-        
-        <tag>闲话算法</tag>
-         
-         
-           
-             
-              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
     <lastmod>2017-01-09T17:34:55.636Z</lastmod>
     <data>
@@ -220,26 +252,6 @@
         <pubTime>2016-05-03T01:01:35.000Z</pubTime>
         
         <tag>sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
-    <lastmod>2017-01-09T17:34:55.620Z</lastmod>
-    <data>
-        <display>
-        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
-        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
-        
-        <tag>闲话算法</tag>
          
          
            

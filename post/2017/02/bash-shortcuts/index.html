@@ -15,24 +15,19 @@
     <meta name="keywords" content="编程技巧">
 
 
-<meta name="description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。
-
-一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta name="description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta name="keywords" content="编程技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash小技巧">
 <meta property="og:url" content="http://staynoob.cn/post/2017/02//bash-shortcuts/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。
-
-一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
-<meta property="og:image" content="http://staynoob.cn/img/bash-shotcuts.jpg">
+<meta property="og:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta property="og:image" content="http://staynoob.cn/post/2017/02//bash-shortcuts/img/bash-shotcuts.jpg">
 <meta property="og:updated_time" content="2017-04-14T16:50:52.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash小技巧">
-<meta name="twitter:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。
-
-一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
-<meta name="twitter:image" content="http://staynoob.cn/img/bash-shotcuts.jpg">
+<meta name="twitter:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta name="twitter:image" content="http://staynoob.cn/post/2017/02//bash-shortcuts/img/bash-shotcuts.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -59,10 +54,6 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    duoshuo: {
-      userId: '6272551112717370000',
-      author: 'xy'
-    },
     search: {
       //path: '/search.xml'  
       path: '/search.xml'
@@ -197,14 +188,7 @@
 
 
             
-
-    <span class="post-comments-count">
-        &nbsp; | &nbsp;
-        <a href="/post/2017/02/bash-shortcuts/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/2017/02//bash-shortcuts/" itemprop="commentsCount"></span>
-        </a>
-    </span>
-
+    
 
         </div>
 
@@ -213,7 +197,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj1i2nciz000ukzj59hi58a9h">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj4cjrvc400170bj5jv64ke8k">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -274,11 +258,11 @@
 </ul>
 <ul>
 <li><p>单词指示器(Word Designators)<br>  有时候我们只想要获取上条命令的参数，而不包含命令本身。比如说我先执行了</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install react react-dom ...(此处省略100多个库你懂得) --save</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bower install react react-dom ...(此处省略100多个库你懂得) --save</div></pre></td></tr></table></figure>
 <p>  之后发现自己又sb了，应该改用npm来执行同样的命令，这时可以输入</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm !*</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm !*</div></pre></td></tr></table></figure>
 <p>  其效果等同于</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react react-dom ... --save</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react react-dom ... --save</div></pre></td></tr></table></figure>
 <p>  这里<strong> !* </strong>中的<strong> * </strong>就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此<strong> !* </strong>其实相当于<strong> !!* </strong>。一般情况下事件指示器与单词指示器需要以<strong> : </strong>分隔，但如果单词指示器是以<strong> ^,$,*,-,% </strong>开头时，可以省略<strong> : </strong>，因此<strong> !* </strong>的完整形式是<strong> !!:* </strong>，下面是其它单词指示器。</p>
 <ul>
 <li><strong> n </strong> 选择第n个word，如果是0则选择的是命令</li>
@@ -331,37 +315,15 @@
 </div>
 
     
-    
-    
-    <div class="post-spread">
-        <div class="ds-share flat" data-thread-key="post/2017/02//bash-shortcuts/"
-     data-title="Bash小技巧"
-     data-content=""
-     data-url="http://staynoob.cn/post/2017/02/bash-shortcuts/">
-    <div class="ds-share-inline">
-        <ul  class="ds-share-icons-16">
 
-            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-            <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-            <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-            <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-            <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-        </ul>
-        <div class="ds-share-icons-more">
-        </div>
-    </div>
-</div>
-    </div>
-    
-    
-    
-    
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/2017/02//bash-shortcuts/"
-             data-title="Bash小技巧" data-url="http://staynoob.cn/post/2017/02/bash-shortcuts/">
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
         </div>
     
 </div>
@@ -425,6 +387,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2017/06/btree-data-structure/">B-tree数据结构</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/03/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
@@ -480,10 +446,6 @@
                 <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/">聊聊4种主流排序算法(下)</a>
             </li>
             
-            <li>
-                <a href="/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/">聊聊4种主流排序算法(上)</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -493,7 +455,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -502,7 +464,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
     </div>
 </aside>
 
@@ -511,7 +473,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -538,23 +500,22 @@
 
     
     
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"noob9527"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-<script src="/js/hook-duoshuo.js"></script>
-  
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'http://staynoob.cn/post/2017/02/bash-shortcuts/';
+                  this.page.identifier = 'post/2017/02//bash-shortcuts/';
+                  this.page.title = 'Bash小技巧';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
 
     
   <script type="text/javascript">

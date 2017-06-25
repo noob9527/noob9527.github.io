@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2017/06/btree-data-structure/</loc>
+    
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
+    
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/</loc>
+    
+    <lastmod>2017-06-25T10:03:43.288Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://staynoob.cn/post/2017/02/bash-shortcuts/</loc>
     
     <lastmod>2017-04-14T16:50:52.020Z</lastmod>
@@ -44,13 +72,6 @@
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    
-    <lastmod>2017-01-09T17:50:20.595Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     
     <lastmod>2017-01-09T17:50:20.591Z</lastmod>
@@ -65,23 +86,9 @@
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
-    
-    <lastmod>2017-01-09T17:40:15.954Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
     
     <lastmod>2017-01-09T17:34:55.636Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/</loc>
-    
-    <lastmod>2017-01-09T17:34:55.620Z</lastmod>
     
   </url>
   

@@ -15,23 +15,18 @@
     <meta name="keywords" content="bootstrap,fontend,前端工具">
 
 
-<meta name="description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。
-
-CSS盒模型指的是由cont">
+<meta name="description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
+<meta name="keywords" content="bootstrap,fontend,前端工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="为什么bootstrap采用border-box盒模型">
 <meta property="og:url" content="http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。
-
-CSS盒模型指的是由cont">
+<meta property="og:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
 <meta property="og:image" content="http://staynoob.cn/img/box-sizing.jpg">
 <meta property="og:updated_time" content="2017-01-09T17:26:22.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为什么bootstrap采用border-box盒模型">
-<meta name="twitter:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。
-
-CSS盒模型指的是由cont">
+<meta name="twitter:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
 <meta name="twitter:image" content="http://staynoob.cn/img/box-sizing.jpg">
 
 
@@ -59,10 +54,6 @@ CSS盒模型指的是由cont">
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    duoshuo: {
-      userId: '6272551112717370000',
-      author: 'xy'
-    },
     search: {
       //path: '/search.xml'  
       path: '/search.xml'
@@ -197,14 +188,7 @@ CSS盒模型指的是由cont">
 
 
             
-
-    <span class="post-comments-count">
-        &nbsp; | &nbsp;
-        <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/" itemprop="commentsCount"></span>
-        </a>
-    </span>
-
+    
 
         </div>
 
@@ -213,7 +197,7 @@ CSS盒模型指的是由cont">
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cj1i2ncif000ckzj5xld057fk">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cj4cjrvbe000e0bj5w5tdc3kk">-->
         <img src="/img/box-sizing.jpg" itemprop="image">
       <!--</a>-->
     
@@ -265,11 +249,11 @@ CSS盒模型指的是由cont">
     });
 </script>
 
-<h3 id="三-重置方法最佳实践"><a href="#三-重置方法最佳实践" class="headerlink" title="三.重置方法最佳实践"></a>三.重置方法最佳实践</h3><p>现在，我们已经知道了使用border-box盒模型进行布局更加简单，而除非你的代码是面向IE5用户开发的，否则都需要使用重置代码来修改默认的盒模型，最早人们使用通配符选择器(universal type selector)来重置所有元素的box-sizing属性。代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>大部分情况下上述代码就够了，但它还遗漏了伪元素，改进后的代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>以上也是bootstrap(v3.3.5)中使用的重置代码，它已经完全够用了，不过假如你的需求非常变态，想要在网页中混合使用content-box,padding-box,border-box,可以采用如下的重置代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="三-重置方法最佳实践"><a href="#三-重置方法最佳实践" class="headerlink" title="三.重置方法最佳实践"></a>三.重置方法最佳实践</h3><p>现在，我们已经知道了使用border-box盒模型进行布局更加简单，而除非你的代码是面向IE5用户开发的，否则都需要使用重置代码来修改默认的盒模型，最早人们使用通配符选择器(universal type selector)来重置所有元素的box-sizing属性。代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* &#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>大部分情况下上述代码就够了，但它还遗漏了伪元素，改进后的代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上也是bootstrap(v3.3.5)中使用的重置代码，它已经完全够用了，不过假如你的需求非常变态，想要在网页中混合使用content-box,padding-box,border-box,可以采用如下的重置代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:inherit;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上面的代码可以让你的选择更加有弹性，可以为不同的布局容器指定各自的盒模型，而不用担心每个容器的子元素被全局样式重置。</p>
-<h3 id="四-浏览器支持"><a href="#四-浏览器支持" class="headerlink" title="四.浏览器支持"></a>四.浏览器支持</h3><p>所有现代浏览器已经全部支持无前缀的box-sizing属性，如果你想要支持一些老到几乎没人用的浏览器版本(safari &lt; 5.1,chrome &lt; 10,firefox &lt; 29)，可以像bootstrap一样为该属性加上浏览器前缀：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>:border-box;</span><br><span class="line">  <span class="attribute">-moz-box-sizing</span>:border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="四-浏览器支持"><a href="#四-浏览器支持" class="headerlink" title="四.浏览器支持"></a>四.浏览器支持</h3><p>所有现代浏览器已经全部支持无前缀的box-sizing属性，如果你想要支持一些老到几乎没人用的浏览器版本(safari &lt; 5.1,chrome &lt; 10,firefox &lt; 29)，可以像bootstrap一样为该属性加上浏览器前缀：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">-webkit-box-sizing</span>:border-box;</div><div class="line">  <span class="attribute">-moz-box-sizing</span>:border-box;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>不过padding-box因为没什么人用，所以一些浏览器可能会不支持。IE7及其以下版本不支持box-sizing属性。</p>
 </div>
             
@@ -304,37 +288,15 @@ CSS盒模型指的是由cont">
 </div>
 
     
-    
-    
-    <div class="post-spread">
-        <div class="ds-share flat" data-thread-key="post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/"
-     data-title="为什么bootstrap采用border-box盒模型"
-     data-content=""
-     data-url="http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">
-    <div class="ds-share-inline">
-        <ul  class="ds-share-icons-16">
 
-            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-            <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-            <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-            <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-            <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-        </ul>
-        <div class="ds-share-icons-more">
-        </div>
-    </div>
-</div>
-    </div>
-    
-    
-    
-    
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/"
-             data-title="为什么bootstrap采用border-box盒模型" data-url="http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
         </div>
     
 </div>
@@ -398,6 +360,10 @@ CSS盒模型指的是由cont">
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2017/06/btree-data-structure/">B-tree数据结构</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/03/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
@@ -453,10 +419,6 @@ CSS盒模型指的是由cont">
                 <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/">聊聊4种主流排序算法(下)</a>
             </li>
             
-            <li>
-                <a href="/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/">聊聊4种主流排序算法(上)</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -466,7 +428,7 @@ CSS盒模型指的是由cont">
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -475,7 +437,7 @@ CSS盒模型指的是由cont">
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
     </div>
 </aside>
 
@@ -484,7 +446,7 @@ CSS盒模型指的是由cont">
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -511,23 +473,22 @@ CSS盒模型指的是由cont">
 
     
     
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"noob9527"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-<script src="/js/hook-duoshuo.js"></script>
-  
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/';
+                  this.page.identifier = 'post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/';
+                  this.page.title = '为什么bootstrap采用border-box盒模型';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
 
     
   <script type="text/javascript">

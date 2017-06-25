@@ -15,23 +15,18 @@
     <meta name="keywords" content="fontend">
 
 
-<meta name="description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。
-
-一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta name="description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。  一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta name="keywords" content="fontend">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS清除浮动的原理与最佳实践">
 <meta property="og:url" content="http://staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。
-
-一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta property="og:description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。  一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
 <meta property="og:image" content="http://staynoob.cn/img/clearfix.jpg">
 <meta property="og:updated_time" content="2017-01-09T17:26:22.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS清除浮动的原理与最佳实践">
-<meta name="twitter:description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。
-
-一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta name="twitter:description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。  一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
 <meta name="twitter:image" content="http://staynoob.cn/img/clearfix.jpg">
 
 
@@ -59,10 +54,6 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    duoshuo: {
-      userId: '6272551112717370000',
-      author: 'xy'
-    },
     search: {
       //path: '/search.xml'  
       path: '/search.xml'
@@ -197,14 +188,7 @@
 
 
             
-
-    <span class="post-comments-count">
-        &nbsp; | &nbsp;
-        <a href="/post/2016/05/css-float-clearfix-best-in-practice/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/2016/05//css-float-clearfix-best-in-practice/" itemprop="commentsCount"></span>
-        </a>
-    </span>
-
+    
 
         </div>
 
@@ -213,7 +197,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_cj1i2ncik000fkzj5x012d8bz">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_cj4cjrvbi000g0bj5u7vgu9cw">-->
         <img src="/img/clearfix.jpg" itemprop="image">
       <!--</a>-->
     
@@ -254,9 +238,9 @@
 </script>
 <br>上面的例子中由于div1的浮动，div2的一部分被浮动的元素覆盖，容器的高度比它里面浮动的元素高度还要低。</p>
 <a id="more"></a>
-<h3 id="二-使用clear属性清除浮动"><a href="#二-使用clear属性清除浮动" class="headerlink" title="二.使用clear属性清除浮动"></a>二.使用clear属性清除浮动</h3><p>清除浮动的方式有千千万，但其思路一共就两种，其一是使用CSS的clear属性，clear属性规定元素的哪一侧不允许出现浮动元素，在CSS1,CSS2中浏览器自动为带有clear属性的元素添加额外的margin-top，从而保证该元素不会与浮动的元素重叠在一起，CSS2.1规范改成在clear元素的外边距之上添加清除空间，因此不会改变元素的外边距，但无论哪种实现，其目的都是为浮动的元素留出足够的垂直空间。在应用clear属性之前普通流中的元素表现得就像浮动元素不存在一样，而应用该属性后则能“感受”到浮动元素的高度，最后完成清除浮动。<br>现在可以回头再看看上面的例子，查看网页源代码会发现js动态的为div2指定了clear属性，div2感知到了div1的存在从而解决了元素重叠的问题，由于div2处于普通流，容器必须扩展自身的高度才能够包裹住div2，这又解决了第二个问题。现在的问题是这种方式需要div2的辅助，才能清除div1的浮动，而实际应用中有可能浮动的元素本身就是容器的最后一个元素，换句话说实际应用中可能没有div2的存在，此时如何处理容器高度坍塌的问题？<br>简单粗暴的方式是人为的在浮动的元素后添加一个没有意义的空元素，并为该元素指定clear属性，这就是清除浮动代码的第一个版本，代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float:left"</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"clear:both"</span>&gt;</span><span class="comment">&lt;!--我用来清除上面的浮动--&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>上面的代码有两个问题，一是添加无意义的标签给开发与维护带来麻烦，二是违反了web开发的原则，即html用来决定网页的内容，css用来决定呈现的样式。上面的代码添加了一个html元素却仅仅用来改变呈现的样式。于是大家顺其自然的想到使用css为<strong>容器</strong>添加一个:after伪元素，代码变成了下面这样：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container clearfix"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float:left"</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--这里会有css创建的伪元素，用来清除上面的浮动--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="二-使用clear属性清除浮动"><a href="#二-使用clear属性清除浮动" class="headerlink" title="二.使用clear属性清除浮动"></a>二.使用clear属性清除浮动</h3><p>清除浮动的方式有千千万，但其思路一共就两种，其一是使用CSS的clear属性，clear属性规定元素的哪一侧不允许出现浮动元素，在CSS1,CSS2中浏览器自动为带有clear属性的元素添加额外的margin-top，从而保证该元素不会与浮动的元素重叠在一起，CSS2.1规范改成在clear元素的外边距之上添加清除空间，因此不会改变元素的外边距，但无论哪种实现，其目的都是为浮动的元素留出足够的垂直空间。在应用clear属性之前普通流中的元素表现得就像浮动元素不存在一样，而应用该属性后则能“感受”到浮动元素的高度，最后完成清除浮动。<br>现在可以回头再看看上面的例子，查看网页源代码会发现js动态的为div2指定了clear属性，div2感知到了div1的存在从而解决了元素重叠的问题，由于div2处于普通流，容器必须扩展自身的高度才能够包裹住div2，这又解决了第二个问题。现在的问题是这种方式需要div2的辅助，才能清除div1的浮动，而实际应用中有可能浮动的元素本身就是容器的最后一个元素，换句话说实际应用中可能没有div2的存在，此时如何处理容器高度坍塌的问题？<br>简单粗暴的方式是人为的在浮动的元素后添加一个没有意义的空元素，并为该元素指定clear属性，这就是清除浮动代码的第一个版本，代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float:left"</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"clear:both"</span>&gt;</span><span class="comment">&lt;!--我用来清除上面的浮动--&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上面的代码有两个问题，一是添加无意义的标签给开发与维护带来麻烦，二是违反了web开发的原则，即html用来决定网页的内容，css用来决定呈现的样式。上面的代码添加了一个html元素却仅仅用来改变呈现的样式。于是大家顺其自然的想到使用css为<strong>容器</strong>添加一个:after伪元素，代码变成了下面这样：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">content</span>:<span class="string">""</span>;</div><div class="line">  <span class="attribute">display</span>:block;</div><div class="line">  <span class="attribute">clear</span>:both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container clearfix"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"float:left"</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!--这里会有css创建的伪元素，用来清除上面的浮动--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>至此，这个浮动清除类(clearfix)已经足以应付大多数情况了。但仍有修改的余地。</p>
 <h3 id="三-使用块级格式化上下文-Block-formatting-contexts-清除浮动"><a href="#三-使用块级格式化上下文-Block-formatting-contexts-清除浮动" class="headerlink" title="三.使用块级格式化上下文(Block formatting contexts)清除浮动"></a>三.使用块级格式化上下文(Block formatting contexts)清除浮动</h3><h4 id="1-BFC有什么用"><a href="#1-BFC有什么用" class="headerlink" title="1.BFC有什么用"></a>1.BFC有什么用</h4><p>CSS2.1开始引入BFC的概念，它是KFC的兄弟品牌，额，不好意思脑袋岔路了，通俗的讲BFC指的是页面中的一块渲染区域，它有自己独立的渲染规则，区域中的元素布局不会受到外部影响，也不会影响外部元素。英语基础好的同学还可以点开链接阅读w3c官方对<a href="https://www.w3.org/TR/CSS21/visuren.html#block-formatting" target="_blank" rel="external">Block formatting contexts</a>的定义，然后你会发现它几乎没什么实质性的内容，这里强烈推荐YUI团队博客的<a href="http://yuiblog.com/blog/2010/05/19/css-101-block-formatting-contexts/" target="_blank" rel="external">Block Formatting Contexts</a>这篇文章，它清晰的解答了BFC在实际开发中起什么作用：</p>
 <ul>
@@ -307,8 +291,8 @@
 <li>overflow除visible外的任意值(overflow:hidden|auto|scroll)</li>
 </ul>
 <h4 id="3-如何通过BFC清除浮动"><a href="#3-如何通过BFC清除浮动" class="headerlink" title="3.如何通过BFC清除浮动"></a>3.如何通过BFC清除浮动</h4><p>正如上一节看到的，创建BFC的方法有多少种，清除浮动的方法就有多少种。一开始有人尝试通过为容器指定float属性创建BFC，我只是想想都觉得不靠谱，清除浮动的方法居然是将所有元素都浮动起来。一种稍微靠谱的方法是将容器的overflow属性设为hidden或者auto，比起修改position与display，它的副作用(截断内容或滚动条)已经算是可以接受的了，但我们最开始的clear伪元素可是没有任何副作用的。好吧，这确实有点让人沮丧，尽管花了这么长的篇幅来说明BFC，但它还不如直接使用clear伪元素。幸运的是在clearfix最佳实践中，还会用到它的概念。</p>
-<h3 id="四-clearfix最佳实践与原理"><a href="#四-clearfix最佳实践与原理" class="headerlink" title="四.clearfix最佳实践与原理"></a>四.clearfix最佳实践与原理</h3><p>回顾第二段，现在我们的clearfix版本是这样的：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>下面则是目前CSS清除浮动的最佳实践，来自Nicolas Gallagher，详细内容参见<a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank" rel="external">A new micro clearfix hack</a><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">" "</span>; <span class="comment">/*注意里面的空格*/</span></span><br><span class="line">  <span class="attribute">display</span>:table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">  <span class="attribute">zoom</span>:<span class="number">1</span>; <span class="comment">/* For IE 6/7 (trigger hasLayout) */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="四-clearfix最佳实践与原理"><a href="#四-clearfix最佳实践与原理" class="headerlink" title="四.clearfix最佳实践与原理"></a>四.clearfix最佳实践与原理</h3><p>回顾第二段，现在我们的clearfix版本是这样的：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">content</span>:<span class="string">""</span>;</div><div class="line">  <span class="attribute">display</span>:block;</div><div class="line">  <span class="attribute">clear</span>:both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面则是目前CSS清除浮动的最佳实践，来自Nicolas Gallagher，详细内容参见<a href="http://nicolasgallagher.com/micro-clearfix-hack/" target="_blank" rel="external">A new micro clearfix hack</a><br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">content</span>:<span class="string">" "</span>; <span class="comment">/*注意里面的空格*/</span></div><div class="line">  <span class="attribute">display</span>:table;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">clear</span>:both;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.clearfix</span>&#123;</div><div class="line">  <span class="attribute">zoom</span>:<span class="number">1</span>; <span class="comment">/* For IE 6/7 (trigger hasLayout) */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>对比上面两个版本的不同，很容易提出下面几个问题。</p>
 <h4 id="1-content里面为什么需要一个空格？"><a href="#1-content里面为什么需要一个空格？" class="headerlink" title="1.content里面为什么需要一个空格？"></a>1.content里面为什么需要一个空格？</h4><p>根据原文的描述，在content添加空格是为了处理一个Opera浏览器的显示bug，由于这个问题我在自己的Opera上没有重现，因此也无法给出更详细的说明。</p>
 <h4 id="2-zoom-1有什么用？"><a href="#2-zoom-1有什么用？" class="headerlink" title="2.zoom:1有什么用？"></a>2.zoom:1有什么用？</h4><p>由于伪元素与BFC是由CSS2.1规范提出，因此上面讨论的两种方式IE6与IE7均不支持，但它们有一个与BFC类似的概念叫hasLayout，限于篇幅，这里不再详细讨论，简单的说它同样具备BFC的作用即：</p>
@@ -348,7 +332,7 @@
     我的垂直外边距不与容器叠加(margin:20px)</div>
 	<div style="display:table"></div>
 </div>
-<br>它的原理用到了之前提到的BFC概念，display:table创建了匿名的display:table-cell框，而前面已经提到，display:table-cell将创建新的BFC，从而阻止了垂直外边距叠加。然而也许你已经意识到了，它跟清除浮动有一毛钱关系吗？是否需要垂直外边距叠加本应该由各自网站的开发人员来决定，换句话说为什么要在清除浮动的代码中强行加入设定垂直外边距是否叠加的代码？这就像通过设定overflow:hidden来清除浮动一样产生了副作用。<br>其实它是为了浏览器显示一致性而添加的代码，前面已经讨论过，假设我们通过创建BFC来清除浮动，那么它的垂直外边距不会叠加。同理，通过触发hasLayout也不会叠加。因此如果没有<code>clearfix:before</code>与<code>display:table</code>，那么元素的垂直外边距在现代浏览器下会叠加，而在IE6与IE7中不会叠加，这就破坏了样式的一致性。换句话说，如果不需要支持IE6与IE7，那么使用如下代码就足够了：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">" "</span>; <span class="comment">/*注意里面的空格*/</span></span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<br>它的原理用到了之前提到的BFC概念，display:table创建了匿名的display:table-cell框，而前面已经提到，display:table-cell将创建新的BFC，从而阻止了垂直外边距叠加。然而也许你已经意识到了，它跟清除浮动有一毛钱关系吗？是否需要垂直外边距叠加本应该由各自网站的开发人员来决定，换句话说为什么要在清除浮动的代码中强行加入设定垂直外边距是否叠加的代码？这就像通过设定overflow:hidden来清除浮动一样产生了副作用。<br>其实它是为了浏览器显示一致性而添加的代码，前面已经讨论过，假设我们通过创建BFC来清除浮动，那么它的垂直外边距不会叠加。同理，通过触发hasLayout也不会叠加。因此如果没有<code>clearfix:before</code>与<code>display:table</code>，那么元素的垂直外边距在现代浏览器下会叠加，而在IE6与IE7中不会叠加，这就破坏了样式的一致性。换句话说，如果不需要支持IE6与IE7，那么使用如下代码就足够了：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">content</span>:<span class="string">" "</span>; <span class="comment">/*注意里面的空格*/</span></div><div class="line">  <span class="attribute">display</span>:block;</div><div class="line">  <span class="attribute">clear</span>:both;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>完！</p>
 </div>
             
@@ -383,37 +367,15 @@
 </div>
 
     
-    
-    
-    <div class="post-spread">
-        <div class="ds-share flat" data-thread-key="post/2016/05//css-float-clearfix-best-in-practice/"
-     data-title="CSS清除浮动的原理与最佳实践"
-     data-content=""
-     data-url="http://staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/">
-    <div class="ds-share-inline">
-        <ul  class="ds-share-icons-16">
 
-            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-            <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-            <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-            <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-            <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-        </ul>
-        <div class="ds-share-icons-more">
-        </div>
-    </div>
-</div>
-    </div>
-    
-    
-    
-    
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/2016/05//css-float-clearfix-best-in-practice/"
-             data-title="CSS清除浮动的原理与最佳实践" data-url="http://staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/">
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
         </div>
     
 </div>
@@ -477,6 +439,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2017/06/btree-data-structure/">B-tree数据结构</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/03/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
@@ -532,10 +498,6 @@
                 <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/">聊聊4种主流排序算法(下)</a>
             </li>
             
-            <li>
-                <a href="/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/">聊聊4种主流排序算法(上)</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -545,7 +507,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -554,7 +516,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
     </div>
 </aside>
 
@@ -563,7 +525,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -590,23 +552,22 @@
 
     
     
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"noob9527"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-<script src="/js/hook-duoshuo.js"></script>
-  
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'http://staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/';
+                  this.page.identifier = 'post/2016/05//css-float-clearfix-best-in-practice/';
+                  this.page.title = 'CSS清除浮动的原理与最佳实践';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
 
     
   <script type="text/javascript">

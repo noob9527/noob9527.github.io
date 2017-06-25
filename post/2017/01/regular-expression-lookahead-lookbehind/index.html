@@ -15,30 +15,19 @@
     <meta name="keywords" content="编程技巧">
 
 
-<meta name="description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。
-
-一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。
-
-(?:pattern)非捕获匹配(matches">
+<meta name="description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。  一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。  (?:pattern)非捕获匹配(matches">
+<meta name="keywords" content="编程技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式：零宽断言(lookaround)">
 <meta property="og:url" content="http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。
-
-一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。
-
-(?:pattern)非捕获匹配(matches">
-<meta property="og:image" content="http://staynoob.cn/img/regular-expression-lookaround.jpg">
+<meta property="og:description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。  一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。  (?:pattern)非捕获匹配(matches">
+<meta property="og:image" content="http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/img/regular-expression-lookaround.jpg">
 <meta property="og:updated_time" content="2017-02-13T09:09:10.339Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式：零宽断言(lookaround)">
-<meta name="twitter:description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。
-
-一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。
-
-(?:pattern)非捕获匹配(matches">
-<meta name="twitter:image" content="http://staynoob.cn/img/regular-expression-lookaround.jpg">
+<meta name="twitter:description" content="零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。  一.写在前面这篇文章讲的东西非常基础，之所以要写一遍完全是因为我智商经常离线，老把它们写混。如果你对下面五种模式及其用途了然于心，请不要浪费时间读这篇文章。  (?:pattern)非捕获匹配(matches">
+<meta name="twitter:image" content="http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/img/regular-expression-lookaround.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -65,10 +54,6 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    duoshuo: {
-      userId: '6272551112717370000',
-      author: 'xy'
-    },
     search: {
       //path: '/search.xml'  
       path: '/search.xml'
@@ -203,14 +188,7 @@
 
 
             
-
-    <span class="post-comments-count">
-        &nbsp; | &nbsp;
-        <a href="/post/2017/01/regular-expression-lookahead-lookbehind/#comments" itemprop="discussionUrl">
-            <span class="post-comments-count ds-thread-count" data-thread-key="post/2017/01//regular-expression-lookahead-lookbehind/" itemprop="commentsCount"></span>
-        </a>
-    </span>
-
+    
 
         </div>
 
@@ -219,7 +197,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj1i2ncj40015kzj5sh7tffqh">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj4cjrvbz000w0bj53ax3l0jx">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -254,8 +232,8 @@
 <li><code>(?&lt;!a)b</code>断言b前面没有a，匹配bb但不匹配ab，最终捕获b。（个人认为应该翻译成<em>反向否定查找</em>）</li>
 </ul>
 <h3 id="三-Polyfill"><a href="#三-Polyfill" class="headerlink" title="三.Polyfill"></a>三.Polyfill</h3><p>lookbehind目前还处在es7的<a href="https://github.com/goyakin/es-regexp-lookbehind" target="_blank" rel="external">提案</a>阶段，因此无法在js中直接使用（也正因为如此，VSC的查找与替换不支持lookbehind），新版的V8引擎已经实现了该功能。不过需要在浏览器设置中打开“#enable-javascript-harmony”开关（在chrome地址栏输入<em>about:flags</em>设置）<br>在js实现该功能之前，可以使用捕获与引用来达成类似的效果，举例来说如果你需要将所有前面带有static修饰符的int，替换成long，在支持lookbehind的编辑器中可以直接查找<code>(?&lt;=static\s)int</code>，并将其替换成<code>long</code>。而在不支持lookbehind的环境下（vscode别瞅了，说的就是你！），可以查找<code>(static\s)int</code>，将其替换成<code>$1long</code>。</p>
-<h3 id="四-Code-Demo"><a href="#四-Code-Demo" class="headerlink" title="四.Code Demo"></a>四.Code Demo</h3><p>Polyfill Demo(js)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试依赖mocha,shouldjs</span></span><br><span class="line">describe(<span class="string">'polyfill'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    it(<span class="string">'使用捕获与引用来替代lookbehind'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="string">'static int'</span>.replace(<span class="regexp">/(static\s)int/</span>, <span class="string">'$1long'</span>)</span><br><span class="line">            .should.equal(<span class="string">'static long'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>Feature Demo(java)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试依赖junit4,assertj</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">matchButNotCapture</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    String exp = <span class="string">"(?:a)(b)\\1"</span>;</span><br><span class="line">    <span class="comment">//由于(?:)不创建引用，因此\1引用了(b)捕获的字符串</span></span><br><span class="line">    Assertions.assertThat(Pattern.matches(exp, <span class="string">"aba"</span>)).isFalse();</span><br><span class="line">    Assertions.assertThat(Pattern.matches(exp, <span class="string">"abb"</span>)).isTrue();</span><br><span class="line">    <span class="comment">//只有一个分组</span></span><br><span class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"abb"</span>).groupCount()).isEqualTo(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lookahead</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//匹配后面有b的a</span></span><br><span class="line">    String exp = <span class="string">"a(?=b)"</span>;</span><br><span class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"aa"</span>).find()).isFalse();</span><br><span class="line">    <span class="comment">//zero-width</span></span><br><span class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"ab"</span>);</span><br><span class="line">    Assertions.assertThat(matcher.find()).isTrue();</span><br><span class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"a"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">negativeLookahead</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//匹配后面没有b的a</span></span><br><span class="line">    String exp = <span class="string">"a(?!b)"</span>;</span><br><span class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"ab"</span>).find()).isFalse();</span><br><span class="line">    <span class="comment">//zero-width</span></span><br><span class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"aa"</span>);</span><br><span class="line">    Assertions.assertThat(matcher.find()).isTrue();</span><br><span class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"a"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lookbehind</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//匹配前面有a的b</span></span><br><span class="line">    String exp = <span class="string">"(?&lt;=a)b"</span>;</span><br><span class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"bb"</span>).find()).isFalse();</span><br><span class="line">    <span class="comment">//zero-width</span></span><br><span class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"ab"</span>);</span><br><span class="line">    Assertions.assertThat(matcher.find()).isTrue();</span><br><span class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"b"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">negativeLookbehind</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    <span class="comment">//匹配前面没有a的b</span></span><br><span class="line">    String exp = <span class="string">"(?&lt;!a)b"</span>;</span><br><span class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"ab"</span>).find()).isFalse();</span><br><span class="line">    <span class="comment">//zero-width</span></span><br><span class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"bb"</span>);</span><br><span class="line">    Assertions.assertThat(matcher.find()).isTrue();</span><br><span class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"b"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="四-Code-Demo"><a href="#四-Code-Demo" class="headerlink" title="四.Code Demo"></a>四.Code Demo</h3><p>Polyfill Demo(js)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试依赖mocha,shouldjs</span></div><div class="line">describe(<span class="string">'polyfill'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    it(<span class="string">'使用捕获与引用来替代lookbehind'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="string">'static int'</span>.replace(<span class="regexp">/(static\s)int/</span>, <span class="string">'$1long'</span>)</div><div class="line">            .should.equal(<span class="string">'static long'</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Feature Demo(java)<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试依赖junit4,assertj</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">matchButNotCapture</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    String exp = <span class="string">"(?:a)(b)\\1"</span>;</div><div class="line">    <span class="comment">//由于(?:)不创建引用，因此\1引用了(b)捕获的字符串</span></div><div class="line">    Assertions.assertThat(Pattern.matches(exp, <span class="string">"aba"</span>)).isFalse();</div><div class="line">    Assertions.assertThat(Pattern.matches(exp, <span class="string">"abb"</span>)).isTrue();</div><div class="line">    <span class="comment">//只有一个分组</span></div><div class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"abb"</span>).groupCount()).isEqualTo(<span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lookahead</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">//匹配后面有b的a</span></div><div class="line">    String exp = <span class="string">"a(?=b)"</span>;</div><div class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"aa"</span>).find()).isFalse();</div><div class="line">    <span class="comment">//zero-width</span></div><div class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"ab"</span>);</div><div class="line">    Assertions.assertThat(matcher.find()).isTrue();</div><div class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"a"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">negativeLookahead</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">//匹配后面没有b的a</span></div><div class="line">    String exp = <span class="string">"a(?!b)"</span>;</div><div class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"ab"</span>).find()).isFalse();</div><div class="line">    <span class="comment">//zero-width</span></div><div class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"aa"</span>);</div><div class="line">    Assertions.assertThat(matcher.find()).isTrue();</div><div class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"a"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">lookbehind</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">//匹配前面有a的b</span></div><div class="line">    String exp = <span class="string">"(?&lt;=a)b"</span>;</div><div class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"bb"</span>).find()).isFalse();</div><div class="line">    <span class="comment">//zero-width</span></div><div class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"ab"</span>);</div><div class="line">    Assertions.assertThat(matcher.find()).isTrue();</div><div class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"b"</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">negativeLookbehind</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">//匹配前面没有a的b</span></div><div class="line">    String exp = <span class="string">"(?&lt;!a)b"</span>;</div><div class="line">    Assertions.assertThat(Pattern.compile(exp).matcher(<span class="string">"ab"</span>).find()).isFalse();</div><div class="line">    <span class="comment">//zero-width</span></div><div class="line">    Matcher matcher = Pattern.compile(exp).matcher(<span class="string">"bb"</span>);</div><div class="line">    Assertions.assertThat(matcher.find()).isTrue();</div><div class="line">    Assertions.assertThat(matcher.group()).isEqualTo(<span class="string">"b"</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </div>
             
         </div>
@@ -289,37 +267,15 @@
 </div>
 
     
-    
-    
-    <div class="post-spread">
-        <div class="ds-share flat" data-thread-key="post/2017/01//regular-expression-lookahead-lookbehind/"
-     data-title="正则表达式：零宽断言(lookaround)"
-     data-content=""
-     data-url="http://staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/">
-    <div class="ds-share-inline">
-        <ul  class="ds-share-icons-16">
 
-            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-            <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-            <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-            <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-            <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-        </ul>
-        <div class="ds-share-icons-more">
-        </div>
-    </div>
-</div>
-    </div>
-    
-    
-    
-    
     
         <div class="comments" id="comments">
     
-        <div class="ds-thread" data-thread-key="post/2017/01//regular-expression-lookahead-lookbehind/"
-             data-title="正则表达式：零宽断言(lookaround)" data-url="http://staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/">
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
         </div>
     
 </div>
@@ -383,6 +339,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2017/06/btree-data-structure/">B-tree数据结构</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/03/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
@@ -438,10 +398,6 @@
                 <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/">聊聊4种主流排序算法(下)</a>
             </li>
             
-            <li>
-                <a href="/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/">聊聊4种主流排序算法(上)</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -451,7 +407,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -460,7 +416,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a> <a href="/tags/闲话算法/" style="font-size: 20px;">闲话算法</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
     </div>
 </aside>
 
@@ -469,7 +425,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -496,23 +452,22 @@
 
     
     
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"noob9527"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js"></script>
-<script src="/js/hook-duoshuo.js"></script>
-  
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'http://staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/';
+                  this.page.identifier = 'post/2017/01//regular-expression-lookahead-lookbehind/';
+                  this.page.title = '正则表达式：零宽断言(lookaround)';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
 
     
   <script type="text/javascript">
