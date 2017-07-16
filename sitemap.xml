@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <loc>http://staynoob.cn/post/2017/07/closure-in-javascript/</loc>
     
-    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <lastmod>2017-07-16T09:01:22.648Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
+    
+    <lastmod>2017-07-16T09:01:22.648Z</lastmod>
     
   </url>
   
@@ -17,6 +24,13 @@
   
   <url>
     <loc>http://staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
+    
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
     
     <lastmod>2017-06-25T10:03:43.292Z</lastmod>
     
@@ -89,13 +103,6 @@
     <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
     
     <lastmod>2017-01-09T17:34:55.636Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
-    
-    <lastmod>2017-01-09T17:26:22.352Z</lastmod>
     
   </url>
   

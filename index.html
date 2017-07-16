@@ -145,6 +145,93 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-/closure-in-javascript"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2017-07-16T16:40:28+08:00" 
+          content="2017-07-16">
+        2017-07-16
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/javascript/">javascript</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cj56ht1jh001jrcj5hmc5l7ka">-->
+        <img src="/img/closure-in-javascript.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>网上关于 js 闭包的文章多如牛毛，这里之所以再写一篇，主要是因为网上的那些文章要么对初学者不够友好，要么根本就没有谈到重点。在读过那些文章后的很长一段时间里，我对闭包都是似懂非懂。直到在学 react 的过程中逐渐接触函数式编程，才开始真正理解闭包。</p>
+</blockquote>
+<h3 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h3><p>请先思考一下下面两段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunction</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> arr = [];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">        arr[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> i;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> result = createFunction().map(<span class="function"><span class="params">e</span> =&gt;</span> e());</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(result);    <span class="comment">// [5, 5, 5, 5, 5]</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> n = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        increase() &#123; ++n; &#125;,</div><div class="line">        get() &#123; <span class="keyword">return</span> n; &#125;,</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> cnt1 = counter();</div><div class="line"><span class="keyword">const</span> cnt2 = counter();</div><div class="line"></div><div class="line">cnt1.increase();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(cnt1.get());    <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(cnt2.get());    <span class="comment">// 0</span></div></pre></td></tr></table></figure>
+<p>在往下阅读之前，请再次确保你有花时间理解上面两段代码。虽然它们跟下文内容并没有一毛钱关系，不过反正没事烧烧脑也没什么坏处。。。<br>这里我想表达的只是，网上大量关于闭包的文章大抵都遵循这个模式，先制造一堆跟上面例子类似的函数，之后让读者尝试给出运行结果，最后在配合上自己的一顿讲解，仿佛能理解这些代码就是懂了闭包。而事实却是，能看懂这些代码并不代表你就理解了闭包，理解闭包之后再看这些代码也不一定就都能立刻指出运行结果。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2017/07/closure-in-javascript/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-/btree-data-structure"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -195,7 +282,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cj4cjrvcb001g0bj58m74o2de">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cj56ht1jf001hrcj5sg0j6div">-->
         <img src="/img/btree-data-structure.jpg" itemprop="image">
       <!--</a>-->
     
@@ -280,7 +367,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj4cjrvc9001d0bj5k90vqmmy">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj56ht1jd001ercj57ua1hcjc">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -372,7 +459,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj4cjrvc6001b0bj5ryxrydni">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj56ht1jb001brcj5ohd9btgu">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -460,7 +547,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj4cjrvc200140bj543m31ml9">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj56ht1j90019rcj57bfuu74x">-->
         <img src="/img/salted-password-hashing.jpg" itemprop="image">
       <!--</a>-->
     
@@ -487,91 +574,6 @@
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2017/03/salted-password-hashing/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/bash-shortcuts"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/02/bash-shortcuts/">Bash小技巧</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-02-11T23:07:28+08:00" 
-          content="2017-02-11">
-        2017-02-11
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj4cjrvc400170bj5jv64ke8k">-->
-        <img src="/img/bash-shotcuts.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
-</blockquote>
-<h3 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="一.写在前面"></a>一.写在前面</h3><p>这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对<code>!!</code>,<code>!-1</code>,<code>!$</code>,<code>!*</code>分表代表什么了然于心，我想你应该不需要读这篇文章。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/02/bash-shortcuts/#more">阅读全文</a>
             </p>
             
         </div>
@@ -642,6 +644,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/06/btree-data-structure/">B-tree数据结构</a>
             </li>
             
@@ -697,10 +703,6 @@
                 <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/">聊聊4种主流排序算法(下)</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -710,7 +712,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -719,7 +721,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端工具/" style="font-size: 10px;">前端工具</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
     </div>
 </aside>
 
@@ -728,7 +730,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

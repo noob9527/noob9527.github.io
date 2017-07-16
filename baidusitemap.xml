@@ -4,17 +4,43 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <loc>http://staynoob.cn/post/2017/07//closure-in-javascript/</loc>
+    <lastmod>2017-07-16T09:01:22.648Z</lastmod>
     <data>
         <display>
-        <title>魔力数字与快速平方根倒数算法</title>
-        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
+        <title>再谈js闭包</title>
+        <pubTime>2017-07-16T08:40:28.000Z</pubTime>
         
+        <tag>前端</tag>
+         
          
            
              
-              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+              <breadCrumb title="javascript" url="http://staynoob.cn/categories/javascript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
+    <lastmod>2017-07-16T09:01:22.648Z</lastmod>
+    <data>
+        <display>
+        <title>为什么bootstrap采用border-box盒模型</title>
+        <pubTime>2016-05-18T08:48:58.000Z</pubTime>
+        
+        <tag>bootstrap</tag>
+         
+        <tag>fontend</tag>
+         
+        <tag>前端</tag>
+         
+         
+           
+             
+              <breadCrumb title="css" url="http://staynoob.cn/categories/css/"/>
           
         </display>
     </data>
@@ -46,6 +72,24 @@
         <display>
         <title>数值运算与牛顿迭代法</title>
         <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <lastmod>2017-06-25T10:03:43.292Z</lastmod>
+    <data>
+        <display>
+        <title>魔力数字与快速平方根倒数算法</title>
+        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
         
          
            
@@ -257,30 +301,6 @@
            
              
               <breadCrumb title="algorithm" url="http://staynoob.cn/categories/algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
-    <lastmod>2017-01-09T17:26:22.352Z</lastmod>
-    <data>
-        <display>
-        <title>为什么bootstrap采用border-box盒模型</title>
-        <pubTime>2016-05-18T08:48:58.000Z</pubTime>
-        
-        <tag>bootstrap</tag>
-         
-        <tag>fontend</tag>
-         
-        <tag>前端工具</tag>
-         
-         
-           
-             
-              <breadCrumb title="css" url="http://staynoob.cn/categories/css/"/>
           
         </display>
     </data>
