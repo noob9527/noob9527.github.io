@@ -27,7 +27,7 @@ permalink: /initial-setup-Ubuntu-16.04-server
 3. 添加sudo权限
 	在ubuntu系统中，将用户添加到sudo用户组会自动获得sudo命令的执行权限，这里可以使用
     ```bash
-    usermode -aG sudo xy
+    usermod -aG sudo xy
     ```
     或者
 	```bash
@@ -93,9 +93,9 @@ ubuntu14.04使用init.d管理服务(daemon)，而ubuntu16.04已经换成了syste
     ```
 - systemd
 	```bash
-    systemctl start bsc-web     #启动
-    systemctl stop bsc-web      #停止
-    systemctl status bsc-web    #查看状态
-    systemctl enable bsc-web    #开机启动
-    journalctl -u bsc-web       #查看日志
+    systemctl start mysql     #启动
+    systemctl stop mysql      #停止
+    systemctl status mysql    #查看状态
+    systemctl enable mysql    #开机启动
+    journalctl -u mysql       #查看日志
     ```

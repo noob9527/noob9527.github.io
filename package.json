@@ -2,6 +2,16 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "hx:new": "hexo new",
+    "hx:publish": "hexo publish",
+    "hx:clean": "hexo clean",
+    "start": "hexo server --draft",
+    "start:static": "hexo server --draft --static",
+    "generate": "npm run hx:clean && hexo generate",
+    "generate:watch": "npm run hx:clean && hexo generate --watch",
+    "deploy": "hexo deploy"
+  },
   "hexo": {
     "version": "3.3.7"
   },
