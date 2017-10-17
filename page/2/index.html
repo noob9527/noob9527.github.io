@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://staynoob.cn/page/2/index.html">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="许炎的个人博客">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOOB">
 <meta name="twitter:description" content="许炎的个人博客">
@@ -195,7 +196,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj56ht1j70015rcj5kl8vuqqw">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj8vt2kun001345j5tlg6pmva">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -280,7 +281,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj56ht1j2000xrcj5iwkh9uia">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cj8vt2kul000z45j5nknxqxu6">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -373,7 +374,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cj56ht1j40012rcj5on2op01u">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cj8vt2kuk000w45j54hgxl8pu">-->
         <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
       <!--</a>-->
     
@@ -460,7 +461,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cj56ht1iy000qrcj5j20j5kje">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cj8vt2kud000l45j5bcbbwtqn">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -560,7 +561,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cj56ht1j1000urcj5mq01h5tz">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cj8vt2kui000r45j5pyy35hxn">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     
@@ -576,7 +577,7 @@
             <blockquote>
 <p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
 </blockquote>
-<h3 id="一-来源与背景"><a href="#一-来源与背景" class="headerlink" title="一.来源与背景"></a>一.来源与背景</h3><p>这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛的讨论，下面是代码的原始版本（去掉了c预处理器指令，保留了源码注释）：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">Q_rsqrt</span><span class="params">( <span class="keyword">float</span> number )</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">long</span> i;</div><div class="line">	<span class="keyword">float</span> x2, y;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">float</span> threehalfs = <span class="number">1.5F</span>;</div><div class="line"></div><div class="line">	x2 = number * <span class="number">0.5F</span>;</div><div class="line">	y  = number;</div><div class="line">	i  = * ( <span class="keyword">long</span> * ) &amp;y; <span class="comment">// evil floating point bit level hacking</span></div><div class="line">	i  = <span class="number">0x5f3759df</span> - ( i &gt;&gt; <span class="number">1</span> ); <span class="comment">// what the fuck?</span></div><div class="line">	y  = * ( <span class="keyword">float</span> * ) &amp;i;</div><div class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></div><div class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="一-来源与背景"><a href="#一-来源与背景" class="headerlink" title="一.来源与背景"></a>一.来源与背景</h3><p>这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛的讨论，下面是代码的原始版本（去掉了c预处理器指令，保留了源码注释）：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">Q_rsqrt</span><span class="params">( <span class="keyword">float</span> number )</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">	<span class="keyword">long</span> i;</div><div class="line">	<span class="keyword">float</span> x2, y;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">float</span> threehalfs = <span class="number">1.5F</span>;</div><div class="line"></div><div class="line">	x2 = number * <span class="number">0.5F</span>;</div><div class="line">	y  = number;</div><div class="line">	i  = * ( <span class="keyword">long</span> * ) &amp;y; <span class="comment">// evil floating point bit level hacking</span></div><div class="line">	i  = <span class="number">0x5f3759df</span> - ( i &gt;&gt; <span class="number">1</span> ); <span class="comment">// what the fuck?</span></div><div class="line">	y  = * ( <span class="keyword">float</span> * ) &amp;i;</div><div class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></div><div class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>经测试这段代码比使用c标准函数(float)(1.0/sqrt(x))快4倍，因而引起了多名学者的注意，不少人发表论文来研究它的工作原理。与它的工作方式一样神秘的是，截止目前为止，仍没有人站出来对这段逼格爆表的代码表示负责。因此0x5f3759df这个魔力数字的得来方式也成了一个谜。<br>
             <!--阅读全文-->
             <p class="post-more-link">

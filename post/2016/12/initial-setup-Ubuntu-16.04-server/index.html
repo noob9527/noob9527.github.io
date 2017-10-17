@@ -22,8 +22,9 @@
 <meta property="og:url" content="http://staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/index.html">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器  1ssh root@your_server_ip  新">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/ubuntu16_04_server.jpg">
-<meta property="og:updated_time" content="2017-01-09T17:44:10.241Z">
+<meta property="og:updated_time" content="2017-10-17T16:09:41.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Initial Setup Ubuntu16.04 server">
 <meta name="twitter:description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器  1ssh root@your_server_ip  新">
@@ -197,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cj56ht1iy000qrcj5j20j5kje">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cj8vt2kud000l45j5bcbbwtqn">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -253,7 +254,7 @@
   <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">sudo /etc/init.d/mysql start</div><div class="line">sudo /etc/init.d/mysql restart</div><div class="line">sudo /etc/init.d/mysql stop</div><div class="line">sudo /etc/init.d/mysql status</div><div class="line"><span class="comment">#或者</span></div><div class="line">sudo service mysql start   <span class="comment">#启动</span></div><div class="line">sudo service mysql restart <span class="comment">#重启</span></div><div class="line">sudo service mysql stop    <span class="comment">#停止</span></div><div class="line">sudo service mysql status  <span class="comment">#查看状态</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>systemd</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">systemctl start bsc-web     <span class="comment">#启动</span></div><div class="line">systemctl stop bsc-web      <span class="comment">#停止</span></div><div class="line">systemctl status bsc-web    <span class="comment">#查看状态</span></div><div class="line">systemctl <span class="built_in">enable</span> bsc-web    <span class="comment">#开机启动</span></div><div class="line">journalctl -u bsc-web       <span class="comment">#查看日志</span></div></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">systemctl start mysql     <span class="comment">#启动</span></div><div class="line">systemctl stop mysql      <span class="comment">#停止</span></div><div class="line">systemctl status mysql    <span class="comment">#查看状态</span></div><div class="line">systemctl <span class="built_in">enable</span> mysql    <span class="comment">#开机启动</span></div><div class="line">journalctl -u mysql       <span class="comment">#查看日志</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </div>

@@ -22,6 +22,7 @@
 <meta property="og:url" content="http://staynoob.cn/page/4/index.html">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="许炎的个人博客">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NOOB">
 <meta name="twitter:description" content="许炎的个人博客">
@@ -195,7 +196,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cj56ht1ih0009rcj5bjs8ypwk">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cj8vt2ktv000945j53t1t94wv">-->
         <img src="/img/sort-algorithm-2.jpg" itemprop="image">
       <!--</a>-->
     
@@ -281,7 +282,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cj56ht1ie0008rcj56bawc1oy">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cj8vt2kts000845j5xey7qavy">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -371,7 +372,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cj56ht1ic0007rcj5ncu9q6y2">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cj8vt2kto000545j5uwtnfl60">-->
         <img src="/img/ubuntu16_04.jpg" itemprop="image">
       <!--</a>-->
     
@@ -385,9 +386,10 @@
             
             <!--摘录-->
             <blockquote>
-<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10)</p>
+<p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10),</p>
 </blockquote>
-<h3 id="一-安装常用软件"><a href="#一-安装常用软件" class="headerlink" title="一.安装常用软件"></a>一.安装常用软件</h3><p>包括sogou输入法,chrome,vlc,vim,rar等等,安装过程都很简单,就不详细描述了</p>
+<h3 id="一-将CAPSLOCK改为ctrl键"><a href="#一-将CAPSLOCK改为ctrl键" class="headerlink" title="一.将CAPSLOCK改为ctrl键"></a>一.将CAPSLOCK改为ctrl键</h3><p>按<code>alt+F2</code>，搜索gnome-session-properties，添加启动命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">setxkbmap -option ctrl:nocaps</div></pre></td></tr></table></figure></p>
+<p>谁用谁知道</p>
 <h3 id="二-修改root密码-取消sudo密码"><a href="#二-修改root密码-取消sudo密码" class="headerlink" title="二.修改root密码,取消sudo密码"></a>二.修改root密码,取消sudo密码</h3><p>新安装的linux系统默认是没有启用root账户的,需要使用sudo命令修改root密码,同时作为桌面版系统,每次使用sudo命令都需要输入密码显得很多余<br>使用如下命令修改root密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo passwd root</div></pre></td></tr></table></figure></p>
 <p>使用如下命令取消sudo密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo visudo</div></pre></td></tr></table></figure></p>
 <p>该命令实际作用是打开编辑器编辑 <strong>/etc/sudoers</strong> 里面的内容,只是在修改完成后会自动检查格式是否有效,这里只要修改sudo用户组,添加 <strong>NOPASSWD</strong> 即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#Allow members of group sudo to execute any command</div><div class="line">%sudo ALL=(ALL:ALL) NOPASSWD:ALL</div></pre></td></tr></table></figure></p>
@@ -459,7 +461,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_cj56ht1hu0001rcj5s3h55znw">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_cj8vt2ktc000345j5t4i6z75u">-->
         <img src="/img/init_commit.jpg" itemprop="image">
       <!--</a>-->
     
