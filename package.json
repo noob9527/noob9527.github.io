@@ -13,10 +13,11 @@
     "deploy": "hexo deploy"
   },
   "hexo": {
-    "version": "3.3.7"
+    "version": "3.5.0"
   },
   "dependencies": {
-    "hexo": "^3.2.0",
+    "g": "^2.0.1",
+    "hexo": "^3.5.0",
     "hexo-browsersync": "^0.2.0",
     "hexo-deployer-git": "^0.1.0",
     "hexo-generator-archive": "^0.1.4",

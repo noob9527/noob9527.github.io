@@ -10,7 +10,7 @@ permalink: /initial-setup-Ubuntu-16.04-server
 ---
 
 
-> 这篇文章算是[安装ubuntu16.04后要做的9件事](http://staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/)的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。
+> 这篇文章算是[安装ubuntu16.04后要做的9件事](http://blog.staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/)的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。
 
 ### 一.配置用户
 1. 连接主机

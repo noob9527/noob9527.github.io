@@ -15,7 +15,7 @@ date: 2016-05-24 16:20:38
  - 许炎/男/1991
  - 工作年限：IT行业1年
  - 现居住地：苏州
- - 技术博客：[staynoob.cn](staynoob.cn)
+ - 技术博客：[blog.staynoob.cn](blog.staynoob.cn)
  - Github：https://github.com/noob9527
  - 期望职位：Web前端实习
  - 期望薪资：4500左右
