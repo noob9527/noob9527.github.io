@@ -1,7 +1,7 @@
 ---
 title: init commit
-categories: diary
-tags: 有一说一
+categories: Diary
+tags: 
 date: 2016-04-14 16:18:33
 photos: /img/init_commit.jpg
 

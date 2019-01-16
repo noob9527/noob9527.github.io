@@ -1,7 +1,7 @@
 ---
 title: 'lambda calculus:Introduction'
-categories: 函数式编程
-tags: lambda calculus
+categories: Functional Programming
+tags: Lambda Calculus
 photos: /img/lambda-calculus.jpg
 permalink: /lambda-calculus-introduction
 date: 2017-03-12 15:31:30

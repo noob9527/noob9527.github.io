@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "hx:new": "hexo new",
-    "hx:publish": "hexo publish",
-    "hx:clean": "hexo clean",
-    "start": "hexo server --draft",
-    "start:static": "hexo server --draft --static",
-    "generate": "npm run hx:clean && hexo generate",
-    "generate:watch": "npm run hx:clean && hexo generate --watch",
-    "deploy": "hexo deploy"
+    "hx:new": "npx hexo new",
+    "hx:publish": "npx hexo publish",
+    "hx:clean": "npx hexo clean",
+    "start": "npx hexo server --draft",
+    "start:static": "npx hexo generate --draft && npx hexo server --draft --static",
+    "generate": "npx npm run hx:clean && npx hexo generate",
+    "generate:watch": "npx npm run hx:clean && npx hexo generate --watch",
+    "deploy": "npx hexo deploy"
   },
   "hexo": {
     "version": "3.5.0"
@@ -33,6 +33,7 @@
     "hexo-renderer-less": "^0.1.3",
     "hexo-renderer-marked": "^0.2.10",
     "hexo-renderer-stylus": "^0.3.1",
-    "hexo-server": "^0.2.0"
+    "hexo-server": "^0.2.0",
+    "natives": "^1.1.6"
   }
 }

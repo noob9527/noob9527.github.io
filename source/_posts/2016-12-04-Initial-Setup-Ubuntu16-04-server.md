@@ -1,9 +1,8 @@
 ---
 title: Initial Setup Ubuntu16.04 server
-categories:
-  - linux
+categories: System
 tags:
-  - ubuntu
+  - Linux
 photos: /img/ubuntu16_04_server.jpg
 date: 2016-12-04 11:44:13
 permalink: /initial-setup-Ubuntu-16.04-server
