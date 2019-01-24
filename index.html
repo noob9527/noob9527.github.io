@@ -196,7 +196,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrb8gj1k000oczj5yrkw1yn1">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrb92mx2001k7aj5c90ghkyq">-->
         <img src="/img/understanding-zombie-process.jpg" itemprop="image">
       <!--</a>-->
     
@@ -215,7 +215,10 @@
 <h3 id="What-is-a-quot-zombie-process-quot"><a href="#What-is-a-quot-zombie-process-quot" class="headerlink" title="What is a &quot;zombie process&quot;?"></a>What is a &quot;zombie process&quot;?</h3><blockquote>
 <p>&quot;In UNIX System terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.&quot;</p>
 </blockquote>
-<p>After we create a process via <code>fork</code> function, we get a parent process and a child process. The parent process sometimes needs to know how the child is terminated. In normal cases, we call <code>wait</code> or <code>waitpid</code> to fetch the termination status. However, a child process could terminate before its parent waits for it. In such a case, If the system cleared the child&#39;s information completely, its parent wouldn&#39;t be able to know its status. As a result, the kernel has to keep a small amount of information after a process terminates. A process like this that has been terminated, but not completely disappear, is called a zombie process.<br>Note that zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not remain as zombie processes; instead, (like all orphaned processes) they are adopted by <code>init</code>, which waits on its children. The result is that a process that is both a zombie and an orphan will be reaped automatically.</p>
+<p>After we create a process via <code>fork</code> function, we get a parent process and a child process. The parent process sometimes needs to know how the child is terminated. In normal cases, we call <code>wait</code> or <code>waitpid</code> to fetch the termination status. However, a child process could terminate before its parent waits for it. In such a case, If the system cleared the child&#39;s information completely, its parent wouldn&#39;t be able to know its status. As a result, the kernel has to keep a small amount of information after a process terminates. A process like this that has been terminated, but not completely disappear, is called a zombie process.</p>
+<blockquote>
+<p>Note that zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not remain as zombie processes; instead, (like all orphaned processes) they are adopted by <code>init</code>, which waits on its children. The result is that a process that is both a zombie and an orphan will be reaped automatically.</p>
+</blockquote>
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2019/01/understanding-zombie-process/#more">阅读全文</a>
@@ -284,7 +287,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrb8gj1j000jczj5pcj5v8zc">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrb92mx1001g7aj59v5byf47">-->
         <img src="/img/closure-in-javascript.jpg" itemprop="image">
       <!--</a>-->
     
@@ -371,7 +374,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrb8gj2r002aczj5hhb8if69">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrb92mxq00297aj5scjcf1sw">-->
         <img src="/img/btree-data-structure.jpg" itemprop="image">
       <!--</a>-->
     
@@ -456,7 +459,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb8gj2p0029czj55jkicshz">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb92mxo00277aj508xvlcxc">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -548,7 +551,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb8gj2k001zczj51zocxm95">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb92mxn00247aj5two7s761">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
