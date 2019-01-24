@@ -7,7 +7,7 @@
       <title><![CDATA[Understanding Zombie Process]]></title>
       <url>http://staynoob.cn/post/2019/01/understanding-zombie-process/</url>
       <content type="html"><![CDATA[<blockquote>
-<p>As a mild OCD, I usually feel uncomfortable when <code>top</code> command reports there&#39;re zombie processes running on my computer. After some study, I found that the zombie process is not as scary as my thought. This article briefly introduces the zombie process in UNIX-like systems.</p>
+<p>As a programmer, I usually feel uncomfortable when <code>top</code> command reports there&#39;re zombie processes running on my computer. After some study, I found that the zombie process is not as scary as my thought. This article briefly introduces the zombie process in UNIX-like systems.</p>
 </blockquote>
 <h3 id="What-is-a-quot-zombie-process-quot"><a href="#What-is-a-quot-zombie-process-quot" class="headerlink" title="What is a &quot;zombie process&quot;?"></a>What is a &quot;zombie process&quot;?</h3><blockquote>
 <p>&quot;In UNIX System terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.&quot;</p>
