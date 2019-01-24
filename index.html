@@ -37,7 +37,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -146,6 +146,282 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-understanding-zombie-process"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-01-25T05:48:55+08:00" 
+          content="2019-01-25">
+        2019-01-25
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/System/">System</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrb5cep40003pbj5u9lisydc">-->
+        <img src="/img/understanding-zombie-process.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>&quot;In UNIX System terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.&quot;</p>
+</blockquote>
+<h3 id="What-is-a-quot-zombie-process-quot"><a href="#What-is-a-quot-zombie-process-quot" class="headerlink" title="What is a &quot;zombie process&quot;?"></a>What is a &quot;zombie process&quot;?</h3><p>After we create a process via <code>fork</code> function, we get a parent process and a child process. The parent process sometimes needs to know how the child is terminated. In normal cases, we call <code>wait</code> or <code>waitpid</code> to fetch the termination status. However, a child process could terminate before its parent waits for it. In such a case, If the system cleared the child&#39;s information completely, its parent wouldn&#39;t be able to know its status. As a result, the kernel has to keep a small amount of information after a process terminates. A process like this that has been terminated, but not completely disappear, is called a zombie process.<br>Note that zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not remain as zombie processes; instead, (like all orphaned processes) they are adopted by <code>init</code>, which waits on its children. The result is that a process that is both a zombie and an orphan will be reaped automatically.</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/01/understanding-zombie-process/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-things-need-to-be-aware-before-using-jpa"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-01-25T03:25:47+08:00" 
+          content="2019-01-25">
+        2019-01-25
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/things-need-to-be-aware-before-using-jpa" rel="gallery_cjrb5ceqa001gpbj5ep6c4o0q">-->
+        <img src="/img/things-need-to-be-aware-before-using-jpa" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Nowadays, ORM technique has been playing an important role in object-oriented programming, and JPA is now considered the standard industry approach for ORM in the Java industry. In this post, I summarized several phenomena which violate my intuition and prone to bugs.</p>
+</blockquote>
+<p>As JPA itself is just a specification, there are various underlying implementation. In this post, we are only talking about Hibernate implementation. In fact, I&#39;ve never used or tested any other implementation so far, which means there&#39;s a chance that a problem cannot be reproduced in other JPA implementation.<br>As in post <a href="http://blog.staynoob.cn/post/Java/things-need-to-be-aware-before-using-jpa" target="_blank" rel="noopener">Things Need to be aware before using Transaction Annotation</a>, all the samples are written in Kotlin language. And Spring Data JPA framework is used for the sake of convenience. Full source code can be found at <a href="https://github.com/noob9527/post-code/1-things-need-to-be-aware-before-using-jpa" target="_blank" rel="noopener">things-need-to-be-aware-before-using-jpa</a>.</p>
+<h3 id="1-Implement-equals-and-hashcode-more-judiciously-in-JPA-entity"><a href="#1-Implement-equals-and-hashcode-more-judiciously-in-JPA-entity" class="headerlink" title="1.Implement equals and hashcode more judiciously in JPA entity"></a>1.Implement <code>equals</code> and <code>hashcode</code> more judiciously in JPA entity</h3><p>You may already know that there are several contracts we have to obey when implementing <code>equals</code> and <code>hashcode</code> method. Namely Reflexivity, Symmetry, Transitivity, Consistency and &quot;Non-nullity&quot;. When it comes to a JPA entity, things become even more difficult since entity state transitions must be taken into account. In other words, <code>equals</code> and <code>hashcode</code> methods must behave consistently across all entity state transitions. Thus, the can immediately conclude that <strong>logical key(usually auto generate after the first time being persisted) should not be taken into consideration.</strong> <code>AbstractPersistable</code> from spring data JPA library is a perfect counterexample which implements <code>equals</code> and <code>hashcode</code> based on auto-generation id. The code below demonstrates its flaw<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> : <span class="type">AbstractPersistable</span>&lt;<span class="type">Int</span>&gt;</span>()</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> demo = Demo1()</div><div class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = hashSetOf(demo)</div><div class="line"></div><div class="line">    assertThat(<span class="keyword">set</span>.contains(demo)).isTrue()</div><div class="line"></div><div class="line">    entityManager.persist(demo)</div><div class="line">    entityManager.flush()</div><div class="line"></div><div class="line">    assertThat(<span class="keyword">set</span>.contains(demo)).isFalse()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>The <code>HashSet</code> failed to recognize the same entity since its hashcode changed after being persisted. Certainly, this is prone to error. For similar reason, <strong>default <code>equals</code> and <code>hashcode</code> inherited from <code>java.lang.Object</code> is not suitable for JPA entity either.</strong> Code below shows that a merged entity isn&#39;t equal to itself because <code>entityManager.merge</code> may return a different object reference.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo2</span> : <span class="type">Persistable</span>&lt;<span class="type">Int</span>&gt; </span>&#123;</div><div class="line">    <span class="meta">@Id</span></div><div class="line">    <span class="meta">@GeneratedValue</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">var</span> id: <span class="built_in">Int</span>? = <span class="literal">null</span></div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getId</span><span class="params">()</span></span>: <span class="built_in">Int</span>? &#123;</div><div class="line">        <span class="keyword">return</span> id</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isNew</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</div><div class="line">        <span class="keyword">return</span> id == <span class="literal">null</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// inherit equals and hashcode from Object</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> demo = Demo2()</div><div class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = hashSetOf(demo)</div><div class="line"></div><div class="line">    assertThat(<span class="keyword">set</span>.contains(demo)).isTrue()</div><div class="line"></div><div class="line">    entityManager.persist(demo)</div><div class="line">    entityManager.flush()</div><div class="line">    entityManager.detach(demo)</div><div class="line"></div><div class="line">    <span class="keyword">val</span> managed = entityManager.merge(demo)</div><div class="line"></div><div class="line">    assertThat(<span class="keyword">set</span>.contains(managed)).isFalse()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Now, the only option left to us is implementing <code>equals</code> and <code>hashcode</code> methods based on some business key, and never change the key after the entity is created. However, you can not always find such keys in practical. In such cases, the best we can do is no matter which way we choose to implement the methods, document the vulnerability clearly.</p>
+<p>Reference:</p>
+<ul>
+<li><a href="https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/" target="_blank" rel="noopener">A beginner’s guide to entity state transitions with JPA and Hibernate</a></li>
+<li><a href="https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/" target="_blank" rel="noopener">How to implement Equals and HashCode for JPA entities</a></li>
+<li><a href="https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/" target="_blank" rel="noopener">How to implement equals and hashCode using the JPA entity identifier (Primary Key)</a></li>
+</ul>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-things-need-to-be-aware-before-using-transaction-annotation"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-01-25T02:40:39+08:00" 
+          content="2019-01-25">
+        2019-01-25
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/things-need-to-be-aware-before-using-transaction-annotation" rel="gallery_cjrb5cep10001pbj5k0m7koxe">-->
+        <img src="/img/things-need-to-be-aware-before-using-transaction-annotation" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Spring framework has a <code>@Transaction</code> annotation, which can save you from writing a lot of template code. However, things may not as simple as you think...</p>
+</blockquote>
+<h3 id="Before-We-Start"><a href="#Before-We-Start" class="headerlink" title="Before We Start"></a>Before We Start</h3><p>Our samples are written in Kotlin language. In addition, I assume that you are already familiar with frameworks below.</p>
+<ul>
+<li>Spring</li>
+<li>JPA(hibernate implementation)</li>
+<li>Spring Data JPA</li>
+</ul>
+<p>We have a simple demo entity and repository.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entity</span></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoEntity</span></span>(</div><div class="line">        <span class="keyword">val</span> name: String</div><div class="line">) : AbstractPersistable&lt;<span class="built_in">Int</span>&gt;()</div><div class="line"></div><div class="line"><span class="comment">// repository</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">DemoRepo</span> : <span class="type">CrudRepository</span>&lt;<span class="type">DemoEntity, Int</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>The full source code is available at <a href="https://github.com/noob9527/post-code/1-things-need-to-be-aware-before-using-transaction-annotation" target="_blank" rel="noopener">things-need-to-be-aware-before-using-transaction-annotation</a>.</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example 1"></a>Example 1</h3><p>Let&#39;s start from a simple sample, we write a function <code>persist</code>, which involves a read-write transaction, and expect that the transaction will rollback if an exception is thrown during the invocation.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoService1</span></span>(</div><div class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</div><div class="line">) &#123;</div><div class="line">    <span class="meta">@Transactional</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        demoRepo.save(demo) <span class="comment">// you may think this action will be rollback</span></div><div class="line">        <span class="comment">// some action may or may not throw an exception</span></div><div class="line">        <span class="keyword">throw</span> Exception(<span class="string">"Oops!"</span>) <span class="comment">// For demonstration sake, we just throw an exception deliberately here</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>However, the code won&#39;t work as you think, the transaction will be committed even though an exception is thrown. The reason is the @Transaction annotation only rollback for <strong> RuntimeException </strong> by default. To fix this problem, we can change the code to this.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Transactional(rollbackFor = [Exception::class])</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">    demoRepo.save(demo)</div><div class="line">    <span class="keyword">throw</span> Exception(<span class="string">"Oops!"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>If you haven&#39;t read the manual before coding, and you don&#39;t test every branch of your code, you can never be able to figure out this problem until the day the exception in <code>methodB</code> is thrown.</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-/closure-in-javascript"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -181,7 +457,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/javascript/">javascript</a>
+        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
     </span>
 </span>
 
@@ -196,7 +472,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cj8vt2kuu001f45j5g4pem6fk">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrb5cepn000opbj5u2l9z99h">-->
         <img src="/img/closure-in-javascript.jpg" itemprop="image">
       <!--</a>-->
     
@@ -268,7 +544,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
     </span>
 </span>
 
@@ -283,7 +559,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cj8vt2kuw001i45j58278xkdf">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrb5ceqs002apbj55on9mbcs">-->
         <img src="/img/btree-data-structure.jpg" itemprop="image">
       <!--</a>-->
     
@@ -318,282 +594,10 @@
 </article>
 
 
-    <article id="post-/lambda-calculus-y-combinator"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/03/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-03-26T15:49:26+08:00" 
-          content="2017-03-26">
-        2017-03-26
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/函数式编程/">函数式编程</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj8vt2kut001c45j53nped464">-->
-        <img src="/img/lambda-calculus.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>上篇文章的末尾提到了一个问题，如何使用λ演算实现递归函数？其中最出名的解决方案是由数学家<a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank" rel="external">Haskell B. Curry</a>发现的一个被称为Y-combinator的函数。</p>
-</blockquote>
-<h3 id="一-推导过程"><a href="#一-推导过程" class="headerlink" title="一.推导过程"></a>一.推导过程</h3><p>Y-combinator简单来说就是一个输入函数，返回该函数递归版本的函数。关于它的推导我读了很多文章，以下是我总结的一个<em>个人认为</em>比较好理解的版本。（本文代码，可以在<a href="https://github.com/noob9527/y-combinator-js/blob/master/demo.js" target="_blank" rel="external">y-combinator-js</a>仓库中下载）</p>
-<h4 id="Step1"><a href="#Step1" class="headerlink" title="Step1"></a>Step1</h4><p>首先回到大家学习递归函数的起点，阶乘函数，以下是js版本：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> FACT10 = <span class="number">3628800</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> n === <span class="number">0</span> ? <span class="number">1</span> : n * factorial(n - <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line">factorial(<span class="number">10</span>).should.equal(FACT10);</div></pre></td></tr></table></figure></p>
-<p>现在我们的问题是如何将其转换为合法的λ表达式，换句话说如何将其转换为匿名函数？唯一的可能就是把factorial作为参数传入，下面是修改后的版本：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//注意下面的anonymous函数名是不必要的，可以直接写成立即执行函数(IIFE)，之所以我没那样写是为了读起来更清晰</span></div><div class="line"><span class="comment">//es5</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">anonymous1</span>(<span class="params">factorial</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">n</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> n === <span class="number">0</span> ? <span class="number">1</span> : n * factorial(n - <span class="number">1</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"><span class="comment">//es6</span></div><div class="line"><span class="keyword">const</span> anonymous2 = <span class="function"><span class="params">f</span> =&gt;</span> (<span class="function"><span class="params">n</span> =&gt;</span> n == <span class="number">0</span> ? <span class="number">1</span> : n * f(n - <span class="number">1</span>));</div><div class="line">anonymous1(factorial)(<span class="number">10</span>).should.equal(FACT10);</div><div class="line">anonymous2(factorial)(<span class="number">10</span>).should.equal(FACT10);</div></pre></td></tr></table></figure></p>
-<p>现在已经可以使用λ表达式来描述上面的递归函数了，λ演算版本大概长这样(看不懂不要紧，描述的意思跟上面的anonymous函数是一样的)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">λf.λn.ISZERO n 1 (MULT n (f (PRED n)))</div></pre></td></tr></table></figure></p>
-<p>不过事情并没有这么简单，仔细想想我们刚才干了啥？我们定义了一个阶乘函数，但是这个阶乘函数却需要一个已经存在的阶乘函数作为参数才可以正常工作，它就像这个手电筒。</p>
-<div align="center"><br><img src="/img/content/electric-torch.png" alt="electric torch"><br></div>
-
-<p>换句话说，如果给上面的anonymous函数传入一个阶乘函数，它就能返回一个阶乘函数，如果传入的不是阶乘函数，返回的也肯定不是阶乘函数（请叫我达文西...）。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/03/lambda-calculus-y-combinator/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/lambda-calculus-introduction"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/03/lambda-calculus-introduction/">lambda calculus:Introduction</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-03-12T15:31:30+08:00" 
-          content="2017-03-12">
-        2017-03-12
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/函数式编程/">函数式编程</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj8vt2kuq001a45j5ozont0d9">-->
-        <img src="/img/lambda-calculus.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
-</blockquote>
-<h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87" target="_blank" rel="external">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C" target="_blank" rel="external">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98" target="_blank" rel="external">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
-<blockquote>
-<p>如果某个算法是<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA" target="_blank" rel="external">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
-</blockquote>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/03/lambda-calculus-introduction/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/salted-password-hashing"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/03/salted-password-hashing/">加密算法简介</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-03-05T19:25:50+08:00" 
-          content="2017-03-05">
-        2017-03-05
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj8vt2kuo001645j5nelwcv5p">-->
-        <img src="/img/salted-password-hashing.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。</p>
-</blockquote>
-<h3 id="一-散列函数-Hash-function"><a href="#一-散列函数-Hash-function" class="headerlink" title="一.散列函数(Hash function)"></a>一.散列函数(Hash function)</h3><h4 id="1-常见误区"><a href="#1-常见误区" class="headerlink" title="1.常见误区"></a>1.常见误区</h4><p>关于加密算法，最常见的一个误区在于认为MD5,SHA1,SHA256就是加密算法，其实它们只是用来实现加密算法的一部分，更准确的说，它们只是散列函数，就像java中随处可见的<strong>hashCode</strong>方法一样，它们的共同点在于都要尽可能避免冲突（两个不同的输入却有相同的输出），而区别在于java中的hashCode方法用于提高散列表的性能，因此主要关注于计算速度而不是安全。<br>第二个常见误区在于，大家都觉得MD5,SHA1之所以安全，是因为它们计算过程不可逆，举个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MD5(&quot;hello&quot;) = 5D41402ABC4B2A76B9719D911017C592</div></pre></td></tr></table></figure></p>
-<p>对MD5散列函数输入字符串&quot;hello&quot;，总是可以得到<em>5D41402ABC4B2A76B9719D911017C592</em>，但<strong>现在没有以后也不可能有</strong>任何方法将<em>5D41402ABC4B2A76B9719D911017C592</em>解密为&quot;hello&quot;（目前所有所谓的解密都是基于猜测）。乍一看这很神奇，在解释它之前，先来看下维基百科上对散列函数的定义：</p>
-<blockquote>
-<p>散列函数是一种输入<strong>任意</strong>大小的数据，返回固定大小的值的函数</p>
-</blockquote>
-<p>继续以MD5为例，对它输入任意大小的数据，它的返回值都是128位(16字节)。假如这个过程可逆，那么无损压缩就不再有极限，也就意味着给你一张软盘，你就能存储全世界！换句话说，按照上面的定义，<strong>根本不存在可逆的散列函数</strong>。看到这里你可能依然很困惑，对于任意大小的数据散列不可逆也许比较好理解，但是&quot;hello&quot;明明只有5个字符，为什么也不可逆呢？专业一点解释就是，在计算过程中丢掉一部分信息量即可（对于信息的量化，可以参考我这篇文章<a href="http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>），草根一点的解释是，你只要让你的函数对于不同的输入，可以得到相同的输出即可。比如f(x)=x^2就是一个不可逆的函数，因为已知f(x)=1，没办法知道x到底是正1还是负1。</p>
-<h4 id="2-散列冲突-Hash-collision"><a href="#2-散列冲突-Hash-collision" class="headerlink" title="2.散列冲突(Hash collision)"></a>2.散列冲突(Hash collision)</h4><p>对于任意输入数据，经过散列函数计算后得到的散列值，又称为数据指纹（fingerprint）或摘要(digest)，它就像人类的指纹一样，你不可能通过一个人的指纹而了解这个人的全部信息，但是你总是可以快速的取到一个人的指纹。并且很难重复，如果两个不同的输入数据有着同样的散列值，则称为散列冲突。正常情况下假设一个结果分布完全均匀的散列函数输出128位的散列值，那么发生冲突的概率大概在$1/2^{128}$这个数量级，这几乎等同于不可能。但人们可以根据散列函数的实现过程，设计算法来查找冲突值，也就是常说的碰撞攻击(collision attack)。加密用散列函数最大的设计难点，就在于要让别人即使知道了该函数的所有实现细节，也无法找到高效的碰撞攻击算法。</p>
-<h4 id="3-过时的散列函数-Deprecated-hash-function"><a href="#3-过时的散列函数-Deprecated-hash-function" class="headerlink" title="3.过时的散列函数(Deprecated hash function)"></a>3.过时的散列函数(Deprecated hash function)</h4><p>2004年山东大学的王小云教授宣布<strong>攻破MD4,MD5</strong>(<a href="http://eprint.iacr.org/2004/199.pdf" target="_blank" rel="external">Collisions for Hash Functions</a>)，2017年（也就是最近）荷兰密码学研究小组与Google宣布<strong>攻破SHA-1</strong>(<a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" target="_blank" rel="external">Announcing the first SHA1 collision</a>，<a href="http://shattered.it/" target="_blank" rel="external">shattered</a>)，下图解释了对这些函数查找散列冲突所需的计算量：<br><img src="/img/content/hash-collision-computation.jpg" alt="hash-collision-computation"><br>可以看到使用google最近研究的算法破解SHA-1需要<strong>110</strong>块GPU一年的计算量，虽然这个数字看起来非常大，不过依然比暴力算法快了十万倍，因此Google已将SHA-1算法标记为过时(deprecated)的（顺便提一句，linus(linux,git的开发者)最近也受到这条新闻的压力，发文宣布<a href="https://plus.google.com/+LinusTorvalds/posts/7tp2gYWQugL" target="_blank" rel="external">更新git中用到的SHA-1算法</a>）。当然上图还有一点值得注意，前文提到的MD5算法，对它进行碰撞攻击只需要消耗一台智能手机<strong>30秒</strong>的计算量。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/03/salted-password-hashing/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
 
 
 <nav class="site-pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
 </nav>
 
                 </main>
@@ -645,6 +649,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -692,18 +708,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -713,7 +717,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -722,7 +726,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -731,7 +735,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -748,7 +752,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .

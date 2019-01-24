@@ -12,11 +12,11 @@
 <title>聊聊4种主流排序算法(上) - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="sort">
+    <meta name="keywords" content="Sort">
 
 
 <meta name="description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。  一.约定为了更加方便">
-<meta name="keywords" content="sort">
+<meta name="keywords" content="Sort">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聊聊4种主流排序算法(上)">
 <meta property="og:url" content="http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/index.html">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。  一.约定为了更加方便">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/sort-algorithm-1.jpg">
-<meta property="og:updated_time" content="2017-10-12T11:37:21.094Z">
+<meta property="og:updated_time" content="2019-01-16T08:37:04.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊4种主流排序算法(上)">
 <meta name="twitter:description" content="排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。  一.约定为了更加方便">
@@ -40,7 +40,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -183,7 +183,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
     </span>
 </span>
 
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cj8vt2kts000845j5xey7qavy">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cjrb5ceqc001ipbj5n7132el6">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -246,7 +246,7 @@
 <p>插入排序的原理有些类似于打扑克牌抓牌的过程，脑补一下你在玩<strong>升级</strong>这类扑克牌游戏时抓牌的过程，你就学会了插入排序，唯一的区别是当你新抓一张牌时，你一眼就能找到要插入的位置，而计算机需要一定次数的比较才能找到。数组如果一开始是逆序，则插入排序每抓一张牌都要将其跟手上每一张牌进行比较，从而找到正确的插入位置。这就是插入排序的最坏情况。从中很容易得出，插入排序的时间复杂度是O(N^2)，而你“抓牌”的时间复杂度是O(N)。<br>你可能还听过几种平方级算法，比如说选择排序和冒泡排序，它们的应用场景少的可怜。大多数时候它们仅仅用来教计算机初学者如何写代码，国外的一些视频教程甚至直接称之为“玩具”或者“垃圾”算法。你可能会觉得奇怪，为什么同为平方级算法，插入排序如此流行，而选择排序的意义跟<strong>HelloWorld</strong>差不多，先上一张图</p>
 <div align="center"><br><img src="/img/content/insertion-vs-selection.png" alt="insertion-vs-selection"><br></div>
 
-<p>上图描述了插入排序与选择排序的区别，可以看到在平均情况下，插入排序需要进行的比较次数比选择排序几乎少一半。插入排序只有在最坏的情况(输入数组是逆序)下时间复杂度是O(N^2)，在最好的情况(数组已经有序)下是O(N)，而冒泡排序与选择排序无论在什么情况下都是O(N^2)。这个例子也可以说明，比较两种算法，不能仅仅看它们在最差情况下的时间复杂度。<br>以上说明了如果我们只能选择平方级算法，应该优先考虑插入排序。而大牛们早已证明了最优的排序算法(基于比较的)复杂度是O(N*logN)。那又是什么让插入排序得以与这些高级算法竞争呢？<br>后面你会看到，O(N*logN)排序算法大多基于分治(Divide and Conquer)思想，而该思想的实现大多基于递归，在大多数编程语言中，调用函数的开销是非常大的，需要为每个函数分配栈空间，有时还需要保存其作用域直到整个算法结束，这个过程稍有不慎就会得到一个StackOverFlow(栈空间溢出)，部分函数式编程语言使用<a href="https://en.wikipedia.org/wiki/Tail_call" target="_blank" rel="external">尾递归优化(Tail Call Optimization)</a>来缓解这类问题。总之在大多数情况下，函数调用语句无论是时间还是空间花费都高于执行普通语句。于是基于递归的高级排序算法在处理小型数组时性能甚至低于插入排序。</p>
+<p>上图描述了插入排序与选择排序的区别，可以看到在平均情况下，插入排序需要进行的比较次数比选择排序几乎少一半。插入排序只有在最坏的情况(输入数组是逆序)下时间复杂度是O(N^2)，在最好的情况(数组已经有序)下是O(N)，而冒泡排序与选择排序无论在什么情况下都是O(N^2)。这个例子也可以说明，比较两种算法，不能仅仅看它们在最差情况下的时间复杂度。<br>以上说明了如果我们只能选择平方级算法，应该优先考虑插入排序。而大牛们早已证明了最优的排序算法(基于比较的)复杂度是O(N*logN)。那又是什么让插入排序得以与这些高级算法竞争呢？<br>后面你会看到，O(N*logN)排序算法大多基于分治(Divide and Conquer)思想，而该思想的实现大多基于递归，在大多数编程语言中，调用函数的开销是非常大的，需要为每个函数分配栈空间，有时还需要保存其作用域直到整个算法结束，这个过程稍有不慎就会得到一个StackOverFlow(栈空间溢出)，部分函数式编程语言使用<a href="https://en.wikipedia.org/wiki/Tail_call" target="_blank" rel="noopener">尾递归优化(Tail Call Optimization)</a>来缓解这类问题。总之在大多数情况下，函数调用语句无论是时间还是空间花费都高于执行普通语句。于是基于递归的高级排序算法在处理小型数组时性能甚至低于插入排序。</p>
 <p><strong>结论：插入排序适用于初始状态就接近有序的大型数组，此时它的复杂度几乎是线性的，但它更加主要的应用场景是处理微型数组。大量基于递归的排序算法，在递归函数调用前判断当前需要处理的数组大小，如果输入小于某个常量则直接执行插入排序，至于这个常量的大小则因使用环境而异，有人说大概5-15，有人说5-20</strong></p>
 <h3 id="四-希尔-Shell-排序"><a href="#四-希尔-Shell-排序" class="headerlink" title="四.希尔(Shell)排序"></a>四.希尔(Shell)排序</h3><p>前面提到，插入排序在处理大规模随机数组时是非常低效的，它最主要的缺陷在于每次只交换相邻的两个元素，元素只能一步一步的从数组的一端移动到另一端。Donald Shell在此基础上，对其进行了一个小小的改进，于是有了以他名字命名的希尔排序。希尔排序是第一批突破平方级别的算法之一，然而理解它的性能至今仍是一项挑战。上代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> N=arr.length;</div><div class="line"><span class="keyword">int</span> step=<span class="number">1</span>;</div><div class="line"><span class="keyword">while</span>(step &lt; arr.length/<span class="number">3</span>) step=<span class="number">3</span>*step+<span class="number">1</span>; <span class="comment">//&#123;1,4,7,10...&#125;，注意这个序列有更好的选择，详见下文</span></div><div class="line"><span class="keyword">while</span>(step &gt;= <span class="number">1</span>)&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=step;i &lt; arr.length;i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j &gt; i-step &amp;&amp; arr[j] &lt; arr[j-step];j-=step)&#123;</div><div class="line">            exchange(j,j-<span class="number">1</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">	step/=<span class="number">3</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>希尔排序与选择排序最主要的差别在于引入了一个step变量(指步长，一些书上喜欢用gap或h来表示)，这使得每次交换元素位置，都可以使该元素向其最终位置跨一大步，看图：</p>
@@ -269,10 +269,10 @@
 <p>下一篇文章来聊剩下两个算法。</p>
 <p>本文参考链接</p>
 <ul>
-<li><a href="http://algs4.cs.princeton.edu/21elementary/" target="_blank" rel="external">Elementary Sorts</a></li>
-<li><a href="http://www.stoimen.com/blog/2012/02/27/computer-algorithms-shell-sort/" target="_blank" rel="external">Computer Algorithms: Shell Sort</a></li>
-<li><a href="http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L12-ShellSort.htm#increments" target="_blank" rel="external">Sorting Algorithms - Shellsort</a></li>
-<li><a href="http://www.cs.princeton.edu/~rs/shell/paperF.pdf" target="_blank" rel="external">Analysis of Shellsort and Related Algorithms</a></li>
+<li><a href="http://algs4.cs.princeton.edu/21elementary/" target="_blank" rel="noopener">Elementary Sorts</a></li>
+<li><a href="http://www.stoimen.com/blog/2012/02/27/computer-algorithms-shell-sort/" target="_blank" rel="noopener">Computer Algorithms: Shell Sort</a></li>
+<li><a href="http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L12-ShellSort.htm#increments" target="_blank" rel="noopener">Sorting Algorithms - Shellsort</a></li>
+<li><a href="http://www.cs.princeton.edu/~rs/shell/paperF.pdf" target="_blank" rel="noopener">Analysis of Shellsort and Related Algorithms</a></li>
 </ul>
 </div>
             
@@ -280,7 +280,7 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/sort/">sort</a></li></ul>
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Sort/">Sort</a></li></ul>
 
         </footer>
     </div>
@@ -379,6 +379,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -426,18 +438,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -447,7 +447,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -456,7 +456,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -465,7 +465,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -482,7 +482,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .

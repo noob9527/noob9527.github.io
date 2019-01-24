@@ -12,11 +12,11 @@
 <title>Initial Setup Ubuntu16.04 server - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="ubuntu">
+    <meta name="keywords" content="Linux">
 
 
 <meta name="description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器  1ssh root@your_server_ip  新">
-<meta name="keywords" content="ubuntu">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Initial Setup Ubuntu16.04 server">
 <meta property="og:url" content="http://staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/index.html">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器  1ssh root@your_server_ip  新">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/ubuntu16_04_server.jpg">
-<meta property="og:updated_time" content="2017-10-17T16:09:41.971Z">
+<meta property="og:updated_time" content="2019-01-16T08:37:28.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Initial Setup Ubuntu16.04 server">
 <meta name="twitter:description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器  1ssh root@your_server_ip  新">
@@ -40,7 +40,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -183,7 +183,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/linux/">linux</a>
+        <a class="article-category-link" href="/categories/System/">System</a>
     </span>
 </span>
 
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cj8vt2kud000l45j5bcbbwtqn">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cjrb5cepj000hpbj5ngryndub">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -212,7 +212,7 @@
             
             <!--文章内容-->
             <div class="post-content"><blockquote>
-<p>这篇文章算是<a href="http://staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
+<p>这篇文章算是<a href="http://blog.staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/" target="_blank" rel="noopener">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
 </blockquote>
 <h3 id="一-配置用户"><a href="#一-配置用户" class="headerlink" title="一.配置用户"></a>一.配置用户</h3><ol>
 <li><p>连接主机<br> 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器</p>
@@ -223,7 +223,7 @@
 <p> 除了输入新用户的密码外，该命令还会询问一些额外信息，可以直接按<em>enter</em>键跳过。</p>
 </li>
 <li><p>添加sudo权限<br> 在ubuntu系统中，将用户添加到sudo用户组会自动获得sudo命令的执行权限，这里可以使用</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usermode -aG sudo xy</div></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usermod -aG sudo xy</div></pre></td></tr></table></figure>
 <p> 或者</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gpasswd -a xy sudo</div></pre></td></tr></table></figure>
 <p> 来将xy添加到sudo用户组。至此用户配置就已经完成了，以下列一些其它与用户相关的命令</p>
@@ -263,7 +263,7 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li></ul>
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
 
         </footer>
     </div>
@@ -362,6 +362,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -409,18 +421,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -430,7 +430,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -439,7 +439,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -448,7 +448,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -465,7 +465,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .

@@ -12,11 +12,11 @@
 <title>加密算法简介 - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="网络安全,加密算法">
+    <meta name="keywords" content="github, 技术博客, web开发, fontend">
 
 
 <meta name="description" content="最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。  一.散列函数(Hash function)1.常见误区关于加密算法，最常见的一个误区在">
-<meta name="keywords" content="网络安全,加密算法">
+<meta name="keywords" content="github, 技术博客, web开发, fontend">
 <meta property="og:type" content="article">
 <meta property="og:title" content="加密算法简介">
 <meta property="og:url" content="http://staynoob.cn/post/2017/03//salted-password-hashing/index.html">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。  一.散列函数(Hash function)1.常见误区关于加密算法，最常见的一个误区在">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/salted-password-hashing.jpg">
-<meta property="og:updated_time" content="2017-10-12T11:37:21.098Z">
+<meta property="og:updated_time" content="2019-01-16T08:35:18.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="加密算法简介">
 <meta name="twitter:description" content="最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。  一.散列函数(Hash function)1.常见误区关于加密算法，最常见的一个误区在">
@@ -40,7 +40,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -183,7 +183,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/algorithm/">algorithm</a>
+        <a class="article-category-link" href="/categories/Security/">Security</a>
     </span>
 </span>
 
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cj8vt2kuo001645j5nelwcv5p">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cjrb5ceqq0025pbj5w2immpf5">-->
         <img src="/img/salted-password-hashing.jpg" itemprop="image">
       <!--</a>-->
     
@@ -219,9 +219,9 @@
 <blockquote>
 <p>散列函数是一种输入<strong>任意</strong>大小的数据，返回固定大小的值的函数</p>
 </blockquote>
-<p>继续以MD5为例，对它输入任意大小的数据，它的返回值都是128位(16字节)。假如这个过程可逆，那么无损压缩就不再有极限，也就意味着给你一张软盘，你就能存储全世界！换句话说，按照上面的定义，<strong>根本不存在可逆的散列函数</strong>。看到这里你可能依然很困惑，对于任意大小的数据散列不可逆也许比较好理解，但是&quot;hello&quot;明明只有5个字符，为什么也不可逆呢？专业一点解释就是，在计算过程中丢掉一部分信息量即可（对于信息的量化，可以参考我这篇文章<a href="http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>），草根一点的解释是，你只要让你的函数对于不同的输入，可以得到相同的输出即可。比如f(x)=x^2就是一个不可逆的函数，因为已知f(x)=1，没办法知道x到底是正1还是负1。</p>
+<p>继续以MD5为例，对它输入任意大小的数据，它的返回值都是128位(16字节)。假如这个过程可逆，那么无损压缩就不再有极限，也就意味着给你一张软盘，你就能存储全世界！换句话说，按照上面的定义，<strong>根本不存在可逆的散列函数</strong>。看到这里你可能依然很困惑，对于任意大小的数据散列不可逆也许比较好理解，但是&quot;hello&quot;明明只有5个字符，为什么也不可逆呢？专业一点解释就是，在计算过程中丢掉一部分信息量即可（对于信息的量化，可以参考我这篇文章<a href="http://blog.staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/" target="_blank" rel="noopener">香农信息论与回答老鼠喝药问题的正确姿势</a>），草根一点的解释是，你只要让你的函数对于不同的输入，可以得到相同的输出即可。比如f(x)=x^2就是一个不可逆的函数，因为已知f(x)=1，没办法知道x到底是正1还是负1。</p>
 <h4 id="2-散列冲突-Hash-collision"><a href="#2-散列冲突-Hash-collision" class="headerlink" title="2.散列冲突(Hash collision)"></a>2.散列冲突(Hash collision)</h4><p>对于任意输入数据，经过散列函数计算后得到的散列值，又称为数据指纹（fingerprint）或摘要(digest)，它就像人类的指纹一样，你不可能通过一个人的指纹而了解这个人的全部信息，但是你总是可以快速的取到一个人的指纹。并且很难重复，如果两个不同的输入数据有着同样的散列值，则称为散列冲突。正常情况下假设一个结果分布完全均匀的散列函数输出128位的散列值，那么发生冲突的概率大概在$1/2^{128}$这个数量级，这几乎等同于不可能。但人们可以根据散列函数的实现过程，设计算法来查找冲突值，也就是常说的碰撞攻击(collision attack)。加密用散列函数最大的设计难点，就在于要让别人即使知道了该函数的所有实现细节，也无法找到高效的碰撞攻击算法。</p>
-<h4 id="3-过时的散列函数-Deprecated-hash-function"><a href="#3-过时的散列函数-Deprecated-hash-function" class="headerlink" title="3.过时的散列函数(Deprecated hash function)"></a>3.过时的散列函数(Deprecated hash function)</h4><p>2004年山东大学的王小云教授宣布<strong>攻破MD4,MD5</strong>(<a href="http://eprint.iacr.org/2004/199.pdf" target="_blank" rel="external">Collisions for Hash Functions</a>)，2017年（也就是最近）荷兰密码学研究小组与Google宣布<strong>攻破SHA-1</strong>(<a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" target="_blank" rel="external">Announcing the first SHA1 collision</a>，<a href="http://shattered.it/" target="_blank" rel="external">shattered</a>)，下图解释了对这些函数查找散列冲突所需的计算量：<br><img src="/img/content/hash-collision-computation.jpg" alt="hash-collision-computation"><br>可以看到使用google最近研究的算法破解SHA-1需要<strong>110</strong>块GPU一年的计算量，虽然这个数字看起来非常大，不过依然比暴力算法快了十万倍，因此Google已将SHA-1算法标记为过时(deprecated)的（顺便提一句，linus(linux,git的开发者)最近也受到这条新闻的压力，发文宣布<a href="https://plus.google.com/+LinusTorvalds/posts/7tp2gYWQugL" target="_blank" rel="external">更新git中用到的SHA-1算法</a>）。当然上图还有一点值得注意，前文提到的MD5算法，对它进行碰撞攻击只需要消耗一台智能手机<strong>30秒</strong>的计算量。</p>
+<h4 id="3-过时的散列函数-Deprecated-hash-function"><a href="#3-过时的散列函数-Deprecated-hash-function" class="headerlink" title="3.过时的散列函数(Deprecated hash function)"></a>3.过时的散列函数(Deprecated hash function)</h4><p>2004年山东大学的王小云教授宣布<strong>攻破MD4,MD5</strong>(<a href="http://eprint.iacr.org/2004/199.pdf" target="_blank" rel="noopener">Collisions for Hash Functions</a>)，2017年（也就是最近）荷兰密码学研究小组与Google宣布<strong>攻破SHA-1</strong>(<a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" target="_blank" rel="noopener">Announcing the first SHA1 collision</a>，<a href="http://shattered.it/" target="_blank" rel="noopener">shattered</a>)，下图解释了对这些函数查找散列冲突所需的计算量：<br><img src="/img/content/hash-collision-computation.jpg" alt="hash-collision-computation"><br>可以看到使用google最近研究的算法破解SHA-1需要<strong>110</strong>块GPU一年的计算量，虽然这个数字看起来非常大，不过依然比暴力算法快了十万倍，因此Google已将SHA-1算法标记为过时(deprecated)的（顺便提一句，linus(linux,git的开发者)最近也受到这条新闻的压力，发文宣布<a href="https://plus.google.com/+LinusTorvalds/posts/7tp2gYWQugL" target="_blank" rel="noopener">更新git中用到的SHA-1算法</a>）。当然上图还有一点值得注意，前文提到的MD5算法，对它进行碰撞攻击只需要消耗一台智能手机<strong>30秒</strong>的计算量。</p>
 <a id="more"></a>
 <h3 id="二-如何攻击加密算法"><a href="#二-如何攻击加密算法" class="headerlink" title="二.如何攻击加密算法"></a>二.如何攻击加密算法</h3><h4 id="1-暴力算法-Brute-force-attacks"><a href="#1-暴力算法-Brute-force-attacks" class="headerlink" title="1.暴力算法(Brute force attacks)"></a>1.暴力算法(Brute force attacks)</h4><p>已知密码的散列值（数据指纹），和它的加密算法，如何破解该密码?最简单的办法就是穷举该密码所有可能的字符组合，对每个结果调用加密算法，然后与已知的散列值比对。这种办法需要消耗巨大的计算量，但它的好处是总会找到该密码的散列冲突值。举例来说，假设某地警察局获取了罪犯留在犯罪现场的指纹，不可能仅根据该指纹就解析出罪犯的所有信息。于是警察想了一个办法，让当地所有人到警察局一一采集指纹进行比对。这就是暴力算法。</p>
 <h4 id="2-字典攻击-Dictionary-attacks"><a href="#2-字典攻击-Dictionary-attacks" class="headerlink" title="2.字典攻击(Dictionary attacks)"></a>2.字典攻击(Dictionary attacks)</h4><p>字典攻击指的是先使用一个文件，记录常用来作为密码的单词，这些单词可以从已经攻破的生产环境数据库提取，或者使用一些机器学习算法生成。然后使用这些词的散列值与已知密码的散列值进行比对来破解密码。继续用上面的例子，字典攻击就类似于警察局先在所有人中挑出一部分有犯罪记录的人，只采集这些人的指纹来查找罪犯。没有任何方法可以防御暴力攻击与字典攻击，换句话说如果一个加密算法是安全的，那么它只能被暴力算法和字典攻击来破解。</p>
@@ -238,7 +238,7 @@
 <li>不要重用盐值<br>  一个常见的错误是只随机生成一次盐值，之后就所有密码散列都重用该盐值，或者干脆将盐值作为常量写死在程序中。这样一来攻击者可以根据该盐值来计算查找表与彩虹表。同时由于两个相同的密码还是会得到相同的散列值。反向查找表也依然有效，攻击者只要在每次猜测密码后，将该盐值加到猜测的密码上就可以了。<br>  正确的做法是每次要生成密码散列值的时候，都为该密码生成一个新的随机的盐值。</li>
 <li>不要使用太短的盐值<br>  如果盐值太短，攻击者依然可以通过枚举所有可能盐值的方式来构建查找表，举例来说如果盐值只包含三个ASCII字符，那么一共只有95^3种可能的盐值。如果一个查找表包含1MB最常见的密码，那么一个包含所有盐值的查找表大概是837GB，考虑现在花300来块就能买个1TB的硬盘，这个数值真的不算大。<br>  选择多长的盐值合适？一个简单的方法是跟散列值一样长就好，比如说SHA256的输出结果为256bits(32字节)，那么使用32字节的盐值就可以了。</li>
 </ul>
-<h3 id="四-算得慢一点！"><a href="#四-算得慢一点！" class="headerlink" title="四.算得慢一点！"></a>四.算得慢一点！</h3><p>前面提到使用暴力算法来查找SHA-1散列函数的冲突值，需要耗费数千万块GPU一年的运算量。这可能会让你产生一些错觉，因为它是不限定输入的。换句话说假如限定输入只由6位数字与小写字母组成，那么一块GPU每秒可以破解数十亿个这样的输入。对于实际场景中一些比较复杂的密码，其计算效率也不会低于每秒一个。这也解释了为什么说SHA-256,SHA-512是安全的散列函数，但不是安全的加密算法。因为使用暴力算法破解这些安全的散列函数一样是非常高效的。<br>解决的办法是使用一种称为<a href="https://en.wikipedia.org/wiki/Key_stretching" target="_blank" rel="external">key stretching</a>的技术，它的用途就是让散列函数变慢。以bcrypt为例，该算法接受一个安全因子(security factor)为参数，使用该参数来决定密码散列过程有多慢。通过调整该参数，可以将散列函数计算时间控制在0.3到0.5秒之间。这样的时间消耗对用户来说几乎感受不到。但是对于那些试图通过暴力算法来攻击系统的人来说，是慢得无法忍受的。举例来说，假设密码只由6位数字与小写字母组成，一台现代PC使用MD5算法枚举完所有可能性所花的时间不超过30秒。但是如果你将一次散列函数的计算时间控制在0.5秒左右，那么将密码枚举完大概要30年。</p>
+<h3 id="四-算得慢一点！"><a href="#四-算得慢一点！" class="headerlink" title="四.算得慢一点！"></a>四.算得慢一点！</h3><p>前面提到使用暴力算法来查找SHA-1散列函数的冲突值，需要耗费数千万块GPU一年的运算量。这可能会让你产生一些错觉，因为它是不限定输入的。换句话说假如限定输入只由6位数字与小写字母组成，那么一块GPU每秒可以破解数十亿个这样的输入。对于实际场景中一些比较复杂的密码，其计算效率也不会低于每秒一个。这也解释了为什么说SHA-256,SHA-512是安全的散列函数，但不是安全的加密算法。因为使用暴力算法破解这些安全的散列函数一样是非常高效的。<br>解决的办法是使用一种称为<a href="https://en.wikipedia.org/wiki/Key_stretching" target="_blank" rel="noopener">key stretching</a>的技术，它的用途就是让散列函数变慢。以bcrypt为例，该算法接受一个安全因子(security factor)为参数，使用该参数来决定密码散列过程有多慢。通过调整该参数，可以将散列函数计算时间控制在0.3到0.5秒之间。这样的时间消耗对用户来说几乎感受不到。但是对于那些试图通过暴力算法来攻击系统的人来说，是慢得无法忍受的。举例来说，假设密码只由6位数字与小写字母组成，一台现代PC使用MD5算法枚举完所有可能性所花的时间不超过30秒。但是如果你将一次散列函数的计算时间控制在0.5秒左右，那么将密码枚举完大概要30年。</p>
 <h3 id="五-Sample"><a href="#五-Sample" class="headerlink" title="五.Sample"></a>五.Sample</h3><p>bcrypt是目前比较成熟的一种加密算法，下面通过分析一个它的散列值，来看看它涉及到上文提到的哪些要点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy</div></pre></td></tr></table></figure></p>
 <p>该散列值格式称为Modular Crypt Format，其中包括如下内容：</p>
 <ul>
@@ -250,9 +250,9 @@
 <p>最后，这些常识只能帮你鉴别哪些加密不安全，或者说不够安全。了解了这些内容并不意味着你可以在生产环境中使用你自己写的加密算法，本着对用户负责的态度，应该始终选择经过考验的成熟算法。</p>
 <p>参考链接：</p>
 <ul>
-<li><a href="https://crackstation.net/hashing-security.htm" target="_blank" rel="external">hashing-security</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="external">Bcrypt</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank" rel="external">rainbow table</a></li>
+<li><a href="https://crackstation.net/hashing-security.htm" target="_blank" rel="noopener">hashing-security</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener">Bcrypt</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank" rel="noopener">rainbow table</a></li>
 </ul>
 </div>
             
@@ -260,8 +260,6 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/加密算法/">加密算法</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/网络安全/">网络安全</a></li></ul>
-
         </footer>
     </div>
     
@@ -359,6 +357,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -406,18 +416,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -427,7 +425,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -436,7 +434,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -445,7 +443,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -462,7 +460,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .

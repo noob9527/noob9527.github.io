@@ -12,11 +12,11 @@
 <title>lambda calculus:Introduction - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="lambda calculus">
+    <meta name="keywords" content="Lambda Calculus">
 
 
 <meta name="description" content="λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。  一.λ演算(lambda calculus简称LC)与图灵机首先，λ演算的提出者丘奇(Alonzo Church)是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。">
-<meta name="keywords" content="lambda calculus">
+<meta name="keywords" content="Lambda Calculus">
 <meta property="og:type" content="article">
 <meta property="og:title" content="lambda calculus:Introduction">
 <meta property="og:url" content="http://staynoob.cn/post/2017/03//lambda-calculus-introduction/index.html">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。  一.λ演算(lambda calculus简称LC)与图灵机首先，λ演算的提出者丘奇(Alonzo Church)是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/lambda-calculus.jpg">
-<meta property="og:updated_time" content="2017-10-12T11:37:21.098Z">
+<meta property="og:updated_time" content="2019-01-16T08:37:46.229Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="lambda calculus:Introduction">
 <meta name="twitter:description" content="λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。  一.λ演算(lambda calculus简称LC)与图灵机首先，λ演算的提出者丘奇(Alonzo Church)是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。">
@@ -40,7 +40,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -183,7 +183,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/函数式编程/">函数式编程</a>
+        <a class="article-category-link" href="/categories/Functional-Programming/">Functional Programming</a>
     </span>
 </span>
 
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cj8vt2kuq001a45j5ozont0d9">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb5ceqo0023pbj55tyhq9qe">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -214,12 +214,12 @@
             <div class="post-content"><blockquote>
 <p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
 </blockquote>
-<h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87" target="_blank" rel="external">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C" target="_blank" rel="external">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98" target="_blank" rel="external">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
+<h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87" target="_blank" rel="noopener">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C" target="_blank" rel="noopener">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98" target="_blank" rel="noopener">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
 <blockquote>
-<p>如果某个算法是<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA" target="_blank" rel="external">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
+<p>如果某个算法是<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA" target="_blank" rel="noopener">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
 </blockquote>
 <a id="more"></a>
-<p>这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门<a href="https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7" target="_blank" rel="external">图灵完备</a>的编程语言。下面来看看图灵机与λ演算能做什么事情</p>
+<p>这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门<a href="https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7" target="_blank" rel="noopener">图灵完备</a>的编程语言。下面来看看图灵机与λ演算能做什么事情</p>
 <ul>
 <li><p>图灵机的基本思想大概是这样：</p>
 <blockquote>
@@ -242,15 +242,15 @@
 <p>  一门语言只要能做到以上两点，就可以实现任何可行算法，以lisp为代表的函数式编程以λ演算作为理论基础。</p>
 </li>
 </ul>
-<p>可以看到λ演算的概念要比图灵机更加简洁明了，顺便再对比一下c与lisp，以下引用<a href="https://book.douban.com/subject/6021440/" target="_blank" rel="external">《黑客与画家》</a>中的描述</p>
+<p>可以看到λ演算的概念要比图灵机更加简洁明了，顺便再对比一下c与lisp，以下引用<a href="https://book.douban.com/subject/6021440/" target="_blank" rel="noopener">《黑客与画家》</a>中的描述</p>
 <blockquote>
 <p>如果使用Lisp语言，能让程序变得多短？以Lisp和C的比较为例，我听到的大多数说法是C代码的长度是Lisp的7倍到10倍。但是最近，New Architect杂志上有一篇介绍ITA软件公司的文章，里面说&quot;一行Lisp代码相当于20行C代码&quot;，因为此文都是引用ITA总裁的话，所以我想这个数字来自ITA的编程实践。 如果真是这样，那么我们可以相信这句话。ITA的软件，不仅使用Lisp语言，还同时大量使用C和C++，所以这是他们的经验谈。</p>
 </blockquote>
-<p>最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读<a href="http://www.yinwang.org/blog-cn/2015/10/18/turing" target="_blank" rel="external">图灵的光环</a>。</p>
+<p>最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读<a href="http://www.yinwang.org/blog-cn/2015/10/18/turing" target="_blank" rel="noopener">图灵的光环</a>。</p>
 <h3 id="二-λ演算的语法"><a href="#二-λ演算的语法" class="headerlink" title="二.λ演算的语法"></a>二.λ演算的语法</h3><h4 id="1-λ表达式"><a href="#1-λ表达式" class="headerlink" title="1.λ表达式"></a>1.λ表达式</h4><p>λ表达式只遵循以下三条规则：</p>
 <ol>
 <li>变量，比如<code>x</code>就是合法的λ表达式</li>
-<li>如果y是λ表达式，x是变量，则<code>λx.y</code>是合法的λ表达式（又称为函数声明或lambda abstraction），它代表输入x返回y的匿名函数。等价的js(本文均指<a href="http://www.ecma-international.org/ecma-262/6.0/" target="_blank" rel="external">ecmascript6</a>)写法是<code>x=&gt;y</code>。<code>λx.x+y</code>也是合法的，它表示一个函数输入x，返回x与未知的y的和。</li>
+<li>如果y是λ表达式，x是变量，则<code>λx.y</code>是合法的λ表达式（又称为函数声明或lambda abstraction），它代表输入x返回y的匿名函数。等价的js(本文均指<a href="http://www.ecma-international.org/ecma-262/6.0/" target="_blank" rel="noopener">ecmascript6</a>)写法是<code>x=&gt;y</code>。<code>λx.x+y</code>也是合法的，它表示一个函数输入x，返回x与未知的y的和。</li>
 <li>如果t和s都是λ表达式，则<code>(t s)</code>也是λ表达式（又称为函数应用或application），它代表使用参数s调用函数t，等价的js写法是<code>t(s)</code>。</li>
 </ol>
 <p>所有合法的λ表达式都是通过重复这三条规则得到的，不过为了保持表达式的整洁，大家一般遵循以下惯例（暂时看不明白也没关系）:</p>
@@ -326,9 +326,9 @@
 <h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><p>上面演示的功能相当的naive，但从中已经可以领略到λ演算的思想，即先定义最简单的lambda term(函数)，之后通过将简单的表达式不断的组合来实现复杂的算法。下篇文章我打算继续学习如何使用λ演算实现递归函数，换句话说如何使用匿名函数来实现递归?</p>
 <p>参考链接：</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/Lambda_calculus" target="_blank" rel="external">Lambda_calculus</a></li>
-<li><a href="http://goodmath.blogspot.hk/2006/05/my-favorite-calculus-lambda-part-1.html" target="_blank" rel="external">My Favorite Calculus: Lambda (part 1)</a></li>
-<li><a href="http://www.yinwang.org/blog-cn/2015/10/18/turing" target="_blank" rel="external">图灵的光环</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Lambda_calculus" target="_blank" rel="noopener">Lambda_calculus</a></li>
+<li><a href="http://goodmath.blogspot.hk/2006/05/my-favorite-calculus-lambda-part-1.html" target="_blank" rel="noopener">My Favorite Calculus: Lambda (part 1)</a></li>
+<li><a href="http://www.yinwang.org/blog-cn/2015/10/18/turing" target="_blank" rel="noopener">图灵的光环</a></li>
 </ul>
 </div>
             
@@ -336,7 +336,7 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/lambda-calculus/">lambda calculus</a></li></ul>
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Lambda-Calculus/">Lambda Calculus</a></li></ul>
 
         </footer>
     </div>
@@ -435,6 +435,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -482,18 +494,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -503,7 +503,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -512,7 +512,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -521,7 +521,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -538,7 +538,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .

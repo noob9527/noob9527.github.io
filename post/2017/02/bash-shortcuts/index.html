@@ -12,11 +12,11 @@
 <title>Bash小技巧 - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="编程技巧">
+    <meta name="keywords" content="Linux,编程技巧">
 
 
 <meta name="description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
-<meta name="keywords" content="编程技巧">
+<meta name="keywords" content="Linux,编程技巧">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash小技巧">
 <meta property="og:url" content="http://staynoob.cn/post/2017/02//bash-shortcuts/index.html">
@@ -24,7 +24,7 @@
 <meta property="og:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/post/2017/02//bash-shortcuts/img/bash-shotcuts.jpg">
-<meta property="og:updated_time" content="2017-10-12T11:37:21.098Z">
+<meta property="og:updated_time" content="2019-01-16T08:37:39.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash小技巧">
 <meta name="twitter:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
@@ -40,7 +40,7 @@
 <meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
 
 
-<meta name="baidu-site-verification" content="XdtYnvi8ol" />
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
 
 
 
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cj8vt2kun001345j5tlg6pmva">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cjrb5cepl000jpbj5efxu5dzc">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -216,7 +216,7 @@
 </blockquote>
 <h3 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="一.写在前面"></a>一.写在前面</h3><p>这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对<code>!!</code>,<code>!-1</code>,<code>!$</code>,<code>!*</code>分表代表什么了然于心，我想你应该不需要读这篇文章。</p>
 <a id="more"></a>
-<h3 id="二-快捷键"><a href="#二-快捷键" class="headerlink" title="二.快捷键"></a>二.快捷键</h3><p>bash快捷键默认使用的是<a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html" target="_blank" rel="external">readline</a>库的<a href="https://zh.wikipedia.org/wiki/Emacs" target="_blank" rel="external">Emacs</a>模式，因此如果你是Emacs党，可以直接跳过这一节。</p>
+<h3 id="二-快捷键"><a href="#二-快捷键" class="headerlink" title="二.快捷键"></a>二.快捷键</h3><p>bash快捷键默认使用的是<a href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html" target="_blank" rel="noopener">readline</a>库的<a href="https://zh.wikipedia.org/wiki/Emacs" target="_blank" rel="noopener">Emacs</a>模式，因此如果你是Emacs党，可以直接跳过这一节。</p>
 <ul>
 <li><p>历史命令<br>  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(arrow up)与ctrl+n(arrow down)，也可以通过<code>history</code>配合<code>grep</code>来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。</p>
 </li>
@@ -280,8 +280,8 @@
 </ul>
 <p>参考链接：</p>
 <ul>
-<li><a href="http://ahei.info/bash.htm" target="_blank" rel="external">高效操作Bash</a></li>
-<li><a href="https://linux.cn/article-5658-1.html" target="_blank" rel="external">感叹号：bash 的历史扩展功能</a></li>
+<li><a href="http://ahei.info/bash.htm" target="_blank" rel="noopener">高效操作Bash</a></li>
+<li><a href="https://linux.cn/article-5658-1.html" target="_blank" rel="noopener">感叹号：bash 的历史扩展功能</a></li>
 </ul>
 </div>
             
@@ -289,7 +289,7 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/编程技巧/">编程技巧</a></li></ul>
+  <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/编程技巧/">编程技巧</a></li></ul>
 
         </footer>
     </div>
@@ -388,6 +388,18 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-jpa/">Things Need to be aware before using JPA</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/things-need-to-be-aware-before-using-transaction-annotation/">Things Need to be aware before using Transaction Annotation</a>
+            </li>
+            
+            <li>
                 <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
             </li>
             
@@ -435,18 +447,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
-            <li>
-                <a href="/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/">聊聊4种主流排序算法(番外篇):快速排序的优化历程</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -456,7 +456,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/函数式编程/">函数式编程</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -465,7 +465,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/bootstrap/" style="font-size: 10px;">bootstrap</a> <a href="/tags/fontend/" style="font-size: 15px;">fontend</a> <a href="/tags/hibernate/" style="font-size: 10px;">hibernate</a> <a href="/tags/jackson/" style="font-size: 10px;">jackson</a> <a href="/tags/jpa/" style="font-size: 10px;">jpa</a> <a href="/tags/lambda-calculus/" style="font-size: 15px;">lambda calculus</a> <a href="/tags/sort/" style="font-size: 20px;">sort</a> <a href="/tags/spring-mvc/" style="font-size: 10px;">spring mvc</a> <a href="/tags/ubuntu/" style="font-size: 15px;">ubuntu</a> <a href="/tags/前端/" style="font-size: 15px;">前端</a> <a href="/tags/加密算法/" style="font-size: 10px;">加密算法</a> <a href="/tags/有一说一/" style="font-size: 10px;">有一说一</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a> <a href="/tags/网络安全/" style="font-size: 10px;">网络安全</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -474,7 +474,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
@@ -491,7 +491,7 @@
         
             2015 - 
         
-        <span itemprop="copyrightYear">2017</span>
+        <span itemprop="copyrightYear">2019</span>
         noob9527<br>
         Powered by <a href="/about">xy</a>
         .
