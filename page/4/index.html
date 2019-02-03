@@ -146,6 +146,103 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-/css-why-bootstrap-use-border-box-as-default-box-sizing"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-05-18T16:48:58+08:00" 
+          content="2016-05-18">
+        2016-05-18
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cjrox58kb0006z5j5q9oqscsw">-->
+        <img src="/img/box-sizing.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
+</blockquote>
+<p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a href="https://css-tricks.com/box-sizing/" target="_blank" rel="noopener">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
+<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
+<ul>
+<li>width + padding + border = 元素实际可见的宽度</li>
+<li>height + padding + border = 元素实际可见的高度</li>
+</ul>
+<p>这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：</p>
+<ul>
+<li>width = 元素实际可见的宽度</li>
+<li>height = 元素实际可见的高度</li>
+</ul>
+<p>这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。</p>
+<p>尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-/insertion-shell-merge-quick-sort-algorithm-3"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +293,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_cjrb92mwo000x7aj5xu8iikn6">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-3.jpg" rel="gallery_cjrox58l9001cz5j5nsi3czp2">-->
         <img src="/img/sort-algorithm-3.jpg" itemprop="image">
       <!--</a>-->
     
@@ -281,7 +378,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cjrb92mwm000t7aj5lls2ubh7">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cjrox58la001dz5j5kpj72vsg">-->
         <img src="/img/sort-algorithm-2.jpg" itemprop="image">
       <!--</a>-->
     
@@ -367,7 +464,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cjrb92mwj000q7aj5udxj0zt6">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-1.jpg" rel="gallery_cjrox58l70018z5j5fevguqr3">-->
         <img src="/img/sort-algorithm-1.jpg" itemprop="image">
       <!--</a>-->
     
@@ -457,7 +554,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cjrb92mvr00057aj55n7ijkbt">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cjrox58k70003z5j5mduvfel0">-->
         <img src="/img/ubuntu16_04.jpg" itemprop="image">
       <!--</a>-->
     
@@ -496,96 +593,10 @@
 </article>
 
 
-    <article id="post-init-commit"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2016/04/init-commit/">init commit</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2016-04-14T16:18:33+08:00" 
-          content="2016-04-14">
-        2016-04-14
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Diary/">Diary</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/init_commit.jpg" rel="gallery_cjrb92mvk00027aj5uzbj9s1p">-->
-        <img src="/img/init_commit.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <!-- ![init commit](/img/init_commit.jpg) -->
-<blockquote>
-<p>Sometimes I talk to myself because I need expert advice.</p>
-</blockquote>
-<p>OK!Let&#39;s begin.<br>//以上是这篇文章的开头</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2016/04/init-commit/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
 
 
 <nav class="site-pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
 </nav>
 
                 </main>
@@ -635,6 +646,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-content">
         <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
             
             <li>
                 <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
@@ -692,10 +707,6 @@
                 <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -705,7 +716,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -714,7 +725,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 10px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 15px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -723,7 +734,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
+    <lastmod>2019-02-03T13:04:26.439Z</lastmod>
+    <data>
+        <display>
+        <title>Common Pitfalls of Declarative Transaction Management in Spring</title>
+        <pubTime>2019-02-03T13:04:26.000Z</pubTime>
+        
+        <tag>Spring</tag>
+         
+        <tag>JPA</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
     <lastmod>2019-01-24T23:19:54.147Z</lastmod>
     <data>
@@ -326,12 +348,12 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>聊聊4种主流排序算法(下)</title>
-        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
         
         <tag>Sort</tag>
          
@@ -346,12 +368,12 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        <title>聊聊4种主流排序算法(下)</title>
+        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
         
         <tag>Sort</tag>
          

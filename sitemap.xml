@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
+    
+    <lastmod>2019-02-03T13:04:26.439Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
     
     <lastmod>2019-01-24T23:19:54.147Z</lastmod>
@@ -114,14 +121,14 @@
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
     
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
     
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     

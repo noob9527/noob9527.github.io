@@ -146,6 +146,104 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-common-pitfalls-of-declarative-transaction-management-in-spring"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-02-03T21:04:26+08:00" 
+          content="2019-02-03">
+        2019-02-03
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjrox58lo0025z5j55q3t35q8">-->
+        <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative management is still preferred since it is less invasive to application code. In this post, I&#39;m going to summarize several pitfalls you may encounter while using declarative transaction management. Certainly, if you read the official document thoroughly, you should know how to avoid them on your own, but if you think of it is all about annotating your method with the @Transactional annotation as I did, you may never figure them out until the day your customer reports his balance is incorrect.</p>
+</blockquote>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>Our samples are written in Kotlin language. In addition, I assume that you are already familiar with the following frameworks.</p>
+<ul>
+<li>Spring</li>
+<li>JPA(Hibernate implementation)</li>
+<li>Spring Data JPA</li>
+</ul>
+<p>Examples in this post are based on the following class:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entity</span></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoEntity</span></span>(</div><div class="line">        <span class="keyword">val</span> name: String</div><div class="line">) : AbstractPersistable&lt;<span class="built_in">Int</span>&gt;()</div><div class="line"></div><div class="line"><span class="comment">// repository</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">DemoRepo</span> : <span class="type">CrudRepository</span>&lt;<span class="type">DemoEntity, Int</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>Read the manual of Spring Data JPA If you are not able to understand the above code. Finally, The related test code will be available at <a href="https://github.com/noob9527/post-code/tree/master/1-common-pitfalls-of-declarative-transaction-management-in-spring" target="_blank" rel="noopener">common-pitfalls-of-declarative-transaction-management-in-spring</a>.</p>
+<h3 id="Pitfall-1-Transactional-annotation-may-have-no-effect-at-all"><a href="#Pitfall-1-Transactional-annotation-may-have-no-effect-at-all" class="headerlink" title="Pitfall 1: @Transactional annotation may have no effect at all"></a>Pitfall 1: @Transactional annotation may have no effect at all</h3><p>It&#39;s a common circumstance that we put some code in a private method so it can be reused. If the code involves a transaction, we may end up with writing code like this.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoService</span></span>(</div><div class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</div><div class="line">) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        persist(demo)</div><div class="line">        <span class="comment">// do something</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        persist(demo)</div><div class="line">        <span class="comment">// do other things</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Transactional</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></div><div class="line">        demoRepo.save(demo)</div><div class="line">        unpredictableMethod()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</div><div class="line">            <span class="keyword">throw</span> Exception(<span class="string">"Oops!"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>In this case, the <code>persist</code> method will be invoked as if no @Transactional annotation is present. To understand why, we need to know that the declarative transaction is implemented on top of AOP(Aspect Oriented Programming) proxies. A proxied method invocation procedure looks like this:<br><img src="/img/content/common-pitfalls-of-declarative-transaction-management-in-spring/transactional-proxy.png" alt="transactional-proxy"><br>From the picture, it is not hard to imagine that the <code>beginTransaction</code>, <code>commit</code> and <code>rollback</code> logic is implemented in a so called &quot;advice&quot; component. &quot;Advice&quot; here refers to a core concept of AOP(read the documentation of <a href="https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/aop.html" target="_blank" rel="noopener">Spring AOP</a> to get more information), and there is two different advice mode supported by Spring transaction management, which called &quot;PROXY&quot; and &quot;ASPECTJ&quot;. As the document says:</p>
+<blockquote>
+<p>When using proxies, you should apply the @Transactional annotation only to methods with public visibility. If you do annotate protected, private or package-visible methods with the @Transactional annotation, no error is raised, but the annotated method does not exhibit the configured transactional settings. Consider the use of AspectJ if you need to annotate non-public methods.</p>
+</blockquote>
+<p>Now the reason is pretty clear, to fix the problem, we can either switch the advice mode from &quot;PROXY&quot;(default option) to &quot;ASPECTJ&quot;, or remove the private modifier from the <code>persist</code> method. Let&#39;s say we choose to remove the modifier, you can find that the <code>persist</code> is still invoked without any transaction, because we just fall into the next pitfall.</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-understanding-zombie-process"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +294,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrb92mx2001k7aj5c90ghkyq">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrox58kk000kz5j5gnbx3876">-->
         <img src="/img/understanding-zombie-process.jpg" itemprop="image">
       <!--</a>-->
     
@@ -287,7 +385,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrb92mx1001g7aj59v5byf47">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrox58ki000iz5j50ludfoyz">-->
         <img src="/img/closure-in-javascript.jpg" itemprop="image">
       <!--</a>-->
     
@@ -374,7 +472,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrb92mxq00297aj5scjcf1sw">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrox58ll0021z5j5x3hzxjt9">-->
         <img src="/img/btree-data-structure.jpg" itemprop="image">
       <!--</a>-->
     
@@ -459,7 +557,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb92mxo00277aj508xvlcxc">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrox58lk001zz5j5u0btqj0h">-->
         <img src="/img/lambda-calculus.jpg" itemprop="image">
       <!--</a>-->
     
@@ -501,98 +599,10 @@
 </article>
 
 
-    <article id="post-/lambda-calculus-introduction"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/03/lambda-calculus-introduction/">lambda calculus:Introduction</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-03-12T15:31:30+08:00" 
-          content="2017-03-12">
-        2017-03-12
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Functional-Programming/">Functional Programming</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cjrb92mxn00247aj5two7s761">-->
-        <img src="/img/lambda-calculus.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
-</blockquote>
-<h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87" target="_blank" rel="noopener">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C" target="_blank" rel="noopener">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98" target="_blank" rel="noopener">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
-<blockquote>
-<p>如果某个算法是<a href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA" target="_blank" rel="noopener">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
-</blockquote>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/03/lambda-calculus-introduction/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
 
 
 <nav class="site-pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
 </nav>
 
                 </main>
@@ -642,6 +652,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-content">
         <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
             
             <li>
                 <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
@@ -699,10 +713,6 @@
                 <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/">为什么bootstrap采用border-box盒模型</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -712,7 +722,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -721,7 +731,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 10px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 15px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -730,7 +740,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
