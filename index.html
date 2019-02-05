@@ -196,7 +196,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjrrwydv70024e0j5hev45s1j">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjrrxdrml002d9rj541oeekd0">-->
         <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
       <!--</a>-->
     
@@ -212,7 +212,7 @@
             <blockquote>
 <p>Nowadays, ORM technique has been playing an important role in object-oriented programming, and JPA is now considered the standard industry approach for ORM in the Java industry. In this post, I summarized several phenomena which violate my intuition and prone to error.</p>
 </blockquote>
-<p>As JPA itself is just a specification, there are various underlying implementation. In this post, we are only talking about Hibernate implementation. In fact, I&#39;ve never used or tested any other implementation so far, which means there&#39;s a chance that a problem cannot be reproduced in other JPA implementation.</p>
+<p>As JPA itself is just a specification, there are various underlying implementation. In this post, we are only focusing on Hibernate implementation. In fact, I&#39;ve never used or tested any other implementation so far, which means there&#39;s a chance that a problem cannot be reproduced in other JPA implementation.</p>
 <h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>As in post <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>, all the samples are written in Kotlin language. And Spring Data JPA framework is used for the sake of convenience. Full source code can be found at <a href="https://github.com/noob9527/post-code/tree/master/2-common-pitfalls-in-jpa-hibernate" target="_blank" rel="noopener">common-pitfalls-in-jpa-hibernate</a>.</p>
 <h3 id="Pitfall-1-Don-39-t-be-fooled-by-equals-and-hashcode-methods"><a href="#Pitfall-1-Don-39-t-be-fooled-by-equals-and-hashcode-methods" class="headerlink" title="Pitfall 1: Don&#39;t be fooled by equals and hashcode methods"></a>Pitfall 1: Don&#39;t be fooled by <code>equals</code> and <code>hashcode</code> methods</h3><p>You may already know that there are several contracts we have to obey when implementing <code>equals</code> and <code>hashcode</code> method. Namely Reflexivity, Symmetry, Transitivity, Consistency and &quot;Non-nullity&quot;. When it comes to a JPA entity, things become even more difficult since entity state transitions must be taken into account. In other words, <code>equals</code> and <code>hashcode</code> methods must behave consistently across all entity state transitions. Thus, we can immediately conclude that <strong> logical key(usually auto generate after the first time being persisted) should not be taken into consideration. </strong> <code>AbstractPersistable</code> from spring data JPA library is a perfect counterexample which implements <code>equals</code> and <code>hashcode</code> based on auto-generation id. The following code demonstrates its flaw:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> : <span class="type">AbstractPersistable</span>&lt;<span class="type">Int</span>&gt;</span>()</div></pre></td></tr></table></figure></p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</div><div class="line">    <span class="keyword">val</span> demo = Demo1()</div><div class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = hashSetOf(demo)</div><div class="line"></div><div class="line">    <span class="keyword">set</span>.contains(demo) <span class="comment">// true</span></div><div class="line"></div><div class="line">    entityManager.persist(demo)</div><div class="line">    entityManager.flush()</div><div class="line"></div><div class="line">    <span class="keyword">set</span>.contains(demo) <span class="comment">// false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -293,7 +293,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjrrwydv50022e0j5yfqrit5m">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjrrxdrmh00299rj50fnftwiv">-->
         <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
       <!--</a>-->
     
@@ -391,7 +391,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrrwydty000ke0j5vju9e7h0">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjrrxdrls001k9rj549p5wz3c">-->
         <img src="/img/understanding-zombie-process.jpg" itemprop="image">
       <!--</a>-->
     
@@ -482,7 +482,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrrwydtw000ie0j5ipeks0eb">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjrrxdrlq001h9rj5bn628bum">-->
         <img src="/img/closure-in-javascript.jpg" itemprop="image">
       <!--</a>-->
     
@@ -569,7 +569,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrrwydv2001xe0j5dne5kf8h">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cjrrxdrmg00289rj55knwea9d">-->
         <img src="/img/btree-data-structure.jpg" itemprop="image">
       <!--</a>-->
     
