@@ -146,6 +146,93 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-/jackson-serialize-bi-directional-relationship-infinite-recursion"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/">Jackson序列化双向关联映射的四种方法</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2017-01-01T14:07:03+08:00" 
+          content="2017-01-01">
+        2017-01-01
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cjrrwyduu001qe0j5gxysw06v">-->
+        <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>如果一个对象与另一个对象之间存在互相引用(bi-directional relationship)，序列化该对象就会出现stackoverflow异常，这篇文章主要介绍使用jackson序列化工具处理该问题的几种解决方案。</p>
+</blockquote>
+<h3 id="一-Infinite-Recursion"><a href="#一-Infinite-Recursion" class="headerlink" title="一.Infinite Recursion"></a>一.Infinite Recursion</h3><p>首先不要被文章标题所误导，该问题并不是因为使用了jpa/hibernate的双向关联关系才会出现，简书上<a href="http://www.jianshu.com/p/d7f0b383a228" target="_blank" rel="noopener">这篇文章</a>说该异常根本原因在于hibernate的lazyload，我认为是一本正经的胡说八道，先来看一个简单的例子:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Customer</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line">    <span class="keyword">private</span> List&lt;Card&gt; cardList;</div><div class="line">    <span class="comment">//constructor getter setter...</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Card</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Long id;</div><div class="line">    <span class="keyword">private</span> Customer customer;</div><div class="line">    <span class="comment">//constructor getter setter...</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//测试环境 junit, assertj</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        Customer customer = <span class="keyword">new</span> Customer();</div><div class="line">        Card card = <span class="keyword">new</span> Card();</div><div class="line">        <span class="comment">//相互引用</span></div><div class="line">        card.setCustomer(customer);</div><div class="line">        customer.addCard(card);</div><div class="line">        ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</div><div class="line">        Assertions.assertThatThrownBy(() -&gt; objectMapper.writeValueAsString(customer))</div><div class="line">                .hasMessageStartingWith(<span class="string">"Infinite recursion (StackOverflowError)"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上例中消费者与信用卡之间存在双向的一对多关系，序列化其中任意一个对象都会导致StackOverflowError，换句话说只要两个对象之间存在互相引用，就无法直接序列化，即便是在js中也不例外，看代码:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//测试环境 mocha,shouldjs</span></div><div class="line"><span class="keyword">var</span> should = <span class="built_in">require</span>(<span class="string">'should'</span>);</div><div class="line">describe(<span class="string">'json'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    it(<span class="string">'如果两个对象互相引用,则无法直接序列化'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> foo = &#123;&#125;;</div><div class="line">        <span class="keyword">var</span> bar = &#123;&#125;;</div><div class="line">        foo.bar = bar;</div><div class="line">        bar.foo = foo;</div><div class="line">        should(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">JSON</span>.stringify(foo);&#125;).throw(<span class="string">'Converting circular structure to JSON'</span>);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>综上所述，这锅hibernate不接。问题介绍完毕，下面来看看当前热门的序列化工具jackson提供了哪些方法来处理该问题，以下讨论的方法截至jackson2.8.4版本。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-/initial-setup-Ubuntu-16.04-server"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +283,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cjrox58kd0009z5j58injd5rn">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cjrrwydtr0009e0j5ptr2mzvh">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -296,7 +383,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cjrox58le001kz5j5xyy9ou3r">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cjrrwyduq001ie0j50siw5q17">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     
@@ -382,7 +469,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_cjrox58kc0008z5j5qql6swtf">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_cjrrwydtq0008e0j5ydyf27pr">-->
         <img src="/img/newton_method.jpg" itemprop="image">
       <!--</a>-->
     
@@ -496,7 +583,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/shannon.jpg" rel="gallery_cjrox58ld001hz5j5ywh4xew6">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/shannon.jpg" rel="gallery_cjrrwyduo001ee0j5b38hio3f">-->
         <img src="/img/shannon.jpg" itemprop="image">
       <!--</a>-->
     
@@ -520,114 +607,6 @@
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/css-float-clearfix-best-in-practice"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2016-05-20T15:26:52+08:00" 
-          content="2016-05-20">
-        2016-05-20
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_cjrox58lb001ez5j570xqfyrq">-->
-        <img src="/img/clearfix.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
-</blockquote>
-<h3 id="一-为什么要清除浮动"><a href="#一-为什么要清除浮动" class="headerlink" title="一.为什么要清除浮动"></a>一.为什么要清除浮动</h3><p>浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例子演示了这两个问题：<br>
-<div class="clearfix" style="border:5px solid #a57958;padding:10px">
-	<p>按下按钮查看清除浮动对布局的影响</p>
-    <button id="before" class="btn btn-info">清除浮动前</button>
-    <button id="after" class="btn btn-info">清除浮动后</button>
-    <div style="border:5px solid #a57958;margin-top:10px;">
-        我是容器
-        <div style="color:black;background-color:wheat;padding:10px;width:30%;height:150px;float:left;">div1
-        我浮动了</div>
-        <div id="demo" style="background-color:skyblue;padding:10px;">div2
-        我是普通流中的块级元素
-        我的宽度应该是100%
-        我的文字没有被覆盖</div>
-    </div>
-</div>
-<script>
-	$("#before").on("click",function(){
-    	$("#demo").css("clear","none");
-    });
-	$("#after").on("click",function(){
-    	$("#demo").css("clear","both");
-    });
-</script>
-<br>上面的例子中由于div1的浮动，div2的一部分被浮动的元素覆盖，容器的高度比它里面浮动的元素高度还要低。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/#more">阅读全文</a>
             </p>
             
         </div>
@@ -698,6 +677,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
                 <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
             </li>
             
@@ -753,10 +736,6 @@
                 <a href="/post/2016/05/shannon-mathematical-theory-of-communication/">香农信息论与回答老鼠喝药问题的正确姿势</a>
             </li>
             
-            <li>
-                <a href="/post/2016/05/css-float-clearfix-best-in-practice/">CSS清除浮动的原理与最佳实践</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -766,7 +745,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -775,7 +754,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 15px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -784,7 +763,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

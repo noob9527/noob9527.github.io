@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    <lastmod>2019-02-05T15:22:47.959Z</lastmod>
+    <data>
+        <display>
+        <title>Common Pitfalls in JPA(Hibernate)</title>
+        <pubTime>2019-02-05T15:22:47.000Z</pubTime>
+        
+        <tag>JPA</tag>
+         
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
     <lastmod>2019-02-03T13:04:26.439Z</lastmod>
     <data>
@@ -11,9 +33,9 @@
         <title>Common Pitfalls of Declarative Transaction Management in Spring</title>
         <pubTime>2019-02-03T13:04:26.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>JPA</tag>
+         
+        <tag>Spring</tag>
          
          
            
@@ -49,13 +71,15 @@
     
     
   <url>
-    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
+    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>正则表达式：零宽断言(lookaround)</title>
-        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
         <tag>编程技巧</tag>
          
          
@@ -69,15 +93,13 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        <title>正则表达式：零宽断言(lookaround)</title>
+        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>编程技巧</tag>
          
          
@@ -111,24 +133,6 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/03//salted-password-hashing/</loc>
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    <data>
-        <display>
-        <title>加密算法简介</title>
-        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Security" url="http://staynoob.cn/categories/Security/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
@@ -142,6 +146,24 @@
            
              
               <breadCrumb title="Functional Programming" url="http://staynoob.cn/categories/Functional-Programming/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2017/03//salted-password-hashing/</loc>
+    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
+    <data>
+        <display>
+        <title>加密算法简介</title>
+        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Security" url="http://staynoob.cn/categories/Security/"/>
           
         </display>
     </data>
@@ -233,11 +255,11 @@
         <title>Jackson序列化双向关联映射的四种方法</title>
         <pubTime>2017-01-01T06:07:03.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>JPA</tag>
          
         <tag>Hibernate</tag>
+         
+        <tag>Spring</tag>
          
         <tag>Jackson</tag>
          
