@@ -18,7 +18,7 @@ date: 2016-05-24 16:20:38
  - 技术博客：[blog.staynoob.cn](blog.staynoob.cn)
  - Github：https://github.com/noob9527
  - 期望职位：后端开发(java, kotlin)
- - 期望薪资：10K以上
+ - 期望薪资：10-20k
  - 期望城市：上海，深圳，杭州，苏州，广州
 ---
 ### 自我描述
