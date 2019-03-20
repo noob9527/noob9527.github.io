@@ -146,6 +146,114 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-is-distributed-lock-safe"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-03-20T18:58:03+08:00" 
+          content="2019-03-20">
+        2019-03-20
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjth3t7t00031tgj5a7e7abi8">-->
+        <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
+</blockquote>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 <a href="https://item.jd.com/12186665.html" target="_blank" rel="noopener">Designing Data-Intensive Applications（这是目前为止我在 IT 领域读过的最值的一本书，没有之一）</a> 这本书的作者，他在个人博客中发了一篇文章 <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a>，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 <a href="http://antirez.com/news/101" target="_blank" rel="noopener">Is Redlock safe?</a> 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。</p>
+<h3 id="术语和约定"><a href="#术语和约定" class="headerlink" title="术语和约定"></a>术语和约定</h3><p>像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。</p>
+<ul>
+<li>safety 属性<br>  简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）</li>
+<li>liveness 属性<br>  简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）</li>
+</ul>
+<p>为了更好的描述问题，我们先定义下面三种角色：</p>
+<ul>
+<li>资源服务：即需要被锁保护的资源。</li>
+<li>锁服务：即本文 Redlock 算法扮演的角色。</li>
+<li>锁用户：申请与释放锁的客户端。（下文可能简称为用户）</li>
+</ul>
+<p>使用分布式锁的目的主要有两种，分别是：</p>
+<ol>
+<li>效率(Efficiency)：通过锁来避免多次做重复的工作，计算重复的内容等等。这种场景下即便偶然出现多个用户同时持有锁，并同时与资源服务发生交互，也是可以忍受的。</li>
+<li>正确性(Correctness)：也就是文章标题所说的“安全”，我们希望资源服务在锁的保护下能够做“正确”的事。更严谨的说，我们希望任一时刻，只有一个用户能够访问资源服务，而且即便锁在该用户在与资源服务交互的中途过期，也不至于破坏资源服务的一致性。</li>
+</ol>
+<p>无论出于哪种目的，单从分布式锁服务的角度来说，我们都希望它具有如下属性（下文将以属性1，属性2，属性3来引用这些属性）：</p>
+<ol>
+<li>互斥（safety 属性）：在任一时刻，只有一个用户能持有锁。</li>
+<li>避免死锁（liveness 属性）：每把锁都有一个有效期，超出有效期则自动释放锁。如果没有这样的自动释放机制，那么一个已获得锁的用户宕机或失联，将导致资源被持续锁定直至该用户故障被修复，在大部分场景中，这是不可接受的。</li>
+<li>容错（liveness 属性）：没有单点失败问题，只要系统中多数锁服务节点正常工作，用户就能够获取和释放锁。</li>
+</ol>
+<p>下文讨论的 RedLock 算法期望解决的主要问题是单点 Redis 作为分布式锁服务时无法满足属性3，下面先来了解一下该算法。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/03/is-distributed-lock-safe/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-strong-consistency-model"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +304,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjsv34cps002ot5j5jfr0ahry">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjth3t7sz0030tgj53ecu2oj1">-->
         <img src="/img/strong-consistency-models.jpg" itemprop="image">
       <!--</a>-->
     
@@ -288,7 +396,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjsv34cp30022t5j5gaqw4zai">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjth3t7sf0024tgj5vyhn464x">-->
         <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
       <!--</a>-->
     
@@ -385,7 +493,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjsv34cp0001yt5j58bqoanfi">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjth3t7sc0021tgj5krp28eas">-->
         <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
       <!--</a>-->
     
@@ -483,7 +591,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjsv34cny000lt5j5sfw6hca3">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cjth3t7rf0013tgj57h7zn38u">-->
         <img src="/img/understanding-zombie-process.jpg" itemprop="image">
       <!--</a>-->
     
@@ -509,93 +617,6 @@
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2019/01/understanding-zombie-process/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/closure-in-javascript"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2017/07/closure-in-javascript/">再谈js闭包</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-07-16T16:40:28+08:00" 
-          content="2017-07-16">
-        2017-07-16
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cjsv34cnx000jt5j59nyv9vkw">-->
-        <img src="/img/closure-in-javascript.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>网上关于 js 闭包的文章多如牛毛，这里之所以再写一篇，主要是因为网上的那些文章要么对初学者不够友好，要么根本就没有谈到重点。在读过那些文章后的很长一段时间里，我对闭包都是似懂非懂。直到在学 react 的过程中逐渐接触函数式编程，才开始真正理解闭包。</p>
-</blockquote>
-<h3 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h3><p>请先思考一下下面两段代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createFunction</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> arr = [];</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</div><div class="line">        arr[i] = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> i;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> arr;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> result = createFunction().map(<span class="function"><span class="params">e</span> =&gt;</span> e());</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(result);    <span class="comment">// [5, 5, 5, 5, 5]</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> n = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        increase() &#123; ++n; &#125;,</div><div class="line">        get() &#123; <span class="keyword">return</span> n; &#125;,</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> cnt1 = counter();</div><div class="line"><span class="keyword">const</span> cnt2 = counter();</div><div class="line"></div><div class="line">cnt1.increase();</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(cnt1.get());    <span class="comment">// 1</span></div><div class="line"><span class="built_in">console</span>.log(cnt2.get());    <span class="comment">// 0</span></div></pre></td></tr></table></figure>
-<p>在往下阅读之前，请再次确保你有花时间理解上面两段代码。虽然它们跟下文内容并没有一毛钱关系，不过反正没事烧烧脑也没什么坏处。。。<br>这里我想表达的只是，网上大量关于闭包的文章大抵都遵循这个模式，先制造一堆跟上面例子类似的函数，之后让读者尝试给出运行结果，最后在配合上自己的一顿讲解，仿佛能理解这些代码就是懂了闭包。而事实却是，能看懂这些代码并不代表你就理解了闭包，理解闭包之后再看这些代码也不一定就都能立刻指出运行结果。</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2017/07/closure-in-javascript/#more">阅读全文</a>
             </p>
             
         </div>
@@ -666,6 +687,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
                 <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
             </li>
             
@@ -721,10 +746,6 @@
                 <a href="/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/">魔力数字与快速平方根倒数算法</a>
             </li>
             
-            <li>
-                <a href="/post/2016/06/integer-arithmetic-karatsuba-multiplication/">数值运算与牛顿迭代法</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -734,7 +755,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -743,7 +764,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Distributed-System/" style="font-size: 10px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -752,7 +773,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

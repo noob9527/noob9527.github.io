@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2019-03-05T01:15:25.876Z</updated>
+  <updated>2019-03-20T11:08:32.559Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -14,6 +14,216 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式锁真的“安全”吗？</title>
+    <link href="http://staynoob.cn/post/2019/03/is-distributed-lock-safe/"/>
+    <id>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</id>
+    <published>2019-03-20T10:58:03.000Z</published>
+    <updated>2019-03-20T11:08:32.559Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
+</blockquote>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 <a href="https://item.jd.com/12186665.html" target="_blank" rel="noopener">Designing Data-Intensive Applications（这是目前为止我在 IT 领域读过的最值的一本书，没有之一）</a> 这本书的作者，他在个人博客中发了一篇文章 <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a>，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 <a href="http://antirez.com/news/101" target="_blank" rel="noopener">Is Redlock safe?</a> 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。</p>
+<h3 id="术语和约定"><a href="#术语和约定" class="headerlink" title="术语和约定"></a>术语和约定</h3><p>像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。</p>
+<ul>
+<li>safety 属性<br>  简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）</li>
+<li>liveness 属性<br>  简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）</li>
+</ul>
+<p>为了更好的描述问题，我们先定义下面三种角色：</p>
+<ul>
+<li>资源服务：即需要被锁保护的资源。</li>
+<li>锁服务：即本文 Redlock 算法扮演的角色。</li>
+<li>锁用户：申请与释放锁的客户端。（下文可能简称为用户）</li>
+</ul>
+<p>使用分布式锁的目的主要有两种，分别是：</p>
+<ol>
+<li>效率(Efficiency)：通过锁来避免多次做重复的工作，计算重复的内容等等。这种场景下即便偶然出现多个用户同时持有锁，并同时与资源服务发生交互，也是可以忍受的。</li>
+<li>正确性(Correctness)：也就是文章标题所说的“安全”，我们希望资源服务在锁的保护下能够做“正确”的事。更严谨的说，我们希望任一时刻，只有一个用户能够访问资源服务，而且即便锁在该用户在与资源服务交互的中途过期，也不至于破坏资源服务的一致性。</li>
+</ol>
+<p>无论出于哪种目的，单从分布式锁服务的角度来说，我们都希望它具有如下属性（下文将以属性1，属性2，属性3来引用这些属性）：</p>
+<ol>
+<li>互斥（safety 属性）：在任一时刻，只有一个用户能持有锁。</li>
+<li>避免死锁（liveness 属性）：每把锁都有一个有效期，超出有效期则自动释放锁。如果没有这样的自动释放机制，那么一个已获得锁的用户宕机或失联，将导致资源被持续锁定直至该用户故障被修复，在大部分场景中，这是不可接受的。</li>
+<li>容错（liveness 属性）：没有单点失败问题，只要系统中多数锁服务节点正常工作，用户就能够获取和释放锁。</li>
+</ol>
+<p>下文讨论的 RedLock 算法期望解决的主要问题是单点 Redis 作为分布式锁服务时无法满足属性3，下面先来了解一下该算法。</p>
+<a id="more"></a>
+<h3 id="Redlock-算法"><a href="#Redlock-算法" class="headerlink" title="Redlock 算法"></a>Redlock 算法</h3><p>Redlock 算法的实现基于单点分布式锁，下面是单个 Redis 实例实现分布式锁的方式。<br>首先是用户获取锁的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">SET key value NX PX 30000</div></pre></td></tr></table></figure></p>
+<p>这里 key 可能是某个你想锁的资源名，value 是某个全局唯一的随机值（该值后面会用于释放锁），这条命令在 key 不存在的前提下(NX选项)，设置 key 对应的 value 值，30000 毫秒后，该 key 会过期（PX选项）。该命令执行成功则代表成功获取锁，否则代表已经有其它用户先获取了锁。下面是释放锁的代码<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> redis.call(<span class="string">"get"</span>,KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] <span class="keyword">then</span></div><div class="line">    <span class="keyword">return</span> redis.call(<span class="string">"del"</span>,KEYS[<span class="number">1</span>])</div><div class="line"><span class="keyword">else</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>如果你跟我一样看不懂 lua 脚本也没关系，这段代码的目的是比较 key(resource_name) 对应的 value 值是否是否等于之前设定的随机值，如果等于就删除该 key 来释放锁（注意该脚本的执行是符合原子性的）。之所以这么做是为了防止用户释放其它用户持有的锁（一个用户可能并不知道锁已经因为过期而被其它用户持有）。<br>这样单节点 Redis 服务器已经满足了属性1与属性2，但是该节点宕机将导致整个服务不可用，因此我们需要想办法进一步满足属性3。一个比较 naive 的做法是添加 redis 服务器做主从切换(failover)，即 master 服务器不可用时自动将 slave 服务器晋升为 master。但这么做无法满足属性1，因为 Redis 主从数据复制是异步的，考虑下面的执行序列：</p>
+<ol>
+<li>用户A在 master 服务器获取到锁。</li>
+<li>在数据从 master 复制到 slave 之前，master 宕机。</li>
+<li>slave 成为新的 master。</li>
+<li>用户B在新的 master 服务器获取到同一把锁，最终用户A与用户B持有相同的锁（违背属性1）。</li>
+</ol>
+<p>下面来看看 Redlock 算法，假设我们有 N 个相互独立的 Redis 节点（这里先假设 N=5），用户按照下列操作来获取与释放锁：</p>
+<ol>
+<li>获取当前时间戳</li>
+<li>使用相同的 key, value 依次在所有节点上“获取锁”（方式跟之前在单节点上获取锁是一样的），每个节点获取锁的时间控制在一个比较小的范围内。举例来说，如果锁的有效时间是 10 秒，那么在每个节点获取锁的时间最好控制在 5-50 毫秒左右，这样才能保证如果某个 Redis 节点宕机或失联，整个获取锁操作不会阻塞太久。换句话说，如果单个锁服务实例不可用，尽快尝试在下一个实例获取锁。</li>
+<li>用户计算步骤2所花费的时间（使用当前时间减去第一步保存的时间戳），当且仅当用户在多数锁服务节点（此例中3个节点）中成功获取到锁，并且获取锁花费的时间小于锁的过期时间，才算成功获取到锁。</li>
+<li>如果步骤3获取锁成功，锁的实际有效时间是初始有效时间减去步骤2所花费的时间，比如锁的有效时间设定为 10 秒，步骤2花掉了 1 秒，那么锁的实际有效时间是 9 秒。</li>
+<li>如果步骤3获取锁失败，尝试在所有节点上执行解锁操作（方式跟之前单节点上解锁是一样的）</li>
+</ol>
+<p>以上基本就是 Redlock 算法的全部内容，相比单点 Redis 来说，它的作用是提供更高的可用性，即满足属性3。</p>
+<h3 id="争议点"><a href="#争议点" class="headerlink" title="争议点"></a>争议点</h3><p>在理解 Martin Kleppmann 与 Salvatore Sanfilippo 讨论的话题之前，需要先理解一些概念，这里我暂且把它们称作争议点。</p>
+<h4 id="1-Fencing-Token"><a href="#1-Fencing-Token" class="headerlink" title="1. Fencing Token"></a>1. Fencing Token</h4><p>下图展示了一个失败的分布式锁的执行序列<br><img src="/img/content/is-distributed-lock-safe/unsafe-lock.png" alt="unsafe-lock"><br>图中用户1在获取锁后进程暂停（导致进程暂停的原因可能有很多种，详情可以阅读 Kleppmann 的书或者该博客原文），在进程暂停期间，锁超时自动释放，于是用户2获得了锁，之后用户1从暂停中恢复。最终结果是用户1与用户2都认为自己拥有锁，资源服务也会同时受理用户1与用户2的请求，因此违背了属性1。<br>Kleppmann 建议使用一个全局单调递增的 &quot;Fencing token&quot; 来解决这样的问题。如图所示：<br><img src="/img/content/is-distributed-lock-safe/fencing-tokens.png" alt="fencing-tokens"><br>在每次用户获得锁时，锁服务同时为该用户分配一个全局单调递增的 token，我们要求每次用户请求资源服务时带上该 token。资源服务一旦受理过 token 值更高的请求，就拒绝其它 token 较低的请求。上图中用户1首先获得一个 token 为33的锁，之后进程暂停，锁超时自动释放，用户2获得 token 为34的锁。最后资源服务只受理用户2的请求。如果你使用 Zookeeper 作为分布式锁服务，它的 zxid 或者 znode version 都可以用来作为 &quot;Fencing token&quot;.</p>
+<h4 id="2-Wall-Clock-与-Monotonic-Clock"><a href="#2-Wall-Clock-与-Monotonic-Clock" class="headerlink" title="2. Wall Clock 与 Monotonic Clock"></a>2. Wall Clock 与 Monotonic Clock</h4><p>现代计算机一般至少会提供两种时钟，分别是 Wall Clock 和 Monotonic Clock。</p>
+<ul>
+<li>Wall Clock(又称 Time of day clock, Real Time)<br>  即 UNIX 系统中调用 <code>clock_gettime(CLOCK_REALTIME)</code>，JVM 中调用 <code>System.currentTimeMillies()</code> 得到的时间。该时间一般需要通过网络与 NTP(Network Time Protocol) 服务器同步，因此可能会突然跳到未来的某个时间点，或者跳回过去。而且它也可能被系统管理员手动设置，再加上还有闰秒问题。这些因素导致该时钟不适用于测量耗时。</li>
+<li>Monotonic Clock<br>  即 UNIX 系统中调用 <code>clock_gettime(CLOCK_MONOTONIC)</code>，JVM 中调用 <code>System.nanoTime()</code> 得到的时间。正如它名字一样，该时间不会回退，同时它也不受 NTP 影响，因此非常适合测量时间区间。但单个 Monotonic Clock 时间值没有任何意义，比较不同电脑中的 Monotonic Clock 时间值也没意义。</li>
+</ul>
+<h4 id="3-Asynchronous-System-Model"><a href="#3-Asynchronous-System-Model" class="headerlink" title="3. Asynchronous System Model"></a>3. Asynchronous System Model</h4><p>在学术界，对于分布式算法来说，最理想的系统模型是 <a href="http://courses.csail.mit.edu/6.852/08/papers/CT96-JACM.pdf" target="_blank" rel="noopener">asynchronous model with unreliable failure detectors</a>，该模型对时间不做任何假设，即进程可能暂停任意时间，网络中的包可能延迟任意久，时钟可能会任意跳跃。这些问题一般不会影响该模型下算法的 safety 属性，只有 liveness 属性才依赖于过期时间(timeout)或其它失败检测手段(failure detector)。换言之，就是在出现进程暂停，网络延迟，时钟跳跃等情况时，算法的性能可能毫无保障，但它至少不会做错误的决策。</p>
+<h3 id="Kleppmann-的质疑"><a href="#Kleppmann-的质疑" class="headerlink" title="Kleppmann 的质疑"></a>Kleppmann 的质疑</h3><ul>
+<li>关于 Fencing Token<br>Redlock 算法中并不存在任何机制用于生成全局单调递增的 token，它为锁提供的唯一随机数并不保证单调性。而简单使用一个 Redis 节点作为计数器又存在单点问题。在分布式系统中，你可能需要自己采用某种共识算法来生成这样的 token。</li>
+<li>关于 Clock<br>Redis 使用 Wall Clock 而不是 Monotonic Clock 来判断 key 是否过期，这很容易导致 key 的过期比想象中快很多，或者慢很多。</li>
+<li><p>关于算法对时间的依赖<br>Redlock 的 safety 属性过多的依赖于对时间的假设（Using time to solve consensus）。它假设所有的 Redis 节点持有 key 的时间约等于分布式锁的过期时间；假设网络延迟相比锁的有效期来说要小很多；假设进程暂停时间比锁的有效期小得多。<br>因此，如果时钟跳跃，Redlock 算法将无法满足属性1，假设锁服务由 A, B, C ,D ,E 五个 Redis 节点组成，考虑下面的执行序列（下文将以“示例1”来引用这个例子）：</p>
+<ol>
+<li>用户1在节点 A, B, C 中获得锁，由于网络原因，D, E 节点不可达。</li>
+<li>C 节点时钟跳跃，锁在 C 节点中过期。</li>
+<li>用户2在节点 C, D, E 中获得锁，由于网络原因，A, B 节点不可达。</li>
+<li>用户1与用户2持有同一把锁（违背属性1）。</li>
+</ol>
+<p>这个问题不止在时钟跳跃时会发生，如果节点C的 Redis 进程在将数据持久化到磁盘前被杀掉，然后立即重启（key 数据丢失），也有可能会发生同样的情况，因此 Redlock 文档中建议延迟节点的重启时间，使其至少与最长的锁有效期一样长。但是这种延迟重启策略再次依赖于节点C能够精准测量时间。<br>Kleppmann 在原文中还额外补充了另一个由进程暂停和网络延迟导致违背 safety 属性的例子（下文将以“示例2”来引用这个例子）。</p>
+<ol>
+<li>用户1在节点 A, B, C, D, E 请求锁。</li>
+<li>当请求成功的响应还未返回到用户1时，用户1进程暂停。</li>
+<li>锁过了有效期（A, B, C, D, E节点各自删除对应 key）。</li>
+<li>用户2在节点 A, B, C, D, E 获得锁。</li>
+<li>用户1从暂停中恢复，收到成功获得锁的信息。</li>
+<li>用户1与用户2持有同一把锁（违背属性1）。</li>
+</ol>
+</li>
+</ul>
+<h3 id="Sanfilippo-的回应"><a href="#Sanfilippo-的回应" class="headerlink" title="Sanfilippo 的回应"></a>Sanfilippo 的回应</h3><ul>
+<li>关于 Fencing Token<br>这个问题并不是 Redlock 独有的，还有很多带自动释放机制的分布式锁服务中都不提供单调递增的计数器。主要原因是：<ol>
+<li>实现所谓的 &quot;Fencing Token&quot; 机制需要资源服务的积极配合。在分布式锁的大量使用场景里，我们没办法控制资源服务。如果我们有办法控制资源服务如何处理用户的请求，或许我们也不需要分布式锁了。</li>
+<li>即便一定要 &quot;Fencing Token&quot;，它也没必要是单调递增的，任何全局唯一 id 都可以用作 token。比如 Redlock 算法中每次申请锁时用的那个随机 value 值就可以用作 token。每次用户获取锁成功时，先设置资源服务的 currentToken，后续的每次请求都带上该 token，资源服务受理用户请求时如果发现 token 不一致就拒绝请求。简单说就是把 <code>if (request.token &lt; currentToken)</code> 改成 <code>if (request.token != currentToken)</code>。同样可以保证同一时刻，只有一个用户允许访问资源服务。</li>
+</ol>
+</li>
+<li>关于 Clock（Redis 使用 Wall-Clock）<br>Sanfilippo 承认这是 Redis 的缺陷，并表示后续会修复这个问题。</li>
+<li><p>关于算法对时间的依赖<br>根据 Kleppmann 的批评，Redlock 对时间的依赖主要包含三个部分：</p>
+<ol>
+<li>时钟依赖：所有的 Redis 节点持有 key 的时间需要约等于分布式锁的过期时间。</li>
+<li>网络延迟依赖：网络延迟不能太高（相比锁的有效期来说）</li>
+<li>进程暂停时间依赖：进程暂停时间不能太长（相比锁的有效期来说）</li>
+</ol>
+<p><strong>关于时钟依赖</strong>：Redlock 的 safety 属性并不依赖于各 Redis 节点的时钟是否有误差，而是依赖于各节点之间时间流逝的速度是否近似相等。比方说，各节点能将计时 5s 的误差控制在 10% 以内就行。影响这个误差的两个主要原因是：</p>
+<ol>
+<li>系统管理员手动调整时钟</li>
+<li>ntpd 守护进程修改时钟（也就是前文说的 Wall Clock 同步网络时间的机制）</li>
+</ol>
+<p>这两个问题都是可以避免的，问题1很简单，让管理员别这么做就行了。如果要考虑人为干预的话那管理员还可以 <code>echo foo &gt; /my/raft/log.bin</code> 来破坏 Raft 算法。问题2可以通过改用平滑修改时间的 ntpd 来避免。再说如果改用 Monotonic Clock。这两个问题也就都不存在了。<br><strong>关于网络延迟依赖</strong>：Redlock 算法在步骤三会计算获取锁用掉的时间，如果有包括网络延迟在内的任何原因导致获取锁用掉的时间多于锁的有效时间，则获取锁失败。所以网络延迟不会影响算法的 safety 属性。<br><strong>关于进程暂停时间依赖</strong>：进程暂停如果发生在算法的步骤三之前，那它造成的影响等同于网络延迟，最终只可能导致获取锁失败。如果发生在步骤三之后（即用户认为自己获取锁成功之后），那结果等同于争议点一(Fencing Token)的执行序列。</p>
+</li>
+</ul>
+<h3 id="我对分歧的看法"><a href="#我对分歧的看法" class="headerlink" title="我对分歧的看法"></a>我对分歧的看法</h3><p>（个人认为）两篇文章表达的分歧有：</p>
+<ul>
+<li>分歧1：Kleppmann 认为安全的分布式锁服务需要同时提供一个全局递增的 token。Sanfilippo 由于资源服务常常不可控，因此该 token 没必要</li>
+<li>分歧2：即使 &quot;Fencing Token&quot; 有必要，出于 &quot;Fencing&quot; 的目的，全局唯一与全局递增也没什么区别。</li>
+<li>分歧3：Kleppmann 认为 Redlock 的安全性过多的依赖于对时间的假设（参见示例1与示例2）。Sanfilippo 并不赞同，因为示例2中网络延迟与进程暂停如果发生在算法的步骤三之前，则问题并不存在，如果发生在步骤三之后，则等价于 Fencing Token 问题（这里我没看到关于示例1的解释，但个人觉得示例1依然等价于 Fencing Token 问题，原因后面会提到）。</li>
+</ul>
+<p>这些分歧其实都出于对属性1的描述（在任意时刻，只有一个用户能持有锁）不够严谨。假设有 A, B 两个用户，针对同一资源，我们理想中的属性1应该进一步拆分成如下属性：</p>
+<ul>
+<li>属性a: 在任意时刻，锁服务都知道自己是否已授权锁，如果已授权，锁服务知道具体授权给了哪个用户（这里假设授权给了用户A）。</li>
+<li>属性b: 在任意时刻，最多只有一个用户认为自己获得了锁。</li>
+<li>属性c: 在任意时刻，资源服务最多只允许一个用户访问。</li>
+<li>属性d: 在任意时刻，如果锁已授权给一个用户，资源服务只允许当前锁服务授权的那个用户访问（用户A）。</li>
+</ul>
+<p>首先我们可以确定的是，在异步系统模型，锁会自动释放的前提下，可以得到：</p>
+<blockquote>
+<p>结论1：属性b不可能满足。<br>证明：参见&quot;Fencing Token&quot;中的第一个例子与示例2。</p>
+</blockquote>
+<p>现在不妨先来看分歧3，包括 Sanfilippo 自己也认为 Redlock 的正确性依赖于所有 Redis 节点中，时间以接近的速度流逝。但我认为并非如此，因为如果现实并不满足这条假设，那么算法只是无法满足属性b（注意这里无所谓算法是否可以满足属性b，因为反正结论1告诉我们属性b不可能满足），但该算法依然保证了属性a。在示例1中，c节点发生时钟跳跃，最终导致的结果其实等价于锁提前过期，在时钟不可靠的情况下，锁提前或延后过期总会发生，这对属性a而言并没有影响。换言之即使使用单节点 Redis 锁，该节点时钟同样可能发生跳跃，锁同样可能提前过期。因此<strong>示例1的问题同样等价于 &quot;Fencing Token&quot; 中的问题，它们本质上都是锁用户并不知道自己持有的锁已经过期的问题</strong>。<br>同时，基于结论1，我们可以得到：</p>
+<blockquote>
+<p>结论2：如果资源服务不可控，属性c也不可能满足。<br>证明：由于属性b无法满足，势必会出现某个时刻，两个用户同时认为自己拥有锁，而此时如果资源服务不受控（即无法使用Fencing Token），则属性c无法满足。</p>
+</blockquote>
+<p>这样一来分歧1可以用一句话概括，<strong>是否需要 &quot;Fencing Token&quot; 取决于你的系统是否需要满足属性c</strong>，换句话说，如果你的目的是 Efficiency，则 Redlock 算法和其它分布式锁机制一样，是“安全”的。如果你的目的是 Correctness，则 Redlock 是不“安全”的。<br>最后是分歧2，出于 &quot;fencing&quot; 的目的，全局唯一的 token 是否等价于全局递增的 token？假设我们照 Sanfilippo 所言在资源服务中使用全局唯一的 token 验证用户是否真的持有锁，考虑下面的执行序列：</p>
+<ol>
+<li>用户A获得锁后，进程暂停，锁过期。</li>
+<li>用户B获得锁后，将资源服务的 currentToken 设成 B.token。</li>
+<li>用户A从暂停中恢复，将资源服务的当前 currentToken 设成 A.token。</li>
+<li>锁服务认为 B 持有锁，但资源服务认为 A 持有锁（满足属性c，不满足属性d）。</li>
+</ol>
+<p>这样看来，使用全局递增的 token 就能解决这个问题，但再考虑下面的执行序列：</p>
+<ol>
+<li>用户A获得锁后，进程暂停，锁过期。</li>
+<li>用户B获得锁后，进程暂停。</li>
+<li>用户A从暂停中恢复，继续访问资源服务。</li>
+<li>锁服务认为 B 持有锁，但直到用户 B 与资源服务通话之前，资源服务都认为 A 持有锁（满足属性c，不满足属性d）。</li>
+</ol>
+<p>这里的结论是，全局唯一与全局递增的 token 都只能满足属性c，无法满足属性d，但如果使用递增 token，资源服务能够在收到 B 的请求后，第一时间意识到 B 是较近的一个持有锁的用户。所以（个人认为）<strong>如果仅仅从对资源的“排它”访问这一角度考虑，这里 token 的全局唯一确实等价于全局递增，但总的来说，全局递增更倾向于将交互权授予较新的锁持有者</strong>。</p>
+<h3 id="Correctness-还是-Efficiency？"><a href="#Correctness-还是-Efficiency？" class="headerlink" title="Correctness 还是 Efficiency？"></a>Correctness 还是 Efficiency？</h3><p>看到这里，很容易产生一个误区，认为只要满足属性c，就能实现 Correctness。但事情没那么简单。假设我们的资源服务是某种 collection，对外提供添加元素与自增 size 的接口。我们希望使用分布式锁与 &quot;Fencing Token&quot; 机制来保证 collection 中元素数量与 size 属性的一致性。下面是一个可能的用户代码片段：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> token = distributedLock.lock(collection, <span class="number">1000</span> * <span class="number">10</span>);  <span class="comment">// 锁的有效期为10秒</span></div><div class="line">collection.add(token, element);</div><div class="line">collection.incrementSize(token);</div><div class="line">distributedLock.unlock(token);</div></pre></td></tr></table></figure></p>
+<p>该代码显然无法达成目的，考虑下面的执行序列：</p>
+<ol>
+<li>用户1获取一个 token 为 33 的锁，执行 <code>add</code> 添加元素，进程暂停，锁过期。</li>
+<li>用户2获取一个 token 为 34 的锁，执行 <code>add</code> 与 <code>incrementSize</code> 成功。</li>
+<li>用户1进程恢复，以为自己依然拥有锁，试图执行 <code>incrementSize</code>。</li>
+<li>资源服务已经受理过 token=34 的请求，因此拒绝用户1请求，元素数量与 size 属性的一致性被破坏。</li>
+</ol>
+<p>通过分析这个例子，可以得出的结论是属性c依然无法满足 Correctness 需求，我们还需要：</p>
+<blockquote>
+<p>属性c&#39;：在任意时刻切换用户不会破坏资源服务的一致性。</p>
+</blockquote>
+<p>为了满足属性c&#39;，collection 服务至少有两种解决方案：</p>
+<ul>
+<li>方案一：像传统数据库对事务的处理那样，添加一个 commit, rollback 机制，如果在收到某个用户的 commit 请求之前发生了用户切换，rollback 该用户的所有操作。（这种方案需要某种机制来区分不同的用户，或者说不同的“事务”）</li>
+<li>方案二：将 add 与 incrementSize 合并成一个原子操作。</li>
+</ul>
+<p>假设我们选择方案二，那么资源服务本身已经支持并发访问了，引入分布式锁服务只会降低整个系统的效率。<strong>假设我们选择方案一，那么分布式锁在这里的作用只是减少 rollback 的发生频率，即使不用 Fencing Token，最多也只是导致 rollback 发生得更频繁一点。更有甚者，即使不用锁，多个用户并发访问资源服务，导致资源服务频繁 rollback，没有任何一个用户能执行到 commit 逻辑，这也不会影响到资源服务数据的一致性。换句话说，这里使用分布式锁的目的已经不再是 Correctness，而是 Efficiency 了</strong>。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>尽管 HN 上大多数人都站在 Kleppmann 这边，认为 Redlock 只能用于 Efficiency 而不是 Correctness。但目前为止，我更偏向于支持 Sanfilippo，正如它文中提到的那样</p>
+<blockquote>
+<p>&quot;Most of the times when you need a distributed lock system that can guarantee mutual exclusivity, when this property is violated you already lost. Distributed locks are very useful exactly when we have no other control in the shared resource.&quot;</p>
+</blockquote>
+<p>更进一步，我认为<strong>所有带自动释放机制的分布式锁，本质上只是在为系统提供 Efficiency， 而 Correctness 需要资源服务自身通过某种机制（原子操作或事务日志等等）来保证</strong>。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">Redlock 介绍</a></li>
+<li><a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a></li>
+<li><a href="http://antirez.com/news/101" target="_blank" rel="noopener">Is Redlock safe?</a></li>
+<li><a href="https://news.ycombinator.com/item?id=11059738" target="_blank" rel="noopener">Hacker News 上对 Kleppmann 文章的讨论</a></li>
+<li><a href="https://news.ycombinator.com/item?id=11065933" target="_blank" rel="noopener">Hacker News 上对 Sanfilippo 文章的讨论</a></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h3&gt;&lt;p&gt;Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 &lt;a href=&quot;https://item.jd.com/12186665.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Designing Data-Intensive Applications（这是目前为止我在 IT 领域读过的最值的一本书，没有之一）&lt;/a&gt; 这本书的作者，他在个人博客中发了一篇文章 &lt;a href=&quot;https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;How to do distributed locking&lt;/a&gt;，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 &lt;a href=&quot;http://antirez.com/news/101&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Is Redlock safe?&lt;/a&gt; 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。&lt;/p&gt;
+&lt;h3 id=&quot;术语和约定&quot;&gt;&lt;a href=&quot;#术语和约定&quot; class=&quot;headerlink&quot; title=&quot;术语和约定&quot;&gt;&lt;/a&gt;术语和约定&lt;/h3&gt;&lt;p&gt;像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;safety 属性&lt;br&gt;  简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）&lt;/li&gt;
+&lt;li&gt;liveness 属性&lt;br&gt;  简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;为了更好的描述问题，我们先定义下面三种角色：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;资源服务：即需要被锁保护的资源。&lt;/li&gt;
+&lt;li&gt;锁服务：即本文 Redlock 算法扮演的角色。&lt;/li&gt;
+&lt;li&gt;锁用户：申请与释放锁的客户端。（下文可能简称为用户）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用分布式锁的目的主要有两种，分别是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;效率(Efficiency)：通过锁来避免多次做重复的工作，计算重复的内容等等。这种场景下即便偶然出现多个用户同时持有锁，并同时与资源服务发生交互，也是可以忍受的。&lt;/li&gt;
+&lt;li&gt;正确性(Correctness)：也就是文章标题所说的“安全”，我们希望资源服务在锁的保护下能够做“正确”的事。更严谨的说，我们希望任一时刻，只有一个用户能够访问资源服务，而且即便锁在该用户在与资源服务交互的中途过期，也不至于破坏资源服务的一致性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;无论出于哪种目的，单从分布式锁服务的角度来说，我们都希望它具有如下属性（下文将以属性1，属性2，属性3来引用这些属性）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;互斥（safety 属性）：在任一时刻，只有一个用户能持有锁。&lt;/li&gt;
+&lt;li&gt;避免死锁（liveness 属性）：每把锁都有一个有效期，超出有效期则自动释放锁。如果没有这样的自动释放机制，那么一个已获得锁的用户宕机或失联，将导致资源被持续锁定直至该用户故障被修复，在大部分场景中，这是不可接受的。&lt;/li&gt;
+&lt;li&gt;容错（liveness 属性）：没有单点失败问题，只要系统中多数锁服务节点正常工作，用户就能够获取和释放锁。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下文讨论的 RedLock 算法期望解决的主要问题是单点 Redis 作为分布式锁服务时无法满足属性3，下面先来了解一下该算法。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Backend" scheme="http://staynoob.cn/categories/Backend/"/>
+    
+    
+      <category term="Distributed System" scheme="http://staynoob.cn/tags/Distributed-System/"/>
+    
+  </entry>
   
   <entry>
     <title>(译)Strong Consistency Models</title>
@@ -160,9 +370,9 @@
       <category term="Backend" scheme="http://staynoob.cn/categories/Backend/"/>
     
     
-      <category term="JPA" scheme="http://staynoob.cn/tags/JPA/"/>
-    
       <category term="Spring" scheme="http://staynoob.cn/tags/Spring/"/>
+    
+      <category term="JPA" scheme="http://staynoob.cn/tags/JPA/"/>
     
   </entry>
   
@@ -240,9 +450,9 @@
       <category term="Backend" scheme="http://staynoob.cn/categories/Backend/"/>
     
     
-      <category term="JPA" scheme="http://staynoob.cn/tags/JPA/"/>
-    
       <category term="Spring" scheme="http://staynoob.cn/tags/Spring/"/>
+    
+      <category term="JPA" scheme="http://staynoob.cn/tags/JPA/"/>
     
   </entry>
   
@@ -902,11 +1112,11 @@
       <category term="Backend" scheme="http://staynoob.cn/categories/Backend/"/>
     
     
+      <category term="Spring" scheme="http://staynoob.cn/tags/Spring/"/>
+    
       <category term="JPA" scheme="http://staynoob.cn/tags/JPA/"/>
     
       <category term="Hibernate" scheme="http://staynoob.cn/tags/Hibernate/"/>
-    
-      <category term="Spring" scheme="http://staynoob.cn/tags/Spring/"/>
     
       <category term="Jackson" scheme="http://staynoob.cn/tags/Jackson/"/>
     
@@ -1527,67 +1737,6 @@
 &lt;p&gt;这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;在进行优化之前，我觉得必要先找到优化的起点，这里直接使用上篇文章的实现版本作为最原始的版本，如果这段代码你无法理解，请先阅读上一篇文章。看过上篇文章则可以直接跳过这部分。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Algorithm" scheme="http://staynoob.cn/categories/Algorithm/"/>
-    
-    
-      <category term="Sort" scheme="http://staynoob.cn/tags/Sort/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>聊聊4种主流排序算法(下)</title>
-    <link href="http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/"/>
-    <id>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</id>
-    <published>2016-05-01T13:46:02.000Z</published>
-    <updated>2019-01-24T23:05:35.542Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
-</blockquote>
-<h3 id="一-分治-Divide-and-Conquer"><a href="#一-分治-Divide-and-Conquer" class="headerlink" title="一.分治(Divide and Conquer)"></a>一.分治(Divide and Conquer)</h3><p>分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。因为它只有单一子问题。下面先来一段“经典”代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">return</span> fib(N-<span class="number">1</span>)+fib(N-<span class="number">2</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面这段代码依据给定N，计算斐波那契数列，之所以说它经典是因为这段代码作为反面教材出现在各大编程入门书籍中。它在字面上完全符合上面对分治的定义，但却效率低得惊人。作为子问题，fib(N-2)被重复计算了两次(fib(N-1)中也要计算fib(N-2))。因此它并没有将子问题完全“分开”。本文要讨论的两种排序算法跟上面的代码结构非常类似，但你必须要能够理解其中本质的不同。</p>
-<a id="more"></a>
-<h3 id="二-最快的排序算法"><a href="#二-最快的排序算法" class="headerlink" title="二.最快的排序算法"></a>二.最快的排序算法</h3><p>上一篇提到基于比较的最快的排序算法不可能优于O(NlogN)，你可能会好奇它是怎么来的，大牛们采用<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">香农信息论(information theory)</a>证明，wiki上关于信息论的描述看完以后我反正是一个大写的懵B，这里提供一个更接地气的证明方法。假设有一个含有N个不重复元素的数组，那么它共有N!(阶乘)种不同状态，因为N个不同元素有N!种排列，每进行一次比较，比较结果有两种可能(大于或小于)，这将排除一些可能的状态，可以构造一棵二叉决策树来表示这个过程，下图表示对A,B,C三个元素排序的过程：</p>
-<div align="center"><br><img src="/img/content/decisiontree.jpg" alt="decisiontree.jpg"><br></div>
-
-<p>这颗树的树叶表示所有可能的排序方式，而它的高度则是在最坏情况下需要的比较次数。不难推测出，对于给定的含有N个元素的数组，决策树必须要能够容纳下N!个叶节点，才能应付所有可能的情况，否则一定能构造一些输入，导致排序失败。了解了这一点，下面问题就简单多了，我们需要一棵多高的树才能保证其能够容纳N!个叶节点?<br>了解二叉树基本性质的人可以不假思索的回答，一棵高度为h的二叉树最多可以含有$2^h$个叶节点(此时人们称其为完全二叉树)，要让我们的排序算法万无一失，就必须保证 $2^h\geq N!$，即 $h(\text{比较次数})\geq log(N!)$。<br>到这里我们已经可以得出结论，任何基于元素间比较的排序算法复杂度不可能优于O(logN!)，可我还有一个问题，logN!到底是多大？阶乘计算总是过于复杂，人们一般采用<a href="https://zh.wikipedia.org/wiki/斯特靈公式" target="_blank" rel="noopener">斯特灵公式</a>来求取一个近似值，遗憾的是我的数学能力仅停留在高中水平(高中数学还很少及格)，因此wiki上关于这段公式的内容在我眼里大概是这样的“~!@#$%^&amp;*#@^_^!”，好在<a href="http://stackoverflow.com/questions/2095395/is-logn-%CE%98n-logn" target="_blank" rel="noopener">stackoverflow</a>上有一个更加简单的解法，Let&#39;s see:<br>$$\text{首先依据对数的性质可以得到：}log(N!)=log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)+\ldots+log(1)$$$$\text{直接丢弃求和等式的右半部分可得：}\Rightarrow log(N!)\geq log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)$$$$\Rightarrow log(N!)\geq log(N/2)+log(N/2)+log(N/2)+\ldots+log(N/2)$$$$\Rightarrow log(N!)\geq (N/2)log(N/2)=(N/2)logN-N/2$$$$\Rightarrow log(N!)= \Omega(NlogN)$$这里的$\Omega$指的是函数渐进增长的下界，可以依据类似的方式得到其上界：$$log(N!)=log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)+\ldots+log(1)$$$$\Rightarrow log(N!)\leq log(N)+log(N)+log(N)+\ldots+log(N)=N\times log(N)$$$$\Rightarrow log(N!)=O(NlogN)$$<br>当既有$f(N)=O(g(N))$(upperbound)又有$f(N)=\Omega(g(N))$(lowerbound)时，我们说$f(N)=\Theta(g(N))$(tightbound)。在此例中即$log(N!)=\Theta(NlogN)$，如果你觉得这些关系很混乱，只要知道$\Theta$是O的充分不必要条件即可。</p>
-<p><strong>结论：任何基于比较的排序算法，其最坏情形复杂度不可能优于$\Theta(NlogN)$</strong></p>
-<h3 id="三-归并-Merge-排序"><a href="#三-归并-Merge-排序" class="headerlink" title="三.归并(Merge)排序"></a>三.归并(Merge)排序</h3><p>你可能以前从没听过归并排序，但你不可能没听过它的作者。现代计算机之父<a href="https://en.wikipedia.org/wiki/John_von_Neumann" target="_blank" rel="noopener">约翰·冯·诺伊曼</a>于1945年发明归并排序，这被认为是最早在计算机上正确应用分治思想的算法。上码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span>[] aux=<span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</div><div class="line">    mergeSort(arr,aux,<span class="number">0</span>,arr.length - <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span>[] aux,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(lo&gt;=hi) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> mid=(lo+hi)&gt;&gt;<span class="number">1</span>;</div><div class="line"></div><div class="line">    <span class="comment">//divide</span></div><div class="line">    mergeSort(arr,aux,lo,mid);</div><div class="line">    mergeSort(arr,aux,mid+<span class="number">1</span>,hi);</div><div class="line"></div><div class="line">    <span class="comment">//merge</span></div><div class="line">    System.ArrayCopy(arr,lo,aux,lo,hi - lo + <span class="number">1</span>);</div><div class="line">    <span class="keyword">int</span> i=lo,j=mid+<span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k=lo;k&lt;=hi;k++)&#123;</div><div class="line">        <span class="keyword">if</span>(i&gt;mid) arr[k]=aux[j++];</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(j&gt;hi) arr[k]=aux[i++];</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(aux[i]&lt;aux[j]) arr[k]=aux[i++];</div><div class="line">        <span class="keyword">else</span> arr[k]=aux[j++];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>归并排序的思路是先找到输入数组的中间元素(mid)，然后根据中间元素将输入数组划分成两部分，整个过程递归进行，分到最后每个子数组将只有一个元素，此时所有的子数组就已经有序了(只有一个元素的数组是有序的)，然后对所有子数组执行归并(merge)操作，此时唯一需要做的就是保证归并完成后数组仍是有序的，如图：</p>
-<div align="center"><br><img src="/img/content/merge-sort.png" alt="merge-sort.png"><br></div>
-
-<p>分治算法大多满足于同一个运行时间方程，即T(N)=2T(N/2)+O(N)，其中2T(N/2)代表求解两个同等规模的子问题需要的时间，O(N)是联合子问题的解需要的时间，对归并排序而言则指的是merge需要的时间，这里可以简单的将merge所需要的时间用N(实际是cN，这不影响结果)来代替。求解该方程是相当简单又不失趣味的过程：<br>$$T(N)=2T(N/2)+N \Rightarrow T(N)/N=T(N/2)/(N/2)+1$$$$T(N/2)=2T(N/4)+N/2 \Rightarrow T(N/2)/(N/2)=T(N/4)/(N/4)+1$$$$\vdots$$$$T(2)=2T(1)+1 \Rightarrow T(2)/2=T(1)+1$$将式子一层层代入后可得$T(N)/N=T(1)+logN\text{(等式右边一共有logN个1相加)}$，已知$T(1)=1$，最后等号两边同时乘以N得到:$$T(N)=N+N \times logN=O(NlogN)$$<br>以上证明过程假设了N是2的幂，即每次都能将输入数组分成两个正好同样大小的子数组，当输入数组是奇数的时候求解过程要麻烦一些，但结果是一样的。另外还可以采用类似的方法证明归并排序所需的比较次数最低为(NlogN)/2，最高为NlogN(注意这里没有O)，结合上一节的理论，可以总结一个非常拗口的结论，即不可能找到任何基于比较的排序算法，在最坏情况下所需比较次数少于归并排序在最坏情况下的比较次数。如果一条定理读起来非常拗口，往往意味着它没什么卵用，这里也是如此。<br>归并排序最令人诟病的缺陷在于它需要线性的空间复杂度，并且将元素从数组复制到辅助数组这个过程浪费了大量的时间。再加上考虑算法是否高效不能仅考虑最坏情形(还记得上篇文章插入排序与选择排序的例子吧？)，就平均速度而言它在高级排序算法中没有优势，种种因素导致归并排序使用场景非常有限，而这里我把它列为主流排序算法有三个原因：</p>
-<ol>
-<li>它是基于比较的排序算法中，所需比较次数最少的。</li>
-<li>当空间不是问题的时候，人们有时出于稳定性(参考上篇文章“排序算法的稳定性”)考虑而选择归并排序，比如说JDK对引用类型使用归并排序。</li>
-<li>它与快速排序设计思路类似，很适合放在快速排序之前讨论，就像上篇插入排序与希尔排序的关系一样。</li>
-</ol>
-<p><strong>结论：如果稳定性很重要而空间又不是问题，有时可以选择归并排序。</strong></p>
-<h3 id="四-快速-Quick-排序"><a href="#四-快速-Quick-排序" class="headerlink" title="四.快速(Quick)排序"></a>四.快速(Quick)排序</h3><p>快速排序是目前使用最广泛的排序算法，它的作者是图灵奖得主<a href="https://en.wikipedia.org/wiki/Tony_Hoare" target="_blank" rel="noopener">C.A.R.Hoare</a>，正如该算法的名字一样，它是实践中最快的已知排序算法，它在平均情况下的时间复杂度是O(NlogN)，这样看起来并没有什么特别之处，它之所以性能突出是因为其高度优化的内循环，换句话说，假定它的时间复杂度为k*NlogN+b，那么这里的k比其它线性对数级的算法要小。最原始的快速排序在最坏情形时复杂度为O(N^2)，但这完全可以通过一些编程技巧来避免。下面看代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr)</span></span>&#123;</div><div class="line">    quickSort(arr,<span class="number">0</span>,arr.length - <span class="number">1</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</div><div class="line">    <span class="keyword">if</span>(lo&gt;=hi) <span class="keyword">return</span>;</div><div class="line">    <span class="keyword">int</span> pivot=partition(arr,lo,hi); <span class="comment">//暂时先别管这条语句</span></div><div class="line">    quickSort(arr,lo,pivot - <span class="number">1</span>);</div><div class="line">    quickSort(arr,pivot + <span class="number">1</span>,hi);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上面这段代码是否与归并排序如出一辙？因为它们都建立在分治思想之上，归并排序选取中点(mid)将数组均分成两个子数组，仔细思考一下，排序的merge过程建立在两个子数组已经有序的前提之下，那假设此时左子数组最大的元素小于右子数组最小的元素，是否可以完全去掉merge过程？举例来说假设一个数组的左子数组是[1,3]，右子数组是[5,6]，那么merge过程完全是多余的，因为该数组已经有序了。理解了这一点，你便理解了快速排序。剩下的问题是，如何找一个点切分数组，使其左子数组都小于等于该点，右子数组大于等于该点。<br>上面提到的这个点，我们一般称其为pivot(枢纽元)，而选取这个点的过程一般称其为partition(分区)，你可以完全不必理会这些专有名词，它们的主要作用在于吓唬那些不懂原理的人，让这些人对快速排序望而却步。但既然我们已经明白其原理了，这里我还是会使用它们来保持文章与主流书籍的一致性。下面先来看一种简单的分区思路：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">*直接选取第一个元素lo作为pivot，使用两个指针(i,j)扫描数组，i,j朝数组中间移动</div><div class="line">*遇到arr[i]&gt;=pivot则i停止，遇到arr[j]&lt;=pivot则j停止，交换i,j对应的元素，重复该过程直到i,j相遇</div><div class="line">*当整个过程停下来时将pivot与a[j]交换位置，从而完成分区</div><div class="line">*</div><div class="line">*       left part              center part           right part</div><div class="line">* +--------------------------------------------------------------+</div><div class="line">* lo |   &lt;= pivot   |                             |   &gt;= pivot   |</div><div class="line">* +--------------------------------------------------------------+</div><div class="line">* ^                 ^                             ^</div><div class="line">* |                 |                             |</div><div class="line">* pivot             i-&gt;                         &lt;-j</div><div class="line">*</div><div class="line">*/</div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i=lo+<span class="number">1</span>,j=hi;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</div><div class="line">        <span class="keyword">while</span>(arr[++i]&lt;arr[lo] &amp;&amp; i &lt; hi);</div><div class="line">        <span class="keyword">while</span>(arr[--j]&gt;arr[lo]); <span class="comment">//这里不需要判断j&gt;lo，因为当j=lo时，arr[j]&gt;arr[lo]不可能成立</span></div><div class="line">        <span class="keyword">if</span>(i&gt;=j) <span class="keyword">break</span>; 		 <span class="comment">//i,j相遇时停止</span></div><div class="line">        exchange(arr,i,j);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    exchange(arr,lo,j);</div><div class="line">    <span class="keyword">return</span> j;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>眼尖的同学一眼就能看出该程序的问题，考虑数组所有元素都等于pivot的情况，当i遇到等于pivot的元素时停下，j遇到等于pivot的元素也停下，然后i与j发生一次交换，这实际上什么也没干。了解这里为什么要多此一举，需要先分析算法的复杂度。<br>不难想象，快速排序的最好情况是每次选取的pivot正好在数组的中间，从而每次都把问题划分成相等规模的子问题，此时该算法的时间复杂度为T(N)=2T(N/2)+cN，cN表示分区过程消耗的时间，求解该方程的过程与刚才计算归并排序复杂度的过程一模一样，如果你记性还算不错的话应该知道结果是O(NlogN)。下面简单分析一下它的最坏情况，即每次选取的pivot都正好是数组最小的元素，此时划分的左子数组只有0个元素，右子数组为N-1个元素(去掉pivot)。其复杂度有如下关系：<br>$$T(N)=T(0)+T(N-1)+cN$$$$T(N-1)=T(0)+T(N-2)+c(N-1)$$$$T(N-2)=T(0)+T(N-3)+c(N-2)$$$$\vdots$$$$T(2)=T(0)+T(1)+c(2)$$<br>同样一顿代入后，可以得到$T(N)=(N-1)\times T(0)+T(1)+c(N\times(N-2)/2)$，其中c(N(N-2)/2)是由等差数列的求和公式而来。已知T(0)=T(1)=c，最后得到：<br>$$T(N)=c(N-1)+c+c(N(N-2)/2)=O(N^2)$$<br>在这种情况下，每次递归所做的仅仅是将pivot元素放到了正确位置了，这就跟选择排序一样低效。所以有人干脆选择在排序之前将数组随机打乱以降低发生这种事的可能性，Sedgewick在其书上写到，对于一个较大的数组，先将其随机打乱再进行快速排序，其时间复杂度是平方级的概率比你的电脑在排序时被闪电击中的概率要小得多。为此我还特意在网上查了一下电脑被闪电击中的概率，然而却没有得到满意的答案，因此我不太喜欢这种方式。后面你还会看到，大牛们发明了很多经过实践验证的优化手段，足以避免我们的电脑在排序的时候被闪电击中。<br>计算最佳与最坏情况的复杂度总是比较简单，而快速排序的平均复杂度又是如何得到的？我一直在盘算能不能通过一些写作技巧把这个问题糊弄过去，因为我查了很多资料，发现证明其平均复杂度的方式要么涉及概率学，要么涉及微积分，要么两个都涉及。前面我大概已经交代过我的数学水平了，总之，快速排序的平均复杂度是O(NlogN)，如果话说到这个份上你还要问我为什么，我想我们是没办法做朋友了。<br>咳，咳！还记得最开始的问题码？如果数组所有元素都等于pivot，i与j会不断发生无意义的交换，但最终j会停在数组的中间，而假设i与j遇到等于pivot的元素时都不停下，则j最终会停在数组的最左边，此时你将得到一个$O(N^2)$的排序算法。</p>
-<p><strong>结论<br>快速排序是已知最快的排序算法，大多数场景都可以优先选择快速排序。而它的缺点是不稳定(注意这里的稳定指的不是“效率不稳定”，参见“排序算法的稳定性”)，运行效率在一定程度上依赖于概率(但通常比其它算法快)，实现它的内循环(partition)需要一定的编程技巧(但这也给编程高手留下了足够的优化空间)。
-</strong></p>
-<p>下篇文章来聊聊快速排序的优化历程。</p>
-<p>本文参考链接</p>
-<ul>
-<li><a href="http://stackoverflow.com/questions/2095395/is-logn-%CE%98n-logn" target="_blank" rel="noopener">is-logn-Θn-logn</a></li>
-<li><a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">信息论</a></li>
-<li><a href="http://algs4.cs.princeton.edu/23quicksort/" target="_blank" rel="noopener">QUICKSORT</a></li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;一-分治-Divide-and-Conquer&quot;&gt;&lt;a href=&quot;#一-分治-Divide-and-Conquer&quot; class=&quot;headerlink&quot; title=&quot;一.分治(Divide and Conquer)&quot;&gt;&lt;/a&gt;一.分治(Divide and Conquer)&lt;/h3&gt;&lt;p&gt;分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。因为它只有单一子问题。下面先来一段“经典”代码：&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;fib&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;int&lt;/span&gt; N)&lt;/span&gt;&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt;(N&amp;lt;=&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; fib(N-&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)+fib(N-&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;上面这段代码依据给定N，计算斐波那契数列，之所以说它经典是因为这段代码作为反面教材出现在各大编程入门书籍中。它在字面上完全符合上面对分治的定义，但却效率低得惊人。作为子问题，fib(N-2)被重复计算了两次(fib(N-1)中也要计算fib(N-2))。因此它并没有将子问题完全“分开”。本文要讨论的两种排序算法跟上面的代码结构非常类似，但你必须要能够理解其中本质的不同。&lt;/p&gt;
     
     </summary>
     

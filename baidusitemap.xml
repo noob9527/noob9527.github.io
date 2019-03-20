@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    <lastmod>2019-03-20T11:08:32.559Z</lastmod>
+    <data>
+        <display>
+        <title>分布式锁真的“安全”吗？</title>
+        <pubTime>2019-03-20T10:58:03.000Z</pubTime>
+        
+        <tag>Distributed System</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
     <lastmod>2019-03-05T01:15:25.876Z</lastmod>
     <data>
@@ -23,7 +44,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
     <lastmod>2019-02-05T17:30:37.119Z</lastmod>
@@ -32,9 +52,9 @@
         <title>Common Pitfalls in JPA(Hibernate)</title>
         <pubTime>2019-02-05T15:22:47.000Z</pubTime>
         
-        <tag>JPA</tag>
-         
         <tag>Spring</tag>
+         
+        <tag>JPA</tag>
          
          
            
@@ -54,9 +74,9 @@
         <title>Common Pitfalls of Declarative Transaction Management in Spring</title>
         <pubTime>2019-02-03T13:04:26.000Z</pubTime>
         
-        <tag>JPA</tag>
-         
         <tag>Spring</tag>
+         
+        <tag>JPA</tag>
          
          
            
@@ -91,15 +111,13 @@
     
     
   <url>
-    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        <title>正则表达式：零宽断言(lookaround)</title>
+        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>编程技巧</tag>
          
          
@@ -113,13 +131,15 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
+    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>正则表达式：零宽断言(lookaround)</title>
-        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
         <tag>编程技巧</tag>
          
          
@@ -146,24 +166,6 @@
            
              
               <breadCrumb title="Frontend" url="http://staynoob.cn/categories/Frontend/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2017/06//btree-data-structure/</loc>
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    <data>
-        <display>
-        <title>B-tree数据结构</title>
-        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -228,6 +230,24 @@
     </url>
 
     
+  <url>
+    <loc>http://staynoob.cn/post/2017/06//btree-data-structure/</loc>
+    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
+    <data>
+        <display>
+        <title>B-tree数据结构</title>
+        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</loc>
@@ -275,11 +295,11 @@
         <title>Jackson序列化双向关联映射的四种方法</title>
         <pubTime>2017-01-01T06:07:03.000Z</pubTime>
         
+        <tag>Spring</tag>
+         
         <tag>JPA</tag>
          
         <tag>Hibernate</tag>
-         
-        <tag>Spring</tag>
          
         <tag>Jackson</tag>
          
@@ -332,33 +352,15 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
+    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>为什么bootstrap采用border-box盒模型</title>
-        <pubTime>2016-05-18T08:48:58.000Z</pubTime>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
         
-        <tag>CSS</tag>
+        <tag>Sort</tag>
          
-         
-           
-             
-              <breadCrumb title="Frontend" url="http://staynoob.cn/categories/Frontend/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    <data>
-        <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
-        
          
            
              
@@ -410,15 +412,33 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        <title>为什么bootstrap采用border-box盒模型</title>
+        <pubTime>2016-05-18T08:48:58.000Z</pubTime>
         
-        <tag>Sort</tag>
+        <tag>CSS</tag>
          
+         
+           
+             
+              <breadCrumb title="Frontend" url="http://staynoob.cn/categories/Frontend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
+    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
+    <data>
+        <display>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        
          
            
              
