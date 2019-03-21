@@ -24,7 +24,7 @@
 <meta property="og:description" content="今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。  背景Martin Kleppmann 是剑桥大学分布式系统领域的一">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/is-distributed-lock-safe.svg">
-<meta property="og:updated_time" content="2019-03-20T11:08:32.559Z">
+<meta property="og:updated_time" content="2019-03-21T03:28:29.405Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式锁真的“安全”吗？">
 <meta name="twitter:description" content="今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。  背景Martin Kleppmann 是剑桥大学分布式系统领域的一">
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjth3t7t00031tgj5a7e7abi8">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjti2tfaa002vp8j58ewwd8qe">-->
         <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
       <!--</a>-->
     
@@ -268,7 +268,7 @@
 <h3 id="Kleppmann-的质疑"><a href="#Kleppmann-的质疑" class="headerlink" title="Kleppmann 的质疑"></a>Kleppmann 的质疑</h3><ul>
 <li>关于 Fencing Token<br>Redlock 算法中并不存在任何机制用于生成全局单调递增的 token，它为锁提供的唯一随机数并不保证单调性。而简单使用一个 Redis 节点作为计数器又存在单点问题。在分布式系统中，你可能需要自己采用某种共识算法来生成这样的 token。</li>
 <li>关于 Clock<br>Redis 使用 Wall Clock 而不是 Monotonic Clock 来判断 key 是否过期，这很容易导致 key 的过期比想象中快很多，或者慢很多。</li>
-<li><p>关于算法对时间的依赖<br>Redlock 的 safety 属性过多的依赖于对时间的假设（Using time to solve consensus）。它假设所有的 Redis 节点持有 key 的时间约等于分布式锁的过期时间；假设网络延迟相比锁的有效期来说要小很多；假设进程暂停时间比锁的有效期小得多。<br>因此，如果时钟跳跃，Redlock 算法将无法满足属性1，假设锁服务由 A, B, C ,D ,E 五个 Redis 节点组成，考虑下面的执行序列（下文将以“示例1”来引用这个例子）：</p>
+<li><p>关于算法对时间的依赖<br>Redlock 的 safety 属性过多的依赖于对时间的假设（Using time to solve consensus）。它假设所有的 Redis 节点持有 key 的时间约等于分布式锁的过期时间；假设网络延迟相比锁的有效期来说要小很多；假设进程暂停时间比锁的有效期小得多。<br>因此，如果时钟跳跃，Redlock 算法将无法满足属性1，假设锁服务由 A, B, C, D, E 五个 Redis 节点组成，考虑下面的执行序列（下文将以“示例1”来引用这个例子）：</p>
 <ol>
 <li>用户1在节点 A, B, C 中获得锁，由于网络原因，D, E 节点不可达。</li>
 <li>C 节点时钟跳跃，锁在 C 节点中过期。</li>
@@ -322,9 +322,9 @@
 </ul>
 <p>首先我们可以确定的是，在异步系统模型，锁会自动释放的前提下，可以得到：</p>
 <blockquote>
-<p>结论1：属性b不可能满足。<br>证明：参见&quot;Fencing Token&quot;中的第一个例子与示例2。</p>
+<p>结论1：属性b不可能满足。<br>证明：在不对时间做任何假设的情况下，用户以为自己持有锁，但锁已经过期，这种情况是无法避免的，参见&quot;Fencing Token&quot;中的第一个例子与示例2。</p>
 </blockquote>
-<p>现在不妨先来看分歧3，包括 Sanfilippo 自己也认为 Redlock 的正确性依赖于所有 Redis 节点中，时间以接近的速度流逝。但我认为并非如此，因为如果现实并不满足这条假设，那么算法只是无法满足属性b（注意这里无所谓算法是否可以满足属性b，因为反正结论1告诉我们属性b不可能满足），但该算法依然保证了属性a。在示例1中，c节点发生时钟跳跃，最终导致的结果其实等价于锁提前过期，在时钟不可靠的情况下，锁提前或延后过期总会发生，这对属性a而言并没有影响。换言之即使使用单节点 Redis 锁，该节点时钟同样可能发生跳跃，锁同样可能提前过期。因此<strong>示例1的问题同样等价于 &quot;Fencing Token&quot; 中的问题，它们本质上都是锁用户并不知道自己持有的锁已经过期的问题</strong>。<br>同时，基于结论1，我们可以得到：</p>
+<p>现在不妨先来看分歧3，包括 Sanfilippo 自己也认为 Redlock 的正确性依赖于所有 Redis 节点中，时间以接近的速度流逝。但我认为并非如此，因为如果现实并不满足这条假设，那么算法只是无法满足属性b（注意这里无所谓算法是否可以满足属性b，因为反正结论1告诉我们属性b不可能满足），但该算法依然保证了属性a。在示例1中，c节点发生时钟跳跃，最终导致的结果其实等价于锁提前过期，在时钟不可靠的情况下，锁提前或延后过期总会发生，这对属性a而言并没有影响。换言之即使使用单节点 Redis 锁，该节点时钟同样可能发生跳跃，锁同样可能提前过期。因此<strong>示例1的问题同样等价于 &quot;Fencing Token&quot; 中的问题，它们本质上都是锁用户并不知道自己持有的锁已经过期的问题</strong>。即便你的锁不设有效期，而是使用 Zookeeper 临时节点，通过 Zookeeper session（对用户做心跳验证） 来判断锁是否过期，该问题依旧存在。<br>同时，基于结论1，我们可以得到：</p>
 <blockquote>
 <p>结论2：如果资源服务不可控，属性c也不可能满足。<br>证明：由于属性b无法满足，势必会出现某个时刻，两个用户同时认为自己拥有锁，而此时如果资源服务不受控（即无法使用Fencing Token），则属性c无法满足。</p>
 </blockquote>
