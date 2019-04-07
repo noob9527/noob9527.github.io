@@ -3,6 +3,27 @@
 
 
     
+    
+  <url>
+    <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
+    <lastmod>2019-04-07T06:55:33.617Z</lastmod>
+    <data>
+        <display>
+        <title>(译)Strong Consistency Models</title>
+        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
+        
+        <tag>Distributed System</tag>
+         
+         
+           
+             
+              <breadCrumb title="Computer Science" url="http://staynoob.cn/categories/Computer-Science/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     <lastmod>2019-03-21T03:28:29.405Z</lastmod>
@@ -17,27 +38,6 @@
            
              
               <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
-    <lastmod>2019-03-05T01:15:25.876Z</lastmod>
-    <data>
-        <display>
-        <title>(译)Strong Consistency Models</title>
-        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
-        
-        <tag>Distributed System</tag>
-         
-         
-           
-             
-              <breadCrumb title="Computer Science" url="http://staynoob.cn/categories/Computer-Science/"/>
           
         </display>
     </data>
@@ -111,13 +111,15 @@
     
     
   <url>
-    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
+    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>正则表达式：零宽断言(lookaround)</title>
-        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
         <tag>编程技巧</tag>
          
          
@@ -131,15 +133,13 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        <title>正则表达式：零宽断言(lookaround)</title>
+        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>编程技巧</tag>
          
          
@@ -211,6 +211,24 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2017/06//btree-data-structure/</loc>
+    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
+    <data>
+        <display>
+        <title>B-tree数据结构</title>
+        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
@@ -224,24 +242,6 @@
            
              
               <breadCrumb title="Functional Programming" url="http://staynoob.cn/categories/Functional-Programming/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2017/06//btree-data-structure/</loc>
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    <data>
-        <display>
-        <title>B-tree数据结构</title>
-        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -372,35 +372,13 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</loc>
+    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>聊聊4种主流排序算法(上)</title>
-        <pubTime>2016-04-29T12:23:35.000Z</pubTime>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
         
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(下)</title>
-        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
          
            
              
@@ -432,13 +410,35 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
+    <loc>http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
         <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        <title>聊聊4种主流排序算法(上)</title>
+        <pubTime>2016-04-29T12:23:35.000Z</pubTime>
         
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(下)</title>
+        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
          
            
              
