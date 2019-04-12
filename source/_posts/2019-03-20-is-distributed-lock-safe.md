@@ -11,7 +11,7 @@ permalink:
 > 今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。
 
 ### 背景
-Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 [Designing Data-Intensive Applications（这是目前为止我在 IT 领域读过的最值的一本书，没有之一）](https://item.jd.com/12186665.html) 这本书的作者，他在个人博客中发了一篇文章 [How to do distributed locking](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 [Is Redlock safe?](http://antirez.com/news/101) 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。
+Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 [Designing Data-Intensive Applications](https://item.jd.com/12186665.html) 这本书的作者，他在个人博客中发了一篇文章 [How to do distributed locking](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html)，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 [Is Redlock safe?](http://antirez.com/news/101) 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。
 
 ### 术语和约定
 像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。
@@ -19,6 +19,8 @@ Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时
     简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）
 - liveness 属性
     简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）
+
+> "Intuitively, a safety property describes what is allowed to happen, and a liveness property describes what must happen."
 
 为了更好的描述问题，我们先定义下面三种角色：
 - 资源服务：即需要被锁保护的资源。

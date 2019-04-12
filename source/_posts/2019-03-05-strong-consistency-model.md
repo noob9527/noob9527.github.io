@@ -1,6 +1,6 @@
 ---
 title: (译)Strong Consistency Models
-categories: Computer Science
+categories: Backend
 tags: Distributed System
 photos: >-
   /img/strong-consistency-models.jpg
