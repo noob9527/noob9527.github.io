@@ -3,21 +3,20 @@
 
 
     
-    
   <url>
-    <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
-    <lastmod>2019-04-07T06:55:33.617Z</lastmod>
+    <loc>http://staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
+    <lastmod>2019-05-07T15:30:08.655Z</lastmod>
     <data>
         <display>
-        <title>(译)Strong Consistency Models</title>
-        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
+        <title>The Good Old Transaction</title>
+        <pubTime>2019-05-07T15:22:54.000Z</pubTime>
         
-        <tag>Distributed System</tag>
+        <tag>Database</tag>
          
          
            
              
-              <breadCrumb title="Computer Science" url="http://staynoob.cn/categories/Computer-Science/"/>
+              <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
           
         </display>
     </data>
@@ -26,7 +25,7 @@
     
   <url>
     <loc>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
-    <lastmod>2019-03-21T03:28:29.405Z</lastmod>
+    <lastmod>2019-05-07T14:25:50.790Z</lastmod>
     <data>
         <display>
         <title>分布式锁真的“安全”吗？</title>
@@ -43,6 +42,27 @@
     </data>
     </url>
 
+    
+  <url>
+    <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
+    <lastmod>2019-04-07T07:05:46.925Z</lastmod>
+    <data>
+        <display>
+        <title>(译)Strong Consistency Models</title>
+        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
+        
+        <tag>Distributed System</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="http://staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
@@ -111,15 +131,13 @@
     
     
   <url>
-    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        <title>正则表达式：零宽断言(lookaround)</title>
+        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
         
-        <tag>Linux</tag>
-         
         <tag>编程技巧</tag>
          
          
@@ -133,13 +151,15 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/01//regular-expression-lookahead-lookbehind/</loc>
+    <loc>http://staynoob.cn/post/2017/02//bash-shortcuts/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>正则表达式：零宽断言(lookaround)</title>
-        <pubTime>2017-01-03T15:16:58.000Z</pubTime>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
         <tag>编程技巧</tag>
          
          
@@ -173,6 +193,26 @@
 
     
   <url>
+    <loc>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
+    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
+    <data>
+        <display>
+        <title>lambda calculus:Introduction</title>
+        <pubTime>2017-03-12T07:31:30.000Z</pubTime>
+        
+        <tag>Lambda Calculus</tag>
+         
+         
+           
+             
+              <breadCrumb title="Functional Programming" url="http://staynoob.cn/categories/Functional-Programming/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://staynoob.cn/post/2017/03//salted-password-hashing/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
@@ -191,12 +231,12 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
+    <loc>http://staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     <data>
         <display>
-        <title>lambda calculus:Introduction</title>
-        <pubTime>2017-03-12T07:31:30.000Z</pubTime>
+        <title>lambda calculus:Y-combinator</title>
+        <pubTime>2017-03-26T07:49:26.000Z</pubTime>
         
         <tag>Lambda Calculus</tag>
          
@@ -222,26 +262,6 @@
            
              
               <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    <data>
-        <display>
-        <title>lambda calculus:Y-combinator</title>
-        <pubTime>2017-03-26T07:49:26.000Z</pubTime>
-        
-        <tag>Lambda Calculus</tag>
-         
-         
-           
-             
-              <breadCrumb title="Functional Programming" url="http://staynoob.cn/categories/Functional-Programming/"/>
           
         </display>
     </data>
@@ -390,26 +410,6 @@
 
     
   <url>
-    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</loc>
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     <data>
@@ -436,6 +436,26 @@
         <display>
         <title>聊聊4种主流排序算法(下)</title>
         <pubTime>2016-05-01T13:46:02.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="http://staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
         
         <tag>Sort</tag>
          

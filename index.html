@@ -146,6 +146,94 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-the-good-old-transaction"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-05-07T23:22:54+08:00" 
+          content="2019-05-07">
+        2019-05-07
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvdya9gz0034fuj5at1enrr8">-->
+        <img src="/img/the-good-old-transaction.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>随便写写跟事务相关的笔记</p>
+</blockquote>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><h3 id="原子性-Atomicity"><a href="#原子性-Atomicity" class="headerlink" title="原子性(Atomicity)"></a>原子性(Atomicity)</h3><p>这里的原子性含义与多线程编程中的原子性有一些细微的区别，在多线程语境中，如果一个方法满足原子性，则其它线程无法看到该方法执行的中间状态，但它并不保证该方法中的语句全生效或全不生效（All or Nothing）。相反，ACID 中的原子性保证 All or Nothing，但其并不保证其它事务是否能看到该事务执行的中间状态，在 ACID 中，该属性由隔离性(Isolation)来保证。考虑下面这段程序<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> counter: <span class="built_in">Int</span> = <span class="number">0</span>;</div><div class="line"></div><div class="line"><span class="meta">@Synchronized</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">increase</span><span class="params">()</span></span> &#123;</div><div class="line">    counter++;</div><div class="line">    <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</div><div class="line">        <span class="keyword">throw</span> Exception(<span class="string">"Oops!"</span>)</div><div class="line">    counter++;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Synchronized</span></div><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printCurrent</span><span class="params">()</span></span> &#123;</div><div class="line">    println(counter);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里 @Synchronized 保证 increase 方法是符合原子性的，这意味着，如果没有异常出现，则 printCurrent 方法不可能打印出一个奇数。但如果出现异常，counter 的第一次自增并不会回滚，也就是说这次 increase 调用只将 counter 自增1。与其相对的是下面这段 SQL 代码：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">begin</span> <span class="keyword">transaction</span>;</div><div class="line"><span class="keyword">update</span> counter <span class="keyword">set</span> <span class="keyword">value</span> = <span class="keyword">value</span> + <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</div><div class="line">if ROUND(RAND(),0)=1</div><div class="line"><span class="keyword">begin</span>;</div><div class="line">    THROW 50000, 'Oops!', 1</div><div class="line"><span class="keyword">end</span>;</div><div class="line"><span class="keyword">update</span> counter <span class="keyword">set</span> <span class="keyword">value</span> = <span class="keyword">value</span> + <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</div><div class="line"><span class="keyword">commit</span>;</div></pre></td></tr></table></figure></p>
+<p>即便没有异常出现，如果没有 Isolation（或者 Isolation.level = READ_UNCOMMMITTED），则其它事务能看到这段代码的中间状态，但如果有异常出现，第一次自增的操作会被回滚。<br>从这个角度来说，ACID 中的 Atomicity 更多的指的是在错误出现时能够自动撤销之前修改，也许把 &quot;A&quot; 理解成 Abortability 更恰当。</p>
+<h3 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h3><p>ACID 中的一致性，表示事务只会将数据从一种“正确”的状态修改成另一种“正确”的状态。举例来说如果说有一个用户交易系统，所有的事务只会把金额从一个账户转移到另一个账户，那么可以保证的是无论执行多少次转账交易，该系统所有账户的余额都是“正确”的。<br>这里的“正确”之所以要打引号是因为它是由应用定义的，除了一些外键约束，唯一约束之外，数据库并不能理解当前的数据是否符合你对“正确”的定义。<br>换句话说，原子性，隔离性，持久性是数据库的属性，但一致性可能更应该被看成应用的属性，应用通过数据库提供的原子性，隔离性来保证数据的一致性。因此 &quot;C&quot; 并不真的属于 “ACID”（It was said that the C in ACID was &quot;tossed in to make the acronym work&quot;）。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/05/the-good-old-transaction/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-is-distributed-lock-safe"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +284,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cju6kzys0002v3sj5jpf8hcku">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjvdya9gn002xfuj58sjymlhe">-->
         <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
       <!--</a>-->
     
@@ -212,12 +300,15 @@
             <blockquote>
 <p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
 </blockquote>
-<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 <a href="https://item.jd.com/12186665.html" target="_blank" rel="noopener">Designing Data-Intensive Applications（这是目前为止我在 IT 领域读过的最值的一本书，没有之一）</a> 这本书的作者，他在个人博客中发了一篇文章 <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a>，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 <a href="http://antirez.com/news/101" target="_blank" rel="noopener">Is Redlock safe?</a> 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。</p>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 <a href="https://item.jd.com/12186665.html" target="_blank" rel="noopener">Designing Data-Intensive Applications</a> 这本书的作者，他在个人博客中发了一篇文章 <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a>，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 <a href="http://antirez.com/news/101" target="_blank" rel="noopener">Is Redlock safe?</a> 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。</p>
 <h3 id="术语和约定"><a href="#术语和约定" class="headerlink" title="术语和约定"></a>术语和约定</h3><p>像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。</p>
 <ul>
 <li>safety 属性<br>  简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）</li>
 <li>liveness 属性<br>  简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）</li>
 </ul>
+<blockquote>
+<p>&quot;Intuitively, a safety property describes what is allowed to happen, and a liveness property describes what must happen.&quot;</p>
+</blockquote>
 <p>为了更好的描述问题，我们先定义下面三种角色：</p>
 <ul>
 <li>资源服务：即需要被锁保护的资源。</li>
@@ -289,7 +380,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Computer-Science/">Computer Science</a>
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
     </span>
 </span>
 
@@ -304,7 +395,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cju6kzyrz002u3sj524s1ph54">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjvdya9gn002wfuj51563dgd7">-->
         <img src="/img/strong-consistency-models.jpg" itemprop="image">
       <!--</a>-->
     
@@ -396,7 +487,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cju6kzyri00243sj5rdzgimdi">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjvdya9g20026fuj534v8dv9t">-->
         <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
       <!--</a>-->
     
@@ -493,7 +584,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cju6kzyrh00233sj5yp1c8mca">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjvdya9g10025fuj5p3fsnipz">-->
         <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
       <!--</a>-->
     
@@ -526,97 +617,6 @@
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-understanding-zombie-process"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2019-01-25T06:54:28+08:00" 
-          content="2019-01-25">
-        2019-01-25
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/System/">System</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cju6kzyq8000o3sj5rmzz8488">-->
-        <img src="/img/understanding-zombie-process.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>As a programmer, I usually feel uncomfortable when <code>top</code> command reports there&#39;re zombie processes running on my computer. After some study, I found that the zombie process is not as scary as my thought. This article briefly introduces the zombie process in UNIX-like systems.</p>
-</blockquote>
-<h3 id="What-is-a-quot-zombie-process-quot"><a href="#What-is-a-quot-zombie-process-quot" class="headerlink" title="What is a &quot;zombie process&quot;?"></a>What is a &quot;zombie process&quot;?</h3><blockquote>
-<p>&quot;In UNIX System terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.&quot;</p>
-</blockquote>
-<p>After we create a process via <code>fork</code> function, we get a parent process and a child process. The parent process sometimes needs to know how the child is terminated. In normal cases, we call <code>wait</code> or <code>waitpid</code> to fetch the termination status. However, a child process could terminate before its parent waits for it. In such a case, If the system cleared the child&#39;s information completely, its parent wouldn&#39;t be able to know its status. As a result, the kernel has to keep a small amount of information after a process terminates. A process like this that has been terminated, but not completely disappear, is called a zombie process.</p>
-<blockquote>
-<p>Note that zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not remain as zombie processes; instead, (like all orphaned processes) they are adopted by <code>init</code>, which waits on its children. The result is that a process that is both a zombie and an orphan will be reaped automatically.</p>
-</blockquote>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2019/01/understanding-zombie-process/#more">阅读全文</a>
             </p>
             
         </div>
@@ -687,6 +687,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
                 <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
             </li>
             
@@ -742,10 +746,6 @@
                 <a href="/post/2016/12/initial-setup-Ubuntu-16.04-server/">Initial Setup Ubuntu16.04 server</a>
             </li>
             
-            <li>
-                <a href="/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/">魔力数字与快速平方根倒数算法</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -755,7 +755,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -764,7 +764,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -773,7 +773,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

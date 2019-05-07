@@ -146,6 +146,98 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-/salted-password-hashing"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2017/03/salted-password-hashing/">加密算法简介</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2017-03-05T19:25:50+08:00" 
+          content="2017-03-05">
+        2017-03-05
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Security/">Security</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/salted-password-hashing.jpg" rel="gallery_cjvdya9fq001vfuj531gjnpr6">-->
+        <img src="/img/salted-password-hashing.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。</p>
+</blockquote>
+<h3 id="一-散列函数-Hash-function"><a href="#一-散列函数-Hash-function" class="headerlink" title="一.散列函数(Hash function)"></a>一.散列函数(Hash function)</h3><h4 id="1-常见误区"><a href="#1-常见误区" class="headerlink" title="1.常见误区"></a>1.常见误区</h4><p>关于加密算法，最常见的一个误区在于认为MD5,SHA1,SHA256就是加密算法，其实它们只是用来实现加密算法的一部分，更准确的说，它们只是散列函数，就像java中随处可见的<strong>hashCode</strong>方法一样，它们的共同点在于都要尽可能避免冲突（两个不同的输入却有相同的输出），而区别在于java中的hashCode方法用于提高散列表的性能，因此主要关注于计算速度而不是安全。<br>第二个常见误区在于，大家都觉得MD5,SHA1之所以安全，是因为它们计算过程不可逆，举个例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MD5(&quot;hello&quot;) = 5D41402ABC4B2A76B9719D911017C592</div></pre></td></tr></table></figure></p>
+<p>对MD5散列函数输入字符串&quot;hello&quot;，总是可以得到<em>5D41402ABC4B2A76B9719D911017C592</em>，但<strong>现在没有以后也不可能有</strong>任何方法将<em>5D41402ABC4B2A76B9719D911017C592</em>解密为&quot;hello&quot;（目前所有所谓的解密都是基于猜测）。乍一看这很神奇，在解释它之前，先来看下维基百科上对散列函数的定义：</p>
+<blockquote>
+<p>散列函数是一种输入<strong>任意</strong>大小的数据，返回固定大小的值的函数</p>
+</blockquote>
+<p>继续以MD5为例，对它输入任意大小的数据，它的返回值都是128位(16字节)。假如这个过程可逆，那么无损压缩就不再有极限，也就意味着给你一张软盘，你就能存储全世界！换句话说，按照上面的定义，<strong>根本不存在可逆的散列函数</strong>。看到这里你可能依然很困惑，对于任意大小的数据散列不可逆也许比较好理解，但是&quot;hello&quot;明明只有5个字符，为什么也不可逆呢？专业一点解释就是，在计算过程中丢掉一部分信息量即可（对于信息的量化，可以参考我这篇文章<a href="http://blog.staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/" target="_blank" rel="noopener">香农信息论与回答老鼠喝药问题的正确姿势</a>），草根一点的解释是，你只要让你的函数对于不同的输入，可以得到相同的输出即可。比如f(x)=x^2就是一个不可逆的函数，因为已知f(x)=1，没办法知道x到底是正1还是负1。</p>
+<h4 id="2-散列冲突-Hash-collision"><a href="#2-散列冲突-Hash-collision" class="headerlink" title="2.散列冲突(Hash collision)"></a>2.散列冲突(Hash collision)</h4><p>对于任意输入数据，经过散列函数计算后得到的散列值，又称为数据指纹（fingerprint）或摘要(digest)，它就像人类的指纹一样，你不可能通过一个人的指纹而了解这个人的全部信息，但是你总是可以快速的取到一个人的指纹。并且很难重复，如果两个不同的输入数据有着同样的散列值，则称为散列冲突。正常情况下假设一个结果分布完全均匀的散列函数输出128位的散列值，那么发生冲突的概率大概在$1/2^{128}$这个数量级，这几乎等同于不可能。但人们可以根据散列函数的实现过程，设计算法来查找冲突值，也就是常说的碰撞攻击(collision attack)。加密用散列函数最大的设计难点，就在于要让别人即使知道了该函数的所有实现细节，也无法找到高效的碰撞攻击算法。</p>
+<h4 id="3-过时的散列函数-Deprecated-hash-function"><a href="#3-过时的散列函数-Deprecated-hash-function" class="headerlink" title="3.过时的散列函数(Deprecated hash function)"></a>3.过时的散列函数(Deprecated hash function)</h4><p>2004年山东大学的王小云教授宣布<strong>攻破MD4,MD5</strong>(<a href="http://eprint.iacr.org/2004/199.pdf" target="_blank" rel="noopener">Collisions for Hash Functions</a>)，2017年（也就是最近）荷兰密码学研究小组与Google宣布<strong>攻破SHA-1</strong>(<a href="https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html" target="_blank" rel="noopener">Announcing the first SHA1 collision</a>，<a href="http://shattered.it/" target="_blank" rel="noopener">shattered</a>)，下图解释了对这些函数查找散列冲突所需的计算量：<br><img src="/img/content/hash-collision-computation.jpg" alt="hash-collision-computation"><br>可以看到使用google最近研究的算法破解SHA-1需要<strong>110</strong>块GPU一年的计算量，虽然这个数字看起来非常大，不过依然比暴力算法快了十万倍，因此Google已将SHA-1算法标记为过时(deprecated)的（顺便提一句，linus(linux,git的开发者)最近也受到这条新闻的压力，发文宣布<a href="https://plus.google.com/+LinusTorvalds/posts/7tp2gYWQugL" target="_blank" rel="noopener">更新git中用到的SHA-1算法</a>）。当然上图还有一点值得注意，前文提到的MD5算法，对它进行碰撞攻击只需要消耗一台智能手机<strong>30秒</strong>的计算量。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2017/03/salted-password-hashing/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-/bash-shortcuts"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +288,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cju6kzyq3000f3sj5t2908tnw">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cjvdya9eo000kfuj5cu2v2lzw">-->
         <img src="/img/bash-shotcuts.jpg" itemprop="image">
       <!--</a>-->
     
@@ -281,7 +373,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cju6kzyq4000i3sj57yoa9f1k">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/regular-expression-lookaround.jpg" rel="gallery_cjvdya9em000hfuj591dic3g0">-->
         <img src="/img/regular-expression-lookaround.jpg" itemprop="image">
       <!--</a>-->
     
@@ -374,7 +466,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cju6kzyr7001o3sj5q5ohljcx">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cjvdya9fl001qfuj5tsiwjljy">-->
         <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
       <!--</a>-->
     
@@ -461,7 +553,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cju6kzyq2000d3sj56f0x7i77">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cjvdya9ek000ffuj5rc9ndiji">-->
         <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
       <!--</a>-->
     
@@ -496,92 +588,6 @@
             <!--阅读全文-->
             <p class="post-more-link">
                 <a href="/post/2016/12/initial-setup-Ubuntu-16.04-server/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
-    <article id="post-/the-famous-magic-number-fast-inverse-square-root-algorithm"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/">魔力数字与快速平方根倒数算法</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2016-09-20T10:53:33+08:00" 
-          content="2016-09-20">
-        2016-09-20
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cju6kzyr6001k3sj547mdab60">-->
-        <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
-</blockquote>
-<h3 id="一-来源与背景"><a href="#一-来源与背景" class="headerlink" title="一.来源与背景"></a>一.来源与背景</h3><p>这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛的讨论，下面是代码的原始版本（去掉了c预处理器指令，保留了源码注释）：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">Q_rsqrt</span><span class="params">( <span class="keyword">float</span> number )</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">long</span> i;</div><div class="line">	<span class="keyword">float</span> x2, y;</div><div class="line">	<span class="keyword">const</span> <span class="keyword">float</span> threehalfs = <span class="number">1.5F</span>;</div><div class="line"></div><div class="line">	x2 = number * <span class="number">0.5F</span>;</div><div class="line">	y  = number;</div><div class="line">	i  = * ( <span class="keyword">long</span> * ) &amp;y; <span class="comment">// evil floating point bit level hacking</span></div><div class="line">	i  = <span class="number">0x5f3759df</span> - ( i &gt;&gt; <span class="number">1</span> ); <span class="comment">// what the fuck?</span></div><div class="line">	y  = * ( <span class="keyword">float</span> * ) &amp;i;</div><div class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></div><div class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></div><div class="line"></div><div class="line">	<span class="keyword">return</span> y;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>经测试这段代码比使用c标准函数(float)(1.0/sqrt(x))快4倍，因而引起了多名学者的注意，不少人发表论文来研究它的工作原理。与它的工作方式一样神秘的是，截止目前为止，仍没有人站出来对这段逼格爆表的代码表示负责。因此0x5f3759df这个魔力数字的得来方式也成了一个谜。<br>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/#more">阅读全文</a>
             </p>
             
         </div>
@@ -652,6 +658,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
                 <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
             </li>
             
@@ -707,10 +717,6 @@
                 <a href="/post/2016/12/initial-setup-Ubuntu-16.04-server/">Initial Setup Ubuntu16.04 server</a>
             </li>
             
-            <li>
-                <a href="/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/">魔力数字与快速平方根倒数算法</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -720,7 +726,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Science/">Computer Science</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -729,7 +735,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -738,7 +744,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 
