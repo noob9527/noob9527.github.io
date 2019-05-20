@@ -9,7 +9,7 @@
 
 
 
-<title>When Soft Delete Meets Unique Index - 许炎的个人博客</title>
+<title>When "Soft Delete" Meets "Unique Index" - 许炎的个人博客</title>
 
 
     <meta name="keywords" content="Database">
@@ -18,15 +18,15 @@
 <meta name="description" content="Write something casually to practice my English writing skill.  Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &amp;quot;fini">
 <meta name="keywords" content="Database">
 <meta property="og:type" content="article">
-<meta property="og:title" content="When Soft Delete Meets Unique Index">
+<meta property="og:title" content="When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;">
 <meta property="og:url" content="http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/index.html">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="Write something casually to practice my English writing skill.  Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &amp;quot;fini">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/when-soft-delete-meets-unique-index.jpg">
-<meta property="og:updated_time" content="2019-05-20T16:26:50.737Z">
+<meta property="og:updated_time" content="2019-05-20T16:31:54.738Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="When Soft Delete Meets Unique Index">
+<meta name="twitter:title" content="When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;">
 <meta name="twitter:description" content="Write something casually to practice my English writing skill.  Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &amp;quot;fini">
 <meta name="twitter:image" content="http://staynoob.cn/img/when-soft-delete-meets-unique-index.jpg">
 
@@ -157,7 +157,7 @@
         <header class="post-header">
             <h1 itemprop="name">
     
-      When Soft Delete Meets Unique Index
+      When "Soft Delete" Meets "Unique Index"
     
 </h1>
         </header>
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/when-soft-delete-meets-unique-index.jpg" rel="gallery_cjvwl1fzl000znzj5xaa6myii">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/when-soft-delete-meets-unique-index.jpg" rel="gallery_cjvwlaotf000znzj5pvxa5ym8">-->
         <img src="/img/when-soft-delete-meets-unique-index.jpg" itemprop="image">
       <!--</a>-->
     
@@ -223,7 +223,7 @@
 <h3 id="Partially-Index-in-PostgreSQL"><a href="#Partially-Index-in-PostgreSQL" class="headerlink" title="Partially Index in PostgreSQL"></a>Partially Index in PostgreSQL</h3><p>If you are using PostgreSQL, you are lucky, they do have implemented the &quot;Partially index&quot;. the create statement may look like:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">"user"</span> (</div><div class="line">    <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">GENERATED</span> <span class="keyword">BY</span> <span class="keyword">DEFAULT</span> <span class="keyword">AS</span> <span class="keyword">IDENTITY</span> PRIMARY <span class="keyword">KEY</span>,</div><div class="line">    username <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    deleted <span class="built_in">boolean</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">false</span></div><div class="line">);</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> uq_user <span class="keyword">ON</span> <span class="string">"user"</span> <span class="keyword">USING</span> btree(username) <span class="keyword">WHERE</span> <span class="keyword">NOT</span> deleted;</div></pre></td></tr></table></figure></p>
 <p>Now everything works as our expectations.</p>
 <h3 id="In-absense-of-partially-index"><a href="#In-absense-of-partially-index" class="headerlink" title="In absense of partially index"></a>In absense of partially index</h3><p>However, the majority database products don&#39;t have the &quot;Partially index&quot; concept. We have to take a workaround, instead of storing the deleted flag as a boolean value, now we have to use a &quot;delete token&quot;. This is how it is done, if a record is active, we keep the token to be 0, if we want to delete a record, we set the &quot;delete token&quot; column to a unique value to avoid violating unique constraint. A perfect delete token could be the timestamp when you want to delete the record(the auto-generated id of the deleted record is also a fair choice). The following script shows how to do it with MySQL.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`deleted_at`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`uq_user`</span> (<span class="string">`username`</span>,<span class="string">`deleted_at`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
-<p>Note that <code>deleted_at timestamp DEFAULT NULL</code> doesn&#39;t work since most databases don&#39;t treat multiple null as duplicate values, which means multiple active user with a same username can pass the unique constraint.<br>Also, the statement of deleting a user has now becoming<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> deleted_at = <span class="keyword">unix_timestamp</span>() <span class="keyword">WHERE</span> <span class="keyword">id</span> = #&#123;<span class="keyword">id</span>&#125;;</div></pre></td></tr></table></figure></p>
+<p>Note that <code>deleted_at timestamp DEFAULT NULL</code> doesn&#39;t work since most databases do not treat multiple null as duplicate values, which means multiple active user with a same username can pass the unique constraint.<br>Also, the statement of deleting a user has now becoming<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> deleted_at = <span class="keyword">unix_timestamp</span>() <span class="keyword">WHERE</span> <span class="keyword">id</span> = #&#123;<span class="keyword">id</span>&#125;;</div></pre></td></tr></table></figure></p>
 <p>Now, we are finally able to &quot;kill&quot; John Snow multiple times.</p>
 </div>
             
@@ -325,7 +325,7 @@
         <ul class="recent-posts">
             
             <li>
-                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When Soft Delete Meets Unique Index</a>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
             </li>
             
             <li>
@@ -446,7 +446,7 @@
               var disqus_config = function () {
                   this.page.url = 'http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/';
                   this.page.identifier = 'post/2019/05/when-soft-delete-meets-unique-index/';
-                  this.page.title = 'When Soft Delete Meets Unique Index';
+                  this.page.title = 'When "Soft Delete" Meets "Unique Index"';
               };
               var d = document, s = d.createElement('script');
               s.src = 'https://staynoob.disqus.com/embed.js';
