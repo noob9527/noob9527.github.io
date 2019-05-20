@@ -196,7 +196,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/when-soft-delete-meets-unique-index.jpg" rel="gallery_cjvwlaotf000znzj5pvxa5ym8">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/when-soft-delete-meets-unique-index.jpg" rel="gallery_cjvwlkeus0012yfj5oae4s3yz">-->
         <img src="/img/when-soft-delete-meets-unique-index.jpg" itemprop="image">
       <!--</a>-->
     
@@ -210,7 +210,7 @@
             
             <!--摘录-->
             <blockquote>
-<p>Write something casually to practice my English writing skill.</p>
+<p>Do some casually writing to practice my English.</p>
 </blockquote>
 <p>Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &quot;finished&quot; it immediately without even think about it. This is how I did, add a boolean column named &quot;deleted&quot; for each table, then replace every unique index to include the &quot;deleted&quot; column, done! Anyway, It turns out I was too naive.</p>
 <h3 id="What-39-s-wrong-with-my-naive-solution"><a href="#What-39-s-wrong-with-my-naive-solution" class="headerlink" title="What&#39;s wrong with my naive solution?"></a>What&#39;s wrong with my naive solution?</h3><p>Imagine that we have a user table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`deleted`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`uq_user`</span> (<span class="string">`username`</span>,<span class="string">`deleted`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
@@ -285,7 +285,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvwlaovt003enzj5qwuacb35">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvwlkexc003cyfj58486w5aw">-->
         <img src="/img/the-good-old-transaction.jpg" itemprop="image">
       <!--</a>-->
     
@@ -373,7 +373,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjvwlaove0037nzj5q4437fmd">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjvwlkewt0035yfj5qt65u27b">-->
         <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
       <!--</a>-->
     
@@ -484,7 +484,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjvwlaove0036nzj5uii82gn9">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjvwlkewr0034yfj5csa5js6y">-->
         <img src="/img/strong-consistency-models.jpg" itemprop="image">
       <!--</a>-->
     
@@ -576,7 +576,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjvwlaout0029nzj5je20gl2o">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjvwlkewc002gyfj53nl1k674">-->
         <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
       <!--</a>-->
     
