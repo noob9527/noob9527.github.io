@@ -2,23 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
+    <loc>http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     
-    <lastmod>2019-05-07T15:30:08.655Z</lastmod>
+    <lastmod>2019-05-20T16:26:50.737Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     
-    <lastmod>2019-05-07T14:25:50.790Z</lastmod>
+    <lastmod>2019-05-07T15:32:10.225Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
+    
+    <lastmod>2019-05-07T15:32:10.225Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
     
-    <lastmod>2019-04-07T07:05:46.925Z</lastmod>
+    <lastmod>2019-05-07T15:32:10.221Z</lastmod>
     
   </url>
   
@@ -79,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
+    <loc>http://staynoob.cn/post/2017/06/btree-data-structure/</loc>
     
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2017/06/btree-data-structure/</loc>
+    <loc>http://staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
     
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     
@@ -149,14 +156,14 @@
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
     
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
     
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     

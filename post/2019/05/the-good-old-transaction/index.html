@@ -24,7 +24,7 @@
 <meta property="og:description" content="随便写写跟事务相关的笔记  ACID原子性(Atomicity)这里的原子性含义与多线程编程中的原子性有一些细微的区别，在多线程语境中，如果一个方法满足原子性，则其它线程无法看到该方法执行的中间状态，但它并不保证该方法中的语句全生效或全不生效（All or Nothing）。相反，ACID 中的原子性保证 All or Nothing，但其并不保证其它事务是否能看到该事务执行的中间状态，在 AC">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://staynoob.cn/img/the-good-old-transaction.jpg">
-<meta property="og:updated_time" content="2019-05-07T15:30:08.655Z">
+<meta property="og:updated_time" content="2019-05-07T15:32:10.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Good Old Transaction">
 <meta name="twitter:description" content="随便写写跟事务相关的笔记  ACID原子性(Atomicity)这里的原子性含义与多线程编程中的原子性有一些细微的区别，在多线程语境中，如果一个方法满足原子性，则其它线程无法看到该方法执行的中间状态，但它并不保证该方法中的语句全生效或全不生效（All or Nothing）。相反，ACID 中的原子性保证 All or Nothing，但其并不保证其它事务是否能看到该事务执行的中间状态，在 AC">
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvdya9gz0034fuj5at1enrr8">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvwl1g26003cnzj5ewnlcwyd">-->
         <img src="/img/the-good-old-transaction.jpg" itemprop="image">
       <!--</a>-->
     
@@ -354,6 +354,11 @@
 
   <div class="post-nav-prev post-nav-item">
     
+    <a href="/post/2019/05/when-soft-delete-meets-unique-index/" rel="prev" title="When Soft Delete Meets Unique Index">
+        When Soft Delete Meets Unique Index 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
   </div>
 </div>
 
@@ -430,6 +435,10 @@
         <ul class="recent-posts">
             
             <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When Soft Delete Meets Unique Index</a>
+            </li>
+            
+            <li>
                 <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
             </li>
             
@@ -485,10 +494,6 @@
                 <a href="/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/">Jackson序列化双向关联映射的四种方法</a>
             </li>
             
-            <li>
-                <a href="/post/2016/12/initial-setup-Ubuntu-16.04-server/">Initial Setup Ubuntu16.04 server</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -498,7 +503,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -507,7 +512,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -516,7 +521,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

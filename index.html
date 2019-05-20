@@ -146,6 +146,95 @@
             <div class="col-md-9">
                 <main>
                     
+    <article id="post-when-soft-delete-meets-unique-index"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When Soft Delete Meets Unique Index</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-05-21T00:17:16+08:00" 
+          content="2019-05-21">
+        2019-05-21
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+      <!--<a class="post-gallery-img fancybox" href="/img/when-soft-delete-meets-unique-index.jpg" rel="gallery_cjvwl1fzl000znzj5xaa6myii">-->
+        <img src="/img/when-soft-delete-meets-unique-index.jpg" itemprop="image">
+      <!--</a>-->
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Write something casually to practice my English writing skill.</p>
+</blockquote>
+<p>Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &quot;finished&quot; it immediately without even think about it. This is how I did, add a boolean column named &quot;deleted&quot; for each table, then replace every unique index to include the &quot;deleted&quot; column, done! Anyway, It turns out I was too naive.</p>
+<h3 id="What-39-s-wrong-with-my-naive-solution"><a href="#What-39-s-wrong-with-my-naive-solution" class="headerlink" title="What&#39;s wrong with my naive solution?"></a>What&#39;s wrong with my naive solution?</h3><p>Imagine that we have a user table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`deleted`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`uq_user`</span> (<span class="string">`username`</span>,<span class="string">`deleted`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>Whenever we need to &quot;soft delete&quot; a user, we set the value of the &quot;deleted&quot; column to 1, what could possibly go wrong?<br>Now, let&#39;s say we have a user &quot;John Snow&quot;, we deleted the corresponding record with the following command after he was killed in GOT season 5.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> deleted = <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = #&#123;<span class="keyword">id</span>&#125;;</div></pre></td></tr></table></figure></p>
+<p>then we insert it again after they bring him back in season 6.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">user</span>(username) <span class="keyword">values</span> (<span class="string">"John Snow"</span>);</div></pre></td></tr></table></figure></p>
+<p>Everything works smoothly so far, except that we won&#39;t able to delete him again. this time <code>update user set deleted = 1 where id = #{id};</code> will raise a duplicate records error, that is exactly what the unique constraint does, but apparently, it violates our intention.<br>The problem is, we only want the username to be unique if the user is active, we don&#39;t care if there are multiple deleted user share a username. In other words, we only want a partially unique constraint which restricts the active user.</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
     <article id="post-the-good-old-transaction"
          class="post post-type-post" itemscope itemprop="blogPost">
 
@@ -196,7 +285,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvdya9gz0034fuj5at1enrr8">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/the-good-old-transaction.jpg" rel="gallery_cjvwl1g26003cnzj5ewnlcwyd">-->
         <img src="/img/the-good-old-transaction.jpg" itemprop="image">
       <!--</a>-->
     
@@ -284,7 +373,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjvdya9gn002xfuj58sjymlhe">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cjvwl1g1q0034nzj5s4g5equ6">-->
         <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
       <!--</a>-->
     
@@ -395,7 +484,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjvdya9gn002wfuj51563dgd7">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cjvwl1g1s0035nzj5jdhnykmc">-->
         <img src="/img/strong-consistency-models.jpg" itemprop="image">
       <!--</a>-->
     
@@ -487,7 +576,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjvdya9g20026fuj534v8dv9t">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cjvwl1g0z002hnzj5q5tkgdf9">-->
         <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
       <!--</a>-->
     
@@ -534,108 +623,10 @@
 </article>
 
 
-    <article id="post-common-pitfalls-of-declarative-transaction-management-in-spring"
-         class="post post-type-post" itemscope itemprop="blogPost">
-
-    <div class="post-inner">
-        <!-- title -->
-        
-        <header class="post-header">
-            <h1 itemprop="name">
-    
-      <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
-    
-</h1>
-        </header>
-        
-
-        <!-- meta data -->
-        <div class="post-meta">
-            <span class="post-date">
-    <span class="post-meta-item-icon">
-      <i class="fa fa-calendar"></i>
-    </span>
-    <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2019-02-03T21:04:26+08:00" 
-          content="2019-02-03">
-        2019-02-03
-    </time>
-</span>
-            
-<span class="post-category">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-        <i class="fa fa-folder-o"></i>
-    </span>
-    <span class="post-meta-item-text">分类于</span>
-    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Backend/">Backend</a>
-    </span>
-</span>
-
-
-            
-    
-
-        </div>
-
-        <!-- gallery-->
-        
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-      <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cjvdya9g10025fuj5p3fsnipz">-->
-        <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
-      <!--</a>-->
-    
-  </div>
-
-        </div>
-        
-
-        <!-- entry -->
-        <div class="post-entry" itemprop="postBody">
-            
-            <!--摘录-->
-            <blockquote>
-<p>Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative management is still preferred since it is less invasive to application code. In this post, I&#39;m going to summarize several pitfalls you may encounter while using declarative transaction management. Certainly, if you read the official document thoroughly, you should know how to avoid them on your own, but if you think of it is all about annotating your method with the @Transactional annotation as I did, you may never figure them out until the day your customer reports his balance is incorrect.</p>
-</blockquote>
-<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>Our samples are written in Kotlin language. In addition, I assume that you are already familiar with the following frameworks.</p>
-<ul>
-<li>Spring</li>
-<li>JPA(Hibernate implementation)</li>
-<li>Spring Data JPA</li>
-</ul>
-<p>Examples in this post are based on the following class:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entity</span></div><div class="line"><span class="meta">@Entity</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoEntity</span></span>(</div><div class="line">        <span class="keyword">val</span> name: String</div><div class="line">) : AbstractPersistable&lt;<span class="built_in">Int</span>&gt;()</div><div class="line"></div><div class="line"><span class="comment">// repository</span></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">DemoRepo</span> : <span class="type">CrudRepository</span>&lt;<span class="type">DemoEntity, Int</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>Read the manual of Spring Data JPA If you are not able to understand the above code. Finally, The related test code will be available at <a href="https://github.com/noob9527/post-code/tree/master/1-common-pitfalls-of-declarative-transaction-management-in-spring" target="_blank" rel="noopener">common-pitfalls-of-declarative-transaction-management-in-spring</a>.</p>
-<h3 id="Pitfall-1-Transactional-annotation-may-have-no-effect-at-all"><a href="#Pitfall-1-Transactional-annotation-may-have-no-effect-at-all" class="headerlink" title="Pitfall 1: @Transactional annotation may have no effect at all"></a>Pitfall 1: @Transactional annotation may have no effect at all</h3><p>It&#39;s a common circumstance that we put some code in a private method so it can be reused. If the code involves a transaction, we may end up with writing code like this.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">DemoService</span></span>(</div><div class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</div><div class="line">) &#123;</div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        persist(demo)</div><div class="line">        <span class="comment">// do something</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        persist(demo)</div><div class="line">        <span class="comment">// do other things</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Transactional</span></div><div class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</div><div class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></div><div class="line">        demoRepo.save(demo)</div><div class="line">        unpredictableMethod()</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></div><div class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</div><div class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</div><div class="line">            <span class="keyword">throw</span> Exception(<span class="string">"Oops!"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>In this case, the <code>persist</code> method will be invoked as if no @Transactional annotation is present. To understand why, we need to know that the declarative transaction is implemented on top of AOP(Aspect Oriented Programming) proxies. A proxied method invocation procedure looks like this:<br><img src="/img/content/common-pitfalls-of-declarative-transaction-management-in-spring/transactional-proxy.png" alt="transactional-proxy"><br>From the picture, it is not hard to imagine that the <code>beginTransaction</code>, <code>commit</code> and <code>rollback</code> logic is implemented in a so called &quot;advice&quot; component. &quot;Advice&quot; here refers to a core concept of AOP(read the documentation of <a href="https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/aop.html" target="_blank" rel="noopener">Spring AOP</a> to get more information), and there is two different advice mode supported by Spring transaction management, which called &quot;PROXY&quot; and &quot;ASPECTJ&quot;. As the document says:</p>
-<blockquote>
-<p>When using proxies, you should apply the @Transactional annotation only to methods with public visibility. If you do annotate protected, private or package-visible methods with the @Transactional annotation, no error is raised, but the annotated method does not exhibit the configured transactional settings. Consider the use of AspectJ if you need to annotate non-public methods.</p>
-</blockquote>
-<p>Now the reason is pretty clear, to fix the problem, we can either switch the advice mode from &quot;PROXY&quot;(default option) to &quot;ASPECTJ&quot;, or remove the private modifier from the <code>persist</code> method. Let&#39;s say we choose to remove the modifier, you can find that the <code>persist</code> is still invoked without any transaction, because we just fall into the next pitfall.</p>
-            <!--阅读全文-->
-            <p class="post-more-link">
-                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/#more">阅读全文</a>
-            </p>
-            
-        </div>
-
-        <footer class="post-footer">
-            
-        </footer>
-    </div>
-    
-    
-
-    
-</article>
-
-
 
 
 <nav class="site-pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
 </nav>
 
                 </main>
@@ -685,6 +676,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget-content">
         <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When Soft Delete Meets Unique Index</a>
+            </li>
             
             <li>
                 <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
@@ -742,10 +737,6 @@
                 <a href="/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/">Jackson序列化双向关联映射的四种方法</a>
             </li>
             
-            <li>
-                <a href="/post/2016/12/initial-setup-Ubuntu-16.04-server/">Initial Setup Ubuntu16.04 server</a>
-            </li>
-            
         </ul>
     </div>
 </aside>
@@ -755,7 +746,7 @@
 <aside class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/永远记不住的编程姿势/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
     </div>
 </aside>
 
@@ -764,7 +755,7 @@
 <aside class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-content tag-cloud">
-        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/编程技巧/" style="font-size: 15px;">编程技巧</a>
     </div>
 </aside>
 
@@ -773,7 +764,7 @@
 <aside class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-content">
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
     </div>
 </aside>
 

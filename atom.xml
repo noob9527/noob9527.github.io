@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://staynoob.cn/"/>
-  <updated>2019-05-07T15:30:08.655Z</updated>
+  <updated>2019-05-20T16:26:50.737Z</updated>
   <id>http://staynoob.cn/</id>
   
   <author>
@@ -16,11 +16,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>When Soft Delete Meets Unique Index</title>
+    <link href="http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/"/>
+    <id>http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</id>
+    <published>2019-05-20T16:17:16.000Z</published>
+    <updated>2019-05-20T16:26:50.737Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>Write something casually to practice my English writing skill.</p>
+</blockquote>
+<p>Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &quot;finished&quot; it immediately without even think about it. This is how I did, add a boolean column named &quot;deleted&quot; for each table, then replace every unique index to include the &quot;deleted&quot; column, done! Anyway, It turns out I was too naive.</p>
+<h3 id="What-39-s-wrong-with-my-naive-solution"><a href="#What-39-s-wrong-with-my-naive-solution" class="headerlink" title="What&#39;s wrong with my naive solution?"></a>What&#39;s wrong with my naive solution?</h3><p>Imagine that we have a user table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`deleted`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`uq_user`</span> (<span class="string">`username`</span>,<span class="string">`deleted`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>Whenever we need to &quot;soft delete&quot; a user, we set the value of the &quot;deleted&quot; column to 1, what could possibly go wrong?<br>Now, let&#39;s say we have a user &quot;John Snow&quot;, we deleted the corresponding record with the following command after he was killed in GOT season 5.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">update</span> <span class="keyword">user</span> <span class="keyword">set</span> deleted = <span class="number">1</span> <span class="keyword">where</span> <span class="keyword">id</span> = #&#123;<span class="keyword">id</span>&#125;;</div></pre></td></tr></table></figure></p>
+<p>then we insert it again after they bring him back in season 6.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">insert</span> <span class="keyword">user</span>(username) <span class="keyword">values</span> (<span class="string">"John Snow"</span>);</div></pre></td></tr></table></figure></p>
+<p>Everything works smoothly so far, except that we won&#39;t able to delete him again. this time <code>update user set deleted = 1 where id = #{id};</code> will raise a duplicate records error, that is exactly what the unique constraint does, but apparently, it violates our intention.<br>The problem is, we only want the username to be unique if the user is active, we don&#39;t care if there are multiple deleted user share a username. In other words, we only want a partially unique constraint which restricts the active user.</p>
+<a id="more"></a>
+<h3 id="Partially-Index-in-PostgreSQL"><a href="#Partially-Index-in-PostgreSQL" class="headerlink" title="Partially Index in PostgreSQL"></a>Partially Index in PostgreSQL</h3><p>If you are using PostgreSQL, you are lucky, they do have implemented the &quot;Partially index&quot;. the create statement may look like:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">"user"</span> (</div><div class="line">    <span class="keyword">id</span> <span class="built_in">int</span> <span class="keyword">GENERATED</span> <span class="keyword">BY</span> <span class="keyword">DEFAULT</span> <span class="keyword">AS</span> <span class="keyword">IDENTITY</span> PRIMARY <span class="keyword">KEY</span>,</div><div class="line">    username <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">    deleted <span class="built_in">boolean</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="literal">false</span></div><div class="line">);</div><div class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> uq_user <span class="keyword">ON</span> <span class="string">"user"</span> <span class="keyword">USING</span> btree(username) <span class="keyword">WHERE</span> <span class="keyword">NOT</span> deleted;</div></pre></td></tr></table></figure></p>
+<p>Now everything works as our expectations.</p>
+<h3 id="In-absense-of-partially-index"><a href="#In-absense-of-partially-index" class="headerlink" title="In absense of partially index"></a>In absense of partially index</h3><p>However, the majority database products don&#39;t have the &quot;Partially index&quot; concept. We have to take a workaround, instead of storing the deleted flag as a boolean value, now we have to use a &quot;delete token&quot;. This is how it is done, if a record is active, we keep the token to be 0, if we want to delete a record, we set the &quot;delete token&quot; column to a unique value to avoid violating unique constraint. A perfect delete token could be the timestamp when you want to delete the record(the auto-generated id of the deleted record is also a fair choice). The following script shows how to do it with MySQL.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="string">`user`</span> (</div><div class="line">  <span class="string">`id`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</div><div class="line">  <span class="string">`username`</span> <span class="built_in">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</div><div class="line">  <span class="string">`deleted_at`</span> <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">unsigned</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</div><div class="line">  PRIMARY <span class="keyword">KEY</span> (<span class="string">`id`</span>),</div><div class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="string">`uq_user`</span> (<span class="string">`username`</span>,<span class="string">`deleted_at`</span>)</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>Note that <code>deleted_at timestamp DEFAULT NULL</code> doesn&#39;t work since most databases don&#39;t treat multiple null as duplicate values, which means multiple active user with a same username can pass the unique constraint.<br>Also, the statement of deleting a user has now becoming<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">UPDATE</span> <span class="keyword">user</span> <span class="keyword">SET</span> deleted_at = <span class="keyword">unix_timestamp</span>() <span class="keyword">WHERE</span> <span class="keyword">id</span> = #&#123;<span class="keyword">id</span>&#125;;</div></pre></td></tr></table></figure></p>
+<p>Now, we are finally able to &quot;kill&quot; John Snow multiple times.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Write something casually to practice my English writing skill.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Recently, I was asked to enable soft delete for all the tables I created, it sounds like a breeze, as an experienced noob, I &amp;quot;finished&amp;quot; it immediately without even think about it. This is how I did, add a boolean column named &amp;quot;deleted&amp;quot; for each table, then replace every unique index to include the &amp;quot;deleted&amp;quot; column, done! Anyway, It turns out I was too naive.&lt;/p&gt;
+&lt;h3 id=&quot;What-39-s-wrong-with-my-naive-solution&quot;&gt;&lt;a href=&quot;#What-39-s-wrong-with-my-naive-solution&quot; class=&quot;headerlink&quot; title=&quot;What&amp;#39;s wrong with my naive solution?&quot;&gt;&lt;/a&gt;What&amp;#39;s wrong with my naive solution?&lt;/h3&gt;&lt;p&gt;Imagine that we have a user table:&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;`user`&lt;/span&gt; (&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;string&quot;&gt;`id`&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;int&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;11&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; AUTO_INCREMENT,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;string&quot;&gt;`username`&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;50&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;string&quot;&gt;`deleted`&lt;/span&gt; tinyint(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  PRIMARY &lt;span class=&quot;keyword&quot;&gt;KEY&lt;/span&gt; (&lt;span class=&quot;string&quot;&gt;`id`&lt;/span&gt;),&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;UNIQUE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;`uq_user`&lt;/span&gt; (&lt;span class=&quot;string&quot;&gt;`username`&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;`deleted`&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Whenever we need to &amp;quot;soft delete&amp;quot; a user, we set the value of the &amp;quot;deleted&amp;quot; column to 1, what could possibly go wrong?&lt;br&gt;Now, let&amp;#39;s say we have a user &amp;quot;John Snow&amp;quot;, we deleted the corresponding record with the following command after he was killed in GOT season 5.&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;update&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt; deleted = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt; = #&amp;#123;&lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt;&amp;#125;;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;then we insert it again after they bring him back in season 6.&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;insert&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;user&lt;/span&gt;(username) &lt;span class=&quot;keyword&quot;&gt;values&lt;/span&gt; (&lt;span class=&quot;string&quot;&gt;&quot;John Snow&quot;&lt;/span&gt;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Everything works smoothly so far, except that we won&amp;#39;t able to delete him again. this time &lt;code&gt;update user set deleted = 1 where id = #{id};&lt;/code&gt; will raise a duplicate records error, that is exactly what the unique constraint does, but apparently, it violates our intention.&lt;br&gt;The problem is, we only want the username to be unique if the user is active, we don&amp;#39;t care if there are multiple deleted user share a username. In other words, we only want a partially unique constraint which restricts the active user.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Backend" scheme="http://staynoob.cn/categories/Backend/"/>
+    
+    
+      <category term="Database" scheme="http://staynoob.cn/tags/Database/"/>
+    
+  </entry>
+  
+  <entry>
     <title>The Good Old Transaction</title>
     <link href="http://staynoob.cn/post/2019/05/the-good-old-transaction/"/>
     <id>http://staynoob.cn/post/2019/05/the-good-old-transaction/</id>
     <published>2019-05-07T15:22:54.000Z</published>
-    <updated>2019-05-07T15:30:08.655Z</updated>
+    <updated>2019-05-07T15:32:10.225Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>随便写写跟事务相关的笔记</p>
@@ -167,7 +210,7 @@
     <link href="http://staynoob.cn/post/2019/03/is-distributed-lock-safe/"/>
     <id>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</id>
     <published>2019-03-20T10:58:03.000Z</published>
-    <updated>2019-05-07T14:25:50.790Z</updated>
+    <updated>2019-05-07T15:32:10.225Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
@@ -383,7 +426,7 @@
     <link href="http://staynoob.cn/post/2019/03/strong-consistency-model/"/>
     <id>http://staynoob.cn/post/2019/03/strong-consistency-model/</id>
     <published>2019-03-05T01:11:27.000Z</published>
-    <updated>2019-04-07T07:05:46.925Z</updated>
+    <updated>2019-05-07T15:32:10.221Z</updated>
     
     <content type="html"><![CDATA[<p></p><p style="text-align:center">（封面图片来自 <a href="https://jepsen.io/consistency" target="_blank" rel="noopener">Consistency Models</a>）</p><p></p>
 <blockquote>
@@ -1761,88 +1804,6 @@
     });
 &lt;/script&gt;
 &lt;br&gt;上面的例子中由于div1的浮动，div2的一部分被浮动的元素覆盖，容器的高度比它里面浮动的元素高度还要低。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Frontend" scheme="http://staynoob.cn/categories/Frontend/"/>
-    
-    
-      <category term="CSS" scheme="http://staynoob.cn/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么bootstrap采用border-box盒模型</title>
-    <link href="http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/"/>
-    <id>http://staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</id>
-    <published>2016-05-18T08:48:58.000Z</published>
-    <updated>2019-01-24T23:05:35.542Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
-</blockquote>
-<p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a href="https://css-tricks.com/box-sizing/" target="_blank" rel="noopener">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
-<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
-<ul>
-<li>width + padding + border = 元素实际可见的宽度</li>
-<li>height + padding + border = 元素实际可见的高度</li>
-</ul>
-<p>这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：</p>
-<ul>
-<li>width = 元素实际可见的宽度</li>
-<li>height = 元素实际可见的高度</li>
-</ul>
-<p>这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。</p>
-<p>尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。</p>
-<a id="more"></a>
-<h3 id="二-CSS3的box-sizing属性"><a href="#二-CSS3的box-sizing属性" class="headerlink" title="二.CSS3的box-sizing属性"></a>二.CSS3的box-sizing属性</h3><p>为了适应移动互联网的浪潮，CSS3在提升响应式开发体验上下了很多功夫，比如说添加了media query媒介查询模块(CSS2.1中的@media属性只能用来区分媒体的类型，无法查询具体屏幕尺寸)，另一项重要的改进就是引入box-sizing属性来决定盒模型的渲染方式，它有三个可选值，分别是：content-box(默认值),padding-box,border-box。其中padding-box几乎没人用，content-box依然按照规范工作，而border-box则采取与老版本IE混杂模式中对盒模型相同的解释方式，这也是最流行的选项。看到这里，你也许仍然不明白border-box到底好在哪里，下面是一个Demo:</p>
-
-<div style="border:5px solid #a57958;padding:10px">
-	<p>按下按钮查看box-sizing属性对布局的影响</p>
-    <button class="demo-btn btn btn-info">content-box</button>
-    <button class="demo-btn btn btn-info">border-box</button>
-    <div id="demo-container" class="clearfix" style="margin-top:10px">
-    	<div style="margin:0 auto 5px;padding:10%;width:90%;border:5px solid #a57958">width=90%
-        padding=10%
-        border=5px</div>
-    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
-        border=5px</div>
-    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
-        border=5px</div>
-    </div>
-</div>
-<script>
-	$(".demo-btn").on("click",function(){
-    	$("*").css("box-sizing",$(this).text());
-    });
-</script>
-
-<h3 id="三-重置方法最佳实践"><a href="#三-重置方法最佳实践" class="headerlink" title="三.重置方法最佳实践"></a>三.重置方法最佳实践</h3><p>现在，我们已经知道了使用border-box盒模型进行布局更加简单，而除非你的代码是面向IE5用户开发的，否则都需要使用重置代码来修改默认的盒模型，最早人们使用通配符选择器(universal type selector)来重置所有元素的box-sizing属性。代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* &#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>大部分情况下上述代码就够了，但它还遗漏了伪元素，改进后的代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>以上也是bootstrap(v3.3.5)中使用的重置代码，它已经完全够用了，不过假如你的需求非常变态，想要在网页中混合使用content-box,padding-box,border-box,可以采用如下的重置代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">html</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">box-sizing</span>:inherit;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>上面的代码可以让你的选择更加有弹性，可以为不同的布局容器指定各自的盒模型，而不用担心每个容器的子元素被全局样式重置。</p>
-<h3 id="四-浏览器支持"><a href="#四-浏览器支持" class="headerlink" title="四.浏览器支持"></a>四.浏览器支持</h3><p>所有现代浏览器已经全部支持无前缀的box-sizing属性，如果你想要支持一些老到几乎没人用的浏览器版本(safari &lt; 5.1,chrome &lt; 10,firefox &lt; 29)，可以像bootstrap一样为该属性加上浏览器前缀：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</div><div class="line">  <span class="attribute">-webkit-box-sizing</span>:border-box;</div><div class="line">  <span class="attribute">-moz-box-sizing</span>:border-box;</div><div class="line">  <span class="attribute">box-sizing</span>:border-box;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>不过padding-box因为没什么人用，所以一些浏览器可能会不支持。IE7及其以下版本不支持box-sizing属性。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是&lt;a href=&quot;https://css-tricks.com/box-sizing/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;box-sizing&lt;/a&gt;这篇文章，建议有英语基础的同学直接阅读该篇文章。&lt;/p&gt;
-&lt;h3 id=&quot;一-CSS盒模型历史&quot;&gt;&lt;a href=&quot;#一-CSS盒模型历史&quot; class=&quot;headerlink&quot; title=&quot;一.CSS盒模型历史&quot;&gt;&lt;/a&gt;一.CSS盒模型历史&lt;/h3&gt;&lt;p&gt;在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;width + padding + border = 元素实际可见的宽度&lt;/li&gt;
-&lt;li&gt;height + padding + border = 元素实际可见的高度&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;width = 元素实际可见的宽度&lt;/li&gt;
-&lt;li&gt;height = 元素实际可见的高度&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。&lt;/p&gt;
-&lt;p&gt;尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。&lt;/p&gt;
     
     </summary>
     
