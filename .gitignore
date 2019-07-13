@@ -7,6 +7,7 @@ public/
 .deploy*/
 
 .idea
+.vscode
 
 themes/ly
 themes/junior-react
