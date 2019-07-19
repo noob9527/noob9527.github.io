@@ -2,189 +2,189 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</loc>
     
-    <lastmod>2019-05-20T16:41:43.127Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
-    
-    <lastmod>2019-05-07T15:32:10.225Z</lastmod>
+    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     
-    <lastmod>2019-05-07T15:32:10.225Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2019/03/strong-consistency-model/</loc>
-    
-    <lastmod>2019-05-07T15:32:10.221Z</lastmod>
+    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     
-    <lastmod>2019-02-05T17:30:37.119Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
-    
-    <lastmod>2019-02-03T13:04:26.439Z</lastmod>
+    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
     
-    <lastmod>2019-01-24T23:19:54.147Z</lastmod>
+    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/03/salted-password-hashing/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-introduction/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/07/closure-in-javascript/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/06/btree-data-structure/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/init-commit/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.636Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/initial-setup-ubuntu-16.04-desktop/</loc>
+    
+    <lastmod>2019-06-07T01:58:11.636Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/01/regular-expression-lookahead-lookbehind/</loc>
     
     <lastmod>2019-01-24T23:05:35.550Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://staynoob.cn/post/2017/02/bash-shortcuts/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/07/closure-in-javascript/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/03/salted-password-hashing/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/03/lambda-calculus-introduction/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/06/btree-data-structure/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.550Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.546Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.546Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.546Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/04/init-commit/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/04/initial-setup-ubuntu-16.04-desktop/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/04/insertion-shell-merge-quick-sort-algorithm-1/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/post/2016/05/shannon-mathematical-theory-of-communication/</loc>
-    
-    <lastmod>2019-01-24T23:05:35.542Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://staynoob.cn/404.html</loc>
+    <loc>https://blog.staynoob.cn/404.html</loc>
     
     <lastmod>2019-01-24T23:05:35.542Z</lastmod>
     

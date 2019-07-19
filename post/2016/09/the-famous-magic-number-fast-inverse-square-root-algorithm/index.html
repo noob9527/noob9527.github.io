@@ -19,16 +19,16 @@
 <meta name="keywords" content="github, 技术博客, web开发, fontend">
 <meta property="og:type" content="article">
 <meta property="og:title" content="魔力数字与快速平方根倒数算法">
-<meta property="og:url" content="http://staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/index.html">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/index.html">
 <meta property="og:site_name" content="NOOB">
 <meta property="og:description" content="题图来自于世界名模KK的推文，图中的guy&amp;#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&amp;quot;i=0.5f3759df-(i&amp;gt;&amp;gt;1)&amp;quot;是迄今为止我见过的最令我瞠目结舌的一行代码。  一.来源与背景这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://staynoob.cn/img/fast_inverse_square_root.jpg">
-<meta property="og:updated_time" content="2019-01-24T23:05:35.546Z">
+<meta property="og:image" content="https://blog.staynoob.cn/img/fast_inverse_square_root.jpg">
+<meta property="og:updated_time" content="2019-06-07T01:58:11.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="魔力数字与快速平方根倒数算法">
 <meta name="twitter:description" content="题图来自于世界名模KK的推文，图中的guy&amp;#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&amp;quot;i=0.5f3759df-(i&amp;gt;&amp;gt;1)&amp;quot;是迄今为止我见过的最令我瞠目结舌的一行代码。  一.来源与背景这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛">
-<meta name="twitter:image" content="http://staynoob.cn/img/fast_inverse_square_root.jpg">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/fast_inverse_square_root.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -198,7 +198,7 @@
         <div class="post-gallery">
               <div class="post-gallery-photos">
     
-      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cjvwlkevz001vyfj5vwp2ekse">-->
+      <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cjyabkzf2001em97r3dxhzswi">-->
         <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
       <!--</a>-->
     
@@ -259,7 +259,7 @@
 <p>由于$L=2^{n-i-1}$，因此$M_x+E_xL$，$M_y+E_yL$正好是x与y所代表的整数值，如果我们用R来代表原方程中$\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L$这一部分，会得到$I_y=R-\frac{I_x}{2}$，将除以2替换成计算机更喜欢的右移位后，就成了这行神奇的代码。现在只剩下最后一个问题了，R值是多少？</p>
 <h3 id="四-魔力数字"><a href="#四-魔力数字" class="headerlink" title="四.魔力数字"></a>四.魔力数字</h3><p>根据上面段落的推理过程，可以知道魔力数字R应该等于$\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L$，其中B与L都是常量，如果是32位浮点数，则B等于127，L等于$2^{23}$。而$\sigma_a=log(1+m_y)-m_y$，$\sigma_b=log(1+m_x)-m_x$。现在可以构建一个函数f(x)=log(1+x)-x，由于$m_x$，$m_y$均为尾数部分，因此自变量x的取值范围是[0,1]，到这里我的想法是利用积分计算出函数f(x)=log(1+x)-x在[0,1]区间的平均值，从而得出$\sigma$的近似值，即：<br>$$\int_0^1\left[log(1+x)-x\right]dx$$如果我没算错的话，结果应该是$2-\frac{1}{ln2}-\frac{1}{2}\approx0.05730495911$。(wikipedia对$\sigma$的计算结果是0.0450461875...，我没看懂它的计算方式，如果有数学高手看到这里希望能指导一下)。最后将该值带回原式：<br>$$1.5\times2^{23}\times(127 - 1.5\times0.05730495911)\approx1597308761=0x5f34ff59$$同样这里我的计算结果与源码(0x5f3759df)不同，我也不知道错在哪里，希望有大神指导。</p>
 <h3 id="五-牛顿法"><a href="#五-牛顿法" class="headerlink" title="五.牛顿法"></a>五.牛顿法</h3><p>至于代码中<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></div><div class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></div></pre></td></tr></table></figure></p>
-<p>这一部分则是使用牛顿迭代法来获取更精确的计算结果，关于牛顿法的详情可以参见我的上一篇文章<a href="http://blog.staynoob.cn/post/algorithm/integer-arithmetic-karatsuba-multiplication/#二-牛顿法（Newton-Raphson-method）" target="_blank" rel="noopener">牛顿迭代法</a>，这里不再赘述。</p>
+<p>这一部分则是使用牛顿迭代法来获取更精确的计算结果，关于牛顿法的详情可以参见我的上一篇文章<a href="http://blog.staynoob.cn/post/algorithm/integer-arithmetic-karatsuba-multiplication/#二-牛顿法（Newton-Raphson-method）">牛顿迭代法</a>，这里不再赘述。</p>
 <h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><p>关于这段代码的出处至今仍有争议，相传是由天才程序员<a href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E5%8D%A1%E9%A6%AC%E5%85%8B" target="_blank" rel="noopener">约翰·卡马克</a>所开发（约翰·卡马克是编程领域畅销书<a href="https://book.douban.com/subject/1152971/" target="_blank" rel="noopener">DOOM启示录</a>的主角），然而不管这段代码出自于谁，我都觉得是码农届的荣耀，毫不夸张的说我因为0x5f3759df这个数字在家花了一个月时间重温高数，还有里面的&quot;evil floating point bit level hacking&quot;，深刻的让我觉得这段代码的作者是用灵魂在撸代码。</p>
 <p>参考链接：</p>
 <ul>
@@ -488,7 +488,7 @@
     
           <script type="text/javascript">
               var disqus_config = function () {
-                  this.page.url = 'http://staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/';
+                  this.page.url = 'https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/';
                   this.page.identifier = 'post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/';
                   this.page.title = '魔力数字与快速平方根倒数算法';
               };
