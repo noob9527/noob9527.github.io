@@ -3,15 +3,17 @@
 
 
     
+    
+    
   <url>
     <loc>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</loc>
-    <lastmod>2019-07-24T14:40:49.849Z</lastmod>
+    <lastmod>2019-08-03T13:44:20.948Z</lastmod>
     <data>
         <display>
         <title>再谈js闭包</title>
         <pubTime>2017-07-16T08:40:28.000Z</pubTime>
         
-        <tag>Javascript</tag>
+        <tag>javascript</tag>
          
          
            
@@ -85,26 +87,6 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    <data>
-        <display>
-        <title>lambda calculus:Y-combinator</title>
-        <pubTime>2017-03-26T07:49:26.000Z</pubTime>
-        
-        <tag>Lambda Calculus</tag>
-         
-         
-           
-             
-              <breadCrumb title="Functional Programming" url="https://blog.staynoob.cn/categories/Functional-Programming/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</loc>
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
@@ -154,6 +136,26 @@
            
              
               <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>lambda calculus:Y-combinator</title>
+        <pubTime>2017-03-26T07:49:26.000Z</pubTime>
+        
+        <tag>Lambda Calculus</tag>
+         
+         
+           
+             
+              <breadCrumb title="Functional Programming" url="https://blog.staynoob.cn/categories/Functional-Programming/"/>
           
         </display>
     </data>
@@ -323,6 +325,24 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
+        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Mathematic" url="https://blog.staynoob.cn/categories/Mathematic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
@@ -343,17 +363,19 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
-        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
+        <title>Initial Setup Ubuntu16.04 server</title>
+        <pubTime>2016-12-04T03:44:13.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
          
            
              
-              <breadCrumb title="Mathematic" url="https://blog.staynoob.cn/categories/Mathematic/"/>
+              <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
           
         </display>
     </data>
@@ -372,26 +394,6 @@
            
              
               <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>Initial Setup Ubuntu16.04 server</title>
-        <pubTime>2016-12-04T03:44:13.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
           
         </display>
     </data>
@@ -525,6 +527,5 @@
     </data>
     </url>
 
-    
     
 </urlset>

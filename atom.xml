@@ -710,7 +710,7 @@
     <link href="https://blog.staynoob.cn/post/2017/07//closure-in-javascript/"/>
     <id>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</id>
     <published>2017-07-16T08:40:28.000Z</published>
-    <updated>2019-07-24T14:40:49.849Z</updated>
+    <updated>2019-08-03T13:44:20.948Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>网上关于 js 闭包的文章多如牛毛，这里之所以再写一篇，主要是因为网上的那些文章要么对初学者不够友好，要么根本就没有谈到重点。在读过那些文章后的很长一段时间里，我对闭包都是似懂非懂。直到在学 react 的过程中逐渐接触函数式编程，才开始真正理解闭包。</p>
@@ -752,7 +752,7 @@
       <category term="Frontend" scheme="https://blog.staynoob.cn/categories/Frontend/"/>
     
     
-      <category term="Javascript" scheme="https://blog.staynoob.cn/tags/Javascript/"/>
+      <category term="javascript" scheme="https://blog.staynoob.cn/tags/javascript/"/>
     
   </entry>
   
