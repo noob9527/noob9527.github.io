@@ -20,11 +20,13 @@ rss: /atom.xml
 menu:
   home: /
   archives: /archives
+  free_tech_books: /free-tech-books
   about: /about
 menu_icons:
   enable: true
   home: home
   archives: archive
+  free_tech_books: book
   about: user
 
 

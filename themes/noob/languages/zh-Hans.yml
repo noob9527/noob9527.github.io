@@ -6,6 +6,7 @@ menu:
   about: 关于
   search: 搜索
   guestbook: 留言
+  free_tech_books: 免费纸质书
 
 widget:
   archive: 归档
@@ -14,7 +15,7 @@ widget:
   tagcloud: 标签
   recent_posts: 最新文章
   search: 站内搜索
-  
+
 post:
   posted: 发表于
   categories: 分类于
