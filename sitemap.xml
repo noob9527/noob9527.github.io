@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.staynoob.cn/free-tech-books/index.html</loc>
     
-    <lastmod>2019-08-03T15:19:00.863Z</lastmod>
+    <lastmod>2019-08-03T15:35:36.930Z</lastmod>
     
   </url>
   
@@ -23,14 +23,14 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     
     <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     
     <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     
@@ -107,6 +107,13 @@
   </url>
   
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
@@ -114,7 +121,7 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -135,7 +142,7 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -149,7 +156,7 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -157,13 +164,6 @@
   
   <url>
     <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     

@@ -27,14 +27,14 @@
     
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     <data>
         <display>
-        <title>When "Soft Delete" Meets "Unique Index"</title>
-        <pubTime>2019-05-20T16:17:16.000Z</pubTime>
+        <title>分布式锁真的“安全”吗？</title>
+        <pubTime>2019-03-20T10:58:03.000Z</pubTime>
         
-        <tag>Database</tag>
+        <tag>Distributed System</tag>
          
          
            
@@ -47,14 +47,14 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     <data>
         <display>
-        <title>分布式锁真的“安全”吗？</title>
-        <pubTime>2019-03-20T10:58:03.000Z</pubTime>
+        <title>When "Soft Delete" Meets "Unique Index"</title>
+        <pubTime>2019-05-20T16:17:16.000Z</pubTime>
         
-        <tag>Distributed System</tag>
+        <tag>Database</tag>
          
          
            
@@ -267,6 +267,26 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
@@ -287,19 +307,19 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        <title>CSS清除浮动的原理与最佳实践</title>
+        <pubTime>2016-05-20T07:26:52.000Z</pubTime>
         
-        <tag>Sort</tag>
+        <tag>CSS</tag>
          
          
            
              
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+              <breadCrumb title="Frontend" url="https://blog.staynoob.cn/categories/Frontend/"/>
           
         </display>
     </data>
@@ -343,19 +363,17 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>CSS清除浮动的原理与最佳实践</title>
-        <pubTime>2016-05-20T07:26:52.000Z</pubTime>
+        <title>魔力数字与快速平方根倒数算法</title>
+        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
          
            
              
-              <breadCrumb title="Frontend" url="https://blog.staynoob.cn/categories/Frontend/"/>
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -383,17 +401,25 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>魔力数字与快速平方根倒数算法</title>
-        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
+        <title>Jackson序列化双向关联映射的四种方法</title>
+        <pubTime>2017-01-01T06:07:03.000Z</pubTime>
         
+        <tag>JPA</tag>
+         
+        <tag>Hibernate</tag>
+         
+        <tag>Spring</tag>
+         
+        <tag>Jackson</tag>
+         
          
            
              
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
           
         </display>
     </data>
@@ -416,32 +442,6 @@
            
              
               <breadCrumb title="永远记不住的编程姿势" url="https://blog.staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>Jackson序列化双向关联映射的四种方法</title>
-        <pubTime>2017-01-01T06:07:03.000Z</pubTime>
-        
-        <tag>JPA</tag>
-         
-        <tag>Hibernate</tag>
-         
-        <tag>Spring</tag>
-         
-        <tag>Jackson</tag>
-         
-         
-           
-             
-              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
           
         </display>
     </data>
