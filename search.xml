@@ -475,9 +475,9 @@
         
         <tags>
             
-            <tag> JPA </tag>
-            
             <tag> Spring </tag>
+            
+            <tag> JPA </tag>
             
         </tags>
         
@@ -537,9 +537,9 @@
         
         <tags>
             
-            <tag> JPA </tag>
-            
             <tag> Spring </tag>
+            
+            <tag> JPA </tag>
             
         </tags>
         
@@ -1111,11 +1111,11 @@
         
         <tags>
             
+            <tag> Spring </tag>
+            
             <tag> JPA </tag>
             
             <tag> Hibernate </tag>
-            
-            <tag> Spring </tag>
             
             <tag> Jackson </tag>
             

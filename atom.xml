@@ -566,9 +566,9 @@
       <category term="Backend" scheme="https://blog.staynoob.cn/categories/Backend/"/>
     
     
-      <category term="JPA" scheme="https://blog.staynoob.cn/tags/JPA/"/>
-    
       <category term="Spring" scheme="https://blog.staynoob.cn/tags/Spring/"/>
+    
+      <category term="JPA" scheme="https://blog.staynoob.cn/tags/JPA/"/>
     
   </entry>
   
@@ -646,9 +646,9 @@
       <category term="Backend" scheme="https://blog.staynoob.cn/categories/Backend/"/>
     
     
-      <category term="JPA" scheme="https://blog.staynoob.cn/tags/JPA/"/>
-    
       <category term="Spring" scheme="https://blog.staynoob.cn/tags/Spring/"/>
+    
+      <category term="JPA" scheme="https://blog.staynoob.cn/tags/JPA/"/>
     
   </entry>
   
@@ -1308,11 +1308,11 @@
       <category term="Backend" scheme="https://blog.staynoob.cn/categories/Backend/"/>
     
     
+      <category term="Spring" scheme="https://blog.staynoob.cn/tags/Spring/"/>
+    
       <category term="JPA" scheme="https://blog.staynoob.cn/tags/JPA/"/>
     
       <category term="Hibernate" scheme="https://blog.staynoob.cn/tags/Hibernate/"/>
-    
-      <category term="Spring" scheme="https://blog.staynoob.cn/tags/Spring/"/>
     
       <category term="Jackson" scheme="https://blog.staynoob.cn/tags/Jackson/"/>
     

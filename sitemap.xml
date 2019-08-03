@@ -4,7 +4,7 @@
   <url>
     <loc>https://blog.staynoob.cn/free-tech-books/index.html</loc>
     
-    <lastmod>2019-08-03T15:35:36.930Z</lastmod>
+    <lastmod>2019-08-03T15:39:52.722Z</lastmod>
     
   </url>
   
@@ -23,13 +23,6 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     
     <lastmod>2019-07-23T17:31:07.532Z</lastmod>
@@ -44,9 +37,9 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/03/salted-password-hashing/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     
   </url>
   
@@ -58,14 +51,21 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/06/btree-data-structure/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
     
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/salted-password-hashing/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/06/btree-data-structure/</loc>
     
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     
@@ -86,13 +86,6 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</loc>
     
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
@@ -100,14 +93,21 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/05/css-float-clearfix-best-in-practice/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -142,13 +142,6 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
@@ -156,14 +149,21 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/09/the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
