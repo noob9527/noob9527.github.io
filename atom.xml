@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.staynoob.cn/"/>
-  <updated>2019-06-07T01:58:11.648Z</updated>
+  <updated>2019-07-23T17:31:07.532Z</updated>
   <id>https://blog.staynoob.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/"/>
     <id>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</id>
     <published>2019-05-20T16:17:16.000Z</published>
-    <updated>2019-06-07T01:58:11.648Z</updated>
+    <updated>2019-07-23T17:31:07.532Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Do some casually writing to practice my English.</p>
@@ -63,7 +63,7 @@
     <link href="https://blog.staynoob.cn/post/2019/05/the-good-old-transaction/"/>
     <id>https://blog.staynoob.cn/post/2019/05/the-good-old-transaction/</id>
     <published>2019-05-07T15:22:54.000Z</published>
-    <updated>2019-06-07T01:58:11.648Z</updated>
+    <updated>2019-07-23T17:31:07.532Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>随便写写跟事务相关的笔记</p>
@@ -210,7 +210,7 @@
     <link href="https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/"/>
     <id>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</id>
     <published>2019-03-20T10:58:03.000Z</published>
-    <updated>2019-06-07T01:58:11.648Z</updated>
+    <updated>2019-07-23T17:31:07.532Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
@@ -426,7 +426,7 @@
     <link href="https://blog.staynoob.cn/post/2019/03/strong-consistency-model/"/>
     <id>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</id>
     <published>2019-03-05T01:11:27.000Z</published>
-    <updated>2019-06-07T01:58:11.648Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<p></p><p style="text-align:center">（封面图片来自 <a href="https://jepsen.io/consistency" target="_blank" rel="noopener">Consistency Models</a>）</p><p></p>
 <blockquote>
@@ -504,7 +504,7 @@
     <link href="https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/"/>
     <id>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</id>
     <published>2019-02-05T15:22:47.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Nowadays, ORM technique has been playing an important role in object-oriented programming, and JPA is now considered the standard industry approach for ORM in the Java industry. In this post, I summarized several phenomena which violate my intuition and prone to error.</p>
@@ -577,7 +577,7 @@
     <link href="https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/"/>
     <id>https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</id>
     <published>2019-02-03T13:04:26.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative management is still preferred since it is less invasive to application code. In this post, I&#39;m going to summarize several pitfalls you may encounter while using declarative transaction management. Certainly, if you read the official document thoroughly, you should know how to avoid them on your own, but if you think of it is all about annotating your method with the @Transactional annotation as I did, you may never figure them out until the day your customer reports his balance is incorrect.</p>
@@ -657,7 +657,7 @@
     <link href="https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/"/>
     <id>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</id>
     <published>2019-01-24T22:54:28.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>As a programmer, I usually feel uncomfortable when <code>top</code> command reports there&#39;re zombie processes running on my computer. After some study, I found that the zombie process is not as scary as my thought. This article briefly introduces the zombie process in UNIX-like systems.</p>
@@ -710,7 +710,7 @@
     <link href="https://blog.staynoob.cn/post/2017/07//closure-in-javascript/"/>
     <id>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</id>
     <published>2017-07-16T08:40:28.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-24T14:40:49.849Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>网上关于 js 闭包的文章多如牛毛，这里之所以再写一篇，主要是因为网上的那些文章要么对初学者不够友好，要么根本就没有谈到重点。在读过那些文章后的很长一段时间里，我对闭包都是似懂非懂。直到在学 react 的过程中逐渐接触函数式编程，才开始真正理解闭包。</p>
@@ -752,7 +752,7 @@
       <category term="Frontend" scheme="https://blog.staynoob.cn/categories/Frontend/"/>
     
     
-      <category term="javascript" scheme="https://blog.staynoob.cn/tags/javascript/"/>
+      <category term="Javascript" scheme="https://blog.staynoob.cn/tags/Javascript/"/>
     
   </entry>
   
@@ -761,7 +761,7 @@
     <link href="https://blog.staynoob.cn/post/2017/06//btree-data-structure/"/>
     <id>https://blog.staynoob.cn/post/2017/06//btree-data-structure/</id>
     <published>2017-06-25T09:25:42.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>几乎所有文件系统索引，数据库索引，都需要用到B-tree或其变种。因此对于码农而言，理解它如何工作还是相当有必要的。然而我最近阅读了很多相关的文章，它们往往一上来就试图跟读者解释<code>branchingFactor/degree, B-1&lt;=keys&lt;2B-1,B&lt;=children&lt;2B blablabla...</code>，在读者还不懂原理时就开始描述实现细节。导致像我一样没学过正统cs课程的野生码农严重怀疑自己的智商。这篇文章试图向跟我一样的小白来描述B-tree（前提是你能理解二分查找）。</p>
@@ -802,7 +802,7 @@
     <link href="https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/"/>
     <id>https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</id>
     <published>2017-03-26T07:49:26.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>上篇文章的末尾提到了一个问题，如何使用λ演算实现递归函数？其中最出名的解决方案是由数学家<a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank" rel="noopener">Haskell B. Curry</a>发现的一个被称为Y-combinator的函数。</p>
@@ -880,7 +880,7 @@
     <link href="https://blog.staynoob.cn/post/2017/03//lambda-calculus-introduction/"/>
     <id>https://blog.staynoob.cn/post/2017/03//lambda-calculus-introduction/</id>
     <published>2017-03-12T07:31:30.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
@@ -1027,7 +1027,7 @@
     <link href="https://blog.staynoob.cn/post/2017/03//salted-password-hashing/"/>
     <id>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</id>
     <published>2017-03-05T11:25:50.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.528Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。</p>
@@ -1100,7 +1100,7 @@
     <link href="https://blog.staynoob.cn/post/2017/02//bash-shortcuts/"/>
     <id>https://blog.staynoob.cn/post/2017/02//bash-shortcuts/</id>
     <published>2017-02-11T15:07:28.000Z</published>
-    <updated>2019-06-07T01:58:11.644Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
@@ -1256,7 +1256,7 @@
     <link href="https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/"/>
     <id>https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</id>
     <published>2017-01-01T06:07:03.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>如果一个对象与另一个对象之间存在互相引用(bi-directional relationship)，序列化该对象就会出现stackoverflow异常，这篇文章主要介绍使用jackson序列化工具处理该问题的几种解决方案。</p>
@@ -1323,7 +1323,7 @@
     <link href="https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/"/>
     <id>https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</id>
     <published>2016-12-04T03:44:13.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>这篇文章算是<a href="http://blog.staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
@@ -1409,7 +1409,7 @@
     <link href="https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/"/>
     <id>https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</id>
     <published>2016-09-20T02:53:33.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
@@ -1488,7 +1488,7 @@
     <link href="https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/"/>
     <id>https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</id>
     <published>2016-06-04T08:12:23.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。</p>
@@ -1579,7 +1579,7 @@
     <link href="https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/"/>
     <id>https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</id>
     <published>2016-05-22T05:50:35.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>最近在学习算法的过程中频繁接触到信息论，有碍于自己的数学水平，无力窥其全貌。但仅仅是一个入门级的了解便足以让我为之倾倒。这篇文章简单介绍信息论，之后来看看如何利用它秒解一些智力题。</p>
@@ -1647,7 +1647,7 @@
     <link href="https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/"/>
     <id>https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</id>
     <published>2016-05-20T07:26:52.000Z</published>
-    <updated>2019-06-07T01:58:11.640Z</updated>
+    <updated>2019-07-23T17:31:07.524Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>

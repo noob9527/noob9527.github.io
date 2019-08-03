@@ -3,30 +3,30 @@
 
 
     
-    
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</loc>
-    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</loc>
+    <lastmod>2019-07-24T14:40:49.849Z</lastmod>
     <data>
         <display>
-        <title>(译)Strong Consistency Models</title>
-        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
+        <title>再谈js闭包</title>
+        <pubTime>2017-07-16T08:40:28.000Z</pubTime>
         
-        <tag>Distributed System</tag>
+        <tag>Javascript</tag>
          
          
            
              
-              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
+              <breadCrumb title="Frontend" url="https://blog.staynoob.cn/categories/Frontend/"/>
           
         </display>
     </data>
     </url>
 
     
+    
   <url>
     <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
-    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     <data>
         <display>
         <title>When "Soft Delete" Meets "Unique Index"</title>
@@ -46,7 +46,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
-    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     <data>
         <display>
         <title>分布式锁真的“安全”吗？</title>
@@ -66,7 +66,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
-    <lastmod>2019-06-07T01:58:11.648Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     <data>
         <display>
         <title>The Good Old Transaction</title>
@@ -85,68 +85,8 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/02//bash-shortcuts/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
-    <data>
-        <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-        <tag>编程技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="永远记不住的编程姿势" url="https://blog.staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
-    <data>
-        <display>
-        <title>加密算法简介</title>
-        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Security" url="https://blog.staynoob.cn/categories/Security/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
-    <data>
-        <display>
-        <title>lambda calculus:Introduction</title>
-        <pubTime>2017-03-12T07:31:30.000Z</pubTime>
-        
-        <tag>Lambda Calculus</tag>
-         
-         
-           
-             
-              <breadCrumb title="Functional Programming" url="https://blog.staynoob.cn/categories/Functional-Programming/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
         <title>lambda calculus:Y-combinator</title>
@@ -165,19 +105,75 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
-        <title>再谈js闭包</title>
-        <pubTime>2017-07-16T08:40:28.000Z</pubTime>
+        <title>加密算法简介</title>
+        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
         
-        <tag>javascript</tag>
+         
+           
+             
+              <breadCrumb title="Security" url="https://blog.staynoob.cn/categories/Security/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-introduction/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>lambda calculus:Introduction</title>
+        <pubTime>2017-03-12T07:31:30.000Z</pubTime>
+        
+        <tag>Lambda Calculus</tag>
          
          
            
              
-              <breadCrumb title="Frontend" url="https://blog.staynoob.cn/categories/Frontend/"/>
+              <breadCrumb title="Functional Programming" url="https://blog.staynoob.cn/categories/Functional-Programming/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/06//btree-data-structure/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>B-tree数据结构</title>
+        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>Understanding Zombie Process</title>
+        <pubTime>2019-01-24T22:54:28.000Z</pubTime>
+        
+        <tag>UNIX</tag>
+         
+         
+           
+             
+              <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
           
         </display>
     </data>
@@ -186,7 +182,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
         <title>Common Pitfalls of Declarative Transaction Management in Spring</title>
@@ -208,7 +204,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
         <title>Common Pitfalls in JPA(Hibernate)</title>
@@ -229,57 +225,19 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/06//btree-data-structure/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
-        <title>B-tree数据结构</title>
-        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        <title>(译)Strong Consistency Models</title>
+        <pubTime>2019-03-05T01:11:27.000Z</pubTime>
         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
-    <lastmod>2019-06-07T01:58:11.644Z</lastmod>
-    <data>
-        <display>
-        <title>Understanding Zombie Process</title>
-        <pubTime>2019-01-24T22:54:28.000Z</pubTime>
-        
-        <tag>UNIX</tag>
+        <tag>Distributed System</tag>
          
          
            
              
-              <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(上)</title>
-        <pubTime>2016-04-29T12:23:35.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
           
         </display>
     </data>
@@ -288,7 +246,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
         <title>聊聊4种主流排序算法(下)</title>
@@ -307,28 +265,8 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
         <title>为什么bootstrap采用border-box盒模型</title>
@@ -347,17 +285,37 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
-        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
         
          
            
              
-              <breadCrumb title="Mathematic" url="https://blog.staynoob.cn/categories/Mathematic/"/>
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -366,7 +324,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2016/05//css-float-clearfix-best-in-practice/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
         <title>CSS清除浮动的原理与最佳实践</title>
@@ -385,12 +343,30 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2016/05//shannon-mathematical-theory-of-communication/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        <title>香农信息论与回答老鼠喝药问题的正确姿势</title>
+        <pubTime>2016-05-22T05:50:35.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Mathematic" url="https://blog.staynoob.cn/categories/Mathematic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>魔力数字与快速平方根倒数算法</title>
+        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
         
          
            
@@ -404,7 +380,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
         <title>Initial Setup Ubuntu16.04 server</title>
@@ -423,17 +399,21 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/09//the-famous-magic-number-fast-inverse-square-root-algorithm/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
-        <title>魔力数字与快速平方根倒数算法</title>
-        <pubTime>2016-09-20T02:53:33.000Z</pubTime>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
         
+        <tag>Linux</tag>
+         
+        <tag>编程技巧</tag>
+         
          
            
              
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+              <breadCrumb title="永远记不住的编程姿势" url="https://blog.staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
           
         </display>
     </data>
@@ -442,7 +422,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
-    <lastmod>2019-06-07T01:58:11.640Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
         <display>
         <title>Jackson序列化双向关联映射的四种方法</title>
@@ -468,7 +448,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2016/04/init-commit/</loc>
-    <lastmod>2019-06-07T01:58:11.636Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.520Z</lastmod>
     <data>
         <display>
         <title>init commit</title>
@@ -486,7 +466,7 @@
     
   <url>
     <loc>https://blog.staynoob.cn/post/2016/04//initial-setup-ubuntu-16.04-desktop/</loc>
-    <lastmod>2019-06-07T01:58:11.636Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.520Z</lastmod>
     <data>
         <display>
         <title>安装ubuntu16.04后要做的9件事</title>
@@ -498,6 +478,26 @@
            
              
               <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04//insertion-shell-merge-quick-sort-algorithm-1/</loc>
+    <lastmod>2019-07-23T17:31:07.520Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(上)</title>
+        <pubTime>2016-04-29T12:23:35.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
