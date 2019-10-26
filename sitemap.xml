@@ -2,23 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.staynoob.cn/free-tech-books/index.html</loc>
+    <loc>https://blog.staynoob.cn/post/2019/10/why-i-think-kotlin-is-preferable-to-java/</loc>
     
-    <lastmod>2019-08-03T15:39:52.722Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/404.html</loc>
-    
-    <lastmod>2019-08-03T13:55:21.915Z</lastmod>
+    <lastmod>2019-10-26T01:48:12.865Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2017/07/closure-in-javascript/</loc>
     
-    <lastmod>2019-08-03T13:44:20.948Z</lastmod>
+    <lastmod>2019-10-26T01:30:42.542Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/404.html</loc>
+    
+    <lastmod>2019-10-26T01:30:42.306Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/free-tech-books/index.html</loc>
+    
+    <lastmod>2019-10-26T01:30:42.306Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
     
   </url>
   
@@ -37,28 +51,14 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/salted-password-hashing/</loc>
     
-    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-introduction/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/03/salted-password-hashing/</loc>
     
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     
@@ -72,7 +72,21 @@
   </url>
   
   <url>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-y-combinator/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
     
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     
@@ -93,35 +107,7 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.staynoob.cn/post/2016/05/css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
-    
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -142,14 +128,21 @@
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/06/integer-arithmetic-karatsuba-multiplication/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/12/initial-setup-Ubuntu-16.04-server/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     
@@ -163,7 +156,21 @@
   </url>
   
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.staynoob.cn/post/2017/01/jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
+    
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/02/bash-shortcuts/</loc>
     
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     

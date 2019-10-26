@@ -3,17 +3,37 @@
 
 
     
-    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/10/why-i-think-kotlin-is-preferable-to-java/</loc>
+    <lastmod>2019-10-26T01:48:12.865Z</lastmod>
+    <data>
+        <display>
+        <title>Why I think Kotlin is preferable to Java</title>
+        <pubTime>2019-10-26T01:28:06.000Z</pubTime>
+        
+        <tag>Kotlin</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="Programming Language" url="https://blog.staynoob.cn/categories/Programming-Language/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>https://blog.staynoob.cn/post/2017/07//closure-in-javascript/</loc>
-    <lastmod>2019-08-03T13:44:20.948Z</lastmod>
+    <lastmod>2019-10-26T01:30:42.542Z</lastmod>
     <data>
         <display>
         <title>再谈js闭包</title>
         <pubTime>2017-07-16T08:40:28.000Z</pubTime>
         
-        <tag>javascript</tag>
+        <tag>Javascript</tag>
          
          
            
@@ -25,6 +45,28 @@
     </url>
 
     
+    
+    
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
+    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
+    <data>
+        <display>
+        <title>分布式锁真的“安全”吗？</title>
+        <pubTime>2019-03-20T10:58:03.000Z</pubTime>
+        
+        <tag>Distributed System</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
@@ -67,19 +109,17 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
-    <lastmod>2019-07-23T17:31:07.532Z</lastmod>
+    <loc>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
         <display>
-        <title>分布式锁真的“安全”吗？</title>
-        <pubTime>2019-03-20T10:58:03.000Z</pubTime>
+        <title>加密算法简介</title>
+        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
         
-        <tag>Distributed System</tag>
-         
          
            
              
-              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
+              <breadCrumb title="Security" url="https://blog.staynoob.cn/categories/Security/"/>
           
         </display>
     </data>
@@ -107,6 +147,24 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2017/06//btree-data-structure/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>B-tree数据结构</title>
+        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2017/03//lambda-calculus-y-combinator/</loc>
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
@@ -120,42 +178,6 @@
            
              
               <breadCrumb title="Functional Programming" url="https://blog.staynoob.cn/categories/Functional-Programming/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/03//salted-password-hashing/</loc>
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    <data>
-        <display>
-        <title>加密算法简介</title>
-        <pubTime>2017-03-05T11:25:50.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Security" url="https://blog.staynoob.cn/categories/Security/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/06//btree-data-structure/</loc>
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    <data>
-        <display>
-        <title>B-tree数据结构</title>
-        <pubTime>2017-06-25T09:25:42.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -183,6 +205,28 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
+    <data>
+        <display>
+        <title>Common Pitfalls in JPA(Hibernate)</title>
+        <pubTime>2019-02-05T15:22:47.000Z</pubTime>
+        
+        <tag>JPA</tag>
+         
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
     <lastmod>2019-07-23T17:31:07.528Z</lastmod>
     <data>
@@ -190,9 +234,9 @@
         <title>Common Pitfalls of Declarative Transaction Management in Spring</title>
         <pubTime>2019-02-03T13:04:26.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>JPA</tag>
+         
+        <tag>Spring</tag>
          
          
            
@@ -225,68 +269,6 @@
 
     
   <url>
-    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
-    <lastmod>2019-07-23T17:31:07.528Z</lastmod>
-    <data>
-        <display>
-        <title>Common Pitfalls in JPA(Hibernate)</title>
-        <pubTime>2019-02-05T15:22:47.000Z</pubTime>
-        
-        <tag>Spring</tag>
-         
-        <tag>JPA</tag>
-         
-         
-           
-             
-              <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
-        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>聊聊4种主流排序算法(下)</title>
-        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
-        
-        <tag>Sort</tag>
-         
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.staynoob.cn/post/2016/05//css-why-bootstrap-use-border-box-as-default-box-sizing/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
@@ -300,24 +282,6 @@
            
              
               <breadCrumb title="Frontend" url="https://blog.staynoob.cn/categories/Frontend/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>数值运算与牛顿迭代法</title>
-        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
-        
-         
-           
-             
-              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
           
         </display>
     </data>
@@ -363,6 +327,44 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/06//integer-arithmetic-karatsuba-multiplication/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>数值运算与牛顿迭代法</title>
+        <pubTime>2016-06-04T08:12:23.000Z</pubTime>
+        
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-3/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(番外篇):快速排序的优化历程</title>
+        <pubTime>2016-05-03T01:01:35.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2016/12//initial-setup-Ubuntu-16.04-server/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
@@ -376,28 +378,6 @@
            
              
               <breadCrumb title="System" url="https://blog.staynoob.cn/categories/System/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.staynoob.cn/post/2017/02//bash-shortcuts/</loc>
-    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
-    <data>
-        <display>
-        <title>Bash小技巧</title>
-        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-        <tag>编程技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="永远记不住的编程姿势" url="https://blog.staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
           
         </display>
     </data>
@@ -423,6 +403,26 @@
 
     
   <url>
+    <loc>https://blog.staynoob.cn/post/2016/05//insertion-shell-merge-quick-sort-algorithm-2/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>聊聊4种主流排序算法(下)</title>
+        <pubTime>2016-05-01T13:46:02.000Z</pubTime>
+        
+        <tag>Sort</tag>
+         
+         
+           
+             
+              <breadCrumb title="Algorithm" url="https://blog.staynoob.cn/categories/Algorithm/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://blog.staynoob.cn/post/2017/01//jackson-serialize-bi-directional-relationship-infinite-recursion/</loc>
     <lastmod>2019-07-23T17:31:07.524Z</lastmod>
     <data>
@@ -430,11 +430,11 @@
         <title>Jackson序列化双向关联映射的四种方法</title>
         <pubTime>2017-01-01T06:07:03.000Z</pubTime>
         
-        <tag>Spring</tag>
-         
         <tag>JPA</tag>
          
         <tag>Hibernate</tag>
+         
+        <tag>Spring</tag>
          
         <tag>Jackson</tag>
          
@@ -442,6 +442,28 @@
            
              
               <breadCrumb title="Backend" url="https://blog.staynoob.cn/categories/Backend/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/02//bash-shortcuts/</loc>
+    <lastmod>2019-07-23T17:31:07.524Z</lastmod>
+    <data>
+        <display>
+        <title>Bash小技巧</title>
+        <pubTime>2017-02-11T15:07:28.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>编程技巧</tag>
+         
+         
+           
+             
+              <breadCrumb title="永远记不住的编程姿势" url="https://blog.staynoob.cn/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/"/>
           
         </display>
     </data>
