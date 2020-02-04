@@ -21,9 +21,21 @@ permalink:
 ### VPN 与 DNS
 事情的起因大致是，我需要通过 OpenVPN 连到 k8s 的内部网络，并且我希望可以通过 k8s 的 dns 服务来通过 service name 访问各个容器组。
 
-#### .local 与 mdns
 #### systemd-resolve
 networkmanager-openvpn-gnome
 - [github issue](https://github.com/systemd/systemd/issues/6076)
 - [update-systemd-resolved](https://github.com/jonathanio/update-systemd-resolved)
+
+#### .local 与 mdns
+第二个问题是，
+
 #### nslookup 与 dig
+
+#### conclusion
+1. 由于需要执行`up /etc/openvpn/update-systemd-resolved`, 无法直接使用 networkmanager-openvpn-gnome。
+2. ubuntu18.04 应该安装 `sudo apt install openvpn-systemd-resolved`
+3. 需要在配置中加上`dhcp-option DOMAIN-ROUTE .`来解决 dns leak 问题。
+4. 解决以上问题后，还是无法直接使用类似于 `servicename.default.svc.cluster.local/` 来访问 k8s 中的服务，但 nslookup 已经能够正确找到 service 的 ip. 需要从 `/etc/nsswitch.conf` 中移除 `mdns4_minimal [NOTFOUND=return]`
+
+#### reference
+- [Cannot Ping, nor Curl, but Nslookup works](https://unix.stackexchange.com/questions/289930/cannot-ping-nor-curl-but-nslookup-works)
