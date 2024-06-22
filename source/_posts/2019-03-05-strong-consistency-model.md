@@ -62,7 +62,7 @@ x = "d"; puts x
 这意味着我们的 operation 不再是立即发生的，有些时候它们快到我们可以忽略不计，但是总的来说，operations 需要在路上花费一些时间。大致的情形是：我们执行一个写指令，该指令到达内存，或另一台计算机，或者月球；内存修改状态；发回一条确认消息，告诉我们这个 operation 的确执行成功了。
 消息从一个地方到另一个地方之间的延误，预示着同样的 history of operations 可能会导致不同的执行结果。消息到达的快慢可能导致它们实际的执行顺序跟我们期望的不一样。这里，bottom process 在值是 a 的时候调用读操作，当该消息还未到达目的地的时候，top process 调用写入 b，恰巧这个写入操作比读取操作先到达。最后 bottom process 在值为 a 的时候读取，最终却读到了 b。
 ![concurrent-read](/img/content/translation-strong-consistency-models/concurrent-read.jpg)
-这个 history 再次违背了我们现有的 concurrent register consistency model。bottom process 在调用读操作的时候并没有读取到当前值。也许你会说我们可以用操作的完成时间(completion time)，而不是调用时间(invocation time)来作为 operation 的真实时间。同样的道理，该结果依然不正确，因为如果读操作比写操作先到达，bottom process 会收到 a 值，但实际的值确实 b。
+这个 history 再次违背了我们现有的 concurrent register consistency model。bottom process 在调用读操作的时候并没有读取到当前值。也许你会说我们可以用操作的完成时间(completion time)，而不是调用时间(invocation time)来作为 operation 的真实时间。同样的道理，该结果依然不正确，因为如果读操作比写操作先到达，bottom process 会收到 a 值，但实际的值确是 b。
 在分布式系统中（一个 operation 需要时间来到达生效点），我们需要再次放宽我们的一致性模型，来允许这些带有歧义的顺序发生。
 
 #### 线性一致性(Linearizability，又称 atomic consistency)
@@ -134,3 +134,4 @@ Replicated Data Types) 的最终一致性集合只需要"弱"的一致性模型�
 - [Consistency Models](https://jepsen.io/consistency)
 - [Consistency model(wikipedia)](https://en.wikipedia.org/wiki/Consistency_model)
 - [Linearizability vs Serializability](http://www.bailis.org/blog/linearizability-versus-serializability/)
+- [You don’t need CP, you don’t want AP, and you can’t have CA](https://youtu.be/hUd_9FENShA?si=7EzSgeUB-_HfO-zQ)
