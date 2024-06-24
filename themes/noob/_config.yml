@@ -71,6 +71,7 @@ disqus:
   count: false
 
 # MathJax Support
+# see themes/noob/layout/_partial/_service/mathjax/mathjax.ejs
 mathjax:
   enable: true
   cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
