@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>CSS清除浮动的原理与最佳实践 - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="CSS">
+
+
+<meta name="description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。  一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS清除浮动的原理与最佳实践">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2016/05/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。  一.为什么要清除浮动浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/clearfix.jpg">
+<meta property="article:published_time" content="2016-05-20T07:26:52.000Z">
+<meta property="article:modified_time" content="2024-06-29T13:33:02.903Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/clearfix.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-CSS清除浮动的原理与最佳实践"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      CSS清除浮动的原理与最佳实践
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-05-20T15:26:52+08:00" 
+          content="2016-05-20">
+        2016-05-20
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/clearfix.jpg" rel="gallery_cly05xlz80010buey51j4fyqk">-->
+            <img src="/img/clearfix.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
+</blockquote>
+<h3 id="一-为什么要清除浮动"><a href="#一-为什么要清除浮动" class="headerlink" title="一.为什么要清除浮动"></a>一.为什么要清除浮动</h3><p>浮动会造成元素脱离普通流，此时普通流中的元素会当做浮动的元素完全不存在一样，这会造成一些布局上的问题，其一是普通流中的元素会被浮动的元素覆盖(文本内容不会被覆盖)，其二是它的容器不再会根据它的高度来调整自身的高度，下面的例子演示了这两个问题：<br>
+<div class="clearfix" style="border:5px solid #a57958;padding:10px">
+	<p>按下按钮查看清除浮动对布局的影响</p>
+    <button id="before" class="btn btn-info">清除浮动前</button>
+    <button id="after" class="btn btn-info">清除浮动后</button>
+    <div style="border:5px solid #a57958;margin-top:10px;">
+        我是容器
+        <div style="color:black;background-color:wheat;padding:10px;width:30%;height:150px;float:left;">div1
+        我浮动了</div>
+        <div id="demo" style="background-color:skyblue;padding:10px;">div2
+        我是普通流中的块级元素
+        我的宽度应该是100%
+        我的文字没有被覆盖</div>
+    </div>
+</div>
+<script>
+	$("#before").on("click",function(){
+    	$("#demo").css("clear","none");
+    });
+	$("#after").on("click",function(){
+    	$("#demo").css("clear","both");
+    });
+</script>
+<br>上面的例子中由于div1的浮动，div2的一部分被浮动的元素覆盖，容器的高度比它里面浮动的元素高度还要低。</p>
+<span id="more"></span>
+<h3 id="二-使用clear属性清除浮动"><a href="#二-使用clear属性清除浮动" class="headerlink" title="二.使用clear属性清除浮动"></a>二.使用clear属性清除浮动</h3><p>清除浮动的方式有千千万，但其思路一共就两种，其一是使用CSS的clear属性，clear属性规定元素的哪一侧不允许出现浮动元素，在CSS1,CSS2中浏览器自动为带有clear属性的元素添加额外的margin-top，从而保证该元素不会与浮动的元素重叠在一起，CSS2.1规范改成在clear元素的外边距之上添加清除空间，因此不会改变元素的外边距，但无论哪种实现，其目的都是为浮动的元素留出足够的垂直空间。在应用clear属性之前普通流中的元素表现得就像浮动元素不存在一样，而应用该属性后则能“感受”到浮动元素的高度，最后完成清除浮动。<br>现在可以回头再看看上面的例子，查看网页源代码会发现js动态的为div2指定了clear属性，div2感知到了div1的存在从而解决了元素重叠的问题，由于div2处于普通流，容器必须扩展自身的高度才能够包裹住div2，这又解决了第二个问题。现在的问题是这种方式需要div2的辅助，才能清除div1的浮动，而实际应用中有可能浮动的元素本身就是容器的最后一个元素，换句话说实际应用中可能没有div2的存在，此时如何处理容器高度坍塌的问题？<br>简单粗暴的方式是人为的在浮动的元素后添加一个没有意义的空元素，并为该元素指定clear属性，这就是清除浮动代码的第一个版本，代码如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;float:left&quot;</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;clear:both&quot;</span>&gt;</span><span class="comment">&lt;!--我用来清除上面的浮动--&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>上面的代码有两个问题，一是添加无意义的标签给开发与维护带来麻烦，二是违反了web开发的原则，即html用来决定网页的内容，css用来决定呈现的样式。上面的代码添加了一个html元素却仅仅用来改变呈现的样式。于是大家顺其自然的想到使用css为<strong>容器</strong>添加一个:after伪元素，代码变成了下面这样：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container clearfix&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;float:left&quot;</span>&gt;</span>我浮动了<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--这里会有css创建的伪元素，用来清除上面的浮动--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><br>至此，这个浮动清除类(clearfix)已经足以应付大多数情况了。但仍有修改的余地。</p>
+<h3 id="三-使用块级格式化上下文-Block-formatting-contexts-清除浮动"><a href="#三-使用块级格式化上下文-Block-formatting-contexts-清除浮动" class="headerlink" title="三.使用块级格式化上下文(Block formatting contexts)清除浮动"></a>三.使用块级格式化上下文(Block formatting contexts)清除浮动</h3><h4 id="1-BFC有什么用"><a href="#1-BFC有什么用" class="headerlink" title="1.BFC有什么用"></a>1.BFC有什么用</h4><p>CSS2.1开始引入BFC的概念，它是KFC的兄弟品牌，额，不好意思脑袋岔路了，通俗的讲BFC指的是页面中的一块渲染区域，它有自己独立的渲染规则，区域中的元素布局不会受到外部影响，也不会影响外部元素。英语基础好的同学还可以点开链接阅读w3c官方对<a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS21/visuren.html#block-formatting">Block formatting contexts</a>的定义，然后你会发现它几乎没什么实质性的内容，这里强烈推荐YUI团队博客的<a target="_blank" rel="noopener" href="http://yuiblog.com/blog/2010/05/19/css-101-block-formatting-contexts/">Block Formatting Contexts</a>这篇文章，它清晰的解答了BFC在实际开发中起什么作用：</p>
+<ul>
+<li><p>BFC决定了元素间是否会发生垂直外边距叠加<br>  只有处于同一上下文中的块框才有可能会发生垂直外边距叠加，参考下面的例子：</p>
+  
+    <div><p style="background:skyblue;margin:10px 0;">p1 我有10px的margin</p></div>
+    <div><p style="background:skyblue;margin:10px 0;">p2 我有10px的margin</p></div>
+    <div style="overflow:hidden;"><p style="background:skyblue;margin:10px 0;">p3 我也有10px的margin，但我与楼上二位不在同一BFC</p></div>
+    
+<p>  上例中p1,p2都有20px的margin，但由于外边距叠加，它们的间距仍然是10px，而p3的容器指定了overflow属性(后面解释)，创建了新的BFC，导致了p3的垂直外边距没有发生叠加，p2与p3的间距为20px。</p>
+</li>
+<li><p>BFC不会与浮动元素发生重叠<br>  更确切的说法是BFC的边框不会与其它浮动元素的外边距发生重叠，这意味着浏览器可能会给BFC创建隐式的外边距来实现该效果，参考下面的例子：</p>
+  
+    <div>
+    	<div style="background:skyBlue;float:left;width:180px;height:100px">我向左浮动(width:180px)</div>
+    	<div style="background:pink;float:right;width:180px;height:100px">我向右浮动(width:180px)</div>
+        <div style="background:wheat;border:5px solid #a57958;height:100px">div1
+        虽然文字没有被覆盖，但我与浮动元素重叠了</div><br/>
+    	<div style="background:skyBlue;float:left;width:180px;height:100px">我向左浮动(width:180px)</div>
+    	<div style="background:pink;float:right;width:180px;height:100px">我向右浮动(width:180px)</div>
+        <div style="background:wheat;overflow:hidden;border:5px solid #a57958;height:100px">div2
+        我创建了BFC，我与浮动元素没有发生重叠</div>
+    </div><br/>
+    
+<p>  上面的例子中，浏览器为div2添加隐式的外边距来保证它的border-box不会与其它浮动的元素发生重叠，换句话说div2出场就自带了<code>margin:0 180px;</code>的特效，此时你为div2手动指定任何小于180px的水平外边距将得不到任何效果。此时如果你想在div2与浮动的元素之间添加10px的空隙，你需要为div2指定190px的水平外边距。<br>  最后，有人可能会想，这里的div2通过压缩自身的宽度从而保证了不与浮动元素发生重叠，假设我为div2指定一个较大的固定宽度，它将如何应对？答案是它会被挤到下面一行，依然不会发生重叠。</p>
+</li>
+<li><p>BFC会包含它里面浮动的元素<br>  对此w3c有明确的定义，参见<a target="_blank" rel="noopener" href="https://www.w3.org/TR/CSS2/visudet.html#root-height">&#39;Auto&#39; heights for block formatting context roots</a>，其中核心的一句话是“如果BFC根元素包含浮动的后代元素，并且该后代元素的bottom margin edge低于元素的bottom content edge，则元素自动增加高度直到能够包含这些边缘。”原谅我蹩脚的翻译，还是直接来看例子吧：</p>
+  
+    <div style="border:5px solid #a57958;margin-top:10px;">
+        div1 我是容器
+        <div style="color:black;background-color:wheat;padding:10px;width:30%;height:100px;float:left;margin:10px">我浮动了(margin:10px)</div>
+    </div>
+    <br clear="both"/>
+    <div style="border:5px solid #a57958;margin-top:10px;overflow:hidden;">
+        div2 我是BFC容器
+        <div style="color:black;background-color:wheat;padding:10px;width:30%;height:100px;float:left;margin:10px">我浮动了(margin:10px)</div>
+    </div><br/>
+    
+<p>  上面例子中div2创建了新的块级格式化上下文，因此得以将浮动的子元素(包括其margin)包含其中。回顾一下文章的主题，这不正是我们所要的清除浮动效果吗？那么剩下的问题就是，我们应该如何让所有会包含浮动子元素的容器元素创建新的BFC。</p>
+</li>
+</ul>
+<h4 id="2-如何创建BFC"><a href="#2-如何创建BFC" class="headerlink" title="2.如何创建BFC"></a>2.如何创建BFC</h4><p>下列任一情况将创建一个块格式化上下文（资料来源于MDN）：</p>
+<ul>
+<li>根元素或其它包含它的元素</li>
+<li>浮动 (float:left|right)</li>
+<li>绝对定位元素 (position:absolute|fixed)</li>
+<li>display属性(display:inline-block|table-cell|table-caption|flex|inline-flex)</li>
+<li>overflow除visible外的任意值(overflow:hidden|auto|scroll)</li>
+</ul>
+<h4 id="3-如何通过BFC清除浮动"><a href="#3-如何通过BFC清除浮动" class="headerlink" title="3.如何通过BFC清除浮动"></a>3.如何通过BFC清除浮动</h4><p>正如上一节看到的，创建BFC的方法有多少种，清除浮动的方法就有多少种。一开始有人尝试通过为容器指定float属性创建BFC，我只是想想都觉得不靠谱，清除浮动的方法居然是将所有元素都浮动起来。一种稍微靠谱的方法是将容器的overflow属性设为hidden或者auto，比起修改position与display，它的副作用(截断内容或滚动条)已经算是可以接受的了，但我们最开始的clear伪元素可是没有任何副作用的。好吧，这确实有点让人沮丧，尽管花了这么长的篇幅来说明BFC，但它还不如直接使用clear伪元素。幸运的是在clearfix最佳实践中，还会用到它的概念。</p>
+<h3 id="四-clearfix最佳实践与原理"><a href="#四-clearfix最佳实践与原理" class="headerlink" title="四.clearfix最佳实践与原理"></a>四.clearfix最佳实践与原理</h3><p>回顾第二段，现在我们的clearfix版本是这样的：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&quot;&quot;</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>下面则是目前CSS清除浮动的最佳实践，来自Nicolas Gallagher，详细内容参见<a target="_blank" rel="noopener" href="http://nicolasgallagher.com/micro-clearfix-hack/">A new micro clearfix hack</a><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:before</span>,<span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&quot; &quot;</span>; <span class="comment">/*注意里面的空格*/</span></span><br><span class="line">  <span class="attribute">display</span>:table;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">  zoom:<span class="number">1</span>; <span class="comment">/* For IE 6/7 (trigger hasLayout) */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>对比上面两个版本的不同，很容易提出下面几个问题。</p>
+<h4 id="1-content里面为什么需要一个空格？"><a href="#1-content里面为什么需要一个空格？" class="headerlink" title="1.content里面为什么需要一个空格？"></a>1.content里面为什么需要一个空格？</h4><p>根据原文的描述，在content添加空格是为了处理一个Opera浏览器的显示bug，由于这个问题我在自己的Opera上没有重现，因此也无法给出更详细的说明。</p>
+<h4 id="2-zoom-1有什么用？"><a href="#2-zoom-1有什么用？" class="headerlink" title="2.zoom:1有什么用？"></a>2.zoom:1有什么用？</h4><p>由于伪元素与BFC是由CSS2.1规范提出，因此上面讨论的两种方式IE6与IE7均不支持，但它们有一个与BFC类似的概念叫hasLayout，限于篇幅，这里不再详细讨论，简单的说它同样具备BFC的作用即：</p>
+<ul>
+<li>决定外边距是否折叠</li>
+<li>不与浮动元素发生重叠</li>
+<li>包含它里面的浮动元素</li>
+</ul>
+<p>它的触发条件是(满足任一即可)：</p>
+<ul>
+<li>float:left|right</li>
+<li>position:absolute|fixed</li>
+<li>display:inline-block</li>
+<li>writing-mode:tb-rl</li>
+<li>width:(除auto外任意值)</li>
+<li>height:(除auto外任意值)</li>
+<li>zoom:(除normal外任意值)</li>
+</ul>
+<p>IE7还包括：</p>
+<ul>
+<li>min-width|max-width:(任意值)</li>
+<li>min-height|max-height:(任意值)</li>
+<li>overflow:(除visible外任意值)</li>
+<li>overflow-x|overflow-y:(除visible外任意值)</li>
+</ul>
+<p>因此这里通过<code>zoom:1</code>触发IE6,IE7的hasLayout，其原理与创建BFC是一样的。</p>
+<h4 id="3-before伪元素有什么用？display属性为什么要设成table？"><a href="#3-before伪元素有什么用？display属性为什么要设成table？" class="headerlink" title="3.before伪元素有什么用？display属性为什么要设成table？"></a>3.before伪元素有什么用？display属性为什么要设成table？</h4><p>把它们放在一起是因为它们的目的都是为了阻止垂直外边距叠加。举个例子：<br>
+<div style="background-color:skyblue;margin:20px 0;">
+	<div style="display:block;"></div>
+	<div style="background-color:wheat;margin:20px;height:50px;">div1
+    我的垂直外边距与容器叠加(margin:20px)</div>
+	<div style="display:block"></div>
+</div>
+<div style="background-color:skyblue;margin:20px 0;">
+	<div style="display:table"></div>
+	<div style="background-color:wheat;margin:20px;height:50px">div2
+    我的垂直外边距不与容器叠加(margin:20px)</div>
+	<div style="display:table"></div>
+</div>
+<br>它的原理用到了之前提到的BFC概念，display:table创建了匿名的display:table-cell框，而前面已经提到，display:table-cell将创建新的BFC，从而阻止了垂直外边距叠加。然而也许你已经意识到了，它跟清除浮动有一毛钱关系吗？是否需要垂直外边距叠加本应该由各自网站的开发人员来决定，换句话说为什么要在清除浮动的代码中强行加入设定垂直外边距是否叠加的代码？这就像通过设定overflow:hidden来清除浮动一样产生了副作用。<br>其实它是为了浏览器显示一致性而添加的代码，前面已经讨论过，假设我们通过创建BFC来清除浮动，那么它的垂直外边距不会叠加。同理，通过触发hasLayout也不会叠加。因此如果没有<code>clearfix:before</code>与<code>display:table</code>，那么元素的垂直外边距在现代浏览器下会叠加，而在IE6与IE7中不会叠加，这就破坏了样式的一致性。换句话说，如果不需要支持IE6与IE7，那么使用如下代码就足够了：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>:<span class="string">&quot; &quot;</span>; <span class="comment">/*注意里面的空格*/</span></span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>完！</p>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/post/2016/05/%E4%B8%BA%E4%BB%80%E4%B9%88bootstrap%E9%87%87%E7%94%A8border-box%E7%9B%92%E6%A8%A1%E5%9E%8B/" rel="next" title="为什么bootstrap采用border-box盒模型">
+        <i class="fa fa-chevron-left"></i>
+        为什么bootstrap采用border-box盒模型
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/post/2016/05/%E9%A6%99%E5%86%9C%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E5%9B%9E%E7%AD%94%E8%80%81%E9%BC%A0%E5%96%9D%E8%8D%AF%E9%97%AE%E9%A2%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/" rel="prev" title="香农信息论与回答老鼠喝药问题的正确姿势">
+        香农信息论与回答老鼠喝药问题的正确姿势 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="document-nav-text">一.为什么要清除浮动</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E4%BD%BF%E7%94%A8clear%E5%B1%9E%E6%80%A7%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="document-nav-text">二.使用clear属性清除浮动</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E4%BD%BF%E7%94%A8%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87-Block-formatting-contexts-%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="document-nav-text">三.使用块级格式化上下文(Block formatting contexts)清除浮动</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-BFC%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8"><span class="document-nav-text">1.BFC有什么用</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BABFC"><span class="document-nav-text">2.如何创建BFC</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#3-%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87BFC%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8"><span class="document-nav-text">3.如何通过BFC清除浮动</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-clearfix%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="document-nav-text">四.clearfix最佳实践与原理</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-content%E9%87%8C%E9%9D%A2%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E7%A9%BA%E6%A0%BC%EF%BC%9F"><span class="document-nav-text">1.content里面为什么需要一个空格？</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-zoom-1%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="document-nav-text">2.zoom:1有什么用？</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#3-before%E4%BC%AA%E5%85%83%E7%B4%A0%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9Fdisplay%E5%B1%9E%E6%80%A7%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%AE%BE%E6%88%90table%EF%BC%9F"><span class="document-nav-text">3.before伪元素有什么用？display属性为什么要设成table？</span></a></li></ol></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2024/06/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/post/2024/06/exploration-vs-exploitation/">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/07/%E5%86%8D%E8%B0%88js%E9%97%AD%E5%8C%85/">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/06/B-tree%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Y-combinator/">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Introduction/">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/post/2016/05/CSS%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/';
+                  this.page.identifier = 'post/2016/05/CSS清除浮动的原理与最佳实践/';
+                  this.page.title = 'CSS清除浮动的原理与最佳实践';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

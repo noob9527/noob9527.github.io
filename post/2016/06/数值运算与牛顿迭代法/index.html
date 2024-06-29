@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>数值运算与牛顿迭代法 - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="github, 技术博客, web开发, fontend">
+
+
+<meta name="description" content="一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。  一.乘法运算1.暴力算法假设有两个十进制数x&#x3D;12345678，y&#x3D;87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：    1234 5678     $x_0$ $x_1$">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值运算与牛顿迭代法">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2016/06/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。  一.乘法运算1.暴力算法假设有两个十进制数x&#x3D;12345678，y&#x3D;87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：    1234 5678     $x_0$ $x_1$">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/newton_method.jpg">
+<meta property="article:published_time" content="2016-06-04T08:12:23.000Z">
+<meta property="article:modified_time" content="2024-06-29T13:33:02.903Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="github, 技术博客, web开发, fontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/newton_method.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-数值运算与牛顿迭代法"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      数值运算与牛顿迭代法
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-06-04T16:12:23+08:00" 
+          content="2016-06-04">
+        2016-06-04
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_cly05xlz90016bueyadifecc4">-->
+            <img src="/img/newton_method.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。</p>
+</blockquote>
+<h3 id="一-乘法运算"><a href="#一-乘法运算" class="headerlink" title="一.乘法运算"></a>一.乘法运算</h3><h4 id="1-暴力算法"><a href="#1-暴力算法" class="headerlink" title="1.暴力算法"></a>1.暴力算法</h4><p>假设有两个十进制数x=12345678，y=87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1234</th>
+<th style="text-align:center">5678</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$x_0$</td>
+<td style="text-align:center">$x_1$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">8765</th>
+<th style="text-align:center">4321</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$y_0$</td>
+<td style="text-align:center">$y_1$</td>
+</tr>
+</tbody>
+</table>
+<p>很容易得到：$$x=10^{d/2}x_0+x_1=12340000+5678$$$$y=10^{d/2}y_0+y_1=87650000+4321$$$$\Rightarrow xy=(10^{d/2}x_0+x_1)(10^{d/2}y_0+y_1)$$$$\Rightarrow xy=10^dx_0y_0+10^{d/2}(x_0y_1+x_1y_0)+x_1y_1$$这样下来每一次递归，都可以把两个数的乘积，转换成四组更小精度数的乘积之和，重复这个过程直到把问题划分成多个个位数的乘积之和，这个时候简单的使用九九乘法表就能得到每一项的结果。整个过程其实与我们小学学的计算方式很类似，你可以在草稿纸上尝试计算12*34来模拟这个过程。<br>当然，以上是人类的思维方式，把上面的数字转换成相应的二进制数就能模拟计算机的思维方式，唯一的不同是计算机的个位数相乘不需要乘法口诀，进行一次位与(&amp;)运算就可以了。下面是它的时间复杂度（计算过程与一般分治算法复杂度计算过程类似，下文不再提及）：$$T(N)=4T(N/2)+\Theta(N)=\Theta(N^2)$$<br><span id="more"></span></p>
+<h4 id="2-Karatsuba算法"><a href="#2-Karatsuba算法" class="headerlink" title="2.Karatsuba算法"></a>2.Karatsuba算法</h4><p>上面的暴力算法将x乘以y拆分成了$x_0y_0,x_0y_1,x_1y_0,x_1y_1$四个更小规模的子问题，而一名叫Karatsuba的学者发现，在已知$x_0y_0,x_1y_1$的情况下，可以使用$(x_0+x_1)(y_0+y_1)-x_0y_0-x_1y_1$来得到$x_0y_1+x_1y_0$的值，整个算式变成了：$$xy=10^dx_0y_0+10^{d/2}[(x_0+x_1)(y_0+y_1)-x_0y_0-x_1y_1]+x_1y_1$$这样每次递归调用只需要进行三次乘法运算，此时复杂度为：$$T(N)=3(T/2)+\Theta(N)=\Theta(N^{\log_23})\approx\Theta(N^{1.58})$$在Karatsuba之后，Toom-Cook通过每次将数字切分成多个部分进一步提升了算法的性能，例如将前面的x切分成$x_0,x_1,x_2$三个部分，此时算法的复杂度为：$$T(N)=5(T/3)+\Theta(N)=\Theta(N^{\log_35})\approx\Theta(N^{1.46})$$Schönhage–Strassen通过快速傅里叶转换将复杂度提升至$\Theta(NlogNloglogN)$，但这些显然只有在精度需求非常大的情况下才有意义。大部分情况下使用暴力算法或Karatsuba算法就已经足够了。</p>
+<h3 id="二-牛顿法（Newton-Raphson-method）"><a href="#二-牛顿法（Newton-Raphson-method）" class="headerlink" title="二.牛顿法（Newton-Raphson method）"></a>二.牛顿法（Newton-Raphson method）</h3><p>牛顿法是一种求解方程近似根的方法，他在计算机领域应用非常广泛，下文要提到的除法运算与开方运算都需要通过它实现。下面是方法的简介：<br>假设现在我们需要计算函数f(x)的根(当f(x)取0时，x的值称作方程的根)<br>1.先取一个大概的值$x_0$，代入该函数可以得到$y_0$<br>2.过$(x_0,y_0)$作一条切线，该切线的斜率为$f&#39;(x_0)$（这里$f&#39;$表示函数$f$的导数）<br>3.计算该切线与x轴的焦点$x_1$，显然这里有：$$k=\frac{y_0}{x_0-x_1}=f&#39;(x_0)=\frac{f(x_0)}{x_0-x_1}$$$$\Rightarrow x_1=x_0-\frac{f(x_0)}{f&#39;(x_0)}$$<br>4.重复上面的过程，直到得到令你满意的精度为止。wikipedia上的这张图清晰的展示了它的迭代过程:</p>
+<p><img src="/img/content/newton_lteration.gif" alt="newton_lteration.gif"></p>
+<h3 id="三-平方根算法"><a href="#三-平方根算法" class="headerlink" title="三.平方根算法"></a>三.平方根算法</h3><p>牛顿法的一个常见的应用场景是计算算术平方根，现在假设我们需要计算$\sqrt{a}$的值，这等价于计算$f(x)=x^2-a$的根，将其代入上面的公式可得：$$x_1=x_0-\frac{f(x_0)}{f&#39;(x_0)}=x_0-\frac{x^2-a}{2x}=\frac{x_0+a/x_0}{2}$$用java代码来简单模拟求解过程：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">sqrt</span><span class="params">(<span class="type">double</span> input)</span>&#123;</span><br><span class="line">    <span class="type">double</span> x=input;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        x=(x+input/x)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        System.out.println(i+<span class="string">&quot;次迭代:&quot;</span>+x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String... args)</span>&#123;</span><br><span class="line">	sqrt(<span class="number">2d</span>);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    参考值 :1.414213562373095</span></span><br><span class="line"><span class="comment">    程序输出:</span></span><br><span class="line"><span class="comment">    0次迭代:1.5</span></span><br><span class="line"><span class="comment">    1次迭代:1.4166666666666665</span></span><br><span class="line"><span class="comment">    2次迭代:1.4142156862745097</span></span><br><span class="line"><span class="comment">    3次迭代:1.4142135623746899</span></span><br><span class="line"><span class="comment">    4次迭代:1.414213562373095</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>大部分情况下，牛顿法具有平方级的收敛性能，即每迭代一次，结果的有效数字将增加一倍，这意味着只需要logN次迭代就能得到N精度的结果。但我们不能说它的复杂度是对数级的，因为我们忽视$a/x_0$这项操作，要知道以上算法的复杂度，必须先来看看除法运算的复杂度。</p>
+<h3 id="四-除法运算"><a href="#四-除法运算" class="headerlink" title="四.除法运算"></a>四.除法运算</h3><p>假设我们需要计算a/b，我们可以先将a/b转换成$a\frac{1}{b}$，由于乘法操作是已知的，因此这里只需要计算1/b就可以了，接下来可以构建一个函数$f(x)=\frac{1}{x}-b$，然后继续用牛顿法求它的根：$$x_1=x_0-\frac{f(x_0)}{f(x_1)}=x_0-\frac{1/x_0-b}{-1/x_0^2}=x_0(2-bx_0)$$这样就把除法运算全部转换成了乘法运算，同样我们需要logN次迭代才能得出N精度的结果，这里假设乘法运算的复杂度是$N^\alpha$，于是可以简单的得出复杂度的上界是$N^\alpha logN$，但仔细观察会发现，并不是每一次迭代都需要进行N精度的乘法，更准确的复杂度推导如下：$$T(N)=1^\alpha+2^\alpha+4^\alpha+8^\alpha+\cdots+N^\alpha$$$$\Rightarrow T(N)=(2^\alpha)^0+(2^\alpha)^1+(2^\alpha)^2+\cdots+(2^\alpha)^{logN}$$$$\Rightarrow 2^\alpha T(N)=(2^\alpha)^1+(2^\alpha)^2+\cdots+(2^\alpha)^{logN}+(2^\alpha)^{logN+1}$$$$\Rightarrow (2^\alpha-1)T(N)=(2^\alpha)^{logN+1}-(2^\alpha)^0$$$$\Rightarrow T(N)=\frac{(2N)^\alpha-1}{2^\alpha-1}=\Theta(N^\alpha)$$最终得出结论，使用牛顿法进行除法运算其复杂度与所用的乘法算法复杂度一致，类似的，容易证明使用牛顿法计算平方根的时间复杂度也是$\Theta(N^\alpha)$。<br>以上是这篇文章的全部内容，下篇文章来介绍一个神奇的平方根倒数算法，其中同样涉及到牛顿法。</p>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/post/2016/05/%E9%A6%99%E5%86%9C%E4%BF%A1%E6%81%AF%E8%AE%BA%E4%B8%8E%E5%9B%9E%E7%AD%94%E8%80%81%E9%BC%A0%E5%96%9D%E8%8D%AF%E9%97%AE%E9%A2%98%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF/" rel="next" title="香农信息论与回答老鼠喝药问题的正确姿势">
+        <i class="fa fa-chevron-left"></i>
+        香农信息论与回答老鼠喝药问题的正确姿势
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/post/2016/09/%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E7%AE%97%E6%B3%95/" rel="prev" title="魔力数字与快速平方根倒数算法">
+        魔力数字与快速平方根倒数算法 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="document-nav-text">一.乘法运算</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-%E6%9A%B4%E5%8A%9B%E7%AE%97%E6%B3%95"><span class="document-nav-text">1.暴力算法</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-Karatsuba%E7%AE%97%E6%B3%95"><span class="document-nav-text">2.Karatsuba算法</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E7%89%9B%E9%A1%BF%E6%B3%95%EF%BC%88Newton-Raphson-method%EF%BC%89"><span class="document-nav-text">二.牛顿法（Newton-Raphson method）</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E5%B9%B3%E6%96%B9%E6%A0%B9%E7%AE%97%E6%B3%95"><span class="document-nav-text">三.平方根算法</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="document-nav-text">四.除法运算</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2024/06/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/post/2024/06/exploration-vs-exploitation/">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/07/%E5%86%8D%E8%B0%88js%E9%97%AD%E5%8C%85/">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/06/B-tree%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Y-combinator/">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Introduction/">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/post/2016/06/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/';
+                  this.page.identifier = 'post/2016/06/数值运算与牛顿迭代法/';
+                  this.page.title = '数值运算与牛顿迭代法';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

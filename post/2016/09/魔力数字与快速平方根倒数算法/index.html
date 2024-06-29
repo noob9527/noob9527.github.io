@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>魔力数字与快速平方根倒数算法 - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="github, 技术博客, web开发, fontend">
+
+
+<meta name="description" content="题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i&#x3D;0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。  一.来源与背景这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="魔力数字与快速平方根倒数算法">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2016/09/%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i&#x3D;0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。  一.来源与背景这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/fast_inverse_square_root.jpg">
+<meta property="article:published_time" content="2016-09-20T02:53:33.000Z">
+<meta property="article:modified_time" content="2024-06-29T13:33:02.903Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="github, 技术博客, web开发, fontend">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/fast_inverse_square_root.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-魔力数字与快速平方根倒数算法"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      魔力数字与快速平方根倒数算法
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-09-20T10:53:33+08:00" 
+          content="2016-09-20">
+        2016-09-20
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cly05xlz90018bueyaigldi02">-->
+            <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
+</blockquote>
+<h3 id="一-来源与背景"><a href="#一-来源与背景" class="headerlink" title="一.来源与背景"></a>一.来源与背景</h3><p>这段代码最早出现在《雷神之锤III竞技场》3D引擎的源码中，2002年左右被人发到了论坛上，并引发了广泛的讨论，下面是代码的原始版本（去掉了c预处理器指令，保留了源码注释）：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> <span class="title function_">Q_rsqrt</span><span class="params">( <span class="type">float</span> number )</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">long</span> i;</span><br><span class="line">	<span class="type">float</span> x2, y;</span><br><span class="line">	<span class="type">const</span> <span class="type">float</span> threehalfs = <span class="number">1.5F</span>;</span><br><span class="line"></span><br><span class="line">	x2 = number * <span class="number">0.5F</span>;</span><br><span class="line">	y  = number;</span><br><span class="line">	i  = * ( <span class="type">long</span> * ) &amp;y; <span class="comment">// evil floating point bit level hacking</span></span><br><span class="line">	i  = <span class="number">0x5f3759df</span> - ( i &gt;&gt; <span class="number">1</span> ); <span class="comment">// what the fuck?</span></span><br><span class="line">	y  = * ( <span class="type">float</span> * ) &amp;i;</span><br><span class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></span><br><span class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>经测试这段代码比使用c标准函数(float)(1.0/sqrt(x))快4倍，因而引起了多名学者的注意，不少人发表论文来研究它的工作原理。与它的工作方式一样神秘的是，截止目前为止，仍没有人站出来对这段逼格爆表的代码表示负责。因此0x5f3759df这个魔力数字的得来方式也成了一个谜。<br><span id="more"></span></p>
+<h3 id="二-IEEE754浮点数"><a href="#二-IEEE754浮点数" class="headerlink" title="二.IEEE754浮点数"></a>二.IEEE754浮点数</h3><p>要了解它的工作原理，需要先理解浮点数在计算机中的存储方式，大部分编程语言都遵循IEEE754浮点数规范，该规范规定了四种表示浮点数值的方式，其中比较常用的有单精度(32位)，双精度(64位)。c与java使用float指代单精度，double指代双精度，而js默认采用IEEE754双精度来存储数值类型。下表是一个32位浮点数实例：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">S(ign,符号)</th>
+<th style="text-align:center">E(xponent,指数)</th>
+<th style="text-align:center">M(antissa,尾数)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1111,1111</td>
+<td style="text-align:center">010,0000,0000,0000,0000,0000</td>
+</tr>
+<tr>
+<td style="text-align:center">1位</td>
+<td style="text-align:center">8位</td>
+<td style="text-align:center">23位</td>
+</tr>
+</tbody>
+</table>
+<p>下面简单介绍它们的存储格式<br>1.符号位(sign)<br>    符号位使用1来代表负数，0代表正数。<br>2.指数位(exponent)<br>    指数可以是正指数或是负指数，但其表示方式并不遵循传统的二进制补码规则，而是先将其视为无符号数，再让指数偏移固定值来代表实际值，以单精度浮点数来举例，IEEE754标准规定偏移值为127($2^{b-1}-1$，b是指数的位数，此例是8)，因此指数部分需要减去127从而得到实际值。比如上例中指数部分为11111111，转换成10进制就是255，再减去127得到128，这里128就是它的实际指数。再比如00000000表示的就是-127，按照这个规则，它能够表示-127~128范围内的数字。（假设采用二进制补码规则，11111111表示的是-1，能够表示的数值范围是-128~127）<br>3.尾数位(mantissa)<br>    IEEE754中的尾数又称为有效数(significant)，它用来表示科学计数法的小数部分，同时它规定第一个有效数必定是1，因此1就不需要存储，例如单精度浮点数有23位用于存储有效数，加上最左边没有存储的1，一共就有24位。继续拿上表的例子来说，可以把它的尾数左边四位看成1010，因此它的有效数实际值就是$(2^{23}+2^{21})\times 2^{-23}=1+2^{21}\times 2^{-23}$。<br>最后，我们可以得到上表中的浮点数实际值为：$$(-1)^s\times (1+m\times 2^{-23})\times 2^{e-127}=(-1)^0\times(1+2^{21}\times 2^{-23})\times2^{255-127}=1.25\times 2^{128}$$</p>
+<h3 id="三-一行神奇的代码"><a href="#三-一行神奇的代码" class="headerlink" title="三.一行神奇的代码"></a>三.一行神奇的代码</h3><p>下面来分析&quot;i=0x5f3759df-(i&gt;&gt;1)&quot;这行充满魔力的代码，它的作用是获取一个平方根倒数的近似值。其工作原理证明过程非常的复杂(参考论文<a target="_blank" rel="noopener" href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Fast Inverse Square Root</a>)，这里提供wikipedia上的证明版本（尽管这是我个人认为最简单的证明版本，但看起来依然惨不忍睹，不求甚解的读者可以跳过证明部分）：<br>我们要计算的值是$\frac{1}{\sqrt{x}}$，令$y=\frac{1}{\sqrt{x}}=x^{-\frac{1}{2}}$，等式两边同时取对数可以得到$logy=log(x^{-\frac{1}{2}})=-\frac{1}{2}logx$。<br>现在假设输入值x是一个n位的IEEE754浮点数，由于要求输入是正数，因此x的符号位一定是0，假设它有i个指数位，尾数位就是n-i-1。设它的指数位为$E_x$，表示的指数是$e_x$，尾数位为$M_x$，表示的有效数字为$1+m_x$，根据上面的对浮点数表示方式的定义，可以得出：$$e_x=E_x-B$$$$m_x=\frac{M_x}{L}$$<br>其中$B=(2^i-1)$，$L=2^{n-i-1}$，此时输入的x的值为$(1+m_x)\times 2^{e_x}$，同理y值也可以表示成$(1+m_y)\times 2^{e_y}$，将它们代入上面的对数方程可以得到：$$log((1+m_y)\times 2^{e_y})=-\frac{1}{2}log((1+m_x)\times 2^{e_x})$$$$\Rightarrow log(1+m_y)+e_y=-\frac{1}{2}log(1+m_x)-\frac{1}{2}e_x$$现在假设我们用$\sigma_a$来表示$log(1+m_y)$与$m_y$之间的误差，$\sigma_b$表示$log(1+m_x)$与$m_x$之间的误差，即$\sigma_a=log(1+m_y)-m_y$，$\sigma_b=log(1+m_x)-m_x$，将它们代入上式得到：$$m_y+\sigma_a+e_y=-\frac{1}{2}(m_x+\sigma_b)-\frac{1}{2}e_x$$$$\Rightarrow \frac{M_y}{L}+E_y-B+\sigma_a=-\frac{1}{2}(\frac{M_x}{L}+\sigma_b)-\frac{1}{2}(E_x-B)$$$$\Rightarrow M_y+E_yL=\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L-\frac{1}{2}(M_x+E_xL)$$<br>见证奇迹的时刻到了，回顾一下这张表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">S(ign,符号)</th>
+<th style="text-align:center">E(xponent,指数)</th>
+<th style="text-align:center">M(antissa,尾数)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1位</td>
+<td style="text-align:center">i位</td>
+<td style="text-align:center">n-i-1位</td>
+</tr>
+</tbody>
+</table>
+<p>由于$L=2^{n-i-1}$，因此$M_x+E_xL$，$M_y+E_yL$正好是x与y所代表的整数值，如果我们用R来代表原方程中$\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L$这一部分，会得到$I_y=R-\frac{I_x}{2}$，将除以2替换成计算机更喜欢的右移位后，就成了这行神奇的代码。现在只剩下最后一个问题了，R值是多少？</p>
+<h3 id="四-魔力数字"><a href="#四-魔力数字" class="headerlink" title="四.魔力数字"></a>四.魔力数字</h3><p>根据上面段落的推理过程，可以知道魔力数字R应该等于$\frac{3}{2}BL-(\sigma_a+\frac{\sigma_b}{2})L$，其中B与L都是常量，如果是32位浮点数，则B等于127，L等于$2^{23}$。而$\sigma_a=log(1+m_y)-m_y$，$\sigma_b=log(1+m_x)-m_x$。现在可以构建一个函数f(x)=log(1+x)-x，由于$m_x$，$m_y$均为尾数部分，因此自变量x的取值范围是[0,1]，到这里我的想法是利用积分计算出函数f(x)=log(1+x)-x在[0,1]区间的平均值，从而得出$\sigma$的近似值，即：<br>$$\int_0^1\left[log(1+x)-x\right]dx$$如果我没算错的话，结果应该是$2-\frac{1}{ln2}-\frac{1}{2}\approx0.05730495911$。(wikipedia对$\sigma$的计算结果是0.0450461875...，我没看懂它的计算方式，如果有数学高手看到这里希望能指导一下)。最后将该值带回原式：<br>$$1.5\times2^{23}\times(127 - 1.5\times0.05730495911)\approx1597308761=0x5f34ff59$$同样这里我的计算结果与源码(0x5f3759df)不同，我也不知道错在哪里，希望有大神指导。</p>
+<h3 id="五-牛顿法"><a href="#五-牛顿法" class="headerlink" title="五.牛顿法"></a>五.牛顿法</h3><p>至于代码中<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	y  = y * ( threehalfs - ( x2 * y * y ) ); <span class="comment">// 1st iteration</span></span><br><span class="line"><span class="comment">//	y  = y * ( threehalfs - ( x2 * y * y ) ); // 2nd iteration, this can be removed</span></span><br></pre></td></tr></table></figure><br>这一部分则是使用牛顿迭代法来获取更精确的计算结果，关于牛顿法的详情可以参见我的上一篇文章<a href="http://blog.staynoob.cn/post/algorithm/integer-arithmetic-karatsuba-multiplication/#二-牛顿法（Newton-Raphson-method）">牛顿迭代法</a>，这里不再赘述。</p>
+<h3 id="六-总结"><a href="#六-总结" class="headerlink" title="六.总结"></a>六.总结</h3><p>关于这段代码的出处至今仍有争议，相传是由天才程序员<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B4%84%E7%BF%B0%C2%B7%E5%8D%A1%E9%A6%AC%E5%85%8B">约翰·卡马克</a>所开发（约翰·卡马克是编程领域畅销书<a target="_blank" rel="noopener" href="https://book.douban.com/subject/1152971/">DOOM启示录</a>的主角），然而不管这段代码出自于谁，我都觉得是码农届的荣耀，毫不夸张的说我因为0x5f3759df这个数字在家花了一个月时间重温高数，还有里面的&quot;evil floating point bit level hacking&quot;，深刻的让我觉得这段代码的作者是用灵魂在撸代码。</p>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E9%80%9F%E7%AE%97%E6%B3%95">平方根倒数速算法</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.lomont.org/Math/Papers/2003/InvSqrt.pdf">Fast Inverse Square Root</a></li>
+</ul>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/post/2016/06/%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E4%B8%8E%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/" rel="next" title="数值运算与牛顿迭代法">
+        <i class="fa fa-chevron-left"></i>
+        数值运算与牛顿迭代法
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/post/2016/12/Initial-Setup-Ubuntu16-04-server/" rel="prev" title="Initial Setup Ubuntu16.04 server">
+        Initial Setup Ubuntu16.04 server 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E6%9D%A5%E6%BA%90%E4%B8%8E%E8%83%8C%E6%99%AF"><span class="document-nav-text">一.来源与背景</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-IEEE754%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="document-nav-text">二.IEEE754浮点数</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E4%B8%80%E8%A1%8C%E7%A5%9E%E5%A5%87%E7%9A%84%E4%BB%A3%E7%A0%81"><span class="document-nav-text">三.一行神奇的代码</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97"><span class="document-nav-text">四.魔力数字</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%94-%E7%89%9B%E9%A1%BF%E6%B3%95"><span class="document-nav-text">五.牛顿法</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%85%AD-%E6%80%BB%E7%BB%93"><span class="document-nav-text">六.总结</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/post/2024/06/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/post/2024/06/exploration-vs-exploitation/">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/07/%E5%86%8D%E8%B0%88js%E9%97%AD%E5%8C%85/">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/06/B-tree%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Y-combinator/">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/lambda-calculus-Introduction/">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2017/03/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/post/2016/09/%E9%AD%94%E5%8A%9B%E6%95%B0%E5%AD%97%E4%B8%8E%E5%BF%AB%E9%80%9F%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%80%92%E6%95%B0%E7%AE%97%E6%B3%95/';
+                  this.page.identifier = 'post/2016/09/魔力数字与快速平方根倒数算法/';
+                  this.page.title = '魔力数字与快速平方根倒数算法';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

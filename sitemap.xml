@@ -2,203 +2,203 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.staynoob.cn/notes-on-high-performance-mysql</loc>
+    <loc>https://blog.staynoob.cn/post/2017/02/bash%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7/</loc>
     
-    <lastmod>2024-06-29T13:07:36.779Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/exploration-vs-exploitation</loc>
-    
-    <lastmod>2024-06-29T13:03:27.180Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/post/2016/04/init-commit/</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/%25E5%258A%25A0%25E5%25AF%2586%25E7%25AE%2597%25E6%25B3%2595%25E7%25AE%2580%25E4%25BB%258B/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/initial-setup-ubuntu-16.04-desktop</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-1</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-Introduction/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-2</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-3</loc>
+    <loc>https://blog.staynoob.cn/post/2017/03/lambda-calculus-Y-combinator/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/css-float-clearfix-best-in-practice</loc>
+    <loc>https://blog.staynoob.cn/post/2017/06/B-tree%25E6%2595%25B0%25E6%258D%25AE%25E7%25BB%2593%25E6%259E%2584/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/shannon-mathematical-theory-of-communication</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.staynoob.cn/integer-arithmetic-karatsuba-multiplication</loc>
+    <loc>https://blog.staynoob.cn/post/2017/07/%25E5%2586%258D%25E8%25B0%2588js%25E9%2597%25AD%25E5%258C%2585/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/the-famous-magic-number-fast-inverse-square-root-algorithm</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/initial-setup-Ubuntu-16.04-server</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/jackson-serialize-bi-directional-relationship-infinite-recursion</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/regular-expression-lookahead-lookbehind</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/bash-shortcuts</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/salted-password-hashing</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/lambda-calculus-introduction</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/lambda-calculus-y-combinator</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/btree-data-structure</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/closure-in-javascript</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/01/understanding-zombie-process/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
-    
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2019/02/common-pitfalls-in-jpa-hibernate/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/03/strong-consistency-model/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/03/is-distributed-lock-safe/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/05/the-good-old-transaction/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/05/when-soft-delete-meets-unique-index/</loc>
     
-    <lastmod>2024-06-29T11:52:49.161Z</lastmod>
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://blog.staynoob.cn/post/2019/10/why-i-think-kotlin-is-preferable-to-java/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2024/06/exploration-vs-exploitation/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2024/06/notes-on-high-performance-mysql/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/%25E5%25AE%2589%25E8%25A3%2585ubuntu16-04%25E5%2590%258E%25E8%25A6%2581%25E5%2581%259A%25E7%259A%25849%25E4%25BB%25B6%25E4%25BA%258B/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E4%25B8%258A/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E4%25B8%258B/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E7%2595%25AA%25E5%25A4%2596%25E7%25AF%2587-%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%2592%25E5%25BA%258F%25E7%259A%2584%25E4%25BC%2598%25E5%258C%2596%25E5%258E%2586%25E7%25A8%258B/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588bootstrap%25E9%2587%2587%25E7%2594%25A8border-box%25E7%259B%2592%25E6%25A8%25A1%25E5%259E%258B/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/CSS%25E6%25B8%2585%25E9%2599%25A4%25E6%25B5%25AE%25E5%258A%25A8%25E7%259A%2584%25E5%258E%259F%25E7%2590%2586%25E4%25B8%258E%25E6%259C%2580%25E4%25BD%25B3%25E5%25AE%259E%25E8%25B7%25B5/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/05/%25E9%25A6%2599%25E5%2586%259C%25E4%25BF%25A1%25E6%2581%25AF%25E8%25AE%25BA%25E4%25B8%258E%25E5%259B%259E%25E7%25AD%2594%25E8%2580%2581%25E9%25BC%25A0%25E5%2596%259D%25E8%258D%25AF%25E9%2597%25AE%25E9%25A2%2598%25E7%259A%2584%25E6%25AD%25A3%25E7%25A1%25AE%25E5%25A7%25BF%25E5%258A%25BF/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/06/%25E6%2595%25B0%25E5%2580%25BC%25E8%25BF%2590%25E7%25AE%2597%25E4%25B8%258E%25E7%2589%259B%25E9%25A1%25BF%25E8%25BF%25AD%25E4%25BB%25A3%25E6%25B3%2595/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/09/%25E9%25AD%2594%25E5%258A%259B%25E6%2595%25B0%25E5%25AD%2597%25E4%25B8%258E%25E5%25BF%25AB%25E9%2580%259F%25E5%25B9%25B3%25E6%2596%25B9%25E6%25A0%25B9%25E5%2580%2592%25E6%2595%25B0%25E7%25AE%2597%25E6%25B3%2595/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/12/Initial-Setup-Ubuntu16-04-server/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/01/Jackson%25E5%25BA%258F%25E5%2588%2597%25E5%258C%2596%25E5%258F%258C%25E5%2590%2591%25E5%2585%25B3%25E8%2581%2594%25E6%2598%25A0%25E5%25B0%2584%25E7%259A%2584%25E5%259B%259B%25E7%25A7%258D%25E6%2596%25B9%25E6%25B3%2595/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2017/01/%25E6%25AD%25A3%25E5%2588%2599%25E8%25A1%25A8%25E8%25BE%25BE%25E5%25BC%258F-%25E9%259B%25B6%25E5%25AE%25BD%25E6%2596%25AD%25E8%25A8%2580-lookaround/</loc>
+    
+    <lastmod>2024-06-29T13:33:02.903Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.staynoob.cn/post/2016/04/init-commit/</loc>
     
     <lastmod>2024-06-29T11:52:49.161Z</lastmod>
     

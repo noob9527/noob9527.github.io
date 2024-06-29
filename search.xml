@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[Notes on High Performance MySQL]]></title>
-      <url>https://blog.staynoob.cn/notes-on-high-performance-mysql</url>
+      <url>https://blog.staynoob.cn/post/2024/06/notes-on-high-performance-mysql/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>Notes on <a href="https://www.amazon.com/High-Performance-MySQL-Optimization-Replication/dp/1449314287/ref=sr_1_5?keywords=mysql&amp;qid=1560589416&amp;s=books&amp;sr=1-5">High Performance MySQL</a>, for future reference.</p>
 </blockquote>
@@ -83,7 +83,7 @@
     
     <entry>
       <title><![CDATA[Exploration vs Exploitation]]></title>
-      <url>https://blog.staynoob.cn/exploration-vs-exploitation</url>
+      <url>https://blog.staynoob.cn/post/2024/06/exploration-vs-exploitation/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>A short note on <a href="https://youtu.be/FgzM3zpZ55o?si=UdTA9MaP9EalwMu5&amp;t=3311">Standford CS234 Reinforcement Learning 2019 Lecture1</a><br>How should an RL agent balance its action?</p>
 <ul>
@@ -707,7 +707,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[再谈js闭包]]></title>
-      <url>https://blog.staynoob.cn/closure-in-javascript</url>
+      <url>https://blog.staynoob.cn/post/2017/07/%25E5%2586%258D%25E8%25B0%2588js%25E9%2597%25AD%25E5%258C%2585/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>网上关于 js 闭包的文章多如牛毛，这里之所以再写一篇，主要是因为网上的那些文章要么对初学者不够友好，要么根本就没有谈到重点。在读过那些文章后的很长一段时间里，我对闭包都是似懂非懂。直到在学 react 的过程中逐渐接触函数式编程，才开始真正理解闭包。</p>
 </blockquote>
@@ -743,7 +743,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[B-tree数据结构]]></title>
-      <url>https://blog.staynoob.cn/btree-data-structure</url>
+      <url>https://blog.staynoob.cn/post/2017/06/B-tree%25E6%2595%25B0%25E6%258D%25AE%25E7%25BB%2593%25E6%259E%2584/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>几乎所有文件系统索引，数据库索引，都需要用到B-tree或其变种。因此对于码农而言，理解它如何工作还是相当有必要的。然而我最近阅读了很多相关的文章，它们往往一上来就试图跟读者解释<code>branchingFactor/degree, B-1&lt;=keys&lt;2B-1,B&lt;=children&lt;2B blablabla...</code>，在读者还不懂原理时就开始描述实现细节。导致像我一样没学过正统cs课程的野生码农严重怀疑自己的智商。这篇文章试图向跟我一样的小白来描述B-tree（前提是你能理解二分查找）。</p>
 </blockquote>
@@ -775,7 +775,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[lambda calculus:Y-combinator]]></title>
-      <url>https://blog.staynoob.cn/lambda-calculus-y-combinator</url>
+      <url>https://blog.staynoob.cn/post/2017/03/lambda-calculus-Y-combinator/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>上篇文章的末尾提到了一个问题，如何使用λ演算实现递归函数？其中最出名的解决方案是由数学家<a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell B. Curry</a>发现的一个被称为Y-combinator的函数。</p>
 </blockquote>
@@ -820,7 +820,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[lambda calculus:Introduction]]></title>
-      <url>https://blog.staynoob.cn/lambda-calculus-introduction</url>
+      <url>https://blog.staynoob.cn/post/2017/03/lambda-calculus-Introduction/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
 </blockquote>
@@ -958,7 +958,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[加密算法简介]]></title>
-      <url>https://blog.staynoob.cn/salted-password-hashing</url>
+      <url>https://blog.staynoob.cn/post/2017/03/%25E5%258A%25A0%25E5%25AF%2586%25E7%25AE%2597%25E6%25B3%2595%25E7%25AE%2580%25E4%25BB%258B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>最近听到一个来公司面试的码农说他使用Base64加密数据（Base64是一种编码格式，在编码解码计算过程中不会丢失信息量。通俗点说就相当于把“你好”加密成了“hello”），这跟明文没什么区别，如果一个hacker有本事截获你的数据，你不可能指望他不会解码Base64。这篇文章希望能分享一些关于加密的常识。</p>
 </blockquote>
@@ -1012,7 +1012,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[Bash小技巧]]></title>
-      <url>https://blog.staynoob.cn/bash-shortcuts</url>
+      <url>https://blog.staynoob.cn/post/2017/02/bash%25E5%25B0%258F%25E6%258A%2580%25E5%25B7%25A7/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
 </blockquote>
@@ -1102,7 +1102,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[正则表达式：零宽断言(lookaround)]]></title>
-      <url>https://blog.staynoob.cn/regular-expression-lookahead-lookbehind</url>
+      <url>https://blog.staynoob.cn/post/2017/01/%25E6%25AD%25A3%25E5%2588%2599%25E8%25A1%25A8%25E8%25BE%25BE%25E5%25BC%258F-%25E9%259B%25B6%25E5%25AE%25BD%25E6%2596%25AD%25E8%25A8%2580-lookaround/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>零宽断言(lookaround/zero-width assersion)是正则表达式中非常常用的特性，但是因为其一些带误导性的中文翻译和易于混淆的写法，让我一度每次使用都要先查文档。</p>
 </blockquote>
@@ -1146,7 +1146,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[Jackson序列化双向关联映射的四种方法]]></title>
-      <url>https://blog.staynoob.cn/jackson-serialize-bi-directional-relationship-infinite-recursion</url>
+      <url>https://blog.staynoob.cn/post/2017/01/Jackson%25E5%25BA%258F%25E5%2588%2597%25E5%258C%2596%25E5%258F%258C%25E5%2590%2591%25E5%2585%25B3%25E8%2581%2594%25E6%2598%25A0%25E5%25B0%2584%25E7%259A%2584%25E5%259B%259B%25E7%25A7%258D%25E6%2596%25B9%25E6%25B3%2595/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>如果一个对象与另一个对象之间存在互相引用(bi-directional relationship)，序列化该对象就会出现stackoverflow异常，这篇文章主要介绍使用jackson序列化工具处理该问题的几种解决方案。</p>
 </blockquote>
@@ -1197,7 +1197,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[Initial Setup Ubuntu16.04 server]]></title>
-      <url>https://blog.staynoob.cn/initial-setup-Ubuntu-16.04-server</url>
+      <url>https://blog.staynoob.cn/post/2016/12/Initial-Setup-Ubuntu16-04-server/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>这篇文章算是<a href="http://blog.staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
 </blockquote>
@@ -1247,7 +1247,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[魔力数字与快速平方根倒数算法]]></title>
-      <url>https://blog.staynoob.cn/the-famous-magic-number-fast-inverse-square-root-algorithm</url>
+      <url>https://blog.staynoob.cn/post/2016/09/%25E9%25AD%2594%25E5%258A%259B%25E6%2595%25B0%25E5%25AD%2597%25E4%25B8%258E%25E5%25BF%25AB%25E9%2580%259F%25E5%25B9%25B3%25E6%2596%25B9%25E6%25A0%25B9%25E5%2580%2592%25E6%2595%25B0%25E7%25AE%2597%25E6%25B3%2595/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>题图来自于世界名模KK的推文，图中的guy&#39;s code就是这篇文章要介绍的算法，它的作用是快速计算平方根倒数，在计算机图形学领域有着广泛的应用。其中&quot;i=0.5f3759df-(i&gt;&gt;1)&quot;是迄今为止我见过的最令我瞠目结舌的一行代码。</p>
 </blockquote>
@@ -1314,7 +1314,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[数值运算与牛顿迭代法]]></title>
-      <url>https://blog.staynoob.cn/integer-arithmetic-karatsuba-multiplication</url>
+      <url>https://blog.staynoob.cn/post/2016/06/%25E6%2595%25B0%25E5%2580%25BC%25E8%25BF%2590%25E7%25AE%2597%25E4%25B8%258E%25E7%2589%259B%25E9%25A1%25BF%25E8%25BF%25AD%25E4%25BB%25A3%25E6%25B3%2595/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。</p>
 </blockquote>
@@ -1366,7 +1366,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[香农信息论与回答老鼠喝药问题的正确姿势]]></title>
-      <url>https://blog.staynoob.cn/shannon-mathematical-theory-of-communication</url>
+      <url>https://blog.staynoob.cn/post/2016/05/%25E9%25A6%2599%25E5%2586%259C%25E4%25BF%25A1%25E6%2581%25AF%25E8%25AE%25BA%25E4%25B8%258E%25E5%259B%259E%25E7%25AD%2594%25E8%2580%2581%25E9%25BC%25A0%25E5%2596%259D%25E8%258D%25AF%25E9%2597%25AE%25E9%25A2%2598%25E7%259A%2584%25E6%25AD%25A3%25E7%25A1%25AE%25E5%25A7%25BF%25E5%258A%25BF/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>最近在学习算法的过程中频繁接触到信息论，有碍于自己的数学水平，无力窥其全貌。但仅仅是一个入门级的了解便足以让我为之倾倒。这篇文章简单介绍信息论，之后来看看如何利用它秒解一些智力题。</p>
 </blockquote>
@@ -1421,7 +1421,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[CSS清除浮动的原理与最佳实践]]></title>
-      <url>https://blog.staynoob.cn/css-float-clearfix-best-in-practice</url>
+      <url>https://blog.staynoob.cn/post/2016/05/CSS%25E6%25B8%2585%25E9%2599%25A4%25E6%25B5%25AE%25E5%258A%25A8%25E7%259A%2584%25E5%258E%259F%25E7%2590%2586%25E4%25B8%258E%25E6%259C%2580%25E4%25BD%25B3%25E5%25AE%259E%25E8%25B7%25B5/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>网上关于CSS清除浮动的文章围起来简直可以绕地球两圈。原因是大多数码农总会有一种错觉，总感觉自己写的代码比别人的更加清晰易懂，一言不合就重构，我也一样。</p>
 </blockquote>
@@ -1560,7 +1560,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[为什么bootstrap采用border-box盒模型]]></title>
-      <url>https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing</url>
+      <url>https://blog.staynoob.cn/post/2016/05/%25E4%25B8%25BA%25E4%25BB%2580%25E4%25B9%2588bootstrap%25E9%2587%2587%25E7%2594%25A8border-box%25E7%259B%2592%25E6%25A8%25A1%25E5%259E%258B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
 </blockquote>
@@ -1621,7 +1621,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(番外篇):快速排序的优化历程]]></title>
-      <url>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-3</url>
+      <url>https://blog.staynoob.cn/post/2016/05/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E7%2595%25AA%25E5%25A4%2596%25E7%25AF%2587-%25E5%25BF%25AB%25E9%2580%259F%25E6%258E%2592%25E5%25BA%258F%25E7%259A%2584%25E4%25BC%2598%25E5%258C%2596%25E5%258E%2586%25E7%25A8%258B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>这篇文章主要介绍的是快速排序的一些公认有效的优化方法，它们中间有很多都来自于实践经验(empirical)。</p>
 </blockquote>
@@ -1661,7 +1661,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(下)]]></title>
-      <url>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-2</url>
+      <url>https://blog.staynoob.cn/post/2016/05/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E4%25B8%258B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
 </blockquote>
@@ -1714,7 +1714,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[聊聊4种主流排序算法(上)]]></title>
-      <url>https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-1</url>
+      <url>https://blog.staynoob.cn/post/2016/04/%25E8%2581%258A%25E8%2581%258A4%25E7%25A7%258D%25E4%25B8%25BB%25E6%25B5%2581%25E6%258E%2592%25E5%25BA%258F%25E7%25AE%2597%25E6%25B3%2595-%25E4%25B8%258A/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>排序算法在很多计算机应用中都扮演着重要角色，同时也是大部分算法课程中不可或缺的一个章节。然而现如今的程序开发越来越模块化，程序员除了在技术面试的时候，几乎不存在任何应用场景需要手写一个排序算法，再则很多像我一样的学渣，看到“市面”上繁杂多样的排序算法就头疼，因此我打算在这里聊聊四种我个人认为比较主流的排序算法，看看当我们调用Arrays.sort()的时候到底发生了什么。</p>
 </blockquote>
@@ -1791,7 +1791,7 @@ Then the IDEs such as Idea can warn you when you forget to handle the possible n
     
     <entry>
       <title><![CDATA[安装ubuntu16.04后要做的9件事]]></title>
-      <url>https://blog.staynoob.cn/initial-setup-ubuntu-16.04-desktop</url>
+      <url>https://blog.staynoob.cn/post/2016/04/%25E5%25AE%2589%25E8%25A3%2585ubuntu16-04%25E5%2590%258E%25E8%25A6%2581%25E5%2581%259A%25E7%259A%25849%25E4%25BB%25B6%25E4%25BA%258B/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>ubuntu在4月21日发布了16.04LTS版本,网上已经有大家疯狂转载的类似标题的文章，这里记录适用于我个人的要做的9件事(目前我电脑还安装了win10),</p>
 </blockquote>
