@@ -12,15 +12,15 @@
     "generate:watch": "npx npm run hx:clean && npx hexo generate --watch",
     "deploy": "npx hexo deploy"
   },
-  "scriptComments" : {
+  "scriptComments": {
     "hx:new": "`hexo new [layout] <title>`, e.g. hx:new draft <title>"
   },
   "hexo": {
-    "version": "3.5.0"
+    "version": "6.3.0"
   },
   "dependencies": {
     "g": "^2.0.1",
-    "hexo": "^3.5.0",
+    "hexo": "^6.3.0",
     "hexo-browsersync": "^0.2.0",
     "hexo-deployer-git": "^0.1.0",
     "hexo-generator-archive": "^0.1.4",

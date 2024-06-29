@@ -3,7 +3,6 @@ title: Distributed Transaction
 categories:
 tags:
 photos:
-permalink:
 ---
 
 > 

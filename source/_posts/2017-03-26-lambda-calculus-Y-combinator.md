@@ -3,7 +3,6 @@ title: 'lambda calculus:Y-combinator'
 categories: Functional Programming
 tags: Lambda Calculus
 photos: /img/lambda-calculus.jpg
-permalink: /lambda-calculus-y-combinator
 date: 2017-03-26 15:49:26
 ---
 

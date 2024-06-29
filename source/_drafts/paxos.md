@@ -3,7 +3,6 @@ title: paxos
 categories:
 tags:
 photos:
-permalink:
 ---
 
 > 

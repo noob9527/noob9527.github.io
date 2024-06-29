@@ -5,7 +5,6 @@ tags: Distributed System
 photos: >-
   /img/strong-consistency-models.jpg
 date: 2019-03-05 09:11:27
-permalink:
 ---
 
 

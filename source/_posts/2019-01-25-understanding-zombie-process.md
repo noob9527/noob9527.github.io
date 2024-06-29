@@ -5,7 +5,6 @@ tags:
   - UNIX
 photos: /img/understanding-zombie-process.jpg
 date: 2019-01-25 06:54:28
-permalink:
 ---
 
 

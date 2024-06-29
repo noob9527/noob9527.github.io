@@ -3,7 +3,6 @@ title: introduction to protocol buffers
 categories:
 tags:
 photos:
-permalink:
 ---
 
 

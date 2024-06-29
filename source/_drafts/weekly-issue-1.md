@@ -3,7 +3,6 @@ title: weekly-issue-1
 categories: weekly issue
 tags: quick notes
 photos:
-permalink:
 ---
 
 > 随着时间越来越碎片化，我发现自己已经很难有精力去写一些有深度的文章（这里的深度只是对自己而言的）。不仅如此，由于记忆力的衰退，所以，

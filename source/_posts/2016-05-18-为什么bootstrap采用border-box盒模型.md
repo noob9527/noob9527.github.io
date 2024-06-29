@@ -5,7 +5,6 @@ tags:
   - CSS
 photos: /img/box-sizing.jpg
 date: 2016-05-18 16:48:58
-permalink: /css-why-bootstrap-use-border-box-as-default-box-sizing
 ---
 
 

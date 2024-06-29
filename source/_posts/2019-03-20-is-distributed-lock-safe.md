@@ -4,7 +4,6 @@ categories: Backend
 tags: Distributed System
 photos: /img/is-distributed-lock-safe.svg
 date: 2019-03-20 18:58:03
-permalink:
 ---
 
 

@@ -3,7 +3,6 @@ title:
 categories: 
 tags: 
 photos:
-permalink: 
 ---
 
 > 

@@ -4,7 +4,6 @@ categories: Backend
 tags: Database
 photos: /img/the-good-old-transaction.jpg
 date: 2019-05-07 23:22:54
-permalink:
 ---
 
 > 随便写写跟事务相关的笔记

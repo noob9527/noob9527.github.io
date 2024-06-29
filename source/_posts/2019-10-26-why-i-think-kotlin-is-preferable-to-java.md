@@ -6,7 +6,6 @@ tags:
   - Java
 photos: /img/why-i-think-kotlin-is-preferable-to-java.jpg
 date: 2019-10-26 09:28:06
-permalink:
 ---
 
 

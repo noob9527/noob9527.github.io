@@ -3,7 +3,6 @@ title: sql-features-you-may-not-be-familiar-with
 categories:
 tags:
 photos:
-permalink:
 ---
 
 

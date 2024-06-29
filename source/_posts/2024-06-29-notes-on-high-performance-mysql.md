@@ -6,7 +6,6 @@ tags:
   - SQL
 date: 2024-06-29 18:15:31
 photos:
-permalink: /notes-on-high-performance-mysql
 ---
 
 

@@ -4,7 +4,6 @@ categories: Backend
 tags: Database
 date: 2019-05-21 00:17:16
 photos: /img/when-soft-delete-meets-unique-index.jpg
-permalink:
 ---
 
 > Do some casually writing to practice my English.

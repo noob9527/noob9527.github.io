@@ -3,7 +3,6 @@ title: Two Phase Commit(Atomic Commit Protocol)
 categories:
 tags:
 photos:
-permalink:
 ---
 
 > Atomic Commit Protocol, Atomicity

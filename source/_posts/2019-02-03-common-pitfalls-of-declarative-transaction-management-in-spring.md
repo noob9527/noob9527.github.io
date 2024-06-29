@@ -6,7 +6,6 @@ tags:
   - JPA
 photos: /img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg
 date: 2019-02-03 21:04:26
-permalink:
 ---
 
 

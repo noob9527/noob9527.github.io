@@ -3,7 +3,6 @@ title: machine-learning-in-a-nutshell
 categories: Machine Learning
 tags:
 photos:
-permalink:
 ---
 
 

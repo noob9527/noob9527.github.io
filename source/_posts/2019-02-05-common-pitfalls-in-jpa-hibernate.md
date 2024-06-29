@@ -6,7 +6,6 @@ tags:
   - JPA
 photos: /img/common-pitfalls-in-jpa-hibernate.jpg
 date: 2019-02-05 23:22:47
-permalink:
 ---
 
 
