@@ -2,6 +2,15 @@
 # Site Information Settings
 # ---------------------------------------------------------------
 
+# Site
+title: NOOB
+subtitle: staynoob! not stay noob!
+description: 许炎的个人博客
+keywords: "github, 技术博客, web开发, fontend"
+author: noob9527
+language: zh-Hans
+timezone:
+
 # Put your favicon.ico into `hexo-site/source/` directory.
 favicon: /favicon.ico
 
@@ -94,3 +103,7 @@ baidu_push: true
 # less
 less:
  compress: true
+
+search:
+  path: search.xml
+  field: post
