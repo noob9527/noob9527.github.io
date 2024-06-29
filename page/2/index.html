@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>NOOB - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="github, 技术博客, web开发, fontend">
+
+
+<meta name="description" content="许炎的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NOOB">
+<meta property="og:url" content="https://blog.staynoob.cn/page/2/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="许炎的个人博客">
+<meta property="og:locale">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="github, 技术博客, web开发, fontend">
+<meta name="twitter:card" content="summary">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    
+    <article id="post-is-distributed-lock-safe"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-03-20T18:58:03+08:00" 
+          content="2019-03-20">
+        2019-03-20
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/is-distributed-lock-safe.svg" rel="gallery_cly05cliy001wiwey3ha9fr59">-->
+            <img src="/img/is-distributed-lock-safe.svg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>今天偶然间读到了 Martin Kleppmann 与 Salvatore Sanfilippo 关于 Redlock 算法是否”安全“的讨论，觉得挺有启发的，因此打算把目前的思考记下来。由于这篇文章比较长，这里提前剧透我的结论，“所有带有效期的分布式锁本质上都是不“安全”的，只有“安全”的资源服务，没有“安全”的分布式锁”。</p>
+</blockquote>
+<h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>Martin Kleppmann 是剑桥大学分布式系统领域的一名研究员，同时也是 <a target="_blank" rel="noopener" href="https://item.jd.com/12186665.html">Designing Data-Intensive Applications</a> 这本书的作者，他在个人博客中发了一篇文章 <a target="_blank" rel="noopener" href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html">How to do distributed locking</a>，其中涉及了大量对 Redlock 算法安全性的质疑，Salvatore Sanfilippo（Redis 的创始人，也是这里 Redlock 算法的作者）随后发表 <a target="_blank" rel="noopener" href="http://antirez.com/news/101">Is Redlock safe?</a> 回应这些质疑，这篇文章总结了这两篇文章讨论的重点和我对这些问题的想法。</p>
+<h3 id="术语和约定"><a href="#术语和约定" class="headerlink" title="术语和约定"></a>术语和约定</h3><p>像之前的翻译文章一样，一些专业术语翻译成中文反而不好理解，这里提前解释一下这些术语。</p>
+<ul>
+<li>safety 属性<br>  简单说 safety 就是保证不会有坏事发生。如果该属性被违背，我们一般可以确切的知道它们在哪个时间点被违背，比如说集合元素的唯一性就是 safety 属性。如果一个集合插入了一个重复元素，那么在插入的这个时间点违反了唯一性这个 safety 属性。（注意不要混淆这里的 safety 属性和文章标题中“安全”一词的含义）</li>
+<li>liveness 属性<br>  简单说，liveness 就是保证好事最终会发生。比如说最终一致性就是 liveness 属性（一般 liveness 属性定义中都包含”最终“二字）</li>
+</ul>
+<blockquote>
+<p>&quot;Intuitively, a safety property describes what is allowed to happen, and a liveness property describes what must happen.&quot;</p>
+</blockquote>
+<p>为了更好的描述问题，我们先定义下面三种角色：</p>
+<ul>
+<li>资源服务：即需要被锁保护的资源。</li>
+<li>锁服务：即本文 Redlock 算法扮演的角色。</li>
+<li>锁用户：申请与释放锁的客户端。（下文可能简称为用户）</li>
+</ul>
+<p>使用分布式锁的目的主要有两种，分别是：</p>
+<ol>
+<li>效率(Efficiency)：通过锁来避免多次做重复的工作，计算重复的内容等等。这种场景下即便偶然出现多个用户同时持有锁，并同时与资源服务发生交互，也是可以忍受的。</li>
+<li>正确性(Correctness)：也就是文章标题所说的“安全”，我们希望资源服务在锁的保护下能够做“正确”的事。更严谨的说，我们希望任一时刻，只有一个用户能够访问资源服务，而且即便锁在该用户在与资源服务交互的中途过期，也不至于破坏资源服务的一致性。</li>
+</ol>
+<p>无论出于哪种目的，单从分布式锁服务的角度来说，我们都希望它具有如下属性（下文将以属性1，属性2，属性3来引用这些属性）：</p>
+<ol>
+<li>互斥（safety 属性）：在任一时刻，只有一个用户能持有锁。</li>
+<li>避免死锁（liveness 属性）：每把锁都有一个有效期，超出有效期则自动释放锁。如果没有这样的自动释放机制，那么一个已获得锁的用户宕机或失联，将导致资源被持续锁定直至该用户故障被修复，在大部分场景中，这是不可接受的。</li>
+<li>容错（liveness 属性）：没有单点失败问题，只要系统中多数锁服务节点正常工作，用户就能够获取和释放锁。</li>
+</ol>
+<p>下文讨论的 RedLock 算法期望解决的主要问题是单点 Redis 作为分布式锁服务时无法满足属性3，下面先来了解一下该算法。</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/03/is-distributed-lock-safe/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-strong-consistency-model"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-03-05T09:11:27+08:00" 
+          content="2019-03-05">
+        2019-03-05
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/strong-consistency-models.jpg" rel="gallery_cly05clix001siweyfyx70fze">-->
+            <img src="/img/strong-consistency-models.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <p><p style="text-align:center">（封面图片来自 <a target="_blank" rel="noopener" href="https://jepsen.io/consistency">Consistency Models</a>）</p></p>
+<blockquote>
+<p>最近打算尝试一下翻译。由于我的英语基本停留在高中水平，所以不会严格按照原文来翻译，再加上我喜欢加入自己的理解（个人水平有限，所以我的理解应该也没啥参考价值）。所以有一定英语基础的同学还是建议自己阅读<a target="_blank" rel="noopener" href="https://aphyr.com/posts/313-strong-consistency-models">原文：Strong Consistency Models</a>。</p>
+</blockquote>
+<h3 id="基础概念解释"><a href="#基础概念解释" class="headerlink" title="基础概念解释"></a>基础概念解释</h3><p>一些专业术语翻译成中文后往往更加难以理解，因此我不会翻译这些词，下面先简单解释一些本文中用得比较多的术语，其中的定义来自于 <a target="_blank" rel="noopener" href="https://jepsen.io/consistency">Consistency Models</a> 这篇文章。这里只是做一个笼统的翻译。</p>
+<ul>
+<li>Systems<br>  分布式系统是一种并发 system，很多关于并发控制的研究可以直接应用到分布式 system 中。不过，大部分我们将要讨论的概念最开始是为单点并发系统设计的。它们之间在可用性和性能上还是有一些区别。<br>  System 的逻辑状态会随着时间改变。比如说单个整型变量就可以是一个简单的 system，它有类似于 0, 3, 42 这样的状态。一个互斥锁 system 有两种状态：locked 和 unlocked.</li>
+<li>Operations<br>  一个 operation 是 system 从一种状态到另一种状态间的转移。比如说，一个单变量 system 可能有类似于读取和写入这样的 operation，它们分别用来获取和设置该变量的值。一个计数器可能有自增，自减，读取这样的 operation。</li>
+<li>Histories<br>  一个 history 是一系列 operation 的集合，包括它们的并发结构。这里将其表述成一个包含 operation 的调用和完成的有序列表(an ordered list of invocation and completion operations)。</li>
+<li>Consistency Models<br>  一个 consistency model 是一系列 history 的集合。我们用 consistency models 来定义哪些 histories 在 system 中是“好的”或者“合法的”。当我们说一个 history 违反了 serializability 或者不是 serializable 的时候，我们指的是这个 history 不在 serializable consistency model 允许的 history 集合。</li>
+</ul>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/03/strong-consistency-model/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-common-pitfalls-in-jpa-hibernate"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-02-05T23:22:47+08:00" 
+          content="2019-02-05">
+        2019-02-05
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-in-jpa-hibernate.jpg" rel="gallery_cly05cliv001miwey736m3i59">-->
+            <img src="/img/common-pitfalls-in-jpa-hibernate.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Nowadays, ORM technique has been playing an important role in object-oriented programming, and JPA is now considered the standard industry approach for ORM in the Java industry. In this post, I summarized several phenomena which violate my intuition and prone to error.</p>
+</blockquote>
+<p>As JPA itself is just a specification, there are various underlying implementation. In this post, we are only focusing on Hibernate implementation. In fact, I&#39;ve never used or tested any other implementation so far, which means there&#39;s a chance that a problem cannot be reproduced in other JPA implementation.</p>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>As in post <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>, all the samples are written in Kotlin language. And Spring Data JPA framework is used for the sake of convenience. Full source code can be found at <a target="_blank" rel="noopener" href="https://github.com/noob9527/post-code/tree/master/2-common-pitfalls-in-jpa-hibernate">common-pitfalls-in-jpa-hibernate</a>.</p>
+<h3 id="Pitfall-1-Don-39-t-be-fooled-by-equals-and-hashcode-methods"><a href="#Pitfall-1-Don-39-t-be-fooled-by-equals-and-hashcode-methods" class="headerlink" title="Pitfall 1: Don&#39;t be fooled by equals and hashcode methods"></a>Pitfall 1: Don&#39;t be fooled by <code>equals</code> and <code>hashcode</code> methods</h3><p>You may already know that there are several contracts we have to obey when implementing <code>equals</code> and <code>hashcode</code> method. Namely Reflexivity, Symmetry, Transitivity, Consistency and &quot;Non-nullity&quot;. When it comes to a JPA entity, things become even more difficult since entity state transitions must be taken into account. In other words, <code>equals</code> and <code>hashcode</code> methods must behave consistently across all entity state transitions. Thus, we can immediately conclude that <strong> logical key(usually auto generate after the first time being persisted) should not be taken into consideration. </strong> <code>AbstractPersistable</code> from spring data JPA library is a perfect counterexample which implements <code>equals</code> and <code>hashcode</code> based on auto-generation id. The following code demonstrates its flaw:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo1</span> : <span class="type">AbstractPersistable</span>&lt;<span class="type">Int</span>&gt;()</span><br></pre></td></tr></table></figure><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> demo = Demo1()</span><br><span class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = hashSetOf(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span>.contains(demo) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">    entityManager.persist(demo)</span><br><span class="line">    entityManager.flush()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span>.contains(demo) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>The <code>HashSet</code> failed to recognize the same entity since its hashcode changed after being persisted. Certainly, this is error-prone. For similar reason, <strong> default <code>equals</code> and <code>hashcode</code> inherited from <code>java.lang.Object</code> is not suitable for JPA entity either. </strong> Code below shows that a merged entity isn&#39;t equal to itself because <code>entityManager.merge</code> may return a different object reference.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Demo2</span> : <span class="type">Persistable</span>&lt;<span class="type">Int</span>&gt; &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> id: <span class="built_in">Int</span>? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getId</span><span class="params">()</span></span>: <span class="built_in">Int</span>? &#123;</span><br><span class="line">        <span class="keyword">return</span> id</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">isNew</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> id == <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// inherit equals and hashcode from Object</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> demo = Demo2()</span><br><span class="line">    <span class="keyword">val</span> <span class="keyword">set</span> = hashSetOf(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span>.contains(demo) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">    entityManager.persist(demo)</span><br><span class="line">    entityManager.flush()</span><br><span class="line">    entityManager.detach(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> managed = entityManager.merge(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">set</span>.contains(managed) <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Now, the only option left to us is implementing <code>equals</code> and <code>hashcode</code> methods based on some business key, and never change the key after the entity is created. However, you can not always find such keys in practical. In such cases, the best we can do is no matter which way we choose to implement the methods, be aware of its shortcomings and document them clearly.</p>
+<p>Reference:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/">A beginner’s guide to entity state transitions with JPA and Hibernate</a></li>
+<li><a target="_blank" rel="noopener" href="https://vladmihalcea.com/hibernate-facts-equals-and-hashcode/">How to implement Equals and HashCode for JPA entities</a></li>
+<li><a target="_blank" rel="noopener" href="https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/">How to implement equals and hashCode using the JPA entity identifier (Primary Key)</a></li>
+</ul>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-common-pitfalls-of-declarative-transaction-management-in-spring"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-02-03T21:04:26+08:00" 
+          content="2019-02-03">
+        2019-02-03
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cly05cliw001piwey99769eno">-->
+            <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative management is still preferred since it is less invasive to application code. In this post, I&#39;m going to summarize several pitfalls you may encounter while using declarative transaction management. Certainly, if you read the official document thoroughly, you should know how to avoid them on your own, but if you think of it is all about annotating your method with the @Transactional annotation as I did, you may never figure them out until the day your customer reports his balance is incorrect.</p>
+</blockquote>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>Our samples are written in Kotlin language. In addition, I assume that you are already familiar with the following frameworks.</p>
+<ul>
+<li>Spring</li>
+<li>JPA(Hibernate implementation)</li>
+<li>Spring Data JPA</li>
+</ul>
+<p>Examples in this post are based on the following class:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// entity</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoEntity</span>(</span><br><span class="line">        <span class="keyword">val</span> name: String</span><br><span class="line">) : AbstractPersistable&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// repository</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">DemoRepo</span> : <span class="type">CrudRepository</span>&lt;<span class="type">DemoEntity, Int</span>&gt;</span><br></pre></td></tr></table></figure><br>Read the manual of Spring Data JPA If you are not able to understand the above code. Finally, The related test code will be available at <a target="_blank" rel="noopener" href="https://github.com/noob9527/post-code/tree/master/1-common-pitfalls-of-declarative-transaction-management-in-spring">common-pitfalls-of-declarative-transaction-management-in-spring</a>.</p>
+<h3 id="Pitfall-1-Transactional-annotation-may-have-no-effect-at-all"><a href="#Pitfall-1-Transactional-annotation-may-have-no-effect-at-all" class="headerlink" title="Pitfall 1: @Transactional annotation may have no effect at all"></a>Pitfall 1: @Transactional annotation may have no effect at all</h3><p>It&#39;s a common circumstance that we put some code in a private method so it can be reused. If the code involves a transaction, we may end up with writing code like this.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoService</span>(</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do other things</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></span><br><span class="line">        demoRepo.save(demo)</span><br><span class="line">        unpredictableMethod()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">            <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>In this case, the <code>persist</code> method will be invoked as if no @Transactional annotation is present. To understand why, we need to know that the declarative transaction is implemented on top of AOP(Aspect Oriented Programming) proxies. A proxied method invocation procedure looks like this:<br><img src="/img/content/common-pitfalls-of-declarative-transaction-management-in-spring/transactional-proxy.png" alt="transactional-proxy"><br>From the picture, it is not hard to imagine that the <code>beginTransaction</code>, <code>commit</code> and <code>rollback</code> logic is implemented in a so called &quot;advice&quot; component. &quot;Advice&quot; here refers to a core concept of AOP(read the documentation of <a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/aop.html">Spring AOP</a> to get more information), and there is two different advice mode supported by Spring transaction management, which called &quot;PROXY&quot; and &quot;ASPECTJ&quot;. As the document says:</p>
+<blockquote>
+<p>When using proxies, you should apply the @Transactional annotation only to methods with public visibility. If you do annotate protected, private or package-visible methods with the @Transactional annotation, no error is raised, but the annotated method does not exhibit the configured transactional settings. Consider the use of AspectJ if you need to annotate non-public methods.</p>
+</blockquote>
+<p>Now the reason is pretty clear, to fix the problem, we can either switch the advice mode from &quot;PROXY&quot;(default option) to &quot;ASPECTJ&quot;, or remove the private modifier from the <code>persist</code> method. Let&#39;s say we choose to remove the modifier, you can find that the <code>persist</code> is still invoked without any transaction, because we just fall into the next pitfall.</p>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+    <article id="post-understanding-zombie-process"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-01-25T06:54:28+08:00" 
+          content="2019-01-25">
+        2019-01-25
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/System/">System</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/understanding-zombie-process.jpg" rel="gallery_cly05cliu001kiweyawyhfie1">-->
+            <img src="/img/understanding-zombie-process.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--摘录-->
+            <blockquote>
+<p>As a programmer, I usually feel uncomfortable when <code>top</code> command reports there&#39;re zombie processes running on my computer. After some study, I found that the zombie process is not as scary as my thought. This article briefly introduces the zombie process in UNIX-like systems.</p>
+</blockquote>
+<h3 id="What-is-a-quot-zombie-process-quot"><a href="#What-is-a-quot-zombie-process-quot" class="headerlink" title="What is a &quot;zombie process&quot;?"></a>What is a &quot;zombie process&quot;?</h3><blockquote>
+<p>&quot;In UNIX System terminology, a process that has terminated, but whose parent has not yet waited for it, is called a zombie.&quot;</p>
+</blockquote>
+<p>After we create a process via <code>fork</code> function, we get a parent process and a child process. The parent process sometimes needs to know how the child is terminated. In normal cases, we call <code>wait</code> or <code>waitpid</code> to fetch the termination status. However, a child process could terminate before its parent waits for it. In such a case, If the system cleared the child&#39;s information completely, its parent wouldn&#39;t be able to know its status. As a result, the kernel has to keep a small amount of information after a process terminates. A process like this that has been terminated, but not completely disappear, is called a zombie process.</p>
+<blockquote>
+<p>Note that zombie processes should not be confused with orphan processes: an orphan process is a process that is still executing, but whose parent has died. These do not remain as zombie processes; instead, (like all orphaned processes) they are adopted by <code>init</code>, which waits on its children. The result is that a process that is both a zombie and an orphan will be reaped automatically.</p>
+</blockquote>
+            <!--阅读全文-->
+            <p class="post-more-link">
+                <a href="/post/2019/01/understanding-zombie-process/#more">阅读全文</a>
+            </p>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+        </footer>
+    </div>
+    
+    
+
+    
+</article>
+
+
+
+
+<nav class="site-pagination">
+    <a class="extend prev" rel="prev" href="/">&lt;i class&#x3D;&quot;fa fa-angle-left&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">&lt;i class&#x3D;&quot;fa fa-angle-right&quot;&gt;&lt;&#x2F;i&gt;</a>
+</nav>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

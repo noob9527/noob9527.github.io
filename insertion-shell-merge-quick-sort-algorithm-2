@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>聊聊4种主流排序算法(下) - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="Sort">
+
+
+<meta name="description" content="上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。  一.分治(Divide and Conquer)分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊4种主流排序算法(下)">
+<meta property="og:url" content="https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-2">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。  一.分治(Divide and Conquer)分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/sort-algorithm-2.jpg">
+<meta property="article:published_time" content="2016-05-01T13:46:02.000Z">
+<meta property="article:modified_time" content="2024-06-29T11:52:49.161Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="Sort">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/sort-algorithm-2.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-聊聊4种主流排序算法-下"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      聊聊4种主流排序算法(下)
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-05-01T21:46:02+08:00" 
+          content="2016-05-01">
+        2016-05-01
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/sort-algorithm-2.jpg" rel="gallery_cly05clig0009iweyh93t0pnd">-->
+            <img src="/img/sort-algorithm-2.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>上篇聊到了插入排序与希尔排序，它们分别擅长处理小型和中型输入，今天来聊两个适用于大型数组的排序算法，与上篇类似的是，这篇的两个算法设计思路也非常相似，它们都基于分治思想。</p>
+</blockquote>
+<h3 id="一-分治-Divide-and-Conquer"><a href="#一-分治-Divide-and-Conquer" class="headerlink" title="一.分治(Divide and Conquer)"></a>一.分治(Divide and Conquer)</h3><p>分治指的是将大问题拆分成相同类型的小问题，再联合小问题的解，从而最终解决大问题的一种算法设计思想。传统上认为分治算法必须将问题拆分成两个或多个子问题。因此二分查找不算分治算法。因为它只有单一子问题。下面先来一段“经典”代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> N)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(N&lt;=<span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fib(N-<span class="number">1</span>)+fib(N-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>上面这段代码依据给定N，计算斐波那契数列，之所以说它经典是因为这段代码作为反面教材出现在各大编程入门书籍中。它在字面上完全符合上面对分治的定义，但却效率低得惊人。作为子问题，fib(N-2)被重复计算了两次(fib(N-1)中也要计算fib(N-2))。因此它并没有将子问题完全“分开”。本文要讨论的两种排序算法跟上面的代码结构非常类似，但你必须要能够理解其中本质的不同。</p>
+<span id="more"></span>
+<h3 id="二-最快的排序算法"><a href="#二-最快的排序算法" class="headerlink" title="二.最快的排序算法"></a>二.最快的排序算法</h3><p>上一篇提到基于比较的最快的排序算法不可能优于O(NlogN)，你可能会好奇它是怎么来的，大牛们采用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA">香农信息论(information theory)</a>证明，wiki上关于信息论的描述看完以后我反正是一个大写的懵B，这里提供一个更接地气的证明方法。假设有一个含有N个不重复元素的数组，那么它共有N!(阶乘)种不同状态，因为N个不同元素有N!种排列，每进行一次比较，比较结果有两种可能(大于或小于)，这将排除一些可能的状态，可以构造一棵二叉决策树来表示这个过程，下图表示对A,B,C三个元素排序的过程：</p>
+<div align=center><br><img src="/img/content/decisiontree.jpg" alt="decisiontree.jpg"><br></div>
+
+<p>这颗树的树叶表示所有可能的排序方式，而它的高度则是在最坏情况下需要的比较次数。不难推测出，对于给定的含有N个元素的数组，决策树必须要能够容纳下N!个叶节点，才能应付所有可能的情况，否则一定能构造一些输入，导致排序失败。了解了这一点，下面问题就简单多了，我们需要一棵多高的树才能保证其能够容纳N!个叶节点?<br>了解二叉树基本性质的人可以不假思索的回答，一棵高度为h的二叉树最多可以含有$2^h$个叶节点(此时人们称其为完全二叉树)，要让我们的排序算法万无一失，就必须保证 $2^h\geq N!$，即 $h(\text{比较次数})\geq log(N!)$。<br>到这里我们已经可以得出结论，任何基于元素间比较的排序算法复杂度不可能优于O(logN!)，可我还有一个问题，logN!到底是多大？阶乘计算总是过于复杂，人们一般采用<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/斯特靈公式">斯特灵公式</a>来求取一个近似值，遗憾的是我的数学能力仅停留在高中水平(高中数学还很少及格)，因此wiki上关于这段公式的内容在我眼里大概是这样的“~!@#$%^&amp;*#@^_^!”，好在<a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/2095395/is-logn-%CE%98n-logn">stackoverflow</a>上有一个更加简单的解法，Let&#39;s see:<br>$$\text{首先依据对数的性质可以得到：}log(N!)=log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)+\ldots+log(1)$$$$\text{直接丢弃求和等式的右半部分可得：}\Rightarrow log(N!)\geq log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)$$$$\Rightarrow log(N!)\geq log(N/2)+log(N/2)+log(N/2)+\ldots+log(N/2)$$$$\Rightarrow log(N!)\geq (N/2)log(N/2)=(N/2)logN-N/2$$$$\Rightarrow log(N!)= \Omega(NlogN)$$这里的$\Omega$指的是函数渐进增长的下界，可以依据类似的方式得到其上界：$$log(N!)=log(N)+log(N-1)+log(N-2)+\ldots+log(N/2)+\ldots+log(1)$$$$\Rightarrow log(N!)\leq log(N)+log(N)+log(N)+\ldots+log(N)=N\times log(N)$$$$\Rightarrow log(N!)=O(NlogN)$$<br>当既有$f(N)=O(g(N))$(upperbound)又有$f(N)=\Omega(g(N))$(lowerbound)时，我们说$f(N)=\Theta(g(N))$(tightbound)。在此例中即$log(N!)=\Theta(NlogN)$，如果你觉得这些关系很混乱，只要知道$\Theta$是O的充分不必要条件即可。</p>
+<p><strong>结论：任何基于比较的排序算法，其最坏情形复杂度不可能优于$\Theta(NlogN)$</strong></p>
+<h3 id="三-归并-Merge-排序"><a href="#三-归并-Merge-排序" class="headerlink" title="三.归并(Merge)排序"></a>三.归并(Merge)排序</h3><p>你可能以前从没听过归并排序，但你不可能没听过它的作者。现代计算机之父<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/John_von_Neumann">约翰·冯·诺伊曼</a>于1945年发明归并排序，这被认为是最早在计算机上正确应用分治思想的算法。上码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span>[] arr)</span>&#123;</span><br><span class="line">    <span class="type">int</span>[] aux=<span class="keyword">new</span> <span class="title class_">int</span>[arr.length];</span><br><span class="line">    mergeSort(arr,aux,<span class="number">0</span>,arr.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span>[] arr,<span class="type">int</span>[] aux,<span class="type">int</span> lo,<span class="type">int</span> hi)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lo&gt;=hi) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> mid=(lo+hi)&gt;&gt;<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//divide</span></span><br><span class="line">    mergeSort(arr,aux,lo,mid);</span><br><span class="line">    mergeSort(arr,aux,mid+<span class="number">1</span>,hi);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//merge</span></span><br><span class="line">    System.ArrayCopy(arr,lo,aux,lo,hi - lo + <span class="number">1</span>);</span><br><span class="line">    <span class="type">int</span> i=lo,j=mid+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> k=lo;k&lt;=hi;k++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;mid) arr[k]=aux[j++];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(j&gt;hi) arr[k]=aux[i++];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(aux[i]&lt;aux[j]) arr[k]=aux[i++];</span><br><span class="line">        <span class="keyword">else</span> arr[k]=aux[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>归并排序的思路是先找到输入数组的中间元素(mid)，然后根据中间元素将输入数组划分成两部分，整个过程递归进行，分到最后每个子数组将只有一个元素，此时所有的子数组就已经有序了(只有一个元素的数组是有序的)，然后对所有子数组执行归并(merge)操作，此时唯一需要做的就是保证归并完成后数组仍是有序的，如图：</p>
+<div align=center><br><img src="/img/content/merge-sort.png" alt="merge-sort.png"><br></div>
+
+<p>分治算法大多满足于同一个运行时间方程，即T(N)=2T(N/2)+O(N)，其中2T(N/2)代表求解两个同等规模的子问题需要的时间，O(N)是联合子问题的解需要的时间，对归并排序而言则指的是merge需要的时间，这里可以简单的将merge所需要的时间用N(实际是cN，这不影响结果)来代替。求解该方程是相当简单又不失趣味的过程：<br>$$T(N)=2T(N/2)+N \Rightarrow T(N)/N=T(N/2)/(N/2)+1$$$$T(N/2)=2T(N/4)+N/2 \Rightarrow T(N/2)/(N/2)=T(N/4)/(N/4)+1$$$$\vdots$$$$T(2)=2T(1)+1 \Rightarrow T(2)/2=T(1)+1$$将式子一层层代入后可得$T(N)/N=T(1)+logN\text{(等式右边一共有logN个1相加)}$，已知$T(1)=1$，最后等号两边同时乘以N得到:$$T(N)=N+N \times logN=O(NlogN)$$<br>以上证明过程假设了N是2的幂，即每次都能将输入数组分成两个正好同样大小的子数组，当输入数组是奇数的时候求解过程要麻烦一些，但结果是一样的。另外还可以采用类似的方法证明归并排序所需的比较次数最低为(NlogN)/2，最高为NlogN(注意这里没有O)，结合上一节的理论，可以总结一个非常拗口的结论，即不可能找到任何基于比较的排序算法，在最坏情况下所需比较次数少于归并排序在最坏情况下的比较次数。如果一条定理读起来非常拗口，往往意味着它没什么卵用，这里也是如此。<br>归并排序最令人诟病的缺陷在于它需要线性的空间复杂度，并且将元素从数组复制到辅助数组这个过程浪费了大量的时间。再加上考虑算法是否高效不能仅考虑最坏情形(还记得上篇文章插入排序与选择排序的例子吧？)，就平均速度而言它在高级排序算法中没有优势，种种因素导致归并排序使用场景非常有限，而这里我把它列为主流排序算法有三个原因：</p>
+<ol>
+<li>它是基于比较的排序算法中，所需比较次数最少的。</li>
+<li>当空间不是问题的时候，人们有时出于稳定性(参考上篇文章“排序算法的稳定性”)考虑而选择归并排序，比如说JDK对引用类型使用归并排序。</li>
+<li>它与快速排序设计思路类似，很适合放在快速排序之前讨论，就像上篇插入排序与希尔排序的关系一样。</li>
+</ol>
+<p><strong>结论：如果稳定性很重要而空间又不是问题，有时可以选择归并排序。</strong></p>
+<h3 id="四-快速-Quick-排序"><a href="#四-快速-Quick-排序" class="headerlink" title="四.快速(Quick)排序"></a>四.快速(Quick)排序</h3><p>快速排序是目前使用最广泛的排序算法，它的作者是图灵奖得主<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tony_Hoare">C.A.R.Hoare</a>，正如该算法的名字一样，它是实践中最快的已知排序算法，它在平均情况下的时间复杂度是O(NlogN)，这样看起来并没有什么特别之处，它之所以性能突出是因为其高度优化的内循环，换句话说，假定它的时间复杂度为k*NlogN+b，那么这里的k比其它线性对数级的算法要小。最原始的快速排序在最坏情形时复杂度为O(N^2)，但这完全可以通过一些编程技巧来避免。下面看代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] arr)</span>&#123;</span><br><span class="line">    quickSort(arr,<span class="number">0</span>,arr.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] arr,<span class="type">int</span> lo,<span class="type">int</span> hi)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(lo&gt;=hi) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> pivot=partition(arr,lo,hi); <span class="comment">//暂时先别管这条语句</span></span><br><span class="line">    quickSort(arr,lo,pivot - <span class="number">1</span>);</span><br><span class="line">    quickSort(arr,pivot + <span class="number">1</span>,hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这段代码是否与归并排序如出一辙？因为它们都建立在分治思想之上，归并排序选取中点(mid)将数组均分成两个子数组，仔细思考一下，排序的merge过程建立在两个子数组已经有序的前提之下，那假设此时左子数组最大的元素小于右子数组最小的元素，是否可以完全去掉merge过程？举例来说假设一个数组的左子数组是[1,3]，右子数组是[5,6]，那么merge过程完全是多余的，因为该数组已经有序了。理解了这一点，你便理解了快速排序。剩下的问题是，如何找一个点切分数组，使其左子数组都小于等于该点，右子数组大于等于该点。<br>上面提到的这个点，我们一般称其为pivot(枢纽元)，而选取这个点的过程一般称其为partition(分区)，你可以完全不必理会这些专有名词，它们的主要作用在于吓唬那些不懂原理的人，让这些人对快速排序望而却步。但既然我们已经明白其原理了，这里我还是会使用它们来保持文章与主流书籍的一致性。下面先来看一种简单的分区思路：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*直接选取第一个元素lo作为pivot，使用两个指针(i,j)扫描数组，i,j朝数组中间移动</span></span><br><span class="line"><span class="comment">*遇到arr[i]&gt;=pivot则i停止，遇到arr[j]&lt;=pivot则j停止，交换i,j对应的元素，重复该过程直到i,j相遇</span></span><br><span class="line"><span class="comment">*当整个过程停下来时将pivot与a[j]交换位置，从而完成分区</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*       left part              center part           right part</span></span><br><span class="line"><span class="comment">* +--------------------------------------------------------------+</span></span><br><span class="line"><span class="comment">* lo |   &lt;= pivot   |                             |   &gt;= pivot   |</span></span><br><span class="line"><span class="comment">* +--------------------------------------------------------------+</span></span><br><span class="line"><span class="comment">* ^                 ^                             ^</span></span><br><span class="line"><span class="comment">* |                 |                             |</span></span><br><span class="line"><span class="comment">* pivot             i-&gt;                         &lt;-j</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] arr,<span class="type">int</span> lo,<span class="type">int</span> hi)</span>&#123;</span><br><span class="line">    <span class="type">int</span> i=lo+<span class="number">1</span>,j=hi;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(arr[++i]&lt;arr[lo] &amp;&amp; i &lt; hi);</span><br><span class="line">        <span class="keyword">while</span>(arr[--j]&gt;arr[lo]); <span class="comment">//这里不需要判断j&gt;lo，因为当j=lo时，arr[j]&gt;arr[lo]不可能成立</span></span><br><span class="line">        <span class="keyword">if</span>(i&gt;=j) <span class="keyword">break</span>; 		 <span class="comment">//i,j相遇时停止</span></span><br><span class="line">        exchange(arr,i,j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    exchange(arr,lo,j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>眼尖的同学一眼就能看出该程序的问题，考虑数组所有元素都等于pivot的情况，当i遇到等于pivot的元素时停下，j遇到等于pivot的元素也停下，然后i与j发生一次交换，这实际上什么也没干。了解这里为什么要多此一举，需要先分析算法的复杂度。<br>不难想象，快速排序的最好情况是每次选取的pivot正好在数组的中间，从而每次都把问题划分成相等规模的子问题，此时该算法的时间复杂度为T(N)=2T(N/2)+cN，cN表示分区过程消耗的时间，求解该方程的过程与刚才计算归并排序复杂度的过程一模一样，如果你记性还算不错的话应该知道结果是O(NlogN)。下面简单分析一下它的最坏情况，即每次选取的pivot都正好是数组最小的元素，此时划分的左子数组只有0个元素，右子数组为N-1个元素(去掉pivot)。其复杂度有如下关系：<br>$$T(N)=T(0)+T(N-1)+cN$$$$T(N-1)=T(0)+T(N-2)+c(N-1)$$$$T(N-2)=T(0)+T(N-3)+c(N-2)$$$$\vdots$$$$T(2)=T(0)+T(1)+c(2)$$<br>同样一顿代入后，可以得到$T(N)=(N-1)\times T(0)+T(1)+c(N\times(N-2)/2)$，其中c(N(N-2)/2)是由等差数列的求和公式而来。已知T(0)=T(1)=c，最后得到：<br>$$T(N)=c(N-1)+c+c(N(N-2)/2)=O(N^2)$$<br>在这种情况下，每次递归所做的仅仅是将pivot元素放到了正确位置了，这就跟选择排序一样低效。所以有人干脆选择在排序之前将数组随机打乱以降低发生这种事的可能性，Sedgewick在其书上写到，对于一个较大的数组，先将其随机打乱再进行快速排序，其时间复杂度是平方级的概率比你的电脑在排序时被闪电击中的概率要小得多。为此我还特意在网上查了一下电脑被闪电击中的概率，然而却没有得到满意的答案，因此我不太喜欢这种方式。后面你还会看到，大牛们发明了很多经过实践验证的优化手段，足以避免我们的电脑在排序的时候被闪电击中。<br>计算最佳与最坏情况的复杂度总是比较简单，而快速排序的平均复杂度又是如何得到的？我一直在盘算能不能通过一些写作技巧把这个问题糊弄过去，因为我查了很多资料，发现证明其平均复杂度的方式要么涉及概率学，要么涉及微积分，要么两个都涉及。前面我大概已经交代过我的数学水平了，总之，快速排序的平均复杂度是O(NlogN)，如果话说到这个份上你还要问我为什么，我想我们是没办法做朋友了。<br>咳，咳！还记得最开始的问题码？如果数组所有元素都等于pivot，i与j会不断发生无意义的交换，但最终j会停在数组的中间，而假设i与j遇到等于pivot的元素时都不停下，则j最终会停在数组的最左边，此时你将得到一个$O(N^2)$的排序算法。</p>
+<p><strong>结论<br>快速排序是已知最快的排序算法，大多数场景都可以优先选择快速排序。而它的缺点是不稳定(注意这里的稳定指的不是“效率不稳定”，参见“排序算法的稳定性”)，运行效率在一定程度上依赖于概率(但通常比其它算法快)，实现它的内循环(partition)需要一定的编程技巧(但这也给编程高手留下了足够的优化空间)。
+</strong></p>
+<p>下篇文章来聊聊快速排序的优化历程。</p>
+<p>本文参考链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/2095395/is-logn-%CE%98n-logn">is-logn-Θn-logn</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA">信息论</a></li>
+<li><a target="_blank" rel="noopener" href="http://algs4.cs.princeton.edu/23quicksort/">QUICKSORT</a></li>
+</ul>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Sort/" rel="tag">Sort</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/insertion-shell-merge-quick-sort-algorithm-1" rel="next" title="聊聊4种主流排序算法(上)">
+        <i class="fa fa-chevron-left"></i>
+        聊聊4种主流排序算法(上)
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/insertion-shell-merge-quick-sort-algorithm-3" rel="prev" title="聊聊4种主流排序算法(番外篇):快速排序的优化历程">
+        聊聊4种主流排序算法(番外篇):快速排序的优化历程 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E5%88%86%E6%B2%BB-Divide-and-Conquer"><span class="document-nav-text">一.分治(Divide and Conquer)</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E6%9C%80%E5%BF%AB%E7%9A%84%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="document-nav-text">二.最快的排序算法</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E5%BD%92%E5%B9%B6-Merge-%E6%8E%92%E5%BA%8F"><span class="document-nav-text">三.归并(Merge)排序</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E5%BF%AB%E9%80%9F-Quick-%E6%8E%92%E5%BA%8F"><span class="document-nav-text">四.快速(Quick)排序</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/insertion-shell-merge-quick-sort-algorithm-2';
+                  this.page.identifier = '/insertion-shell-merge-quick-sort-algorithm-2';
+                  this.page.title = '聊聊4种主流排序算法(下)';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

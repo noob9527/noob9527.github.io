@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>Why I think Kotlin is preferable to Java - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="Kotlin,Java">
+
+
+<meta name="description" content="Although I&#39;m quite impressed by Rust language recently, Kotlin is still my favorite language. In this post, I will share the major reasons which convinced me to leave Java two years ago. It won&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Why I think Kotlin is preferable to Java">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2019/10/why-i-think-kotlin-is-preferable-to-java/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="Although I&#39;m quite impressed by Rust language recently, Kotlin is still my favorite language. In this post, I will share the major reasons which convinced me to leave Java two years ago. It won&amp;#">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/why-i-think-kotlin-is-preferable-to-java.jpg">
+<meta property="article:published_time" content="2019-10-26T01:28:06.000Z">
+<meta property="article:modified_time" content="2024-06-29T11:52:49.161Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/why-i-think-kotlin-is-preferable-to-java.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-why-i-think-kotlin-is-preferable-to-java"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      Why I think Kotlin is preferable to Java
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-10-26T09:28:06+08:00" 
+          content="2019-10-26">
+        2019-10-26
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Programming-Language/">Programming Language</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/why-i-think-kotlin-is-preferable-to-java.jpg" rel="gallery_cly05clj10027iwey8gab1ebp">-->
+            <img src="/img/why-i-think-kotlin-is-preferable-to-java.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>Although I&#39;m quite impressed by Rust language recently, Kotlin is still my favorite language. In this post, I will share the major reasons which convinced me to leave Java two years ago. It won&#39;t cover every bright side of Kotlin language, but will be enough to make my point.</p>
+</blockquote>
+<p>TL:DR</p>
+<h3 id="Java-the-Good-Parts-and-the-Bad-Parts"><a href="#Java-the-Good-Parts-and-the-Bad-Parts" class="headerlink" title="Java the Good Parts and the Bad Parts"></a>Java the Good Parts and the Bad Parts</h3><p>If you ever asked me if Java is a good programming language, I would definitely say yes. Compare to languages such as C++, VB, Javascript. Writing code in Java is much more pleasant. More specifically, its virtue including but not limited to:</p>
+<ul>
+<li>Cross Platform</li>
+<li>Statically Typed</li>
+<li>Automatic Memory Management</li>
+<li>Open Community</li>
+<li>(After all, When I could not make a living by writing some fancy languages. It was Java gave me a job so that I could complain it all day.)</li>
+</ul>
+<p>Anyway, just like other elder languages, Java has made many design mistakes, I won&#39;t dive into the language design topic here, as I&#39;m not a specialist in programming language (or any other) field. I just want to share some issues that do bother me, from a mediocre programmer&#39;s perspective, then see how they are solved in Kotlin.</p>
+<span id="more"></span>
+<h4 id="Null-safety"><a href="#Null-safety" class="headerlink" title="Null safety"></a>Null safety</h4><p>The first problem is the notorious Null reference(aka <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">The billion-dollar mistake</a>), to people who don&#39;t understand why it is a design mistake, considering the following example, suppose some libraries author wrote a method that returns a User&#39;s full name.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    String <span class="title function_">getFullName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>then you want to write a function which tests if a user is John Snow, you may end up with writing code like this:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isJohnSnow</span><span class="params">(User user)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> user.getFullName().equals(<span class="string">&quot;John Snow&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>As a Java novice, You test your code and it works smoothly, then you push it to production. Now, Your workmates are able to make use of it. They may want to say something to John.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">greeting</span><span class="params">(User user)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isJohnSnow(user)) &#123;</span><br><span class="line">        sendMessage(user, <span class="string">&quot;You know nothing!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Someday, Your workmates complain that your method throws an NPE, because no one says the <code>getFullName()</code> method is not allowed to return a null, which indicates that they don&#39;t know the user&#39;s full name. So you take the blame and say sorry to your workmates, then you fix your code immediately:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Boolean <span class="title function_">isJohnSnow</span><span class="params">(User user)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">fullName</span> <span class="operator">=</span> user.getFullName();</span><br><span class="line">    <span class="keyword">if</span> (fullName == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> fullName.equals(<span class="string">&quot;John Snow&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>You change the method signature to return the boxed type and return a null reference indicates you don&#39;t know if the user is John Snow. Thanks to auto unboxing, none of your workmates will notice this change, until the day their code starts to throw NPE...<br>So how do we avoid this problem in Java? We do have some options:</p>
+<ul>
+<li>Check before calling<br>A naive way would be whenever you call a method, you check its implementation and find out if the method will return null. It is naive because the author of the method can change its implementation at any time. Also, in the preceding case, you may have to check every class which implements a User interface, this is not really practical. Moreover, the whole point of OOP and statically typed is you don&#39;t need to care about implementations, in most cases the signature of a method will tell you enough information.</li>
+<li>Check after returning<br>Another possible option is being extremely pessimistic, which means you cannot trust every object returned by other methods, although most of them never return a null reference, you still have to write <code>if(returned == null)</code> everywhere, because you never read their documents and their signature never says return null is not allowed. However, as you can guess, this is not practical either, because writing and reading such tedious code drives people crazy.</li>
+<li>Return a meaningful default value in place of null.<br>As NPE is such an annoying thing, you may think we can avoid it by not using Null reference. For example, we can return an empty String to indicate we don&#39;t know a user&#39;s full name. Again it&#39;s not a good idea, empty string and &quot;missing value&quot; are not the same. <strong> In fact, if you want to express a &quot;missing&quot; value, there is no other thing better than a null reference, every programmer can understand its meaning.</strong> After all, I never said It is Null&#39;s fault to cause a NullPointerException.</li>
+<li>Optional<br>If your method sometimes returns a &quot;missing value&quot;, use Optional as the return type is a very good option. However, it doesn&#39;t solve all the problems because an Optional itself is a reference type, which means it could be a null reference.</li>
+<li>Nullable annotation<br>Another good option to reduce the risk of NPE is to use an annotation that indicates your method may return a null value. For example:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@Nullable</span></span><br><span class="line">    String <span class="title function_">getFullName</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+Then the IDEs such as Idea can warn you when you forget to handle the possible null value. However, you are not guaranteed to get the benefit from doing this when you switch to another IDE.</li>
+</ul>
+<p>As you can see, there is no perfect solution to avoid the annoying NPE. Before introducing how modern languages(Kotlin, Swift, Typescript in StrictNull model) solve this problem, let&#39;s think about why Tony Hoare said this is a mistake. In my point of view, it&#39;s a quintessential example of violating the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov substitution principle</a> (However, LSP is almost twenty years later than Hoare invented Null reference). Namely, null is a subtype of any other reference type in Java, but it doesn&#39;t have their behavior.<br><img src="/img/content/why-i-think-kotlin-is-preferable-to-java/java-null-relation.png" alt="java-null-relation"><br>More specifically, in our preceding example, you can see that the Java compiler allow the null reference to go anywhere a String can go, but it doesn&#39;t have the String&#39;s behavior, it doesn&#39;t support <code>equals</code>, <code>startWith</code> operation. That&#39;s why we get NPE.<br>On the contrary, In modern languages like Kotlin. The relation between Nullable String, String, null is depicted as follows.<br><img src="/img/content/why-i-think-kotlin-is-preferable-to-java/kotlin-null-relation.png" alt="kotlin-null-relation"><br>String and null are both the subtype of nullable String Type(in Kotlin it is denoted as <code>String?</code>), but null is not a String anymore, which means String and null can go anywhere a <code>String?</code> can go. but if your method signature says you are returning a String value, the compiler will stop you from returning a null. Thus the caller of your method can safely call String&#39;s methods on the returned value without checking the value first. And if you claim that your method will return a Nullable String? The compiler will force the caller to check the returned value before any further processing. Moreover, Kotlin also provides several operators to help you handle Nullable type easily and safely, such like <code>?.</code>, <code>?:</code>, <code>as?</code>, Check out the <a target="_blank" rel="noopener" href="https://kotlinlang.org/docs/reference/null-safety.html">official documentation</a> to get more information about them.</p>
+<h4 id="Immutable-Collection"><a href="#Immutable-Collection" class="headerlink" title="Immutable Collection"></a>Immutable Collection</h4><p>Another example of violating the Liskov&#39;s principle is Java collection API. Here is my story, when I was a beginner, I found that <code>Arrays.asList</code> comes very handy, so I used to write something like:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = Arrays.asList(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>);</span><br></pre></td></tr></table></figure><br>To ensure everything is ok, I even checked its source code.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// source code of Arrays.asList</span></span><br><span class="line"><span class="meta">@SafeVarargs</span></span><br><span class="line"><span class="meta">@SuppressWarnings(&quot;varargs&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; List&lt;T&gt; <span class="title function_">asList</span><span class="params">(T... a)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>As I expected, it returns my favorite ArrayList. Later somewhere, I add an element into the list as usual.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.add(<span class="string">&quot;baz&quot;</span>);</span><br></pre></td></tr></table></figure><br>So what could possibly go wrong? I can still remember how shocked I was when I found out it throws a <code>UnsupportedOperationException</code> at runtime, turns out the <code>ArrayList</code> is just a private class defined in Arrays.java, it doesn&#39;t support add operation.<br>In Java, for some historical reason (I guess), <code>UnmodifiableCollection</code> is a subtype of Collection. So are <code>UnmodifiableSet</code>, <code>UnmodifiableList</code> etc. which means if you get a List returned by other people, you simply don&#39;t know if you can add an element into it. Just like the previous NPE problem, you can either read the documentation if there is one, or go through the source code to find out its actual return type. Again, these options are not practical for exactly the same reason, you cannot read the documentation or source code before every method call.<br>Luckily, mutate a List which is not created by yourself is not a good practice, so I tend to ignore the mutate operation in List interface, and treat every List instance as Immutable.<br>In Kotlin, <code>Collection</code> and <code>MutableCollection</code> are separated interface, more precisely, <code>MutableCollection</code> is a subtype of <code>Collection</code>. If you have a <code>Collection</code> interface, the compiler won&#39;t let you mutate it, If you have a <code>MutableCollection</code> instance, you are promised that you can mutate it, if your method expects a <code>Collection</code>, you might get a <code>MutableCollection</code>, but not vice versa, everything is simple and clear.</p>
+<h4 id="Collection-Operation"><a href="#Collection-Operation" class="headerlink" title="Collection Operation"></a>Collection Operation</h4><p>Java8 introduced the Stream API, It allows people manipulate collections in a declarative way, which means you only need to specify what you need, not how you do, leave the implementation detail to the framework. Also, thanks to its lazy fact, a lot of optimization can be done under the hood. Furthermore, you can even change your stream to &quot;parallel&quot; mode any time you want, how awesome it is! But let me ask you a question, what was the last time you change your stream to parallel?<br>For me, I never do this. Most time I&#39;m dealing with a collection contains no more than 1000 elements, I don&#39;t really care if it could be optimized a little bit, it doesn&#39;t make observable difference anyway. Besides, If somehow my collection grows to millions of elements. I don&#39;t think the underlying optimization can save me from rewrite my code, neither switching to parallel mode will do.<br>While I can&#39;t see what it is good for, I do see its drawback. It complicates things a lot. That is, if you are a programmer who has already been familiar with languages such as Javascript, Python. Highly likely you are still unable to figure out how <code>map</code>, <code>filter</code>, <code>reduce</code> are done in Java without reading the f* manual. Due to the Stream, Collector class make heavily use of overload, generic methods, you usually cannot get useful hints when you stuck at some point, the compiler may produce inscrutable, even completed irrelevant error message.<br>Even though you did everything right, the API still has its own limit. For example, If I need to get the index of current iterating element, I have no choice but rewrite the whole method calling chain back to the old &quot;for loop&quot; form. You may argue the following code could do it the stream way.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">IntStream.range(<span class="number">0</span>, list.size())</span><br><span class="line">        .boxed()</span><br><span class="line">        .collect(Collectors.toMap(</span><br><span class="line">                e -&gt; e,     <span class="comment">// index</span></span><br><span class="line">                list::get   <span class="comment">// element</span></span><br><span class="line">        ));</span><br></pre></td></tr></table></figure><br>However, It&#39;s not acceptable to me. Not to mention the code hides the intention, its performance may also be a problem, as you can see, it takes N^2 time to traverse over a <code>LinkedList</code>.<br>Altogether, It gives me the sense that the authors of the API just have to be so smart, inventing something simple is insulting their intelligence.<br>In contrast, most collection operation in Kotlin is implemented by inline function, here is the source code of <code>mapIndex</code> method.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> inline fun &lt;T, R&gt; Iterable&lt;T&gt;.mapIndexed(transform: (index: Int, T) -&gt; R): List&lt;R&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> mapIndexedTo(ArrayList&lt;R&gt;(collectionSizeOrDefault(<span class="number">10</span>)), transform)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> inline fun &lt;T, R, C : MutableCollection&lt;in R&gt;&gt; Iterable&lt;T&gt;.mapIndexedTo(destination: C, transform: (index: Int, T) -&gt; R): C &#123;</span><br><span class="line">    <span class="type">var</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> (item in <span class="built_in">this</span>)</span><br><span class="line">        destination.add(transform(index++, item))</span><br><span class="line">    <span class="keyword">return</span> destination</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>The inline modifier indicates the implementation will be inline to the call site so that it won&#39;t introduce extra runtime overhead. In other words, it works just like a kind of syntactic sugar. Later, if you find you do need the stream behavior, thanks to the compatibility between Kotlin and Java, the stream API is still there for you.<br>With Kotlin type induction and the powerful Idea, you can peek your result type on each step, therefore it is easy to figure out what is going wrong, here is a simple example shows how collection operation in Kotlin looks like.</p>
+<p><img src="/img/content/why-i-think-kotlin-is-preferable-to-java/kotlin-group-by.gif" alt="kotlin-group-by"></p>
+<h4 id="Template-Code"><a href="#Template-Code" class="headerlink" title="Template Code"></a>Template Code</h4><p>Java is doing an excellent job if you get paid by counting your code lines. If you want to get rich, all you need to do is create some so called &quot;POJO&quot;, add some fields. Here is an example, basically just 13 lines of code.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String field1;</span><br><span class="line">    <span class="keyword">private</span> String field2;</span><br><span class="line">    <span class="keyword">private</span> String field3;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Bar</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String field1;</span><br><span class="line">        <span class="keyword">private</span> String field2;</span><br><span class="line">        <span class="keyword">private</span> String field3;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Baz</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String field1;</span><br><span class="line">        <span class="keyword">private</span> String field2;</span><br><span class="line">        <span class="keyword">private</span> String field3;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Then, let IDE help finish your job. When it gets done, it automatically becomes hundreds of lines.<br><img src="/img/content/why-i-think-kotlin-is-preferable-to-java/java-template-code.png" alt="java-template-code"><br>How amazing it is!<br>Sadly, in Kotlin, it will still be 13 lines.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Foo</span>(</span><br><span class="line">    <span class="keyword">var</span> field1: String,</span><br><span class="line">    <span class="keyword">var</span> field2: String,</span><br><span class="line">    <span class="keyword">var</span> field3: String</span><br><span class="line">) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Bar</span>(</span><br><span class="line">        <span class="keyword">var</span> field1: String,</span><br><span class="line">        <span class="keyword">var</span> field2: String,</span><br><span class="line">        <span class="keyword">var</span> field3: String</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Baz</span>(</span><br><span class="line">        <span class="keyword">var</span> field1: String,</span><br><span class="line">        <span class="keyword">var</span> field2: String,</span><br><span class="line">        <span class="keyword">var</span> field3: String</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>The <code>data</code> keyword covers all the <code>equals</code>, <code>hashcode</code>,<code>toString</code> functionality, and even more powerful.</p>
+<h3 id="Effective-Java"><a href="#Effective-Java" class="headerlink" title="Effective Java"></a>Effective Java</h3><p>Effective Java(we refer to edition 2 here) is a great book in Java field, it helps me avoiding tons of pitfall in Java, in this section, you will see how Kotlin adhere its advice.</p>
+<h4 id="Singleton-Item-3-Enforce-the-singleton-property-with-a-private-constructor-or-an-enum-type"><a href="#Singleton-Item-3-Enforce-the-singleton-property-with-a-private-constructor-or-an-enum-type" class="headerlink" title="Singleton (Item 3: Enforce the singleton property with a private constructor or an enum type)"></a>Singleton (Item 3: Enforce the singleton property with a private constructor or an enum type)</h4><p>I have been asked how to implement a Singleton once in an interview, because it is not trivial in Java (Considering the <code>setAccessible</code>, <code>Serializable</code> factor). As the book suggests, The best way to implement a singleton is to use a single-element enum type.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">Elvis</span> &#123;</span><br><span class="line">    INSTANCE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// properties</span></span><br><span class="line">    <span class="comment">// methods</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>However, I think this approach is somehow hacky, the <code>enum</code> keyword is not designed for this purpose, no one will understand why use <code>enum</code> here at first glance, hence it does make it a fair interview question.<br>Sadly again, you cannot ask a Kotlin programmer how to implement a Singleton because it is so damn easy and obvious.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> Elvis &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// properties</span></span><br><span class="line">    <span class="comment">// methods</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Immutability-Item-15-Minimize-mutability"><a href="#Immutability-Item-15-Minimize-mutability" class="headerlink" title="Immutability (Item 15: Minimize mutability)"></a>Immutability (Item 15: Minimize mutability)</h4><p>I will not count the benefits of making object immutable here. Even a Javascript(a single-threaded language) programmer will know its importance(see <a target="_blank" rel="noopener" href="https://redux.js.org/faq/immutable-data">Redux</a> and <a target="_blank" rel="noopener" href="https://github.com/immutable-js/immutable-js">Immutable.js</a>). Not to mention the situation in Java.<br>Nonetheless, it really cost a lot to make a Java POJO immutable. You may argue how hard it could be? Just go make everything final. Let&#39;s see, suppose we have a &quot;POJO&quot; which have five fields.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">Sample</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String field1;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Boolean field2;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Integer field3;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Float field4;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Double field5;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Sample</span><span class="params">(String field1, Boolean field2, Integer field3, Float field4, Double field5)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.field1 = field1;</span><br><span class="line">        <span class="built_in">this</span>.field2 = field2;</span><br><span class="line">        <span class="built_in">this</span>.field3 = field3;</span><br><span class="line">        <span class="built_in">this</span>.field4 = field4;</span><br><span class="line">        <span class="built_in">this</span>.field5 = field5;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// getter is omitted</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Admittedly, create such a class is not hard, but work with it could bugs your head out. Create such an instance will like<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Sample</span> <span class="variable">sample1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sample</span>(<span class="string">&quot;&quot;</span>, <span class="literal">true</span>, <span class="number">0</span>, <span class="number">0f</span>, <span class="number">0d</span>);</span><br></pre></td></tr></table></figure><br>I promise you that no one will understand the meaning of each parameter include yourself. Suppose you want to change the <code>field2</code> and create a new instance it will be like<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Sample</span> <span class="variable">sample2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sample</span>(sample1.getField1(), <span class="literal">false</span>, sample1.getField3(), sample1.getField4(), sample1.getField5());</span><br></pre></td></tr></table></figure><br>If this is acceptable to you, I sincerely wish you never need to add a new field to that class. I know this kind of problem can be solved by following the builder pattern, but most programmers are lazy, they won&#39;t write the code until the day they have to. That is, <strong> in the ideal Java world, we should make a class immutable unless we have a good reason not to do so. In practical, we leave a class mutable unless we know it will cause problems in advance. </strong><br>In Kotlin, create and work with an immutable classes is even easier than the mutable one.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="keyword">class</span> <span class="title class_">Sample</span>(</span><br><span class="line">    <span class="keyword">val</span> field1: String = <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="keyword">val</span> field2: <span class="built_in">Boolean</span> = <span class="literal">false</span>,</span><br><span class="line">    <span class="keyword">val</span> field3: <span class="built_in">Int</span> = <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">val</span> field4: <span class="built_in">Float</span> = <span class="number">0f</span>,</span><br><span class="line">    <span class="keyword">val</span> field5: <span class="built_in">Double</span>? = <span class="literal">null</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure><br>To &quot;minimize mutability&quot;, Kotlin class are final by default, with default parameter and naming parameter, you can do something like.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// they are all valid</span></span><br><span class="line"><span class="keyword">val</span> sample1 = Sample(</span><br><span class="line">    field1 = <span class="string">&quot;foo&quot;</span>,</span><br><span class="line">    field2 = <span class="literal">true</span>,</span><br><span class="line">    field3 = <span class="number">1</span>,</span><br><span class="line">    field4 = <span class="number">1f</span>,</span><br><span class="line">    field5 = <span class="number">1.0</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">val</span> sample2 = Sample(field2=<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">val</span> sample3 = Sample()</span><br></pre></td></tr></table></figure><br>To duplicate a new instance, you just need to specify the changing part.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> sample4 = sample3.copy(field2=<span class="literal">true</span>, field3=<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="Delegation-Item-16-Favor-composition-over-inheritance"><a href="#Delegation-Item-16-Favor-composition-over-inheritance" class="headerlink" title="Delegation (Item 16: Favor composition over inheritance)"></a>Delegation (Item 16: Favor composition over inheritance)</h4><p>It is common that an OOP beginner treats inheritance as a way to reuse code. As the example in the book says, if we need to create an <code>InstrumentedHashSet</code>, one may do something like this:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InstrumentedHashSet</span>&lt;E&gt; <span class="keyword">extends</span> <span class="title class_">HashSet</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="comment">// The number of attempted element insertions</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">addCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">InstrumentedHashSet</span><span class="params">()</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> &#123;</span><br><span class="line">        addCount++;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.add(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> &#123;</span><br><span class="line">        addCount += c.size();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.addAll(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAddCount</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> addCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This is totally reasonable because we don&#39;t want to repeat ourselves. By extending <code>HashSet</code>, we can get the full functionality of the <code>Set</code> interface, and we only need to override the method which we want to customize. However, the code doesn&#39;t work, even if it does work, we still should not do this, because the <code>HashSet</code> is not designed for inheritance, you should read the book if you fail to understand this, we won&#39;t dive deep here. Anyway, the book suggests we use composition and forwarding instead, That is:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Wrapper class - uses composition in place of inheritance</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">InstrumentedSet</span>&lt;E&gt; <span class="keyword">extends</span> <span class="title class_">ForwardingSet</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">addCount</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">InstrumentedSet</span><span class="params">(Set&lt;E&gt; s)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> &#123;</span><br><span class="line">        addCount++;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.add(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> &#123;</span><br><span class="line">        addCount += c.size();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">super</span>.addAll(c);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAddCount</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> addCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Reusable forwarding class</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ForwardingSet</span>&lt;E&gt; <span class="keyword">implements</span> <span class="title class_">Set</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Set&lt;E&gt; s;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ForwardingSet</span><span class="params">(Set&lt;E&gt; s)</span> &#123; <span class="built_in">this</span>.s = s; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span> &#123; s.clear();&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">contains</span><span class="params">(Object o)</span> &#123; <span class="keyword">return</span> s.contains(o);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span> &#123; <span class="keyword">return</span> s.isEmpty();&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123; <span class="keyword">return</span> s.size();&#125;</span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;E&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123; <span class="keyword">return</span> s.iterator();&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">add</span><span class="params">(E e)</span> &#123; <span class="keyword">return</span> s.add(e);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">remove</span><span class="params">(Object o)</span> &#123; <span class="keyword">return</span> s.remove(o);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">containsAll</span><span class="params">(Collection&lt;?&gt; c)</span> &#123; <span class="keyword">return</span> s.containsAll(c);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> &#123; <span class="keyword">return</span> s.addAll(c);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span> &#123; <span class="keyword">return</span> s.removeAll(c);&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">retainAll</span><span class="params">(Collection&lt;?&gt; c)</span> &#123; <span class="keyword">return</span> s.retainAll(c);&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>As you can see, The <code>ForwordingSet</code> does nothing but forward every method call to an existing Set implementation. As the book says: &quot;It&#39;s tedious to write forwarding methods, but you have to write the forwarding class for each interface only once.&quot; However, even mediocre programmers like me don&#39;t like write such code, it just like the meaningless getter,setter in Java, even worse, the IDE may not be able to generate such code for you.<br>In Kotlin, it is done by delegation, the equivalent code is<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InstrumentSet</span>&lt;<span class="type">T</span>&gt;(</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> <span class="keyword">set</span>: MutableSet&lt;T&gt;</span><br><span class="line">) : MutableSet&lt;T&gt; <span class="keyword">by</span> <span class="keyword">set</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> addCount = <span class="number">0</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">set</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(element: <span class="type">T</span>)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">        addCount++</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">set</span>.add(element)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">addAll</span><span class="params">(elements: <span class="type">Collection</span>&lt;<span class="type">T</span>&gt;)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">        addCount += elements.size</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">set</span>.addAll(elements)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>The <code>by</code> keyword indicates we are forwarding every <code>Set</code> method to the set property.</p>
+<h4 id="Variance-Item-28-Use-bounded-wildcards-to-increase-API-flexibility"><a href="#Variance-Item-28-Use-bounded-wildcards-to-increase-API-flexibility" class="headerlink" title="Variance (Item 28: Use bounded wildcards to increase API flexibility)"></a>Variance (Item 28: Use bounded wildcards to increase API flexibility)</h4><p>Suppose we are writing a log method, In some cases, we may want to reduce the runtime cost by taking a Supplier as a parameter.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(Supplier&lt;Object&gt; supplier)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isLogEnabled) &#123;</span><br><span class="line">        System.out.println(supplier.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>With this API, If get the logging message is expensive, we can call <code>debug(() -&gt; expensiveToStringOperation())</code> instead of <code>debug(expensiveToStringOperation())</code>(the latter one need to evaluate the &quot;expensiveToStringOperation&quot; even when <code>isLogEnabled</code> is false, this is as known as call by value). Suppose somehow we have already defined the Supplier&#39;s type as <code>Supplier&lt;String&gt;</code>, we cannot pass it in since <code>Supplier&lt;String&gt;</code> is not a subtype of <code>Supplier&lt;Object&gt;</code>. Although this as a totally safe operation because if the method is able to handle any Object, It must also be able to handle a String.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Supplier&lt;String&gt; supplier = () -&gt; <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="comment">// doesn&#x27;t compile</span></span><br><span class="line">Console.log(supplier);</span><br><span class="line"><span class="comment">// doesn&#x27;t compile either</span></span><br><span class="line">Console.log((Supplier&lt;Object&gt;) supplier);</span><br></pre></td></tr></table></figure><br>To increase the flexibility of our log method, as the Effective Java recommended, we should rewrite our log method as<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Supplier&lt;? extends Object&gt; can be simplified to Supplier&lt;?&gt;</span></span><br><span class="line"><span class="comment">// But I leave it here to explain the bound</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">log</span><span class="params">(Supplier&lt;? extends Object&gt; supplier)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isLogEnabled) &#123;</span><br><span class="line">        System.out.println(supplier.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Such that we can pass the <code>Supplier&lt;String&gt;</code> in. However, write these wildcard types correctly might be tricky, the book also introduces a mnemonic to help us determine which wildcard type to use, which says:</p>
+<blockquote>
+<p>PECS stands for producer-extends, consumer-super</p>
+</blockquote>
+<p>That is, if we only use the parameter as a producer, we should use the <code>&lt;? extends T&gt;</code> form, else if we only use the parameter as a consumer, we use the <code>&lt;? super T&gt;</code> form. In the previous example, we only use the supplier as a producer, so we use extends bound.<br>However, in this case, the <code>Supplier</code> can<br>But the point is, how could you ever use Supplier as a Consumer? It is not possible. In other words, a <code>Supplier&lt;String&gt;</code> should always be a subtype of <code>Supplier&lt;Object&gt;</code>, no matter how do you use it. Similarly, a <code>Consumer&lt;Object&gt;</code> should always be a subtype of <code>Consumer&lt;String&gt;</code>, this is so called covariance and contravariance.<br>In Kotlin, if your class only &quot;produce&quot; or &quot;consume&quot; a type parameter. The compiler will help you decide which kind of &quot;variance&quot; your class is allowed. Therefore, you don&#39;t need to write the wildcard everywhere, the <code>Supplier&lt;String&gt;</code> will automatically become subtype of <code>Supplier&lt;Object&gt;</code>, the following code compiles correctly.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> supplier: Supplier&lt;String&gt; = Supplier &#123;</span><br><span class="line">    <span class="string">&quot;hello world&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">Console.debug(supplier)</span><br></pre></td></tr></table></figure><br>In Kotlin, The bounded wildcard parameter is only needed when your parameter class can be used as both consumer <strong>and</strong> producer, and your method only uses it as consumer <strong>or</strong> producer. Although, it is extremely rare to encounter such a situation, A possibly but not practical signature would be<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">copyData</span><span class="params">(src: <span class="type">Deque</span>&lt;<span class="type">out</span> <span class="type">T</span>&gt;, dest: <span class="type">Deque</span>&lt;<span class="type">in</span> <span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">    dest.addAll(src)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>I guess this time, the mnemonic should be updated to:</p>
+<blockquote>
+<p>POCI stands for producer-out, consumer-in</p>
+</blockquote>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Java is dear, Kotlin is dearer.</p>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/post/2019/05/when-soft-delete-meets-unique-index/" rel="next" title="When "Soft Delete" Meets "Unique Index"">
+        <i class="fa fa-chevron-left"></i>
+        When "Soft Delete" Meets "Unique Index"
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/exploration-vs-exploitation" rel="prev" title="Exploration vs Exploitation">
+        Exploration vs Exploitation 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Java-the-Good-Parts-and-the-Bad-Parts"><span class="document-nav-text">Java the Good Parts and the Bad Parts</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Null-safety"><span class="document-nav-text">Null safety</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Immutable-Collection"><span class="document-nav-text">Immutable Collection</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Collection-Operation"><span class="document-nav-text">Collection Operation</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Template-Code"><span class="document-nav-text">Template Code</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Effective-Java"><span class="document-nav-text">Effective Java</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Singleton-Item-3-Enforce-the-singleton-property-with-a-private-constructor-or-an-enum-type"><span class="document-nav-text">Singleton (Item 3: Enforce the singleton property with a private constructor or an enum type)</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Immutability-Item-15-Minimize-mutability"><span class="document-nav-text">Immutability (Item 15: Minimize mutability)</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Delegation-Item-16-Favor-composition-over-inheritance"><span class="document-nav-text">Delegation (Item 16: Favor composition over inheritance)</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Variance-Item-28-Use-bounded-wildcards-to-increase-API-flexibility"><span class="document-nav-text">Variance (Item 28: Use bounded wildcards to increase API flexibility)</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Conclusion"><span class="document-nav-text">Conclusion</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/post/2019/10/why-i-think-kotlin-is-preferable-to-java/';
+                  this.page.identifier = 'post/2019/10/why-i-think-kotlin-is-preferable-to-java/';
+                  this.page.title = 'Why I think Kotlin is preferable to Java';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

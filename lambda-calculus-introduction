@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>lambda calculus:Introduction - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="Lambda Calculus">
+
+
+<meta name="description" content="λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。  一.λ演算(lambda calculus简称LC)与图灵机首先，λ演算的提出者丘奇(Alonzo Church)是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lambda calculus:Introduction">
+<meta property="og:url" content="https://blog.staynoob.cn/lambda-calculus-introduction">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。  一.λ演算(lambda calculus简称LC)与图灵机首先，λ演算的提出者丘奇(Alonzo Church)是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/lambda-calculus.jpg">
+<meta property="article:published_time" content="2017-03-12T07:31:30.000Z">
+<meta property="article:modified_time" content="2024-06-29T11:52:49.161Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="Lambda Calculus">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/lambda-calculus.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-lambda-calculus-Introduction"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      lambda calculus:Introduction
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2017-03-12T15:31:30+08:00" 
+          content="2017-03-12">
+        2017-03-12
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Functional-Programming/">Functional Programming</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/lambda-calculus.jpg" rel="gallery_cly05cliq0019iweyf7o80plk">-->
+            <img src="/img/lambda-calculus.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>λ演算是函数式编程范式的理论基础，然而我读了两本关于fp的书（《java8函数式编程》，《javascript函数式编程》）都没有提到它，因此自己在网上看了一些资料，并写了这篇作为学习心得。</p>
+</blockquote>
+<h3 id="一-λ演算-lambda-calculus简称LC-与图灵机"><a href="#一-λ演算-lambda-calculus简称LC-与图灵机" class="headerlink" title="一.λ演算(lambda calculus简称LC)与图灵机"></a>一.λ演算(lambda calculus简称LC)与图灵机</h3><p>首先，λ演算的提出者<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%98%BF%E9%9A%86%E4%BD%90%C2%B7%E9%82%B1%E5%A5%87">丘奇(Alonzo Church)</a>是普林斯顿大学的教授。1935年，丘奇发表论文使用λ演算证明基本数论中存在不可解决的问题。1936年4月，丘奇指出自己的那篇论文可以推论出著名的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%B1%BA%E5%AE%9A%E6%80%A7%E5%95%8F%E9%A1%8C">判定性问题(Hilbert Decision-problem)</a>是不可解决的。1936年5月，图灵发表论文使用他自己假想的计算机器(后被称为图灵机)证明了同一个问题。当时丘奇几乎是世界上唯一能够验证这篇论文正确性的人。因此丘奇将图灵收入门下读博士。之后他们共同提出了<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%82%B1%E5%A5%87%EF%BC%8D%E5%9B%BE%E7%81%B5%E8%AE%BA%E9%A2%98">邱奇-图灵论题(Church–Turing thesis)</a>，该论题的核心思想是</p>
+<blockquote>
+<p>如果某个算法是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%8F%AF%E8%AE%A1%E7%AE%97%E6%80%A7%E7%90%86%E8%AE%BA">可计算的(Computability)</a>，那这个算法同样可以被图灵机，以及λ演算所实现，图灵机与λ演算是等价的。</p>
+</blockquote>
+<span id="more"></span>
+<p>这意味着假如你现在要自己设计一套编程语言，如果你的语言能做到图灵机或λ演算同样的事情，那么你的语言就可以解决所有的可计算问题。这时，你可以声称它是一门<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%9C%96%E9%9D%88%E5%AE%8C%E5%82%99%E6%80%A7">图灵完备</a>的编程语言。下面来看看图灵机与λ演算能做什么事情</p>
+<ul>
+<li><p>图灵机的基本思想大概是这样：</p>
+<blockquote>
+<ol>
+<li>一条无限长的纸带TAPE。纸带被划分为一个接一个的小格子，每个格子上包含一个来自有限字母表的符号，字母表中有一个特殊的符号表示空白。纸带上的格子从左到右依次被编号为0, 1, 2, ...，纸带的右端可以无限伸展。</li>
+<li>一个读写头HEAD。该读写头可以在纸带上左右移动，它能读出当前所指的格子上的符号，并能改变当前格子上的符号。</li>
+<li>一套控制规则TABLE。它根据当前机器所处的状态以及当前读写头所指的格子上的符号来确定读写头下一步的动作，并改变状态寄存器的值，令机器进入一个新的状态。</li>
+<li>一个状态寄存器。它用来保存图灵机当前所处的状态。图灵机的所有可能状态的数目是有限的，并且有一个特殊的状态。称为停机状态。</li>
+</ol>
+</blockquote>
+<p>  这样一台机器就能实现目前人类已知的任何可行算法，以c为代表的命令式编程就是以这种假想模型作为理论基础。</p>
+</li>
+<li><p>λ演算的基本思想大概是这样：</p>
+<blockquote>
+<ol>
+<li>可以定义函数(function abstraction)</li>
+<li>可以调用函数(function application)</li>
+</ol>
+</blockquote>
+<p>  一门语言只要能做到以上两点，就可以实现任何可行算法，以lisp为代表的函数式编程以λ演算作为理论基础。</p>
+</li>
+</ul>
+<p>可以看到λ演算的概念要比图灵机更加简洁明了，顺便再对比一下c与lisp，以下引用<a target="_blank" rel="noopener" href="https://book.douban.com/subject/6021440/">《黑客与画家》</a>中的描述</p>
+<blockquote>
+<p>如果使用Lisp语言，能让程序变得多短？以Lisp和C的比较为例，我听到的大多数说法是C代码的长度是Lisp的7倍到10倍。但是最近，New Architect杂志上有一篇介绍ITA软件公司的文章，里面说&quot;一行Lisp代码相当于20行C代码&quot;，因为此文都是引用ITA总裁的话，所以我想这个数字来自ITA的编程实践。 如果真是这样，那么我们可以相信这句话。ITA的软件，不仅使用Lisp语言，还同时大量使用C和C++，所以这是他们的经验谈。</p>
+</blockquote>
+<p>最后说说我自己对丘奇和图灵两位伟人的一些感想。两个同样高智商的天才，如果其中一个有情商缺陷，那么那个有情商缺陷的人智商总是会被莫名其妙的放大，这也许就是为什么影视剧作品中总是要以低情商来塑造一个天才（参照福尔摩斯与谢尔顿·库珀）再加上如果某个人的一生以悲剧结尾，那么人们将进一步放大他所做的贡献。关于丘奇与图灵的更多内容可以阅读<a target="_blank" rel="noopener" href="http://www.yinwang.org/blog-cn/2015/10/18/turing">图灵的光环</a>。</p>
+<h3 id="二-λ演算的语法"><a href="#二-λ演算的语法" class="headerlink" title="二.λ演算的语法"></a>二.λ演算的语法</h3><h4 id="1-λ表达式"><a href="#1-λ表达式" class="headerlink" title="1.λ表达式"></a>1.λ表达式</h4><p>λ表达式只遵循以下三条规则：</p>
+<ol>
+<li>变量，比如<code>x</code>就是合法的λ表达式</li>
+<li>如果y是λ表达式，x是变量，则<code>λx.y</code>是合法的λ表达式（又称为函数声明或lambda abstraction），它代表输入x返回y的匿名函数。等价的js(本文均指<a target="_blank" rel="noopener" href="http://www.ecma-international.org/ecma-262/6.0/">ecmascript6</a>)写法是<code>x=&gt;y</code>。<code>λx.x+y</code>也是合法的，它表示一个函数输入x，返回x与未知的y的和。</li>
+<li>如果t和s都是λ表达式，则<code>(t s)</code>也是λ表达式（又称为函数应用或application），它代表使用参数s调用函数t，等价的js写法是<code>t(s)</code>。</li>
+</ol>
+<p>所有合法的λ表达式都是通过重复这三条规则得到的，不过为了保持表达式的整洁，大家一般遵循以下惯例（暂时看不明白也没关系）:</p>
+<ol>
+<li>最外层的括号可以省略，<code>(M N)</code>可以写成<code>M N</code>。</li>
+<li>函数应用左聚合，<code>(M N) P</code>可以写成<code>M N P</code>。</li>
+<li>函数定义时，函数体尽可能向右扩展，<code>λx.M N</code>应该解释为<code>λx.(M N)</code>而不是<code>(λx.M) N</code>。</li>
+<li>函数定义序列可以被合并表达，<code>λx.λy.λz.N</code>可以被缩写为<code>λxyz.N</code></li>
+</ol>
+<h4 id="2-绑定变量与自由变量"><a href="#2-绑定变量与自由变量" class="headerlink" title="2.绑定变量与自由变量"></a>2.绑定变量与自由变量</h4><p>如果一个变量是一个λ表达式的参数，则称该变量绑定到该λ上，比如说<code>λx.x+y</code>中，x是绑定变量，y则称为自由变量。更详细的规则如下：</p>
+<ul>
+<li>λ表达式<code>x</code>中的自由变量就是x</li>
+<li>λ表达式<code>λx.t</code>中的自由变量，是t中的自由变量但不包括x，结合第一条规则来看，<code>λx.x</code>的自由变量为空</li>
+<li>λ表达式<code>ts</code>中的自由变量，是t中的自由变量与s中的自由变量的并集，结合前两条规则，<code>λx.x x</code>的自由变量是x与空集的并集，即x。</li>
+</ul>
+<h4 id="3-化简规则"><a href="#3-化简规则" class="headerlink" title="3.化简规则"></a>3.化简规则</h4><p>下面是化简规则的“官方描述”(如果在阅读时出现恶心，头晕等不良反应，可以切换到最后的草根版本)：</p>
+<ul>
+<li>α变换(Alpha conversion)<br>  α变换简单理解就是λ表达式中的绑定变量可以替换变量名，例如<code>λx.x</code>与<code>λy.y</code>是α等价(Alpha equivalence)的，将<code>λx.x</code>替换成<code>λy.y</code>就称为α变换。这条规则虽然简单，但仍然要小心一些陷阱。考虑下面这个例子，对<code>λx.λx.x</code>进行α变换可以得到<code>λy.λx.x</code>但是不能得到<code>λy.λx.y</code>。其次，当α变换会导致变量被不同的函数绑定时，不允许进行变换，比如<code>λx.λy.x</code>就不能被替换成<code>λy.λy.y</code>。</li>
+<li><p>β归约(Beta reduction)<br>  在理解β归约之前，我们先来定义一个变量替换(substitution)操作符，假设M,N是任意λ表达式，x,y是变量，M[x:=N]表示将M中的所有自由变量x替换成表达式N，下面是一些例子：</p>
+<ul>
+<li>x[x :=N]=N</li>
+<li>y[x := N]=y, if x ≠ y</li>
+<li>(M1 M2)[x := N] = (M1[x := N]) (M2[x := N])</li>
+<li>(λx.M)[x := N]  = λx.M</li>
+<li>(λy.M)[x := N]  = λy.(M[x := N]), if x ≠ y, provided y ∉ FV(N)</li>
+</ul>
+<p>这项操作又称之为Capture-avoiding substitution，因为它必须确保变量替换后不能成为一个绑定变量，比如说<code>(λx.y)[y := x]=λx.x</code>就是不正确的，必须先对<code>λx.y</code>进行α变换，改变绑定变量名得到<code>λz.y</code>，之后再进行[y := x]操作得到<code>λz.x</code>。了解了变量替换后，β归约可以被简单的定义成：</p>
+<blockquote>
+<p>((λV.E) E&#39;) = E [V:=E&#39;]</p>
+</blockquote>
+</li>
+<li><p>η变换(Eta-conversion)<br>η变换指的是当且仅当两个函数对所有的输入，返回同样的输出时，两个函数是相等的，这意味这x只要不是f中的自由变量，f就可以转换成<code>λx.f x</code>，一些在急性求值(eager evalution)环境下无法正常调用的函数，需要通过这条规则来进行转换，这条规则在后面学习<strong>Y-combinator</strong>的时候会用到，这里大致有个印象就可以了。</p>
+</li>
+</ul>
+<p>草根版本：</p>
+<ul>
+<li>α变换<br>  函数在不引发变量名冲突的情况下可以修改形参变量名，即<code>x=&gt;x+y</code>等价于<code>z=&gt;z+y</code></li>
+<li>β归约<br>  函数可以将实参代入函数体，即<code>(x=&gt;(y=&gt;x+y))(z)</code>等价于<code>y=&gt;z+y</code>，但是如果是<code>(x=&gt;(y=&gt;x+y))(y)</code>则需要先进行α变换得到<code>(x=&gt;(z=&gt;x+z))(y)</code>，再进行β归约得到<code>z=&gt;y+z</code>，而不是直接代入得到<code>y=&gt;y+y</code></li>
+<li>η变换<br>  如果f是一个函数，那么<code>f</code>等价于<code>x=&gt;f(x)</code>，因为对于任意变量<code>v</code>，<code>f(v)</code>总是等于<code>(x=&gt;f(x))(v)</code></li>
+</ul>
+<h3 id="三-简单的运算规则"><a href="#三-简单的运算规则" class="headerlink" title="三.简单的运算规则"></a>三.简单的运算规则</h3><h4 id="1-逻辑运算"><a href="#1-逻辑运算" class="headerlink" title="1.逻辑运算"></a>1.逻辑运算</h4><p>在进行逻辑运算之前，需要先定义什么是真，什么是假。下面的定义称为丘奇布尔值(Church booleans)</p>
+<ul>
+<li>TRUE = <code>λx.λy.x</code> 对应的js代码是<code>x=&gt;(y=&gt;x)</code>，柯里化之前是<code>(x,y)=&gt;x</code>（等价于丘奇数0）</li>
+<li>FALSE = <code>λx.λy.y</code> 对应的js代码是<code>x=&gt;(y=&gt;y)</code>，柯里化之前是<code>(x,y)=&gt;y</code></li>
+</ul>
+<p>从柯里化之前的js代码来看，丘奇布尔值就是一个接受两个参数的函数，如果为真则返回第一个参数，否则返回第二个(因为合法的λ表达式只接收一个参数，所以才写成了这种形式<code>λx.λy.x</code>，如果你还记得上面介绍的λ表达式的惯例，那么你应该知道<code>λx.λy.x</code>可以简写成<code>λxy.x</code>)。有了布尔值，下面就可以在它的基础上定义出逻辑运算：</p>
+<ul>
+<li>AND = <code>λp.λq.p q p</code></li>
+<li>OR = <code>λp.λq.p p q</code></li>
+<li>NOT = <code>λp.p FALSE TRUE</code></li>
+<li>IFTHENELSE = <code>λp.λa.λb.p a b</code></li>
+</ul>
+<p>下面简单验证<strong> AND </strong>表达式的正确性，尝试化简<code>AND TRUE FALSE</code></p>
+<ol>
+<li>第一步得到 <code>(λp.(λq.((p q) p))) TRUE FALSE</code></li>
+<li>第一次β归约得到<code>(λq.((TRUE q) TRUE) FALSE</code></li>
+<li>第二次β归约得到<code>TRUE FALSE TRUE</code>即<code>((λx.λy.x) FALSE) TRUE</code></li>
+<li>第三次β归约得到<code>(λy.FALSE) TRUE</code>即<code>FALSE</code></li>
+</ol>
+<h4 id="2-算术运算"><a href="#2-算术运算" class="headerlink" title="2.算术运算"></a>2.算术运算</h4><p>λ演算中有多种方法可以用来定义自然数，如下定义又称为丘奇数(Church numerals)，是使用最广泛的定义方式</p>
+<ul>
+<li>0 = <code>λf.λx.x</code> 对应的js代码是<code>f=&gt;(x=&gt;x)</code>，柯里化之前是<code>(f,x)=&gt;x</code></li>
+<li>1 = <code>λf.λx.f x</code> 对应的js代码是<code>f=&gt;(x=&gt;f(x))</code>，柯里化之前是<code>(f,x)=&gt;f(x)</code></li>
+<li>2 = <code>λf.λx.f (f x)</code> 对应的js代码是<code>f=&gt;(x=&gt;f(f(x))</code>，柯里化之前是<code>(f,x)=&gt;f(f(x))</code></li>
+<li>3 = <code>λf.λx.f (f (f x))</code> 对应的js代码是<code>f=&gt;(x=&gt;f(f(f(x)))</code>，柯里化之前是<code>(f,x)=&gt;f(f(f(x)))</code></li>
+</ul>
+<p>同样从柯里化之前的js代码来看，丘奇数是一个接受两个参数的函数，对于任意数字n，它把第一个参数应用到第二个参数上n次。根据这样的思路，可以轻松实现自增函数(输入n，返回n+1的函数)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUCC = λn.λf.λx.f (n f x)</span><br></pre></td></tr></table></figure><br>上面的实现思路是输入丘奇数n，在n的基础上再调用一次函数f，就能得到n+1。可以将上面的丘奇数代入该函数进行验算（跟上面的验算步骤一样，不断进行β归约即可）。有了自增函数，就可以在它的基础上继续定义加法与乘法函数：</p>
+<ul>
+<li>PLUS = <code>λm.λn.λf.λx.m f (n f x)</code> <strong> n+m </strong>可以看做是在n的基础上调用m次自增函数</li>
+<li>MULT = <code>λm.λn.m (PLUS n) 0</code> <strong> m*n </strong>可以看做是使用丘奇数0调用m次加n函数</li>
+</ul>
+<h3 id="四-总结"><a href="#四-总结" class="headerlink" title="四.总结"></a>四.总结</h3><p>上面演示的功能相当的naive，但从中已经可以领略到λ演算的思想，即先定义最简单的lambda term(函数)，之后通过将简单的表达式不断的组合来实现复杂的算法。下篇文章我打算继续学习如何使用λ演算实现递归函数，换句话说如何使用匿名函数来实现递归?</p>
+<p>参考链接：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lambda_calculus">Lambda_calculus</a></li>
+<li><a target="_blank" rel="noopener" href="http://goodmath.blogspot.hk/2006/05/my-favorite-calculus-lambda-part-1.html">My Favorite Calculus: Lambda (part 1)</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.yinwang.org/blog-cn/2015/10/18/turing">图灵的光环</a></li>
+</ul>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Lambda-Calculus/" rel="tag">Lambda Calculus</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/salted-password-hashing" rel="next" title="加密算法简介">
+        <i class="fa fa-chevron-left"></i>
+        加密算法简介
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/lambda-calculus-y-combinator" rel="prev" title="lambda calculus:Y-combinator">
+        lambda calculus:Y-combinator 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%CE%BB%E6%BC%94%E7%AE%97-lambda-calculus%E7%AE%80%E7%A7%B0LC-%E4%B8%8E%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="document-nav-text">一.λ演算(lambda calculus简称LC)与图灵机</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%CE%BB%E6%BC%94%E7%AE%97%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="document-nav-text">二.λ演算的语法</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-%CE%BB%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="document-nav-text">1.λ表达式</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-%E7%BB%91%E5%AE%9A%E5%8F%98%E9%87%8F%E4%B8%8E%E8%87%AA%E7%94%B1%E5%8F%98%E9%87%8F"><span class="document-nav-text">2.绑定变量与自由变量</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#3-%E5%8C%96%E7%AE%80%E8%A7%84%E5%88%99"><span class="document-nav-text">3.化简规则</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E7%AE%80%E5%8D%95%E7%9A%84%E8%BF%90%E7%AE%97%E8%A7%84%E5%88%99"><span class="document-nav-text">三.简单的运算规则</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="document-nav-text">1.逻辑运算</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="document-nav-text">2.算术运算</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="document-nav-text">四.总结</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/lambda-calculus-introduction';
+                  this.page.identifier = '/lambda-calculus-introduction';
+                  this.page.title = 'lambda calculus:Introduction';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

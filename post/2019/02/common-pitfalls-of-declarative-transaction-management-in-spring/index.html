@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>Common Pitfalls of Declarative Transaction Management in Spring - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="JPA,Spring">
+
+
+<meta name="description" content="Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative managemen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Common Pitfalls of Declarative Transaction Management in Spring">
+<meta property="og:url" content="https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/index.html">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative managemen">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg">
+<meta property="article:published_time" content="2019-02-03T13:04:26.000Z">
+<meta property="article:modified_time" content="2024-06-29T11:52:49.161Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="JPA">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-common-pitfalls-of-declarative-transaction-management-in-spring"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      Common Pitfalls of Declarative Transaction Management in Spring
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2019-02-03T21:04:26+08:00" 
+          content="2019-02-03">
+        2019-02-03
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" rel="gallery_cly05cliw001piwey99769eno">-->
+            <img src="/img/common-pitfalls-of-declarative-transaction-management-in-spring.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>Spring supports two types of transaction management, namely, programmatic and declarative transaction management. Despite the fact that programmatic management is more flexible, declarative management is still preferred since it is less invasive to application code. In this post, I&#39;m going to summarize several pitfalls you may encounter while using declarative transaction management. Certainly, if you read the official document thoroughly, you should know how to avoid them on your own, but if you think of it is all about annotating your method with the @Transactional annotation as I did, you may never figure them out until the day your customer reports his balance is incorrect.</p>
+</blockquote>
+<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><p>Our samples are written in Kotlin language. In addition, I assume that you are already familiar with the following frameworks.</p>
+<ul>
+<li>Spring</li>
+<li>JPA(Hibernate implementation)</li>
+<li>Spring Data JPA</li>
+</ul>
+<p>Examples in this post are based on the following class:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// entity</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoEntity</span>(</span><br><span class="line">        <span class="keyword">val</span> name: String</span><br><span class="line">) : AbstractPersistable&lt;<span class="built_in">Int</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// repository</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">DemoRepo</span> : <span class="type">CrudRepository</span>&lt;<span class="type">DemoEntity, Int</span>&gt;</span><br></pre></td></tr></table></figure><br>Read the manual of Spring Data JPA If you are not able to understand the above code. Finally, The related test code will be available at <a target="_blank" rel="noopener" href="https://github.com/noob9527/post-code/tree/master/1-common-pitfalls-of-declarative-transaction-management-in-spring">common-pitfalls-of-declarative-transaction-management-in-spring</a>.</p>
+<h3 id="Pitfall-1-Transactional-annotation-may-have-no-effect-at-all"><a href="#Pitfall-1-Transactional-annotation-may-have-no-effect-at-all" class="headerlink" title="Pitfall 1: @Transactional annotation may have no effect at all"></a>Pitfall 1: @Transactional annotation may have no effect at all</h3><p>It&#39;s a common circumstance that we put some code in a private method so it can be reused. If the code involves a transaction, we may end up with writing code like this.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoService</span>(</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do other things</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></span><br><span class="line">        demoRepo.save(demo)</span><br><span class="line">        unpredictableMethod()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">            <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>In this case, the <code>persist</code> method will be invoked as if no @Transactional annotation is present. To understand why, we need to know that the declarative transaction is implemented on top of AOP(Aspect Oriented Programming) proxies. A proxied method invocation procedure looks like this:<br><img src="/img/content/common-pitfalls-of-declarative-transaction-management-in-spring/transactional-proxy.png" alt="transactional-proxy"><br>From the picture, it is not hard to imagine that the <code>beginTransaction</code>, <code>commit</code> and <code>rollback</code> logic is implemented in a so called &quot;advice&quot; component. &quot;Advice&quot; here refers to a core concept of AOP(read the documentation of <a target="_blank" rel="noopener" href="https://docs.spring.io/spring/docs/4.2.x/spring-framework-reference/html/aop.html">Spring AOP</a> to get more information), and there is two different advice mode supported by Spring transaction management, which called &quot;PROXY&quot; and &quot;ASPECTJ&quot;. As the document says:</p>
+<blockquote>
+<p>When using proxies, you should apply the @Transactional annotation only to methods with public visibility. If you do annotate protected, private or package-visible methods with the @Transactional annotation, no error is raised, but the annotated method does not exhibit the configured transactional settings. Consider the use of AspectJ if you need to annotate non-public methods.</p>
+</blockquote>
+<p>Now the reason is pretty clear, to fix the problem, we can either switch the advice mode from &quot;PROXY&quot;(default option) to &quot;ASPECTJ&quot;, or remove the private modifier from the <code>persist</code> method. Let&#39;s say we choose to remove the modifier, you can find that the <code>persist</code> is still invoked without any transaction, because we just fall into the next pitfall.</p>
+<span id="more"></span>
+<h3 id="Pitfall-2-Transactional-annotation-may-not-affect-a-method-invocation"><a href="#Pitfall-2-Transactional-annotation-may-not-affect-a-method-invocation" class="headerlink" title="Pitfall 2: @Transactional annotation may not affect a method invocation"></a>Pitfall 2: @Transactional annotation may not affect a method invocation</h3><p>Following the previous section, after applying the second solution from the previous section, our <code>DemoService</code> now looks like:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoService</span>(</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        persist(demo)</span><br><span class="line">        <span class="comment">// do other things</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></span><br><span class="line">        demoRepo.save(demo)</span><br><span class="line">        unpredictableMethod()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">            <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This time, if you inject the instance of <code>DemoService</code> to another class, then directly call <code>demoService.persist(demo)</code> from that class, everything works. It can mislead you to think of the <code>persist</code> method is already being proxied whereas it is not. Again, the official document has its own explanation for this problem.</p>
+<blockquote>
+<p>In proxy mode, only external method calls coming in through the proxy are intercepted. This means that self-invocation, in effect, a method within the target object calling another method of the target object, will not lead to an actual transaction at runtime even if the invoked method is marked with <code>@Transactional</code>. Also, the proxy must be fully initialized to provide the expected behavior so you should not rely on this feature in your initialization code, i.e. <code>@PostConstruct</code>.</p>
+</blockquote>
+<p>There&#39;s a tricky solution against this problem, inject itself to an instance field, then invoke methods from the instance. The code looks like<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DemoService</span>(</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">val</span> demoRepo: DemoRepo</span><br><span class="line">) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Unlike demoRepo, it cannot be a constructor parameter</span></span><br><span class="line">    <span class="comment">// otherwise Spring won&#x27;t be able to initialize the proxy due to a circular dependency.</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> lazyinit <span class="keyword">var</span> self: DemoService</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoSomething</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        self.persist(demo)</span><br><span class="line">        <span class="comment">// do something</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persistAndDoOtherthings</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        self.persist(demo)</span><br><span class="line">        <span class="comment">// do other things</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// you may think this action will be rolled back if exception occurs</span></span><br><span class="line">        demoRepo.save(demo)</span><br><span class="line">        unpredictableMethod()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// simulate a method which may or may not throw an exception</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">            <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Finally, the <code>persist</code> method is now invoked with a transaction, but somehow, the transaction still does not rollback no matter whether the exception is thrown. Guess what, we again fall into the next pitfall.</p>
+<h3 id="Pitfall-3-Transaction-may-not-rollback-when-an-exception-occurs"><a href="#Pitfall-3-Transaction-may-not-rollback-when-an-exception-occurs" class="headerlink" title="Pitfall 3: Transaction may not rollback when an exception occurs"></a>Pitfall 3: Transaction may not rollback when an exception occurs</h3><p>Before further explaining, let&#39;s focus on the buggy code segment.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">// you may think this action will be rolled back if exception occurs</span></span><br><span class="line">    demoRepo.save(demo)</span><br><span class="line">    unpredictableMethod()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// simulate a method which may or may not throw an exception</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">        <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Providing only ten lines of code, an experienced Spring developer may realize, &quot;The exception here, is it a runtime exception?&quot;. Yes, that&#39;s the point. By default, Spring won&#39;t mark a transaction for rollback after any exception is thrown. As the document says:</p>
+<blockquote>
+<p>In its default configuration, the Spring Framework’s transaction infrastructure code only marks a transaction for rollback in the case of runtime, unchecked exceptions; that is, when the thrown exception is an instance or subclass of RuntimeException. ( Errors will also - by default - result in a rollback). Checked exceptions that are thrown from a transactional method do not result in rollback in the default configuration.</p>
+</blockquote>
+<p>Admittedly, the hidden bug would be much more obvious if I wrote the code segment in Java language, because there isn&#39;t any difference between checked exception and runtime exception in Kotlin. In Java language, on the contrary, the exception must be handled or throw to the method caller explicitly, that could make this problem easier to identify. Nevertheless, I&#39;ve made this kind of mistake while I was using Java, That&#39;s why I think it&#39;s worth to mention.<br>Now let&#39;s turn to the solution. According to the official document, we can just configure the <code>@Transactional</code> annotation to rollback for any exception. Or, we can catch the exception at the first place.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">    demoRepo.save(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        unpredictableMethod()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        <span class="comment">// handle the exception</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>This solution seems a little tedious to an experienced programmer, But by doing so, we get an opportunity to run into next pitfall.</p>
+<h3 id="Pitfall-4-Transaction-may-not-be-able-to-commit-after-an-exception-is-being-caught"><a href="#Pitfall-4-Transaction-may-not-be-able-to-commit-after-an-exception-is-being-caught" class="headerlink" title="Pitfall 4: Transaction may not be able to commit after an exception is being caught"></a>Pitfall 4: Transaction may not be able to commit after an exception is being caught</h3><p>After hours of tinkering, we finally get the piece of code work, But requirements are changing, let&#39;s say somehow we need to ensure the <code>unpredictableMethod</code> run with a transaction. After going through previous lessons, this time we want to do it extremely carefully.<br>Firstly, we put a <code>@Transactional</code> on the method and configure it to rollback for all exceptions, so that we won&#39;t fall into pitfall 3.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional(rollbackFor=[Exception::class])</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">unpredictableMethod</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        some business code must be executed with a transaction</span></span><br><span class="line"><span class="comment">        ...</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">if</span> (ThreadLocalRandom.current().nextBoolean())</span><br><span class="line">        <span class="keyword">throw</span> Exception(<span class="string">&quot;Oops!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Secondly, Owing to pitfall 2, we update the self-invocation in <code>persist</code> method to the proxied method call.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">persist</span><span class="params">(demo: <span class="type">DemoEntity</span>)</span></span> &#123;</span><br><span class="line">    demoRepo.save(demo)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        self.unpredictableMethod()</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: Exception) &#123;</span><br><span class="line">        <span class="comment">// handle the exception</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>After everything is checked, we expect that if <code>unpredictableMethod</code> is called directly and an exception is thrown, the transaction will be rolled back. Conversely, if <code>persist</code> is called, the transaction will be committed since exceptions should be handled by the <code>try-catch</code> block. Unfortunately, it is not happening, we just ran into pitfall 4. An <code>UnexpectedRollbackException</code> will be thrown.<br>When a &quot;transactional&quot; method invokes another &quot;transactional&quot; method, the actual behavior is determined by <code>propagation</code> property of the second <code>@Transaction</code> annotation. If the property value is <code>REQUIRED</code>, which is the default value, the second method will be executed in an existing transaction, and once the rollback condition in the second method is reached, it marks the transaction as rollback-only. That is, no matter if the exception is handled in the first method, the transaction won&#39;t be able to commit. If you like, there&#39;s an official explanation:</p>
+<blockquote>
+<p>When the propagation setting is PROPAGATION_REQUIRED, a logical transaction scope is created for each method upon which the setting is applied. Each such logical transaction scope can determine rollback-only status individually, with an outer transaction scope being logically independent from the inner transaction scope. Of course, in case of standard PROPAGATION_REQUIRED behavior, all these scopes will be mapped to the same physical transaction. So a rollback-only marker set in the inner transaction scope does affect the outer transaction’s chance to actually commit (as you would expect it to).<br>However, in the case where an inner transaction scope sets the rollback-only marker, the outer transaction has not decided on the rollback itself, and so the rollback (silently triggered by the inner transaction scope) is unexpected. A corresponding UnexpectedRollbackException is thrown at that point. This is expected behavior so that the caller of a transaction can never be misled to assume that a commit was performed when it really was not. So if an inner transaction (of which the outer caller is not aware) silently marks a transaction as rollback-only, the outer caller still calls commit. The outer caller needs to receive an UnexpectedRollbackException to indicate clearly that a rollback was performed instead.</p>
+</blockquote>
+<p>The solution depends on what you want, you can change the <code>propagation</code> property of the second <code>@Transactional</code>, or change the <code>rollbackFor</code> and <code>noRollbackFor</code> property of the first <code>@Transactional</code> to filter a specific exception class. In this case, you can even fix the problem by falling into the pitfall 2 deliberately, although it is not recommended because your colleague may not be able to understand it.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>Spring declarative transaction management does hide the complexity of writing transaction handling code, but handle transaction correctly is far more complex than just put an <code>@Transactional</code> annotation on your method. Considering transaction is usually the most critical part in an application, you&#39;d better test every branch of your code.</p>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/JPA/" rel="tag">JPA</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Spring/" rel="tag">Spring</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/post/2019/01/understanding-zombie-process/" rel="next" title="Understanding Zombie Process">
+        <i class="fa fa-chevron-left"></i>
+        Understanding Zombie Process
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/" rel="prev" title="Common Pitfalls in JPA(Hibernate)">
+        Common Pitfalls in JPA(Hibernate) 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Prerequisites"><span class="document-nav-text">Prerequisites</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Pitfall-1-Transactional-annotation-may-have-no-effect-at-all"><span class="document-nav-text">Pitfall 1: @Transactional annotation may have no effect at all</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Pitfall-2-Transactional-annotation-may-not-affect-a-method-invocation"><span class="document-nav-text">Pitfall 2: @Transactional annotation may not affect a method invocation</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Pitfall-3-Transaction-may-not-rollback-when-an-exception-occurs"><span class="document-nav-text">Pitfall 3: Transaction may not rollback when an exception occurs</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Pitfall-4-Transaction-may-not-be-able-to-commit-after-an-exception-is-being-caught"><span class="document-nav-text">Pitfall 4: Transaction may not be able to commit after an exception is being caught</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Conclusion"><span class="document-nav-text">Conclusion</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/';
+                  this.page.identifier = 'post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/';
+                  this.page.title = 'Common Pitfalls of Declarative Transaction Management in Spring';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

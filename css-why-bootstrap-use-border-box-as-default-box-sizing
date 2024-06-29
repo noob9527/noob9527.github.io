@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+<title>为什么bootstrap采用border-box盒模型 - 许炎的个人博客</title>
+
+
+    <meta name="keywords" content="CSS">
+
+
+<meta name="description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么bootstrap采用border-box盒模型">
+<meta property="og:url" content="https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing">
+<meta property="og:site_name" content="NOOB">
+<meta property="og:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
+<meta property="og:locale">
+<meta property="og:image" content="https://blog.staynoob.cn/img/box-sizing.jpg">
+<meta property="article:published_time" content="2016-05-18T08:48:58.000Z">
+<meta property="article:modified_time" content="2024-06-29T11:52:49.161Z">
+<meta property="article:author" content="noob9527">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/box-sizing.jpg">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
+    <link rel="Bookmark" type="image/x-icon" href="/favicon.ico " />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico " />
+
+
+
+<meta name="google-site-verification" content="9GCG5tynfuvxF_9_xHvo8tvc7CqHeqKMZQqda25rDPs" />
+
+
+<meta name="baidu-site-verification" content="IVBrfkvovZ" />
+
+
+
+<link rel="alternative" href="/atom.xml" title="NOOB" type="application/atom+xml">
+
+
+
+<script src="/vendors/jquery/jquery.js"></script>
+<script src="/vendors/bootstrap/js/bootstrap.js"></script>
+<script src="/js/script.js"></script>
+
+
+<link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    search: {
+      path: '/search.xml'
+    }  
+  };
+</script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body>
+    <header id="site-nav">
+    <div id="banner"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            
+             <!-- social link-->
+            <div class="social-link">
+                <ul class="nav navbar-nav navbar-left">
+                    
+                        
+                            <li><a href="https://github.com/noob9527" target="_blank">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a></li>
+                        
+                            <li><a href="http://weibo.com/p/1005052678297054" target="_blank">
+                                <i class="fa fa-2x fa-weibo"></i>
+                            </a></li>
+                        
+                    
+                    
+                        <li><a href="/atom.xml" rel="alternate">
+                            <i class="fa fa-2x fa-rss"></i>
+                        </a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="navbar-header">
+                <!--toggle button-->
+                <button class="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#navbar-link" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--brand-->
+                <a href="/" class="navbar-brand">
+                    <span>NOOB</span>
+                </a>
+            </div>
+            
+            <!--link-->
+            <div class="collapse navbar-collapse" id="navbar-link">
+                <ul class="nav navbar-nav navbar-right">
+                    
+                        <li>
+                            <a href="/" rel="section">
+                                
+                                    <i class="fa fa-home fa-fw"></i>
+                                
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/archives" rel="section">
+                                
+                                    <i class="fa fa-archive fa-fw"></i>
+                                
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li>
+                            <a href="/about" rel="section">
+                                
+                                    <i class="fa fa-user fa-fw"></i>
+                                
+                                关于
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+    
+    <div class="site-content container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <main>
+                    <article id="post-为什么bootstrap采用border-box盒模型"
+         class="post post-type-post" itemscope itemprop="blogPost">
+
+    <div class="post-inner">
+        <!-- title -->
+        
+        <header class="post-header">
+            <h1 itemprop="name">
+    
+      为什么bootstrap采用border-box盒模型
+    
+</h1>
+        </header>
+        
+
+        <!-- meta data -->
+        <div class="post-meta">
+            <span class="post-date">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-calendar"></i>
+    </span>
+    <span class="post-meta-item-text">发表于</span>
+    <time itemprop="datePublished" datetime="2016-05-18T16:48:58+08:00" 
+          content="2016-05-18">
+        2016-05-18
+    </time>
+</span>
+            
+<span class="post-category">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+        <i class="fa fa-folder-o"></i>
+    </span>
+    <span class="post-meta-item-text">分类于</span>
+    <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+    </span>
+</span>
+
+
+            
+    
+
+        </div>
+
+        <!-- gallery-->
+        
+        <div class="post-gallery">
+              <div class="post-gallery-photos">
+    
+        
+          <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cly05clih000ciwey91dj867i">-->
+            <img src="/img/box-sizing.jpg" itemprop="image">
+          <!--</a>-->
+        
+    
+  </div>
+
+        </div>
+        
+
+        <!-- entry -->
+        <div class="post-entry" itemprop="postBody">
+            
+            <!--文章内容-->
+            <div class="post-content"><blockquote>
+<p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
+</blockquote>
+<p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a target="_blank" rel="noopener" href="https://css-tricks.com/box-sizing/">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
+<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
+<ul>
+<li>width + padding + border = 元素实际可见的宽度</li>
+<li>height + padding + border = 元素实际可见的高度</li>
+</ul>
+<p>这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：</p>
+<ul>
+<li>width = 元素实际可见的宽度</li>
+<li>height = 元素实际可见的高度</li>
+</ul>
+<p>这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。</p>
+<p>尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。</p>
+<span id="more"></span>
+<h3 id="二-CSS3的box-sizing属性"><a href="#二-CSS3的box-sizing属性" class="headerlink" title="二.CSS3的box-sizing属性"></a>二.CSS3的box-sizing属性</h3><p>为了适应移动互联网的浪潮，CSS3在提升响应式开发体验上下了很多功夫，比如说添加了media query媒介查询模块(CSS2.1中的@media属性只能用来区分媒体的类型，无法查询具体屏幕尺寸)，另一项重要的改进就是引入box-sizing属性来决定盒模型的渲染方式，它有三个可选值，分别是：content-box(默认值),padding-box,border-box。其中padding-box几乎没人用，content-box依然按照规范工作，而border-box则采取与老版本IE混杂模式中对盒模型相同的解释方式，这也是最流行的选项。看到这里，你也许仍然不明白border-box到底好在哪里，下面是一个Demo:</p>
+
+<div style="border:5px solid #a57958;padding:10px">
+	<p>按下按钮查看box-sizing属性对布局的影响</p>
+    <button class="demo-btn btn btn-info">content-box</button>
+    <button class="demo-btn btn btn-info">border-box</button>
+    <div id="demo-container" class="clearfix" style="margin-top:10px">
+    	<div style="margin:0 auto 5px;padding:10%;width:90%;border:5px solid #a57958">width=90%
+        padding=10%
+        border=5px</div>
+    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
+        border=5px</div>
+    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
+        border=5px</div>
+    </div>
+</div>
+<script>
+	$(".demo-btn").on("click",function(){
+    	$("*").css("box-sizing",$(this).text());
+    });
+</script>
+
+<h3 id="三-重置方法最佳实践"><a href="#三-重置方法最佳实践" class="headerlink" title="三.重置方法最佳实践"></a>三.重置方法最佳实践</h3><p>现在，我们已经知道了使用border-box盒模型进行布局更加简单，而除非你的代码是面向IE5用户开发的，否则都需要使用重置代码来修改默认的盒模型，最早人们使用通配符选择器(universal type selector)来重置所有元素的box-sizing属性。代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>大部分情况下上述代码就够了，但它还遗漏了伪元素，改进后的代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>以上也是bootstrap(v3.3.5)中使用的重置代码，它已经完全够用了，不过假如你的需求非常变态，想要在网页中混合使用content-box,padding-box,border-box,可以采用如下的重置代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>上面的代码可以让你的选择更加有弹性，可以为不同的布局容器指定各自的盒模型，而不用担心每个容器的子元素被全局样式重置。</p>
+<h3 id="四-浏览器支持"><a href="#四-浏览器支持" class="headerlink" title="四.浏览器支持"></a>四.浏览器支持</h3><p>所有现代浏览器已经全部支持无前缀的box-sizing属性，如果你想要支持一些老到几乎没人用的浏览器版本(safari &lt; 5.1,chrome &lt; 10,firefox &lt; 29)，可以像bootstrap一样为该属性加上浏览器前缀：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>不过padding-box因为没什么人用，所以一些浏览器可能会不支持。IE7及其以下版本不支持box-sizing属性。</p>
+</div>
+            
+        </div>
+
+        <footer class="post-footer">
+            
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+
+        </footer>
+    </div>
+    
+    
+    <div class="post-nav">
+  <div class="post-nav-next post-nav-item">
+    
+    <a href="/insertion-shell-merge-quick-sort-algorithm-3" rel="next" title="聊聊4种主流排序算法(番外篇):快速排序的优化历程">
+        <i class="fa fa-chevron-left"></i>
+        聊聊4种主流排序算法(番外篇):快速排序的优化历程
+    </a>
+    
+  </div>
+
+  <div class="post-nav-prev post-nav-item">
+    
+    <a href="/css-float-clearfix-best-in-practice" rel="prev" title="CSS清除浮动的原理与最佳实践">
+        CSS清除浮动的原理与最佳实践 
+        <i class="fa fa-chevron-right"></i>
+    </a>
+    
+  </div>
+</div>
+
+    
+
+    
+        <div class="comments" id="comments">
+    
+        <div id="disqus_thread">
+            <noscript>
+                Please enable JavaScript to view the
+                <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+            </noscript>
+        </div>
+    
+</div>
+    
+</article>
+
+                </main>
+            </div>
+            <div class="col-md-3">
+                <aside class="side-nav">
+    
+    <aside class="widget" id="site-profile">
+    <img src="/img/logo_brown.png">
+    <h3 class="widget-title">staynoob! not stay noob!</h3>
+    <div class="widget-content">
+        
+            
+                <a href="https://github.com/noob9527" target="_blank">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+            
+                <a href="http://weibo.com/p/1005052678297054" target="_blank">
+                    <i class="fa fa-2x fa-weibo"></i>
+                </a>
+            
+        
+        
+            <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-2x fa-rss"></i>
+            </a>
+        
+    </div>
+</aside>
+    
+    
+
+<aside class="widget" id="post-toc">
+    <h3 class="widget-title">文章目录</h3>
+    <div class="widget-content">
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8E%86%E5%8F%B2"><span class="document-nav-text">一.CSS盒模型历史</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-CSS3%E7%9A%84box-sizing%E5%B1%9E%E6%80%A7"><span class="document-nav-text">二.CSS3的box-sizing属性</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E9%87%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="document-nav-text">三.重置方法最佳实践</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81"><span class="document-nav-text">四.浏览器支持</span></a></li></ol>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget" id="local-search">
+    <h3 class="widget-title">站内搜索</h3>
+    <div class="widget-content">
+        <label for="local-search-input" class="sr-only">search</label>
+        <input type="search" placeholder="search"
+                id="local-search-input" class="form-control">
+        <div id="local-search-result"></div>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-content">
+        <ul class="recent-posts">
+            
+            <li>
+                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+            </li>
+            
+            <li>
+                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/10/why-i-think-kotlin-is-preferable-to-java/">Why I think Kotlin is preferable to Java</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/when-soft-delete-meets-unique-index/">When &quot;Soft Delete&quot; Meets &quot;Unique Index&quot;</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/05/the-good-old-transaction/">The Good Old Transaction</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/is-distributed-lock-safe/">分布式锁真的“安全”吗？</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/03/strong-consistency-model/">(译)Strong Consistency Models</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-in-jpa-hibernate/">Common Pitfalls in JPA(Hibernate)</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/02/common-pitfalls-of-declarative-transaction-management-in-spring/">Common Pitfalls of Declarative Transaction Management in Spring</a>
+            </li>
+            
+            <li>
+                <a href="/post/2019/01/understanding-zombie-process/">Understanding Zombie Process</a>
+            </li>
+            
+            <li>
+                <a href="/closure-in-javascript">再谈js闭包</a>
+            </li>
+            
+            <li>
+                <a href="/btree-data-structure">B-tree数据结构</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+            </li>
+            
+            <li>
+                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+            </li>
+            
+            <li>
+                <a href="/salted-password-hashing">加密算法简介</a>
+            </li>
+            
+        </ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Backend/">Backend</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Frontend/">Frontend</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">Functional Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Mathematic/">Mathematic</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming-Language/">Programming Language</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/System/">System</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a><span class="category-list-count">2</span></li></ul>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-content tag-cloud">
+        <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/Database/" style="font-size: 20px;">Database</a> <a href="/tags/Distributed-System/" style="font-size: 15px;">Distributed System</a> <a href="/tags/Hibernate/" style="font-size: 10px;">Hibernate</a> <a href="/tags/JPA/" style="font-size: 20px;">JPA</a> <a href="/tags/Jackson/" style="font-size: 10px;">Jackson</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Kotlin/" style="font-size: 10px;">Kotlin</a> <a href="/tags/Lambda-Calculus/" style="font-size: 15px;">Lambda Calculus</a> <a href="/tags/Linux/" style="font-size: 20px;">Linux</a> <a href="/tags/SQL/" style="font-size: 10px;">SQL</a> <a href="/tags/Sort/" style="font-size: 20px;">Sort</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/UNIX/" style="font-size: 10px;">UNIX</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" style="font-size: 15px;">编程技巧</a>
+    </div>
+</aside>
+
+    
+    
+<aside class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-content">
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+</aside>
+
+    
+</aside>
+            </div>
+        </div>
+    </div>
+    
+    <footer id="footer">
+    <div id="footer-info">
+        &copy; 
+        
+        
+            2015 - 
+        
+        <span itemprop="copyrightYear">2024</span>
+        noob9527<br>
+        Powered by <a href="/about">xy</a>
+        .
+        Theme Noob by <a href="/about">xy</a>
+    </div>
+</footer>
+
+    
+    
+
+    
+
+    
+          <script type="text/javascript">
+              var disqus_config = function () {
+                  this.page.url = 'https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing';
+                  this.page.identifier = '/css-why-bootstrap-use-border-box-as-default-box-sizing';
+                  this.page.title = '为什么bootstrap采用border-box盒模型';
+              };
+              var d = document, s = d.createElement('script');
+              s.src = 'https://staynoob.disqus.com/embed.js';
+              s.setAttribute('data-timestamp', '' + +new Date());
+              (d.head || d.body).appendChild(s);
+          </script>
+    
+
+    
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?855dd1a156248c0c337788236167c870";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-76868752-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55612284";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+    
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+  <!-- <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  <!-- upgrade to mathjax 3 -->
+  <!-- see https://www.mathjax.org/#gettingstarted -->
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>
