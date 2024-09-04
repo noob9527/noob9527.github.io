@@ -1,0 +1,3 @@
+- https://bugs.mysql.com/bug.php?id=93444
+- https://bugs.mysql.com/bug.php?id=91112
+- https://github.com/mysql/mysql-connector-j/blob/release/8.0/CHANGES

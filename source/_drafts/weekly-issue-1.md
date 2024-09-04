@@ -5,6 +5,34 @@ tags: quick notes
 photos:
 ---
 
+<<<<<<< Updated upstream
+=======
+> 随着时间越来越碎片化，我发现自己已经很难有精力去写一些有深度的文章。不仅如此，由于记忆力的衰退，所以，
+
+### Mac
+#### 
+> It's probably working fine, you're just testing it wrong. dig (and host and nslookup) don't use the system resolver, nor do they fully implement the system resolver's lookup policy. As a result, they're useful for testing the DNS system itself, but not for testing how the OS uses DNS. The official way to test the system resolver is dscacheutil (e.g. dscacheutil -q host -a name www.foobar.dev), but that's annoyingly verbose, so I tend to just use ping and look at the IP it reports.
+
+
+```bash
+dscacheutil -q host -a name www.foobar.dev
+```
+
+referenceh:
+- https://stackoverflow.com/a/50915977
+- https://apple.stackexchange.com/a/385218
+
+### Ubuntu 18.04
+首次安装 18.04 桌面版后，最让我不习惯的就是它移掉了传统的开始菜单，而是改用了一个占全屏的菜单（就像 windows8 的菜单一样让人难受），好在通过一些 gnome extension 又找回了熟悉的感觉。下面是我目前安装的扩展:
+- [dash-to-panel](https://github.com/home-sweet-gnome/dash-to-panel)
+- [arc-menu](https://extensions.gnome.org/extension/1228/arc-menu/)
+- [system-monitor](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet)
+- [topicons](https://extensions.gnome.org/extension/1031/topicons/)
+- [open-weather](https://extensions.gnome.org/extension/750/openweather/)
+
+其它基本还是熟悉的味道，目前体验还不错。
+
+>>>>>>> Stashed changes
 ### VPN 与 DNS
 事情的起因大致是，我需要通过 OpenVPN 连到 k8s 的内部网络，并且我希望可以通过 k8s 的 dns 服务来通过 service name 访问各个容器组。
 
