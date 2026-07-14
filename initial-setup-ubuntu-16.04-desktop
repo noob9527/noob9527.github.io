@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/ubuntu16_04.jpg">
 <meta property="article:published_time" content="2016-04-24T04:37:13.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.272Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.412Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cmoaxdeeo000kwb6hgrfdeh4e">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04.jpg" rel="gallery_cmrkab6f8000lnf6hez587aiy">-->
             <img src="/img/ubuntu16_04.jpg" itemprop="image">
           <!--</a>-->
         
@@ -562,8 +562,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

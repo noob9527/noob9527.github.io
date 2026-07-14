@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/box-sizing.jpg">
 <meta property="article:published_time" content="2016-05-18T08:48:58.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.273Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.414Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cmoaxdeep000vwb6h3jop908k">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cmrkab6f9000xnf6h5lf65stu">-->
             <img src="/img/box-sizing.jpg" itemprop="image">
           <!--</a>-->
         
@@ -570,8 +570,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

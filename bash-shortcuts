@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/bash-shotcuts.jpg">
 <meta property="article:published_time" content="2017-02-11T15:07:28.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.274Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.416Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="编程技巧">
@@ -205,7 +205,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cmoaxdees001jwb6h1sle1q64">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cmrkab6fc001jnf6hdama1upe">-->
             <img src="/img/bash-shotcuts.jpg" itemprop="image">
           <!--</a>-->
         
@@ -598,8 +598,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/jackson-bidirectional-relationships.jpg">
 <meta property="article:published_time" content="2017-01-01T06:07:03.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.274Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.415Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="JPA">
 <meta property="article:tag" content="Hibernate">
@@ -207,7 +207,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cmoaxdeer001cwb6hcy4fdzo2">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/jackson-bidirectional-relationships.jpg" rel="gallery_cmrkab6fb001cnf6hd8nt4laf">-->
             <img src="/img/jackson-bidirectional-relationships.jpg" itemprop="image">
           <!--</a>-->
         
@@ -557,8 +557,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

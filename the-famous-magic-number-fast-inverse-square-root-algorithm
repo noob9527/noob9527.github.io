@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/fast_inverse_square_root.jpg">
 <meta property="article:published_time" content="2016-09-20T02:53:33.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.274Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.415Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="github, 技术博客, web开发, fontend">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cmoaxdeeq0017wb6h36f0ckpg">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/fast_inverse_square_root.jpg" rel="gallery_cmrkab6fa0017nf6h26lygclk">-->
             <img src="/img/fast_inverse_square_root.jpg" itemprop="image">
           <!--</a>-->
         
@@ -580,8 +580,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

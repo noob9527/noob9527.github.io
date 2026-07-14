@@ -23,7 +23,7 @@
 <meta property="og:description" content="Notes on High Performance MySQL, for future reference.  Chapter 4: Optimizing Schema and Data TypesChoosing Identifiers Integers are usually the best choice of identifiers. Avoid string types for ide">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-06-29T10:15:31.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.278Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.418Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="SQL">
@@ -566,8 +566,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>

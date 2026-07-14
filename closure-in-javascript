@@ -24,7 +24,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://blog.staynoob.cn/img/closure-in-javascript.jpg">
 <meta property="article:published_time" content="2017-07-16T08:40:28.000Z">
-<meta property="article:modified_time" content="2026-04-23T03:28:47.275Z">
+<meta property="article:modified_time" content="2026-07-14T06:41:57.417Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="Javascript">
 <meta name="twitter:card" content="summary">
@@ -204,7 +204,7 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cmoaxdeet001twb6hc4oqbbgy">-->
+          <!--<a class="post-gallery-img fancybox" href="/img/closure-in-javascript.jpg" rel="gallery_cmrkab6fd001xnf6hf6zfajpv">-->
             <img src="/img/closure-in-javascript.jpg" itemprop="image">
           <!--</a>-->
         
@@ -545,8 +545,8 @@
     }
   };
   </script>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 </body>
 </html>
