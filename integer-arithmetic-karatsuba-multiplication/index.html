@@ -9,26 +9,26 @@
 
 
 
-<title>B-tree数据结构 - 许炎的个人博客</title>
+<title>数值运算与牛顿迭代法 - 许炎的个人博客</title>
 
 
     <meta name="keywords" content="github, 技术博客, web开发, fontend">
 
 
-<meta name="description" content="几乎所有文件系统索引，数据库索引，都需要用到B-tree或其变种。因此对于码农而言，理解它如何工作还是相当有必要的。然而我最近阅读了很多相关的文章，它们往往一上来就试图跟读者解释branchingFactor&#x2F;degree, B-1&lt;&#x3D;keys&lt;2B-1,B&lt;&#x3D;children&lt;2B blablabla...，在读者还不懂原理时就开始描述实现细节。导致像我一样没学过正统c">
+<meta name="description" content="一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。  一.乘法运算1.暴力算法假设有两个十进制数x&#x3D;12345678，y&#x3D;87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：    1234 5678     $x_0$ $x_1$">
 <meta property="og:type" content="article">
-<meta property="og:title" content="B-tree数据结构">
-<meta property="og:url" content="https://blog.staynoob.cn/btree-data-structure">
+<meta property="og:title" content="数值运算与牛顿迭代法">
+<meta property="og:url" content="https://blog.staynoob.cn/integer-arithmetic-karatsuba-multiplication/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="几乎所有文件系统索引，数据库索引，都需要用到B-tree或其变种。因此对于码农而言，理解它如何工作还是相当有必要的。然而我最近阅读了很多相关的文章，它们往往一上来就试图跟读者解释branchingFactor&#x2F;degree, B-1&lt;&#x3D;keys&lt;2B-1,B&lt;&#x3D;children&lt;2B blablabla...，在读者还不懂原理时就开始描述实现细节。导致像我一样没学过正统c">
+<meta property="og:description" content="一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。  一.乘法运算1.暴力算法假设有两个十进制数x&#x3D;12345678，y&#x3D;87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：    1234 5678     $x_0$ $x_1$">
 <meta property="og:locale">
-<meta property="og:image" content="https://blog.staynoob.cn/img/btree-data-structure.jpg">
-<meta property="article:published_time" content="2017-06-25T09:25:42.000Z">
-<meta property="article:modified_time" content="2026-07-14T06:41:57.416Z">
+<meta property="og:image" content="https://blog.staynoob.cn/img/newton_method.jpg">
+<meta property="article:published_time" content="2016-06-04T08:12:23.000Z">
+<meta property="article:modified_time" content="2026-07-14T09:39:31.068Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="github, 技术博客, web开发, fontend">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.staynoob.cn/img/btree-data-structure.jpg">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/newton_method.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -153,7 +153,7 @@
         <div class="row">
             <div class="col-md-9">
                 <main>
-                    <article id="post-B-tree数据结构"
+                    <article id="post-数值运算与牛顿迭代法"
          class="post post-type-post" itemscope itemprop="blogPost">
 
     <div class="post-inner">
@@ -162,7 +162,7 @@
         <header class="post-header">
             <h1 itemprop="name">
     
-      B-tree数据结构
+      数值运算与牛顿迭代法
     
 </h1>
         </header>
@@ -175,9 +175,9 @@
       <i class="fa fa-calendar"></i>
     </span>
     <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-06-25T17:25:42+08:00" 
-          content="2017-06-25">
-        2017-06-25
+    <time itemprop="datePublished" datetime="2016-06-04T16:12:23+08:00" 
+          content="2016-06-04">
+        2016-06-04
     </time>
 </span>
             
@@ -204,8 +204,8 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/btree-data-structure.jpg" rel="gallery_cmrkab6fd001unf6hedb32sw0">-->
-            <img src="/img/btree-data-structure.jpg" itemprop="image">
+          <!--<a class="post-gallery-img fancybox" href="/img/newton_method.jpg" rel="gallery_cmrkgmkfp0013836h0fwycj4v">-->
+            <img src="/img/newton_method.jpg" itemprop="image">
           <!--</a>-->
         
     
@@ -219,23 +219,43 @@
             
             <!--文章内容-->
             <div class="post-content"><blockquote>
-<p>几乎所有文件系统索引，数据库索引，都需要用到B-tree或其变种。因此对于码农而言，理解它如何工作还是相当有必要的。然而我最近阅读了很多相关的文章，它们往往一上来就试图跟读者解释<code>branchingFactor/degree, B-1&lt;=keys&lt;2B-1,B&lt;=children&lt;2B blablabla...</code>，在读者还不懂原理时就开始描述实现细节。导致像我一样没学过正统cs课程的野生码农严重怀疑自己的智商。这篇文章试图向跟我一样的小白来描述B-tree（前提是你能理解二分查找）。</p>
+<p>一直不明白计算机如何通过软件实现乘法，除法，开方等常见的数值运算，最近我在mit开源课程中得到了答案，以下是学习心得。</p>
 </blockquote>
-<h3 id="一-B-tree-B-tree-B-tree"><a href="#一-B-tree-B-tree-B-tree" class="headerlink" title="一.B tree,B-tree,B+tree"></a>一.B tree,B-tree,B+tree</h3><p>如果你在google搜索B-tree数据结构，你可能会找到以上三个关键字相关的文章，这一度让我觉得它们是三种不同的数据结构(既然有BPlusTree，很容易让人想到还有BMinusTree，再加上一些不负责任的翻译版算法书竟然丧心病狂的使用<strong> B- tree </strong>(注意空格)来标识B-tree)。事实上这里的<strong> - </strong>只是连字符，B-tree与B tree是同一回事。而B+tree则是它们的一个演化版。当然你也许还会发现一些文章中的B-tree和另一些文章中的B tree有着不同的实现。请依然不要被误导，我读了大概20来篇B-tree相关的文章，至今没有发现两个完全相同的实现。。。</p>
-<span id="more"></span>
-<h3 id="二-Trees"><a href="#二-Trees" class="headerlink" title="二.Trees"></a>二.Trees</h3><h4 id="BinarySearchTree"><a href="#BinarySearchTree" class="headerlink" title="BinarySearchTree"></a>BinarySearchTree</h4><p>下图展示的是一颗完全平衡的二叉树，每个节点大于其左子节点，小于其右子节点。当需要查找每个键时，先将其与根节点比较，如果小于根节点则继续查找根节点的左子树，否则查找右子树。如果你对该过程还不熟悉，建议先花一些时间看一些入门的算法教程。在理想情况下（如图所示完美平衡的情况下），一颗含有N个节点的二叉树，其高度正好为 $\log (N+1)$。这意味着一次查找最多只会经过 $\log (N+1)$ 个节点。举例来说如果一颗平衡二叉树包含1000个元素，那么树的高度为10，一次查找操作最多经过10个节点。<br><img src="/img/content/B-tree/bst.png" alt="bst"></p>
-<h4 id="2-3tree"><a href="#2-3tree" class="headerlink" title="2-3tree"></a>2-3tree</h4><p>接下来，人们发现在每个节点中添加一个key，该算法同样高效。如下图所示，一个节点可以有两个key和三条链接，人们亲切的称其为2-3树。2-3树的查找算法与二叉树如出一辙，但由于每个节点可以多存储1个key，进一步降低了树的高度（降低树高并不是2-3树的主要目的，主要目的在于自平衡）。很容易可以得出结论，一棵含有N个节点的2-3树其高度在 $\log N$ (2-3数允许包含只有一个key的节点)和 $\log _3N$ 之间。也就是说一棵含有10亿个key的2-3树，其高度在19到30之间。<br><img src="/img/content/B-tree/2-3tree.png" alt="2-3tree"></p>
-<h4 id="RedBlackTree-乱入"><a href="#RedBlackTree-乱入" class="headerlink" title="RedBlackTree(乱入)"></a>RedBlackTree(乱入)</h4><p>2-3树对比二叉树的主要优势在于，为了在插入数据时维护树的平衡，你不必再深陷于节点间的左旋转，右旋转无法自拔。2-3树只有根节点分裂的情况下会增加树的高度（这篇文章只谈搜索，对插入与删除感兴趣可以查看文章末尾的链接）。而它的一个缺点在于，在实现中要抽象这种既可能有一个key，又可能有两个key的节点有些繁琐，于是出现了下图所示的数据结构。所有的节点再度回归到只有一个key，并通过两个节点来组成一个含有两个key的节点。为了区分它们与普通二叉树节点的不同，将它们之间的链接标记为红色。江湖人称红黑树。下图所示的红黑树完全等价于上面的2-3树。<br><img src="/img/content/B-tree/rbtree.png" alt="rbtree"></p>
-<h4 id="B-tree"><a href="#B-tree" class="headerlink" title="B-tree"></a>B-tree</h4><p>既然我们可以在每个节点中添加一个key，那为什么不干脆添加多个key？于是就出现了类似下图的数据结构，也就是本文的主角B-tree。在B-tree中一个节点可以保存多个key，但具体可以保存多少个key必须有一个参数来加以控制，如果一个节点可以保存无限个key，那它就跟链表没什么区别了，太少又达不到降低树高的效果。接下来，我们需要为这个参数取一个高大上的名字，好让它可以糊弄那些初学者，比如说branchingFactor或者degree就都还不错，在本文中将使用branchingFactor(简写为B)标识该参数，并约定每个节点的key数量大于等于B-1，小于2B-1。这样一来，我们就可以说一棵2-3树是一棵B等于2的B-tree了。<br><img src="/img/content/B-tree/b-tree.png" alt="b-tree"></p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>上面的树结构各式各样，但查找元素的算法都大同小异，无非是利用每次比较的信息量来确定下一步要查找的分支。用我这个野生程序员的话来总结就是：2-3tree是B等于2的B-tree，红黑树是2-3树的一个特殊实现，同时还是一颗平衡二叉树。至于 rotate,flip,split 什么的，让它随风去吧。</p>
-<h3 id="三-why-B-tree"><a href="#三-why-B-tree" class="headerlink" title="三.why B-tree?"></a>三.why B-tree?</h3><p>由于每个节点可以保存多个key，B-tree的高度通常非常低，当B等于500时，一颗含有625亿个key的B-tree高度不会超过4。然而这并不意味B-tree拥有比平衡二叉树更优的查询复杂度。假设一颗含有N个元素的B-tree每个节点正好保存了B个key，那么一次查询最多经过 $\log _BN$ 个节点，但在每个节点中需进行一次二分查找确定下一步选择哪个节点，因此B-tree查找算法实际的时间复杂度为 $O(\log _BN \times \log B)$，熟悉对数性质的同学能够看出来该值就等于 $O(\log N)$。既然如此，为什么还需要B-tree?。<br>上面的计算模型假设对存储器的每一次读取操作成本是相等的。但实际情况往往并非如此。最简单的例子就是，一次磁盘读取操作的开销要比内存读取大好几个数量级。为了尽量减少磁盘IO的次数，往往每次读取磁盘会额外预读一部分数据到内存中，预读数据以页（又称为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B0%87">簇</a>，NTFS文件系统中默认簇大小为4096字节）为单位。也就是说当你需要在磁盘中读取1个字节的数据，计算机会在磁盘中找到该数据，并以其为起始位置一次性读取多页数据载入内存备用。这样一来如果一个树节点所占空间正好为一页大小，就能保证访问该节点所有key值只会发生一次磁盘读取。按照该理论，如果一页能够容纳1000个key节点（B=500），那么在容纳数百亿key值的B-tree中，最多3次磁盘读取就能完成一次查询操作（根节点一般常驻内存），而一般的二叉树显然无法保证这一点。</p>
-<h3 id="四-why-B-tree"><a href="#四-why-B-tree" class="headerlink" title="四.why B+tree?"></a>四.why B+tree?</h3><p>为了更好的利用B-tree的优势，必须确保一个树节点所占空间小于文件系统页。也就是说假设一个B-tree节点中的key数量为n，必须保证<strong> pageSize &gt;= n(keySize + dataSize + pointSize) + pointSize </strong>。<br><img src="/img/content/B-tree/b-tree-with-data.png" alt="b-tree-with-data"></p>
-<p>上图展示了一个典型的B-tree节点，其中最大的问题在于，如果data所占空间太大，那么我们不得不选择一个较小的B值，而B值过小又无法保证合理的树高。更加麻烦的是，在实现B-tree时，我们往往并不知道data有多大。考虑到上述这些困境，B+tree应运而生。下图展示了典型的B+tree节点，其中最大的变化在于，内部节点不再保存数据，因此每个内部节点得到了更多的空间来存储key值，进一步发挥了B-tree的优势。同时外部节点的实现也有了更多的想象空间，它可以是硬盘中的一页数据，也可以是网络中的某台计算机。如果是用来实现数据库索引，通常还会在外部节点之间添加指向下一节点的指针，这样可以更好的支持范围查询操作。<br><img src="/img/content/B-tree/b+tree.png" alt="b+tree"></p>
-<h3 id="五-总结"><a href="#五-总结" class="headerlink" title="五.总结"></a>五.总结</h3><p>以上内容仅仅介绍了B-tree的基本结构以及它要解决的问题，不过我认为对于入门玩家来说，这就足够了。想要更加深入理解或是自己实现B-tree的读者可以查看下面的链接。最后附上我的 <a target="_blank" rel="noopener" href="https://github.com/noob9527/algorithm-ts/tree/master/src/structure/dictionary/BPlusTree">B+tree(typescript)</a> 实现以供参考。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=TOb1tuEZ2X4&amp;t=1124s">R2. 2-3 Trees and B-Trees(推荐观看，虽然印度小哥的口音实在让我蛋碎)</a></li>
-<li><a target="_blank" rel="noopener" href="http://blog.codinglabs.org/articles/theory-of-mysql-index.html">MySQL索引背后的数据结构及算法原理</a></li>
-</ul>
+<h3 id="一-乘法运算"><a href="#一-乘法运算" class="headerlink" title="一.乘法运算"></a>一.乘法运算</h3><h4 id="1-暴力算法"><a href="#1-暴力算法" class="headerlink" title="1.暴力算法"></a>1.暴力算法</h4><p>假设有两个十进制数x=12345678，y=87654321，我们需要计算x与y的乘积，可以先采用分治(Divide and Conquer)的思想，将每个数字拆分成两半，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">1234</th>
+<th style="text-align:center">5678</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$x_0$</td>
+<td style="text-align:center">$x_1$</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">8765</th>
+<th style="text-align:center">4321</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$y_0$</td>
+<td style="text-align:center">$y_1$</td>
+</tr>
+</tbody>
+</table>
+<p>很容易得到：$$x=10^{d/2}x_0+x_1=12340000+5678$$$$y=10^{d/2}y_0+y_1=87650000+4321$$$$\Rightarrow xy=(10^{d/2}x_0+x_1)(10^{d/2}y_0+y_1)$$$$\Rightarrow xy=10^dx_0y_0+10^{d/2}(x_0y_1+x_1y_0)+x_1y_1$$这样下来每一次递归，都可以把两个数的乘积，转换成四组更小精度数的乘积之和，重复这个过程直到把问题划分成多个个位数的乘积之和，这个时候简单的使用九九乘法表就能得到每一项的结果。整个过程其实与我们小学学的计算方式很类似，你可以在草稿纸上尝试计算12*34来模拟这个过程。<br>当然，以上是人类的思维方式，把上面的数字转换成相应的二进制数就能模拟计算机的思维方式，唯一的不同是计算机的个位数相乘不需要乘法口诀，进行一次位与(&amp;)运算就可以了。下面是它的时间复杂度（计算过程与一般分治算法复杂度计算过程类似，下文不再提及）：$$T(N)=4T(N/2)+\Theta(N)=\Theta(N^2)$$<br><span id="more"></span></p>
+<h4 id="2-Karatsuba算法"><a href="#2-Karatsuba算法" class="headerlink" title="2.Karatsuba算法"></a>2.Karatsuba算法</h4><p>上面的暴力算法将x乘以y拆分成了$x_0y_0,x_0y_1,x_1y_0,x_1y_1$四个更小规模的子问题，而一名叫Karatsuba的学者发现，在已知$x_0y_0,x_1y_1$的情况下，可以使用$(x_0+x_1)(y_0+y_1)-x_0y_0-x_1y_1$来得到$x_0y_1+x_1y_0$的值，整个算式变成了：$$xy=10^dx_0y_0+10^{d/2}[(x_0+x_1)(y_0+y_1)-x_0y_0-x_1y_1]+x_1y_1$$这样每次递归调用只需要进行三次乘法运算，此时复杂度为：$$T(N)=3(T/2)+\Theta(N)=\Theta(N^{\log_23})\approx\Theta(N^{1.58})$$在Karatsuba之后，Toom-Cook通过每次将数字切分成多个部分进一步提升了算法的性能，例如将前面的x切分成$x_0,x_1,x_2$三个部分，此时算法的复杂度为：$$T(N)=5(T/3)+\Theta(N)=\Theta(N^{\log_35})\approx\Theta(N^{1.46})$$Schönhage–Strassen通过快速傅里叶转换将复杂度提升至$\Theta(NlogNloglogN)$，但这些显然只有在精度需求非常大的情况下才有意义。大部分情况下使用暴力算法或Karatsuba算法就已经足够了。</p>
+<h3 id="二-牛顿法（Newton-Raphson-method）"><a href="#二-牛顿法（Newton-Raphson-method）" class="headerlink" title="二.牛顿法（Newton-Raphson method）"></a>二.牛顿法（Newton-Raphson method）</h3><p>牛顿法是一种求解方程近似根的方法，他在计算机领域应用非常广泛，下文要提到的除法运算与开方运算都需要通过它实现。下面是方法的简介：<br>假设现在我们需要计算函数f(x)的根(当f(x)取0时，x的值称作方程的根)<br>1.先取一个大概的值$x_0$，代入该函数可以得到$y_0$<br>2.过$(x_0,y_0)$作一条切线，该切线的斜率为$f&#39;(x_0)$（这里$f&#39;$表示函数$f$的导数）<br>3.计算该切线与x轴的焦点$x_1$，显然这里有：$$k=\frac{y_0}{x_0-x_1}=f&#39;(x_0)=\frac{f(x_0)}{x_0-x_1}$$$$\Rightarrow x_1=x_0-\frac{f(x_0)}{f&#39;(x_0)}$$<br>4.重复上面的过程，直到得到令你满意的精度为止。wikipedia上的这张图清晰的展示了它的迭代过程:</p>
+<p><img src="/img/content/newton_lteration.gif" alt="newton_lteration.gif"></p>
+<h3 id="三-平方根算法"><a href="#三-平方根算法" class="headerlink" title="三.平方根算法"></a>三.平方根算法</h3><p>牛顿法的一个常见的应用场景是计算算术平方根，现在假设我们需要计算$\sqrt{a}$的值，这等价于计算$f(x)=x^2-a$的根，将其代入上面的公式可得：$$x_1=x_0-\frac{f(x_0)}{f&#39;(x_0)}=x_0-\frac{x^2-a}{2x}=\frac{x_0+a/x_0}{2}$$用java代码来简单模拟求解过程：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">sqrt</span><span class="params">(<span class="type">double</span> input)</span>&#123;</span><br><span class="line">    <span class="type">double</span> x=input;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        x=(x+input/x)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        System.out.println(i+<span class="string">&quot;次迭代:&quot;</span>+x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String... args)</span>&#123;</span><br><span class="line">	sqrt(<span class="number">2d</span>);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    参考值 :1.414213562373095</span></span><br><span class="line"><span class="comment">    程序输出:</span></span><br><span class="line"><span class="comment">    0次迭代:1.5</span></span><br><span class="line"><span class="comment">    1次迭代:1.4166666666666665</span></span><br><span class="line"><span class="comment">    2次迭代:1.4142156862745097</span></span><br><span class="line"><span class="comment">    3次迭代:1.4142135623746899</span></span><br><span class="line"><span class="comment">    4次迭代:1.414213562373095</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>大部分情况下，牛顿法具有平方级的收敛性能，即每迭代一次，结果的有效数字将增加一倍，这意味着只需要logN次迭代就能得到N精度的结果。但我们不能说它的复杂度是对数级的，因为我们忽视$a/x_0$这项操作，要知道以上算法的复杂度，必须先来看看除法运算的复杂度。</p>
+<h3 id="四-除法运算"><a href="#四-除法运算" class="headerlink" title="四.除法运算"></a>四.除法运算</h3><p>假设我们需要计算a/b，我们可以先将a/b转换成$a\frac{1}{b}$，由于乘法操作是已知的，因此这里只需要计算1/b就可以了，接下来可以构建一个函数$f(x)=\frac{1}{x}-b$，然后继续用牛顿法求它的根：$$x_1=x_0-\frac{f(x_0)}{f(x_1)}=x_0-\frac{1/x_0-b}{-1/x_0^2}=x_0(2-bx_0)$$这样就把除法运算全部转换成了乘法运算，同样我们需要logN次迭代才能得出N精度的结果，这里假设乘法运算的复杂度是$N^\alpha$，于是可以简单的得出复杂度的上界是$N^\alpha logN$，但仔细观察会发现，并不是每一次迭代都需要进行N精度的乘法，更准确的复杂度推导如下：$$T(N)=1^\alpha+2^\alpha+4^\alpha+8^\alpha+\cdots+N^\alpha$$$$\Rightarrow T(N)=(2^\alpha)^0+(2^\alpha)^1+(2^\alpha)^2+\cdots+(2^\alpha)^{logN}$$$$\Rightarrow 2^\alpha T(N)=(2^\alpha)^1+(2^\alpha)^2+\cdots+(2^\alpha)^{logN}+(2^\alpha)^{logN+1}$$$$\Rightarrow (2^\alpha-1)T(N)=(2^\alpha)^{logN+1}-(2^\alpha)^0$$$$\Rightarrow T(N)=\frac{(2N)^\alpha-1}{2^\alpha-1}=\Theta(N^\alpha)$$最终得出结论，使用牛顿法进行除法运算其复杂度与所用的乘法算法复杂度一致，类似的，容易证明使用牛顿法计算平方根的时间复杂度也是$\Theta(N^\alpha)$。<br>以上是这篇文章的全部内容，下篇文章来介绍一个神奇的平方根倒数算法，其中同样涉及到牛顿法。</p>
 </div>
             
         </div>
@@ -249,17 +269,17 @@
     <div class="post-nav">
   <div class="post-nav-next post-nav-item">
     
-    <a href="/lambda-calculus-y-combinator" rel="next" title="lambda calculus:Y-combinator">
+    <a href="/shannon-mathematical-theory-of-communication/" rel="next" title="香农信息论与回答老鼠喝药问题的正确姿势">
         <i class="fa fa-chevron-left"></i>
-        lambda calculus:Y-combinator
+        香农信息论与回答老鼠喝药问题的正确姿势
     </a>
     
   </div>
 
   <div class="post-nav-prev post-nav-item">
     
-    <a href="/closure-in-javascript" rel="prev" title="再谈js闭包">
-        再谈js闭包 
+    <a href="/the-famous-magic-number-fast-inverse-square-root-algorithm/" rel="prev" title="魔力数字与快速平方根倒数算法">
+        魔力数字与快速平方根倒数算法 
         <i class="fa fa-chevron-right"></i>
     </a>
     
@@ -315,7 +335,7 @@
 <aside class="widget" id="post-toc">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget-content">
-        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-B-tree-B-tree-B-tree"><span class="document-nav-text">一.B tree,B-tree,B+tree</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-Trees"><span class="document-nav-text">二.Trees</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#BinarySearchTree"><span class="document-nav-text">BinarySearchTree</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-3tree"><span class="document-nav-text">2-3tree</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#RedBlackTree-%E4%B9%B1%E5%85%A5"><span class="document-nav-text">RedBlackTree(乱入)</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#B-tree"><span class="document-nav-text">B-tree</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="document-nav-text">小结</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-why-B-tree"><span class="document-nav-text">三.why B-tree?</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-why-B-tree"><span class="document-nav-text">四.why B+tree?</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%94-%E6%80%BB%E7%BB%93"><span class="document-nav-text">五.总结</span></a></li></ol>
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="document-nav-text">一.乘法运算</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#1-%E6%9A%B4%E5%8A%9B%E7%AE%97%E6%B3%95"><span class="document-nav-text">1.暴力算法</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#2-Karatsuba%E7%AE%97%E6%B3%95"><span class="document-nav-text">2.Karatsuba算法</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E7%89%9B%E9%A1%BF%E6%B3%95%EF%BC%88Newton-Raphson-method%EF%BC%89"><span class="document-nav-text">二.牛顿法（Newton-Raphson method）</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E5%B9%B3%E6%96%B9%E6%A0%B9%E7%AE%97%E6%B3%95"><span class="document-nav-text">三.平方根算法</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="document-nav-text">四.除法运算</span></a></li></ol>
     </div>
 </aside>
 
@@ -339,11 +359,11 @@
         <ul class="recent-posts">
             
             <li>
-                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+                <a href="/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
             </li>
             
             <li>
-                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+                <a href="/exploration-vs-exploitation/">Exploration vs Exploitation</a>
             </li>
             
             <li>
@@ -379,23 +399,23 @@
             </li>
             
             <li>
-                <a href="/closure-in-javascript">再谈js闭包</a>
+                <a href="/closure-in-javascript/">再谈js闭包</a>
             </li>
             
             <li>
-                <a href="/btree-data-structure">B-tree数据结构</a>
+                <a href="/btree-data-structure/">B-tree数据结构</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+                <a href="/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+                <a href="/lambda-calculus-introduction/">lambda calculus:Introduction</a>
             </li>
             
             <li>
-                <a href="/salted-password-hashing">加密算法简介</a>
+                <a href="/salted-password-hashing/">加密算法简介</a>
             </li>
             
         </ul>
@@ -458,9 +478,9 @@
     
           <script type="text/javascript">
               var disqus_config = function () {
-                  this.page.url = 'https://blog.staynoob.cn/btree-data-structure';
-                  this.page.identifier = '/btree-data-structure';
-                  this.page.title = 'B-tree数据结构';
+                  this.page.url = 'https://blog.staynoob.cn/integer-arithmetic-karatsuba-multiplication/';
+                  this.page.identifier = '/integer-arithmetic-karatsuba-multiplication/';
+                  this.page.title = '数值运算与牛顿迭代法';
               };
               var d = document, s = d.createElement('script');
               s.src = 'https://staynoob.disqus.com/embed.js';

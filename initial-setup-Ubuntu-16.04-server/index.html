@@ -9,27 +9,26 @@
 
 
 
-<title>Bash小技巧 - 许炎的个人博客</title>
+<title>Initial Setup Ubuntu16.04 server - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="Linux,编程技巧">
+    <meta name="keywords" content="Linux">
 
 
-<meta name="description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta name="description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器 1ssh root@your_server_ip 新增账">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash小技巧">
-<meta property="og:url" content="https://blog.staynoob.cn/bash-shortcuts">
+<meta property="og:title" content="Initial Setup Ubuntu16.04 server">
+<meta property="og:url" content="https://blog.staynoob.cn/initial-setup-Ubuntu-16.04-server/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="bash的全称是Bourne Again Shell，是大多数linux发行版以及OSX系统的默认shell，win10可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。  一.写在前面这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对!!,!-1,!$,!*分表代表什么了然于心，我想你应该不需要读这篇文章">
+<meta property="og:description" content="这篇文章算是安装ubuntu16.04后要做的9件事的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。  一.配置用户 连接主机 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器 1ssh root@your_server_ip 新增账">
 <meta property="og:locale">
-<meta property="og:image" content="https://blog.staynoob.cn/img/bash-shotcuts.jpg">
-<meta property="article:published_time" content="2017-02-11T15:07:28.000Z">
-<meta property="article:modified_time" content="2026-07-14T06:41:57.416Z">
+<meta property="og:image" content="https://blog.staynoob.cn/img/ubuntu16_04_server.jpg">
+<meta property="article:published_time" content="2016-12-04T03:44:13.000Z">
+<meta property="article:modified_time" content="2026-07-14T09:39:31.116Z">
 <meta property="article:author" content="noob9527">
 <meta property="article:tag" content="Linux">
-<meta property="article:tag" content="编程技巧">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.staynoob.cn/img/bash-shotcuts.jpg">
+<meta name="twitter:image" content="https://blog.staynoob.cn/img/ubuntu16_04_server.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -154,7 +153,7 @@
         <div class="row">
             <div class="col-md-9">
                 <main>
-                    <article id="post-bash小技巧"
+                    <article id="post-Initial-Setup-Ubuntu16-04-server"
          class="post post-type-post" itemscope itemprop="blogPost">
 
     <div class="post-inner">
@@ -163,7 +162,7 @@
         <header class="post-header">
             <h1 itemprop="name">
     
-      Bash小技巧
+      Initial Setup Ubuntu16.04 server
     
 </h1>
         </header>
@@ -176,9 +175,9 @@
       <i class="fa fa-calendar"></i>
     </span>
     <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2017-02-11T23:07:28+08:00" 
-          content="2017-02-11">
-        2017-02-11
+    <time itemprop="datePublished" datetime="2016-12-04T11:44:13+08:00" 
+          content="2016-12-04">
+        2016-12-04
     </time>
 </span>
             
@@ -189,7 +188,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/%E6%B0%B8%E8%BF%9C%E8%AE%B0%E4%B8%8D%E4%BD%8F%E7%9A%84%E7%BC%96%E7%A8%8B%E5%A7%BF%E5%8A%BF/">永远记不住的编程姿势</a>
+        <a class="article-category-link" href="/categories/System/">System</a>
     </span>
 </span>
 
@@ -205,8 +204,8 @@
               <div class="post-gallery-photos">
     
         
-          <!--<a class="post-gallery-img fancybox" href="/img/bash-shotcuts.jpg" rel="gallery_cmrkab6fc001jnf6hdama1upe">-->
-            <img src="/img/bash-shotcuts.jpg" itemprop="image">
+          <!--<a class="post-gallery-img fancybox" href="/img/ubuntu16_04_server.jpg" rel="gallery_cmrkgmkfq001b836h2luw97ll">-->
+            <img src="/img/ubuntu16_04_server.jpg" itemprop="image">
           <!--</a>-->
         
     
@@ -220,72 +219,34 @@
             
             <!--文章内容-->
             <div class="post-content"><blockquote>
-<p>bash的全称是<em>Bourne Again Shell</em>，是大多数<em>linux</em>发行版以及<em>OSX</em>系统的默认shell，<em>win10</em>可以开启开发者模式来使用bash，因此bash是目前所有主流操作系统中都可以使用的命令行环境。</p>
+<p>这篇文章算是<a href="http://blog.staynoob.cn/post/linux/initial-setup-ubuntu-16.04-desktop/">安装ubuntu16.04后要做的9件事</a>的姊妹篇，区别是上篇文章针对的是ubuntu桌面版，这篇文章针对ubuntu16.04 server版。</p>
 </blockquote>
-<h3 id="一-写在前面"><a href="#一-写在前面" class="headerlink" title="一.写在前面"></a>一.写在前面</h3><p>这篇文章只是介绍一些非常好用，但我总是记不住的bash小技巧。按照惯例，先来做个小测验，如果你对<code>!!</code>,<code>!-1</code>,<code>!$</code>,<code>!*</code>分表代表什么了然于心，我想你应该不需要读这篇文章。</p>
+<h3 id="一-配置用户"><a href="#一-配置用户" class="headerlink" title="一.配置用户"></a>一.配置用户</h3><ol>
+<li>连接主机<br> 在进行所有操作之前，首先确保你知道主机的外网IP，并且拥有root账户，以上信息一般由各主机提供商提供。在知道以上讯息后可以直接在终端通过以下命令登陆服务器 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@your_server_ip</span><br></pre></td></tr></table></figure></li>
+<li>新增账户<br> linux通用的新增，删除用户命令分别是<code>useradd</code>, <code>userdel</code>，但是ubuntu有一个更方便的新增用户命令<code>adduser</code>，使用<code>adduser</code>命令会以交互式询问的方式来设定用户参数，包括新用户的密码，而使用useradd则需要通过命令行参数的方式来设定选项(如是否需要新建用户目录等)，另外如果使用<code>useradd</code>，还要额外通过<code>passwd</code>命令来设定新用户的密码。这里建议直接使用<code>adduser</code>，以新增用户xy为例，输入 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adduser xy</span><br></pre></td></tr></table></figure>
+ 除了输入新用户的密码外，该命令还会询问一些额外信息，可以直接按<em>enter</em>键跳过。</li>
+<li>添加sudo权限<br> 在ubuntu系统中，将用户添加到sudo用户组会自动获得sudo命令的执行权限，这里可以使用 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -aG sudo xy</span><br></pre></td></tr></table></figure>
+ 或者 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpasswd -a xy sudo</span><br></pre></td></tr></table></figure>
+ 来将xy添加到sudo用户组。至此用户配置就已经完成了，以下列一些其它与用户相关的命令 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">passwd xy <span class="comment">#为xy账户设定密码</span></span><br><span class="line">userdel xy <span class="comment">#删除xy账户</span></span><br><span class="line">groupadd <span class="built_in">test</span> <span class="comment">#新增test工作组</span></span><br><span class="line">groupdel <span class="built_in">test</span> <span class="comment">#删除test工作组</span></span><br><span class="line">gpasswd -d xy sudo <span class="comment">#将xy移除sudo用户组</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <span id="more"></span>
-<h3 id="二-快捷键"><a href="#二-快捷键" class="headerlink" title="二.快捷键"></a>二.快捷键</h3><p>bash快捷键默认使用的是<a target="_blank" rel="noopener" href="http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">readline</a>库的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Emacs">Emacs</a>模式，因此如果你是Emacs党，可以直接跳过这一节。</p>
-<ul>
-<li><p>历史命令<br>  一个常见的应用场景是你需要重试之前输入过的某条命令，常见的做法是不停的按上下箭头来找出那条命令，我个人则比较喜欢ctrl+p(arrow up)与ctrl+n(arrow down)，也可以通过<code>history</code>配合<code>grep</code>来查找命令。而这里推荐的方法是使用Ctrl+r，然后输入你想要的命令中含有的单词，之后会出现含有这个单词的命令，如果它不是你想要的命令，就继续按Ctrl+r，直到找到你要的命令为止。中途你还可以继续输入查找字符，总之谁用谁知道。</p>
+<h3 id="二-配置ssh"><a href="#二-配置ssh" class="headerlink" title="二.配置ssh"></a>二.配置ssh</h3><p>现在已经可以使用xy身份来登陆主机了，但是每次登陆都需要输入密码有些繁琐，可以在自己的常用机器上配置SSH key来跳过这个步骤。</p>
+<ol>
+<li>生成ssh key<br> 如果你的<em>本地机器</em>已经生成了ssh key可以跳过这个步骤(ssh key通常在用户主目录的.ssh文件夹下)，如果还没有，则可以直接通过如下命令生成 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+ 正常情况下会看到如下输出 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/Users/xy/.ssh/id_rsa):</span><br></pre></td></tr></table></figure>
+ 这里可以指定生成key所存放的路径，一般直接按回车使用默认路径就好了，之后程序会提示你输入“passphrase”，同样可以直接按回车键跳过这一步。如果这一步选择跳过，则私钥可以直接使用，如果你输入了passphrase，则每次使用私钥的时候还需要提供这里输入的passphrase。<br> 完成以上步骤后会在用户目录的.ssh文件夹下看到id_rsa(私钥)与id_rsa.pub(公钥)</li>
+<li>ubuntu服务器授权生成的ssh key<br> 首先登陆服务端，进入xy的用户主目录，使用如下命令新建.ssh文件夹 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> .ssh &amp;&amp; <span class="built_in">chmod</span> 700 .ssh</span><br></pre></td></tr></table></figure>
+ 再新建authorized_keys文件，将之前生成的id_rsa.pub文件的内容拷贝进去就好了。 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.ssh/authorized_keys <span class="comment">#将公钥copy到该文件</span></span><br><span class="line"><span class="built_in">chmod</span> 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+ 以上过程多少有些麻烦，如果你的本地机器也是ubuntu16.04，则可以直接使用内建的ssh-copy-id脚本来完成上述工作，具体的命令如下 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id xy@your_server_ip</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>移动光标<br>  常见的应用场景是洋洋洒洒敲了一大串命令，结果发现命令中有几个字母输错了，又或者是忘了加<code>sudo</code>，这时候常见的做法是按<strong>arrow left</strong>键移动光标到指定的位置，当然也不妨尝试下面的快捷键。</p>
+</ol>
+<p>至此，每次使用完成该配置的机器登陆ubuntu服务器就不用再提供密码了，顺便提一句，如果本机的用户名与ubuntu服务器上的用户名一致，则用户名也可以省略，登陆命令简化成<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh your_server_ip</span><br></pre></td></tr></table></figure></p>
+<h3 id="三-Tips"><a href="#三-Tips" class="headerlink" title="三.Tips"></a>三.Tips</h3><p>ubuntu14.04使用init.d管理服务(daemon)，而ubuntu16.04已经换成了systemd，这里以mysql服务为例简单列一下二者在日常操作上的区别</p>
 <ul>
-<li><strong>ctrl+b</strong> 相当于arrow left</li>
-<li><strong>ctrl+f</strong> 相当于arrow right</li>
-<li><strong>alt+b</strong> 向前移动一个单词</li>
-<li><strong>alt+f</strong> 向后移动一个单词</li>
-<li><strong>ctrl+a</strong> 移至行首，相当于home</li>
-<li><strong>ctrl+e</strong> 移至行尾，相当于end</li>
-<li><strong>ctrl+xx</strong> 在命令行首和光标当前位置之间移动</li>
-</ul>
+<li>init.d  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/mysql start</span><br><span class="line">sudo /etc/init.d/mysql restart</span><br><span class="line">sudo /etc/init.d/mysql stop</span><br><span class="line">sudo /etc/init.d/mysql status</span><br><span class="line"><span class="comment">#或者</span></span><br><span class="line">sudo service mysql start   <span class="comment">#启动</span></span><br><span class="line">sudo service mysql restart <span class="comment">#重启</span></span><br><span class="line">sudo service mysql stop    <span class="comment">#停止</span></span><br><span class="line">sudo service mysql status  <span class="comment">#查看状态</span></span><br></pre></td></tr></table></figure></li>
+<li>systemd  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysql     <span class="comment">#启动</span></span><br><span class="line">systemctl stop mysql      <span class="comment">#停止</span></span><br><span class="line">systemctl status mysql    <span class="comment">#查看状态</span></span><br><span class="line">systemctl <span class="built_in">enable</span> mysql    <span class="comment">#开机启动</span></span><br><span class="line">journalctl -u mysql       <span class="comment">#查看日志</span></span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ul>
-<li>编辑<br>  像我这种手残党使用backspace删除单词时，经常不小心多按或者少按，这时候就体现出按单词删除的优越性了，但是我不仅手残，脑袋也不怎么灵光，ctrl+w与alt+d的效果经常弄混有没有?没关系，可以使用ctrl+/来撤销编辑了。下面列出我觉得比较有价值的编辑快捷键。<ul>
-<li><strong>ctrl+w</strong> 向前删除一个单词</li>
-<li><strong>alt+d</strong> 向后删除一个单词</li>
-<li><strong>ctrl+k</strong> 删除当前光标到行尾的字符</li>
-<li><strong>ctrl+u</strong> 删除当前光标到行首的字符</li>
-<li><strong>alt+u</strong> 将字母转为大写(光标处至词尾)</li>
-<li><strong>alt+l</strong> 将字母转为小写(光标处至词尾)</li>
-<li><strong>alt+.</strong> 获取上条命令最后一个参数</li>
-<li><strong>ctrl+/</strong> 撤销</li>
-</ul>
-</li>
-</ul>
-<h3 id="三-历史扩展-History-Expansion"><a href="#三-历史扩展-History-Expansion" class="headerlink" title="三.历史扩展(History Expansion)"></a>三.历史扩展(History Expansion)</h3><p>Bash 的历史扩展又被称为 Bang(!) 命令，是 bash 将历史命令转换到可执行命令的过程。历史扩展中操作历史命令一般有两个部分，即先从历史命令中找出相应的命令，被选中的命令称为Event，bash会将选中的Event以空格分割成Words，之后再使用单词指示器选择部分或全部的Word到当前行中。</p>
-<ul>
-<li>事件指示器(Event Designators)<br>  这次我们又行云流水的敲了一大串命令，自信回车一气呵成，结果系统提示“权限不够”，是不是很尴尬？通过上面的介绍，想必你应该马上能想到使用<strong>ctrl+p</strong>翻出上一条命令，再使用<strong>ctrl+a</strong>将光标移至行首，添加<strong>sudo</strong>执行。不过这里还有更加优雅的方式，直接执行<code>sudo !!</code>，这里<strong> !! </strong>中的第一个感叹号代表开始历史替换，而第二份感叹号则是事件指示器，下面有更详细的用法。<ul>
-<li><strong> n </strong> 选择历史命令列表中第n条命令</li>
-<li><strong> -n </strong> 选择倒数第n条命令</li>
-<li><strong> ! </strong> 选择上一条命令, 相当于<strong>-1</strong></li>
-<li><strong> string </strong> 选择最近的以string开头的命令</li>
-<li><strong> ?string[?] </strong> 选择最近的包含string的命令, 如果该指示器后面是换行符, 则可以不用输入结尾的<strong>[?]</strong></li>
-<li><strong> # </strong> 引用目前输入的所有命令</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>单词指示器(Word Designators)<br>  有时候我们只想要获取上条命令的参数，而不包含命令本身。比如说我先执行了  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bower install react react-dom ...(此处省略100多个库你懂得) --save</span><br></pre></td></tr></table></figure>
-  之后发现自己又sb了，应该改用npm来执行同样的命令，这时可以输入  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm !*</span><br></pre></td></tr></table></figure>
-  其效果等同于  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react react-dom ... --save</span><br></pre></td></tr></table></figure>
-  这里<strong> !* </strong>中的<strong> * </strong>就是单词指示器，也许你发现了这里并没有指定事件，如果没有事件指示器，则单词指示器的操作条目默认是上一条命令，因此<strong> !* </strong>其实相当于<strong> !!* </strong>。一般情况下事件指示器与单词指示器需要以<strong> : </strong>分隔，但如果单词指示器是以<strong> ^,$,*,-,% </strong>开头时，可以省略<strong> : </strong>，因此<strong> !* </strong>的完整形式是<strong> !!:* </strong>，下面是其它单词指示器。<ul>
-<li><strong> n </strong> 选择第n个word，如果是0则选择的是命令</li>
-<li><strong> ^ </strong> 选择第一个参数，相当于1</li>
-<li><strong> $ </strong> 选择最后一个word</li>
-<li><strong> n1-n2 </strong> 选择第n1到第n2个word</li>
-<li><strong> * </strong> 选择命令的所有参数, 相当于1-$</li>
-<li><strong> n* </strong> 相当于n-$</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>修饰符(Modifiers)<br>  在单词指示器后面其实还可以添加修饰符，同样以<strong> : </strong>分隔，比如<code>!!:*:p</code>会打印上条命令的所有参数，但不会执行。这个特性我不是很常用，为了合理(lang)利用(de)脑容量(ji)，这里就不罗列了，有兴趣的读者可以在参考链接中查看更详细的内容。</li>
-</ul>
-<p>参考链接：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="http://ahei.info/bash.htm">高效操作Bash</a></li>
-<li><a target="_blank" rel="noopener" href="https://linux.cn/article-5658-1.html">感叹号：bash 的历史扩展功能</a></li>
 </ul>
 </div>
             
@@ -293,7 +254,7 @@
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7/" rel="tag">编程技巧</a></li></ul>
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
 
         </footer>
     </div>
@@ -302,17 +263,17 @@
     <div class="post-nav">
   <div class="post-nav-next post-nav-item">
     
-    <a href="/regular-expression-lookahead-lookbehind" rel="next" title="正则表达式：零宽断言(lookaround)">
+    <a href="/the-famous-magic-number-fast-inverse-square-root-algorithm/" rel="next" title="魔力数字与快速平方根倒数算法">
         <i class="fa fa-chevron-left"></i>
-        正则表达式：零宽断言(lookaround)
+        魔力数字与快速平方根倒数算法
     </a>
     
   </div>
 
   <div class="post-nav-prev post-nav-item">
     
-    <a href="/salted-password-hashing" rel="prev" title="加密算法简介">
-        加密算法简介 
+    <a href="/jackson-serialize-bi-directional-relationship-infinite-recursion/" rel="prev" title="Jackson序列化双向关联映射的四种方法">
+        Jackson序列化双向关联映射的四种方法 
         <i class="fa fa-chevron-right"></i>
     </a>
     
@@ -368,7 +329,7 @@
 <aside class="widget" id="post-toc">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget-content">
-        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E5%86%99%E5%9C%A8%E5%89%8D%E9%9D%A2"><span class="document-nav-text">一.写在前面</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="document-nav-text">二.快捷键</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E5%8E%86%E5%8F%B2%E6%89%A9%E5%B1%95-History-Expansion"><span class="document-nav-text">三.历史扩展(History Expansion)</span></a></li></ol>
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7"><span class="document-nav-text">一.配置用户</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AEssh"><span class="document-nav-text">二.配置ssh</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-Tips"><span class="document-nav-text">三.Tips</span></a></li></ol>
     </div>
 </aside>
 
@@ -392,11 +353,11 @@
         <ul class="recent-posts">
             
             <li>
-                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+                <a href="/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
             </li>
             
             <li>
-                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+                <a href="/exploration-vs-exploitation/">Exploration vs Exploitation</a>
             </li>
             
             <li>
@@ -432,23 +393,23 @@
             </li>
             
             <li>
-                <a href="/closure-in-javascript">再谈js闭包</a>
+                <a href="/closure-in-javascript/">再谈js闭包</a>
             </li>
             
             <li>
-                <a href="/btree-data-structure">B-tree数据结构</a>
+                <a href="/btree-data-structure/">B-tree数据结构</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+                <a href="/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+                <a href="/lambda-calculus-introduction/">lambda calculus:Introduction</a>
             </li>
             
             <li>
-                <a href="/salted-password-hashing">加密算法简介</a>
+                <a href="/salted-password-hashing/">加密算法简介</a>
             </li>
             
         </ul>
@@ -511,9 +472,9 @@
     
           <script type="text/javascript">
               var disqus_config = function () {
-                  this.page.url = 'https://blog.staynoob.cn/bash-shortcuts';
-                  this.page.identifier = '/bash-shortcuts';
-                  this.page.title = 'Bash小技巧';
+                  this.page.url = 'https://blog.staynoob.cn/initial-setup-Ubuntu-16.04-server/';
+                  this.page.identifier = '/initial-setup-Ubuntu-16.04-server/';
+                  this.page.title = 'Initial Setup Ubuntu16.04 server';
               };
               var d = document, s = d.createElement('script');
               s.src = 'https://staynoob.disqus.com/embed.js';

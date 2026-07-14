@@ -9,26 +9,25 @@
 
 
 
-<title>为什么bootstrap采用border-box盒模型 - 许炎的个人博客</title>
+<title>Notes on High Performance MySQL - 许炎的个人博客</title>
 
 
-    <meta name="keywords" content="CSS">
+    <meta name="keywords" content="Database,SQL">
 
 
-<meta name="description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
+<meta name="description" content="Notes on High Performance MySQL, for future reference.  Chapter 4: Optimizing Schema and Data TypesChoosing Identifiers Integers are usually the best choice of identifiers. Avoid string types for ide">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么bootstrap采用border-box盒模型">
-<meta property="og:url" content="https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing">
+<meta property="og:title" content="Notes on High Performance MySQL">
+<meta property="og:url" content="https://blog.staynoob.cn/notes-on-high-performance-mysql/index.html">
 <meta property="og:site_name" content="NOOB">
-<meta property="og:description" content="作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。  CSS盒模型指的是由cont">
+<meta property="og:description" content="Notes on High Performance MySQL, for future reference.  Chapter 4: Optimizing Schema and Data TypesChoosing Identifiers Integers are usually the best choice of identifiers. Avoid string types for ide">
 <meta property="og:locale">
-<meta property="og:image" content="https://blog.staynoob.cn/img/box-sizing.jpg">
-<meta property="article:published_time" content="2016-05-18T08:48:58.000Z">
-<meta property="article:modified_time" content="2026-07-14T06:41:57.414Z">
+<meta property="article:published_time" content="2024-06-29T10:15:31.000Z">
+<meta property="article:modified_time" content="2026-07-14T09:39:31.368Z">
 <meta property="article:author" content="noob9527">
-<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.staynoob.cn/img/box-sizing.jpg">
 
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico " />
@@ -153,7 +152,7 @@
         <div class="row">
             <div class="col-md-9">
                 <main>
-                    <article id="post-为什么bootstrap采用border-box盒模型"
+                    <article id="post-notes-on-high-performance-mysql"
          class="post post-type-post" itemscope itemprop="blogPost">
 
     <div class="post-inner">
@@ -162,7 +161,7 @@
         <header class="post-header">
             <h1 itemprop="name">
     
-      为什么bootstrap采用border-box盒模型
+      Notes on High Performance MySQL
     
 </h1>
         </header>
@@ -175,9 +174,9 @@
       <i class="fa fa-calendar"></i>
     </span>
     <span class="post-meta-item-text">发表于</span>
-    <time itemprop="datePublished" datetime="2016-05-18T16:48:58+08:00" 
-          content="2016-05-18">
-        2016-05-18
+    <time itemprop="datePublished" datetime="2024-06-29T18:15:31+08:00" 
+          content="2024-06-29">
+        2024-06-29
     </time>
 </span>
             
@@ -188,7 +187,7 @@
     </span>
     <span class="post-meta-item-text">分类于</span>
     <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-        <a class="article-category-link" href="/categories/Frontend/">Frontend</a>
+        <a class="article-category-link" href="/categories/Backend/">Backend</a>
     </span>
 </span>
 
@@ -200,72 +199,74 @@
 
         <!-- gallery-->
         
-        <div class="post-gallery">
-              <div class="post-gallery-photos">
-    
-        
-          <!--<a class="post-gallery-img fancybox" href="/img/box-sizing.jpg" rel="gallery_cmrkab6f9000xnf6h5lf65stu">-->
-            <img src="/img/box-sizing.jpg" itemprop="image">
-          <!--</a>-->
-        
-    
-  </div>
-
-        </div>
-        
 
         <!-- entry -->
         <div class="post-entry" itemprop="postBody">
             
             <!--文章内容-->
             <div class="post-content"><blockquote>
-<p>作为前端萌新，想要制作自己的博客样式，自然首先想到bootstrap框架。在开发过程中我发现，bootstrap将全局范围的box-sizing属性重置成了border-box，而不是w3c默认的content-box。google中文结果没有查到bootstrap这么做的原因，甚至有人说这是bootstrap的一个坑(囧)，于是这里我把我查到的一些资料记录下来。</p>
+<p>Notes on <a target="_blank" rel="noopener" href="https://www.amazon.com/High-Performance-MySQL-Optimization-Replication/dp/1449314287/ref=sr_1_5?keywords=mysql&amp;qid=1560589416&amp;s=books&amp;sr=1-5">High Performance MySQL</a>, for future reference.</p>
 </blockquote>
-<p>CSS盒模型指的是由content,padding,border,margin组成的框结构，相关内容每一本CSS书籍都有详细介绍，这里就不多说了，这篇文章主要讲的是当我们为元素指定width,height属性时，将如何影响到元素的显示效果。文章主要参考的是<a target="_blank" rel="noopener" href="https://css-tricks.com/box-sizing/">box-sizing</a>这篇文章，建议有英语基础的同学直接阅读该篇文章。</p>
-<h3 id="一-CSS盒模型历史"><a href="#一-CSS盒模型历史" class="headerlink" title="一.CSS盒模型历史"></a>一.CSS盒模型历史</h3><p>在CSS起源时期，w3c规范CSS盒模型默认按如下方式计算：</p>
-<ul>
-<li>width + padding + border = 元素实际可见的宽度</li>
-<li>height + padding + border = 元素实际可见的高度</li>
-</ul>
-<p>这样的设计其实有点反人类，因为当你经过周密计算，将元素的宽度，高度设定好，并将其定位后。假设领导不满意，打算让你将border或padding加粗一个像素，有可能你就需要重新调整布局。IE浏览器很早就看到了这个隐患，并勇敢的站出来挑战规范！在IE5中实现了一个不一样的盒模型，它按如下方式来计算：</p>
-<ul>
-<li>width = 元素实际可见的宽度</li>
-<li>height = 元素实际可见的高度</li>
-</ul>
-<p>这里面的width不再是content的宽度，而是包含了content,padding,border的总和，当你为元素添加的边框与内补越多，给内容留下的空间也就越少，这其实非常合理，并且更有利于开发人员的布局。然而它却不符合规范。于是微软在IE6版本就及时向规范妥协了，在此后的版本(IE6 - IE8)中，仅仅在“混杂模式(quirks mode)”下继续使用这个模型。顺便解释一下混杂模式，浏览器开发通常既要考虑到最新的web规范，又要考虑向后兼容，因此IE的开发者创建了两种呈现模式，即标准模式与混杂模式，前者主要用于兼容最新规范，后者主要用于兼容老的IE版本，在HTML代码中不使用或使用错误的DOCTYPE将进入混杂模式。</p>
-<p>尽管规范中的盒模型有这样的缺陷，但是当人们理解并习惯了之后，发现用该模型进行开发也不算太难，只要在给元素设定尺寸的时候事先计算一下大概要给padding与border预留多少空间就可以了。然而当web开发进入响应式设计(Responsive Web Design)的时代后，相同的方式就不灵了，因为预留的固定像素无法自适应屏幕大小。</p>
+<h3 id="Chapter-4-Optimizing-Schema-and-Data-Types"><a href="#Chapter-4-Optimizing-Schema-and-Data-Types" class="headerlink" title="Chapter 4: Optimizing Schema and Data Types"></a>Chapter 4: Optimizing Schema and Data Types</h3><h4 id="Choosing-Identifiers"><a href="#Choosing-Identifiers" class="headerlink" title="Choosing Identifiers"></a>Choosing Identifiers</h4><blockquote>
+<p>Integers are usually the best choice of identifiers. Avoid string types for identifiers if possible, because they take up a lot of space and are generally slower than integer types. You should also be very careful with completely “random” strings, such as those produced by MD5() , SHA1() , or UUID().</p>
+</blockquote>
 <span id="more"></span>
-<h3 id="二-CSS3的box-sizing属性"><a href="#二-CSS3的box-sizing属性" class="headerlink" title="二.CSS3的box-sizing属性"></a>二.CSS3的box-sizing属性</h3><p>为了适应移动互联网的浪潮，CSS3在提升响应式开发体验上下了很多功夫，比如说添加了media query媒介查询模块(CSS2.1中的@media属性只能用来区分媒体的类型，无法查询具体屏幕尺寸)，另一项重要的改进就是引入box-sizing属性来决定盒模型的渲染方式，它有三个可选值，分别是：content-box(默认值),padding-box,border-box。其中padding-box几乎没人用，content-box依然按照规范工作，而border-box则采取与老版本IE混杂模式中对盒模型相同的解释方式，这也是最流行的选项。看到这里，你也许仍然不明白border-box到底好在哪里，下面是一个Demo:</p>
-
-<div style="border:5px solid #a57958;padding:10px">
-	<p>按下按钮查看box-sizing属性对布局的影响</p>
-    <button class="demo-btn btn btn-info">content-box</button>
-    <button class="demo-btn btn btn-info">border-box</button>
-    <div id="demo-container" class="clearfix" style="margin-top:10px">
-    	<div style="margin:0 auto 5px;padding:10%;width:90%;border:5px solid #a57958">width=90%
-        padding=10%
-        border=5px</div>
-    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
-        border=5px</div>
-    	<div style="float:left;width:50%;border:5px solid #a57958;height:100px;">width=50%
-        border=5px</div>
-    </div>
-</div>
-<script>
-	$(".demo-btn").on("click",function(){
-    	$("*").css("box-sizing",$(this).text());
-    });
-</script>
-
-<h3 id="三-重置方法最佳实践"><a href="#三-重置方法最佳实践" class="headerlink" title="三.重置方法最佳实践"></a>三.重置方法最佳实践</h3><p>现在，我们已经知道了使用border-box盒模型进行布局更加简单，而除非你的代码是面向IE5用户开发的，否则都需要使用重置代码来修改默认的盒模型，最早人们使用通配符选择器(universal type selector)来重置所有元素的box-sizing属性。代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>大部分情况下上述代码就够了，但它还遗漏了伪元素，改进后的代码如下：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>以上也是bootstrap(v3.3.5)中使用的重置代码，它已经完全够用了，不过假如你的需求非常变态，想要在网页中混合使用content-box,padding-box,border-box,可以采用如下的重置代码：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>:inherit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>上面的代码可以让你的选择更加有弹性，可以为不同的布局容器指定各自的盒模型，而不用担心每个容器的子元素被全局样式重置。</p>
-<h3 id="四-浏览器支持"><a href="#四-浏览器支持" class="headerlink" title="四.浏览器支持"></a>四.浏览器支持</h3><p>所有现代浏览器已经全部支持无前缀的box-sizing属性，如果你想要支持一些老到几乎没人用的浏览器版本(safari &lt; 5.1,chrome &lt; 10,firefox &lt; 29)，可以像bootstrap一样为该属性加上浏览器前缀：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">*,*<span class="selector-pseudo">:before</span>,*<span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">  -webkit-<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">  -moz-<span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">  <span class="attribute">box-sizing</span>:border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>不过padding-box因为没什么人用，所以一些浏览器可能会不支持。IE7及其以下版本不支持box-sizing属性。</p>
+<h4 id="Datetime-vs-Timestamp"><a href="#Datetime-vs-Timestamp" class="headerlink" title="Datetime vs Timestamp"></a>Datetime vs Timestamp</h4><table>
+<thead>
+<tr>
+<th>type</th>
+<th>size</th>
+<th>date range</th>
+<th>display depends on timezone?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>datetime</td>
+<td>8 byte</td>
+<td>1001-9999</td>
+<td>no</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>4 byte</td>
+<td>1970-2038</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Special behavior aside, in general if you can use TIMESTAMP you should, because it is<br>more space-efficient than DATETIME . Sometimes people store Unix timestamps as integer<br>values, but this usually doesn’t gain you anything. The integer format is often less<br>convenient to deal with, so we do not recommend doing this.</p>
+</blockquote>
+<h4 id="Avoid-NULL-if-possible"><a href="#Avoid-NULL-if-possible" class="headerlink" title="Avoid NULL if possible"></a>Avoid NULL if possible</h4><blockquote>
+<p>We suggest considering alternatives when possible. Even when you do need to store a &quot;no value&quot; fact in a table, you might not need to use NULL. Perhaps you can use zero, a special value, or an empty string instead. However, don’t be too afraid of using NULL when you need to represent an unknown value. In some cases, it’s better to use NULL than a magical constant. Selecting one value from the domain of a constrained type, such as using −1 to represent an unknown integer, can complicate your code a lot, introduce bugs, and just generally make a total mess out of things. Handling NULL isn&#39;t always easy, but it’s often better than the alternative.</p>
+</blockquote>
+<p>However, in my point of view, if you need to store a &quot;no value&quot; fact, NULL is always the best choice, every programmer understand its meaning, the little performance improvements(by avoid null value) should not be taken into consideration until it really bothers you, besides, the fact that your default value take less space and has better performance is highly depends on implementation detail of the store engine. It&#39;s hard to conclude that it will be always true in future releases, let alone other store engines and other database products.</p>
+<h3 id="Chapter5-Indexing-for-high-performance"><a href="#Chapter5-Indexing-for-high-performance" class="headerlink" title="Chapter5: Indexing for high performance"></a>Chapter5: Indexing for high performance</h3><h4 id="Types-of-queries-that-can-use-a-B-Tree-index"><a href="#Types-of-queries-that-can-use-a-B-Tree-index" class="headerlink" title="Types of queries that can use a B-Tree index."></a>Types of queries that can use a B-Tree index.</h4><blockquote>
+<p>Suppose we have the following table:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> People (</span><br><span class="line">    last_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    first_name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    dob <span class="type">date</span> <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    gender enum(<span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;f&#x27;</span>)<span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    key(last_name, first_name, dob)</span><br><span class="line">);</span><br></pre></td></tr></table></figure><br>The index will be useful for the following kinds of queries:</p>
+<ul>
+<li>Match the full value<br>  A match on the full key value specifies values for all columns in the index. For example, this index can help you find a person named Cuba Allen who was born on 1960-01-01.</li>
+<li><strong> Match a leftmost prefix </strong><br>  This index can help you find all people with the last name Allen. This uses only the first column in the index.</li>
+<li><strong> Match a column prefix </strong><br>  You can match on the first part of a column&#39;s value. This index can help you find all people whose last names begin with J. This uses only the first column in the index.</li>
+<li>Match a range of values<br>  This index can help you find people whose last names are between Allen and Barrymore. This also uses only the first column.</li>
+<li>Match one part exactly and match a range on another part<br>  This index can help you find everyone whose last name is Allen and whose first name starts with the letter K (Kim, Karl, etc.). This is an exact match on <code>last_name</code> and a range query on <code>first_name</code> .</li>
+<li>Index-only queries<br>  B-Tree indexes can normally support index-only queries, which are queries that access only the index, not the row storage. We discuss this optimization in &quot;Covering Indexes&quot; on page 177.</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>Here are some limitations of B-Tree indexes:</p>
+<ul>
+<li>They are not useful if the lookup does not start from the leftmost side of the indexed columns. For example, this index won&#39;t help you find all people named Bill or all people born on a certain date, because those columns are not leftmost in the index.  Likewise, you can&#39;t use the index to find people whose last name ends with a particular letter.</li>
+<li>You can&#39;t skip columns in the index. That is, you won&#39;t be able to find all people whose last name is Smith and who were born on a particular date. If you don&#39;t specify a value for the <code>first_name</code> column, MySQL can use only the first column of the index.</li>
+</ul>
+</blockquote>
 </div>
             
         </div>
 
         <footer class="post-footer">
             
-  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
+  <ul class="post-tag-list" itemprop="keywords"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/SQL/" rel="tag">SQL</a></li></ul>
 
         </footer>
     </div>
@@ -274,19 +275,14 @@
     <div class="post-nav">
   <div class="post-nav-next post-nav-item">
     
-    <a href="/insertion-shell-merge-quick-sort-algorithm-3" rel="next" title="聊聊4种主流排序算法(番外篇):快速排序的优化历程">
+    <a href="/exploration-vs-exploitation/" rel="next" title="Exploration vs Exploitation">
         <i class="fa fa-chevron-left"></i>
-        聊聊4种主流排序算法(番外篇):快速排序的优化历程
+        Exploration vs Exploitation
     </a>
     
   </div>
 
   <div class="post-nav-prev post-nav-item">
-    
-    <a href="/css-float-clearfix-best-in-practice" rel="prev" title="CSS清除浮动的原理与最佳实践">
-        CSS清除浮动的原理与最佳实践 
-        <i class="fa fa-chevron-right"></i>
-    </a>
     
   </div>
 </div>
@@ -340,7 +336,7 @@
 <aside class="widget" id="post-toc">
     <h3 class="widget-title">文章目录</h3>
     <div class="widget-content">
-        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%80-CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%8E%86%E5%8F%B2"><span class="document-nav-text">一.CSS盒模型历史</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%BA%8C-CSS3%E7%9A%84box-sizing%E5%B1%9E%E6%80%A7"><span class="document-nav-text">二.CSS3的box-sizing属性</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E4%B8%89-%E9%87%8D%E7%BD%AE%E6%96%B9%E6%B3%95%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="document-nav-text">三.重置方法最佳实践</span></a></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#%E5%9B%9B-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81"><span class="document-nav-text">四.浏览器支持</span></a></li></ol>
+        <ol class="document-nav"><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Chapter-4-Optimizing-Schema-and-Data-Types"><span class="document-nav-text">Chapter 4: Optimizing Schema and Data Types</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Choosing-Identifiers"><span class="document-nav-text">Choosing Identifiers</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Datetime-vs-Timestamp"><span class="document-nav-text">Datetime vs Timestamp</span></a></li><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Avoid-NULL-if-possible"><span class="document-nav-text">Avoid NULL if possible</span></a></li></ol></li><li class="document-nav-item document-nav-level-3"><a class="document-nav-link" href="#Chapter5-Indexing-for-high-performance"><span class="document-nav-text">Chapter5: Indexing for high performance</span></a><ol class="document-nav-child"><li class="document-nav-item document-nav-level-4"><a class="document-nav-link" href="#Types-of-queries-that-can-use-a-B-Tree-index"><span class="document-nav-text">Types of queries that can use a B-Tree index.</span></a></li></ol></li></ol>
     </div>
 </aside>
 
@@ -364,11 +360,11 @@
         <ul class="recent-posts">
             
             <li>
-                <a href="/notes-on-high-performance-mysql">Notes on High Performance MySQL</a>
+                <a href="/notes-on-high-performance-mysql/">Notes on High Performance MySQL</a>
             </li>
             
             <li>
-                <a href="/exploration-vs-exploitation">Exploration vs Exploitation</a>
+                <a href="/exploration-vs-exploitation/">Exploration vs Exploitation</a>
             </li>
             
             <li>
@@ -404,23 +400,23 @@
             </li>
             
             <li>
-                <a href="/closure-in-javascript">再谈js闭包</a>
+                <a href="/closure-in-javascript/">再谈js闭包</a>
             </li>
             
             <li>
-                <a href="/btree-data-structure">B-tree数据结构</a>
+                <a href="/btree-data-structure/">B-tree数据结构</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-y-combinator">lambda calculus:Y-combinator</a>
+                <a href="/lambda-calculus-y-combinator/">lambda calculus:Y-combinator</a>
             </li>
             
             <li>
-                <a href="/lambda-calculus-introduction">lambda calculus:Introduction</a>
+                <a href="/lambda-calculus-introduction/">lambda calculus:Introduction</a>
             </li>
             
             <li>
-                <a href="/salted-password-hashing">加密算法简介</a>
+                <a href="/salted-password-hashing/">加密算法简介</a>
             </li>
             
         </ul>
@@ -483,9 +479,9 @@
     
           <script type="text/javascript">
               var disqus_config = function () {
-                  this.page.url = 'https://blog.staynoob.cn/css-why-bootstrap-use-border-box-as-default-box-sizing';
-                  this.page.identifier = '/css-why-bootstrap-use-border-box-as-default-box-sizing';
-                  this.page.title = '为什么bootstrap采用border-box盒模型';
+                  this.page.url = 'https://blog.staynoob.cn/notes-on-high-performance-mysql/';
+                  this.page.identifier = '/notes-on-high-performance-mysql/';
+                  this.page.title = 'Notes on High Performance MySQL';
               };
               var d = document, s = d.createElement('script');
               s.src = 'https://staynoob.disqus.com/embed.js';
